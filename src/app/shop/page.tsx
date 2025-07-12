@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardFooter } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Star, ShoppingCart, Filter, Search } from 'lucide-react'
+import { Star, ShoppingCart, Search } from 'lucide-react'
 
 interface Product {
   id: string
@@ -243,7 +243,7 @@ export default function ShopPage() {
             Every Purchase Makes a Difference
           </h3>
           <p className="text-xl text-green-100 mb-6 max-w-3xl mx-auto">
-            When you buy our soaps, you're not just getting a great product—you're supporting 
+            When you buy our soaps, you&apos;re not just getting a great product—you&apos;re supporting
             student entrepreneurs and contributing to charitable causes in our community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -34,14 +34,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       // and we'll clone it with our classes
       const child = children as ReactNode
       if (React.isValidElement(child)) {
-        const childProps = child.props as any
+        // const childProps = child.props as any // eslint-disable-line @typescript-eslint/no-explicit-any
         return (
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            {React.cloneElement(child, {
-              className: cn(classes, childProps.className),
+            {React.cloneElement(child as React.ReactElement<any>, { // eslint-disable-line @typescript-eslint/no-explicit-any
+              className: cn(classes, (child.props as any)?.className), // eslint-disable-line @typescript-eslint/no-explicit-any
               ref,
               ...props
             })}
@@ -51,11 +51,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <motion.button
+      <button
         ref={ref}
         className={classes}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
         disabled={isLoading}
         {...props}
       >
@@ -63,7 +61,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
         ) : null}
         {children}
-      </motion.button>
+      </button>
     )
   }
 )

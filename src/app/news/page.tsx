@@ -21,7 +21,7 @@ export default function NewsPage() {
   const [needsMigration, setNeedsMigration] = useState(false)
 
   // Fetch news data
-  const fetchNews = async (newFilters: NewsFilters = filters, page: number = currentPage) => {
+  const fetchNews = useCallback(async (newFilters: NewsFilters = filters, page: number = currentPage) => {
     try {
       setLoading(true)
       setError(null)
@@ -33,7 +33,7 @@ export default function NewsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [filters, currentPage])
 
 
 
@@ -49,7 +49,7 @@ export default function NewsPage() {
         ])
         setNewsData(newsResponse)
         setAvailableTags(tags)
-      } catch (err: any) {
+      } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         console.error('Error fetching initial data:', err)
         if (err.message && err.message.includes('Database schema needs to be updated')) {
           setNeedsMigration(true)
@@ -95,7 +95,7 @@ export default function NewsPage() {
         ])
         setNewsData(newsResponse)
         setAvailableTags(tags)
-      } catch (err: any) {
+      } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         console.error('Error fetching initial data:', err)
         if (err.message && err.message.includes('Database schema needs to be updated')) {
           setNeedsMigration(true)

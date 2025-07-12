@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Upload, User, FileText, Save, Loader2, Camera } from 'lucide-react'
+import Image from 'next/image'
+import { X, User, FileText, Save, Loader2, Camera } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
 import {
@@ -73,7 +74,7 @@ export function ProfileEditModal({
         setImagePreview(null)
       }
     }
-  }, [isOpen, profile])
+  }, [isOpen, profile, imagePreview])
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
@@ -275,15 +276,19 @@ export function ProfileEditModal({
                 <div className="relative inline-block">
                   <div className="w-24 h-24 bg-gray-200 rounded-full overflow-hidden">
                     {imagePreview ? (
-                      <img
+                      <Image
                         src={imagePreview}
                         alt="個人資料預覽"
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     ) : profile?.avatar_url ? (
-                      <img
+                      <Image
                         src={profile.avatar_url}
                         alt="目前個人資料"
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     ) : (

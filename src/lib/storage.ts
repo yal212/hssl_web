@@ -67,7 +67,7 @@ export async function uploadAvatar(userId: string, file: File): Promise<{
     const filePath = `profiles/${fileName}`
 
     // Upload file
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from(STORAGE_BUCKETS.AVATARS)
       .upload(filePath, file, {
         cacheControl: '3600',

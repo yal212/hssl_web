@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation' // Commented out as it's not used
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Leaf, Mail, Eye, EyeOff } from 'lucide-react'
+import { Leaf, Eye, EyeOff } from 'lucide-react'
 import Link from 'next/link'
 
 export default function LoginPage() {
-  const router = useRouter()
+  // const router = useRouter() // Commented out as it's not used
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')

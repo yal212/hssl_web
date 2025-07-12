@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { User, Mail, Calendar, LogOut, Edit, Shield } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { ProfileEditModal } from '@/components/ProfileEditModal'
@@ -102,9 +103,11 @@ export default function ProfilePage() {
             <div className="flex items-center space-x-6">
               <div className="w-24 h-24 bg-white/20 rounded-full overflow-hidden flex items-center justify-center">
                 {localProfile?.avatar_url ? (
-                  <img
+                  <Image
                     src={localProfile.avatar_url}
                     alt="個人資料照片"
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover"
                   />
                 ) : (

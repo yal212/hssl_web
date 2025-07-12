@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Heart, ShoppingBag, Users, Megaphone, Gift, DollarSign, Handshake, Star } from 'lucide-react'
+import { Heart, ShoppingBag, Users, Megaphone, Gift, DollarSign, Handshake } from 'lucide-react'
 import Link from 'next/link'
 
 export default function SupportPage() {

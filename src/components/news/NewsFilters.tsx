@@ -30,7 +30,7 @@ export function NewsFiltersComponent({
     }, 300)
 
     return () => clearTimeout(timer)
-  }, [searchInput])
+  }, [searchInput, filters, onFiltersChange])
 
   const handleCategoryChange = (category: NewsCategory | undefined) => {
     onFiltersChange({ ...filters, category })

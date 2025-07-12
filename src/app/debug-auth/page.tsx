@@ -6,7 +6,7 @@ import { User } from '@supabase/supabase-js'
 
 export default function DebugAuthPage() {
   const [user, setUser] = useState<User | null>(null)
-  const [session, setSession] = useState<any>(null)
+  const [session, setSession] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 

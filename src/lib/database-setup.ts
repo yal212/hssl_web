@@ -83,7 +83,7 @@ export async function setupDatabase() {
     }
 
     // Check if posts table exists and has data
-    const { data: existingPosts, error: postsError } = await supabase
+    const { error: postsError } = await supabase
       .from('posts')
       .select('id')
       .limit(1)
@@ -94,7 +94,7 @@ export async function setupDatabase() {
     }
 
     // Check if events table exists and has data
-    const { data: existingEvents, error: eventsError } = await supabase
+    const { error: eventsError } = await supabase
       .from('events')
       .select('id')
       .limit(1)
@@ -115,7 +115,7 @@ export async function setupDatabase() {
 
 export async function checkDatabaseConnection() {
   try {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('products')
       .select('count')
       .limit(1)

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+// import Link from 'next/link' // Commented out as it's not used
 import Image from 'next/image'
 import { Card, CardContent, CardFooter } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
@@ -28,7 +28,7 @@ export function FeaturedProducts() {
 
   const fetchFeaturedProducts = async () => {
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('products')
         .select('*')
         .eq('in_stock', true)

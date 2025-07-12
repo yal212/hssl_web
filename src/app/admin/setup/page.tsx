@@ -202,10 +202,10 @@ export default function AdminSetupPage() {
                   Run the SQL schema from <code className="bg-gray-100 px-2 py-1 rounded">supabase-schema.sql</code> in your Supabase SQL Editor
                 </li>
                 <li>
-                  Click "Test Connection" to verify your database is accessible
+                  Click &quot;Test Connection&quot; to verify your database is accessible
                 </li>
                 <li>
-                  Click "Setup Database" to populate your database with sample products
+                  Click &quot;Setup Database&quot; to populate your database with sample products
                 </li>
                 <li>
                   Configure Google OAuth in your Supabase Authentication settings

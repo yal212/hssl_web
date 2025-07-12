@@ -95,12 +95,14 @@ export class NewsAPI {
       // Ensure all news items have required fields with defaults
       const normalizedData = (data || []).map(item => ({
         ...item,
+        author_id: (item as any).author_id || null, // eslint-disable-line @typescript-eslint/no-explicit-any
         excerpt: item.excerpt || null,
         category: item.category || 'general',
         tags: item.tags || [],
         featured: item.featured || false,
         image_url: item.image_url || null,
-        published_at: item.published_at || item.created_at
+        published_at: item.published_at || item.created_at,
+        author: Array.isArray(item.author) && item.author.length > 0 ? item.author[0] : null
       })) as NewsItem[]
 
       return {
@@ -274,8 +276,8 @@ export class NewsAPI {
       const { id, ...updateData } = newsItem
       
       // If publishing for the first time, set published_at
-      if (updateData.published && !updateData.published_at) {
-        updateData.published_at = new Date().toISOString()
+      if (updateData.published && !(updateData as any).published_at) { // eslint-disable-line @typescript-eslint/no-explicit-any
+        (updateData as any).published_at = new Date().toISOString() // eslint-disable-line @typescript-eslint/no-explicit-any
       }
 
       const { data, error } = await supabase

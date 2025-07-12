@@ -6,7 +6,7 @@ import { User } from '@supabase/supabase-js'
 
 export default function AuthStatusPage() {
   const [user, setUser] = useState<User | null>(null)
-  const [session, setSession] = useState<any>(null)
+  const [session, setSession] = useState<any>(null) // eslint-disable-line @typescript-eslint/no-explicit-any
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -122,10 +122,10 @@ export default function AuthStatusPage() {
           <h2 className="text-lg font-semibold mb-2">Next Steps</h2>
           {!user ? (
             <div>
-              <p className="mb-2">You're not currently signed in. To test the profile page:</p>
+              <p className="mb-2">You&apos;re not currently signed in. To test the profile page:</p>
               <ol className="list-decimal list-inside space-y-1 text-sm">
                 <li>Go to the <a href="/login" className="text-blue-600 hover:underline">login page</a></li>
-                <li>Click "Create & Sign In Test User" to create a test account</li>
+                <li>Click &quot;Create &amp; Sign In Test User&quot; to create a test account</li>
                 <li><strong>Check your email</strong> for a confirmation link</li>
                 <li><strong>Click the confirmation link</strong> in the email</li>
                 <li>Return to the login page and sign in with the test credentials</li>
@@ -143,7 +143,7 @@ export default function AuthStatusPage() {
             </div>
           ) : (
             <div>
-              <p className="text-green-600 font-medium">✅ You're fully authenticated! You should be able to access both dashboard and profile pages.</p>
+              <p className="text-green-600 font-medium">✅ You&apos;re fully authenticated! You should be able to access both dashboard and profile pages.</p>
             </div>
           )}
         </div>
