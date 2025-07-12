@@ -3,8 +3,22 @@
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Leaf, Heart, Users, Award, Mail } from 'lucide-react'
+import {
+  Leaf,
+  Heart,
+  Users,
+  Award,
+  Mail,
+  Beaker,
+  Recycle,
+  Shield,
+  TreePine,
+  Lightbulb,
+  CheckCircle,
+  Sparkles
+} from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function AboutPage() {
   const studentGroups = [
@@ -169,6 +183,240 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* HSSL Mission Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              HSSL 的使命與活動
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              從化學學科知識出發，推廣環保手工皂，實現廢油循環再生，建立永續生活模式。
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Beaker,
+                title: '化學知識應用',
+                description: '結合化學學科知識與技能，深入了解皂化反應原理。',
+                detail: '透過科學方法製作安全有效的天然清潔產品。'
+              },
+              {
+                icon: Recycle,
+                title: '廢油循環再生',
+                description: '推廣過期油與實用廢油的循環再生利用。',
+                detail: '將廢棄油脂轉化為有用的清潔用品，實現零廢棄目標。'
+              },
+              {
+                icon: Heart,
+                title: '社區教育推廣',
+                description: '從家庭到學校，再到社區，全面推廣環保理念。',
+                detail: '透過製皂教學活動，提升民眾環保意識與實踐能力。'
+              }
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 text-center"
+              >
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <step.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
+                <p className="text-gray-600 mb-4">{step.description}</p>
+                <p className="text-sm text-gray-500">{step.detail}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Values Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              團隊核心理念
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              人文關懷與環境永續 - HSSL 致力於透過手工皂推廣實現社會責任與環境保護的雙重目標。
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                title: '公共衛生',
+                icon: Shield,
+                color: 'from-blue-500 to-blue-600',
+                bgColor: 'from-blue-50 to-blue-100',
+                borderColor: 'border-blue-200',
+                items: [
+                  '健康清潔',
+                  '天然無毒添加物'
+                ]
+              },
+              {
+                title: '環境永續',
+                icon: TreePine,
+                color: 'from-green-500 to-green-600',
+                bgColor: 'from-green-50 to-green-100',
+                borderColor: 'border-green-200',
+                items: [
+                  '100% 分解',
+                  '無石化油原料',
+                  '無塑化包裝',
+                  '過期油的循環再生'
+                ]
+              },
+              {
+                title: '公益關懷',
+                icon: Heart,
+                color: 'from-red-500 to-red-600',
+                bgColor: 'from-red-50 to-red-100',
+                borderColor: 'border-red-200',
+                items: [
+                  '弱勢製皂工作坊',
+                  '偏鄉與非洲肯亞送皂',
+                  '募款義賣'
+                ]
+              },
+              {
+                title: '社會 ESG 合作',
+                icon: Lightbulb,
+                color: 'from-purple-500 to-purple-600',
+                bgColor: 'from-purple-50 to-purple-100',
+                borderColor: 'border-purple-200',
+                items: [
+                  '永續攤位',
+                  '製皂工作坊'
+                ]
+              }
+            ].map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`bg-gradient-to-br ${value.bgColor} rounded-2xl p-8 border-2 ${value.borderColor}`}
+              >
+                <div className="flex items-center mb-6">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${value.color} rounded-full flex items-center justify-center mr-4`}>
+                    <value.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">{value.title}</h3>
+                </div>
+
+                <ul className="space-y-3">
+                  {value.items.map((item, itemIndex) => (
+                    <li key={itemIndex} className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                      <span className="text-gray-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Impact Highlight */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-center text-white"
+          >
+            <h3 className="text-2xl font-bold mb-4">HSSL 的社會影響力</h3>
+            <p className="text-lg text-green-100 max-w-4xl mx-auto leading-relaxed">
+              從個人家庭到學校社區，再到國際公益合作，HSSL 透過手工皂教育推廣，
+              不僅實現了環保理念的傳播，更建立了跨越地域的人文關懷網絡，
+              將永續生活的種子播撒到世界各個角落。
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* HSSL Educational Journey Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              HSSL 的教育推廣歷程
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              從個人家庭開始，逐步擴展到學校與社區，建立完整的環保教育網絡。
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                name: '家庭分享',
+                benefits: ['個人在家實踐', '分享給家人', '建立環保習慣'],
+                color: 'from-green-400 to-green-600'
+              },
+              {
+                name: '校園推廣',
+                benefits: ['分享給老師', '教導同學', '校內環保活動'],
+                color: 'from-blue-400 to-blue-600'
+              },
+              {
+                name: '社區教學',
+                benefits: ['舉辦製皂教學', '回收過期油', '環保攤位互動'],
+                color: 'from-purple-400 to-purple-600'
+              }
+            ].map((stage, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className={`w-full h-32 bg-gradient-to-br ${stage.color} rounded-xl mb-6 flex items-center justify-center`}>
+                  <Sparkles className="w-12 h-12 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{stage.name}</h3>
+                <ul className="space-y-2">
+                  {stage.benefits.map((benefit, benefitIndex) => (
+                    <li key={benefitIndex} className="flex items-center text-gray-600">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                      <span className="text-sm">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Team Members */}
       <section className="py-20 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -222,10 +470,14 @@ export default function AboutPage() {
 
                           {/* Avatar */}
                           <div className="relative z-10 text-center">
-                            <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/30 group-hover:scale-110 transition-transform duration-300">
-                              <span className="text-white font-bold text-2xl drop-shadow-sm">
-                                {group.avatar}
-                              </span>
+                            <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-white/30 group-hover:scale-110 transition-transform duration-300">
+                              <Image
+                                src="/hssl_profile.jpg"
+                                alt={group.name}
+                                width={80}
+                                height={80}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-2 drop-shadow-sm">
                               {group.name}
@@ -294,19 +546,13 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  High School Soap Lab始於2021年，當時我們的創辦人艾瑪在化學課專題中發現了
-                  商業肥皂對環境的影響。她意識到許多肥皂含有有害化學物質，
-                  會污染水道並破壞生態系統。
+                  High School Soap Lab (簡稱 HSSL) 是成立自2021年的跨校團隊，因對市售清潔劑的隱憂，結合化學學科知識與技能，推廣手工皂替代市售清潔劑，也推廣過期油與實用廢油的循環再生。
                 </p>
                 <p>
-                  原本只是學校專題的計畫很快演變成一個使命導向的事業。
-                  艾瑪聚集了一群志同道合的學生，他們分享她對永續發展和社會影響的熱忱。
-                  我們一起學習使用天然、環保成分製作手工皂的藝術。
+                  推廣與教學從個人在家分享給家人，到學校分享給老師與同學，再走出校園在社區中舉辦製皂教學，除了鼓勵民眾參加製皂活動，同步回收過期油作為推廣課的原料。
                 </p>
                 <p>
-                  今天，我們自豪地已向當地慈善機構捐贈超過$0，
-                  同時為客戶提供高品質、永續的產品。我們的旅程教會了我們
-                  關於創業精神、團隊合作以及年輕人創造正面改變的力量的寶貴課程。
+                  與多個環保與公益團體合作開課及參與環境永續攤位與民眾互動，致力於推廣環保理念與永續生活實踐。
                 </p>
               </div>
             </motion.div>
