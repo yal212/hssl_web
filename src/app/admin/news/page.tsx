@@ -2,17 +2,30 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Plus, Edit, Trash2, Eye, EyeOff } from 'lucide-react'
+import { Plus, Edit, Trash2, Eye, EyeOff, ArrowLeft } from 'lucide-react'
 import { NewsAPI } from '@/lib/api/news'
 import { NewsItem } from '@/lib/types/news'
 import { formatDateTime } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
+import CreateNewsModal from '@/components/news/CreateNewsModal'
+import EditNewsModal from '@/components/news/EditNewsModal'
+import ConfirmDialog from '@/components/ui/ConfirmDialog'
+import AdminGuard from '@/components/AdminGuard'
+import Link from 'next/link'
 
 export default function AdminNewsPage() {
   const [news, setNews] = useState<NewsItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  // Modal states
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editingNews, setEditingNews] = useState<NewsItem | null>(null)
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [deletingNews, setDeletingNews] = useState<NewsItem | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const fetchNews = async () => {
     try {
@@ -45,17 +58,34 @@ export default function AdminNewsPage() {
     }
   }
 
-  const handleDelete = async (newsId: string) => {
-    if (!confirm('確定要刪除這篇新聞嗎？此操作無法復原。')) {
-      return
-    }
+  const handleEdit = (newsItem: NewsItem) => {
+    setEditingNews(newsItem)
+    setShowEditModal(true)
+  }
+
+  const handleDelete = (newsItem: NewsItem) => {
+    setDeletingNews(newsItem)
+    setShowDeleteDialog(true)
+  }
+
+  const confirmDelete = async () => {
+    if (!deletingNews) return
 
     try {
-      await NewsAPI.deleteNews(newsId)
+      setIsDeleting(true)
+      await NewsAPI.deleteNews(deletingNews.id)
       fetchNews() // Refresh the list
+      setShowDeleteDialog(false)
+      setDeletingNews(null)
     } catch (err) {
       console.error('Error deleting news:', err)
+    } finally {
+      setIsDeleting(false)
     }
+  }
+
+  const handleModalSuccess = () => {
+    fetchNews() // Refresh the list when create/edit is successful
   }
 
   if (loading) {
@@ -72,7 +102,8 @@ export default function AdminNewsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <AdminGuard>
+      <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -81,8 +112,19 @@ export default function AdminNewsPage() {
           transition={{ duration: 0.6 }}
           className="flex justify-between items-center mb-8"
         >
-          <h1 className="text-3xl font-bold text-gray-900">新聞管理</h1>
-          <Button className="flex items-center">
+          <div className="flex items-center gap-4">
+            <Link href="/news">
+              <Button variant="outline" size="sm" className="flex items-center">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                返回新聞頁面
+              </Button>
+            </Link>
+            <h1 className="text-3xl font-bold text-gray-900">新聞管理</h1>
+          </div>
+          <Button
+            onClick={() => setShowCreateModal(true)}
+            className="flex items-center"
+          >
             <Plus className="w-4 h-4 mr-2" />
             新增新聞
           </Button>
@@ -189,15 +231,20 @@ export default function AdminNewsPage() {
                           )}
                         </Button>
                         
-                        <Button variant="ghost" size="sm" className="flex items-center">
-                          <Edit className="w-4 h-4 mr-1" />
-                          編輯
-                        </Button>
-                        
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => handleDelete(newsItem.id)}
+                          onClick={() => handleEdit(newsItem)}
+                          className="flex items-center"
+                        >
+                          <Edit className="w-4 h-4 mr-1" />
+                          編輯
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDelete(newsItem)}
                           className="flex items-center text-red-600 hover:text-red-700"
                         >
                           <Trash2 className="w-4 h-4 mr-1" />
@@ -221,7 +268,10 @@ export default function AdminNewsPage() {
               <p className="text-gray-600 mb-6">
                 開始建立您的第一篇新聞
               </p>
-              <Button className="flex items-center mx-auto">
+              <Button
+                onClick={() => setShowCreateModal(true)}
+                className="flex items-center mx-auto"
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 新增新聞
               </Button>
@@ -229,6 +279,39 @@ export default function AdminNewsPage() {
           )}
         </motion.div>
       </div>
-    </div>
+
+      {/* Modals */}
+      <CreateNewsModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onSuccess={handleModalSuccess}
+      />
+
+      <EditNewsModal
+        isOpen={showEditModal}
+        newsItem={editingNews}
+        onClose={() => {
+          setShowEditModal(false)
+          setEditingNews(null)
+        }}
+        onSuccess={handleModalSuccess}
+      />
+
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        title="確認刪除"
+        message={`確定要刪除新聞「${deletingNews?.title}」嗎？此操作無法復原。`}
+        confirmText="刪除"
+        cancelText="取消"
+        onConfirm={confirmDelete}
+        onCancel={() => {
+          setShowDeleteDialog(false)
+          setDeletingNews(null)
+        }}
+        isLoading={isDeleting}
+        variant="danger"
+      />
+      </div>
+    </AdminGuard>
   )
 }

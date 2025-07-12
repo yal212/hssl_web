@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-// import { useRouter } from 'next/navigation' // Commented out as it's not used
+import { useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
@@ -10,13 +10,21 @@ import { Leaf, Eye, EyeOff } from 'lucide-react'
 import Link from 'next/link'
 
 export default function LoginPage() {
-  // const router = useRouter() // Commented out as it's not used
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [isSignUp, setIsSignUp] = useState(false)
+
+  // Handle URL parameters for messages
+  useEffect(() => {
+    const messageParam = searchParams.get('message')
+    if (messageParam === 'already-confirmed') {
+      setMessage('您的電子郵件已經確認過了！您現在可以使用您的帳戶登入。')
+    }
+  }, [searchParams])
 
   const createTestUser = async () => {
     setIsLoading(true)
@@ -37,17 +45,8 @@ export default function LoginPage() {
       if (error) {
         setMessage(`測試用戶創建失敗：${error.message}`)
       } else {
-        setMessage(`測試用戶已創建！
-
-📧 重要：在嘗試登入之前，請檢查您的電子郵件 (${testEmail}) 中的確認連結。
-
-✅ 點擊電子郵件中的確認連結後，您可以使用以下資訊登入：
-• 電子郵件：${testEmail}
-• 密碼：${testPassword}
-
-💡 如果您沒有看到電子郵件，請檢查您的垃圾郵件資料夾。`)
-        setEmail(testEmail)
-        setPassword(testPassword)
+        // Redirect to email check page for test user
+        window.location.href = `/check-email?email=${encodeURIComponent(testEmail)}`
       }
     } catch (err) {
       console.error('Test user creation error:', err)
@@ -94,7 +93,8 @@ export default function LoginPage() {
         if (error) {
           setMessage(error.message)
         } else {
-          setMessage('請檢查您的電子郵件中的確認連結！')
+          // Redirect to email check page with the email address
+          window.location.href = `/check-email?email=${encodeURIComponent(email)}`
         }
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -117,7 +117,7 @@ export default function LoginPage() {
           console.log('Login successful, user:', data.user)
           setMessage('登入成功！正在重新導向...')
           // Use window.location for immediate redirect to ensure session is included
-          window.location.href = '/profile'
+          window.location.href = '/login-success'
         } else {
           console.log('Login returned no user')
           setMessage('登入失敗：未返回用戶')
@@ -310,6 +310,16 @@ export default function LoginPage() {
                 >
                   創建並登入測試用戶
                 </button>
+              </div>
+
+              {/* Email Check Link */}
+              <div>
+                <Link
+                  href="/check-email"
+                  className="text-xs text-gray-600 hover:text-gray-500 font-medium"
+                >
+                  需要檢查確認郵件？
+                </Link>
               </div>
             </div>
 

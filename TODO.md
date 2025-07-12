@@ -1,2 +1,5 @@
 - google Oauth
-- deploy
+- news able to add photos
+- better successful log in UI
+- improve email cofirmation mail
+- add linktree link soomewhere

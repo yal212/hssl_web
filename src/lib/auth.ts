@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
+import { supabase } from '@/lib/supabase'
 
 export async function createClient() {
   const cookieStore = await cookies()
@@ -59,25 +60,28 @@ export async function updateSession(request: NextRequest) {
   // supabase.auth.getUser(). A simple mistake could make it very hard to debug
   // issues with users being randomly logged out.
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // First try to get session, then user
+  const { data: { session }, error: sessionError } = await supabase.auth.getSession()
 
-  // If no user, try to refresh the session
-  if (!user) {
-    const { data: { session } } = await supabase.auth.getSession()
-    if (session) {
-      console.log('Found session but no user, attempting refresh')
-      await supabase.auth.refreshSession()
-      const { data: { user: refreshedUser } } = await supabase.auth.getUser()
-      if (refreshedUser) {
-        console.log('Successfully refreshed user session')
-      }
-    }
+  let user = session?.user || null
+
+  // If we have a session but no user, try getUser
+  if (session && !user) {
+    const { data: { user: fetchedUser } } = await supabase.auth.getUser()
+    user = fetchedUser
   }
 
+  // Debug logging
+  console.log('Auth middleware check:', {
+    hasSession: !!session,
+    hasUser: !!user,
+    userEmail: user?.email,
+    sessionError: sessionError?.message,
+    cookieCount: request.cookies.getAll().length
+  })
+
   // Debug logging for protected routes
-  if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/profile')) {
+  if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/profile') || request.nextUrl.pathname.startsWith('/admin')) {
     console.log('Middleware auth check:', {
       path: request.nextUrl.pathname,
       user: user ? { id: user.id, email: user.email } : null,
@@ -104,6 +108,14 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // TEMPORARY: Disable admin route protection for debugging
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    console.log('Admin route accessed:', request.nextUrl.pathname, 'User:', user ? user.email : 'none')
+    console.log('TEMPORARILY ALLOWING ALL ADMIN ACCESS - REMOVE IN PRODUCTION')
+    // Let AdminGuard component handle the protection
+    return supabaseResponse
+  }
+
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
   // creating a new response object with NextResponse.next() make sure to:
   // 1. Pass the request in it, like so:
@@ -118,4 +130,61 @@ export async function updateSession(request: NextRequest) {
   // of sync and terminate the user's session prematurely!
 
   return supabaseResponse
+}
+
+/**
+ * Check if the current user has admin role
+ */
+export async function isAdmin(): Promise<boolean> {
+  try {
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return false
+    }
+
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    if (error || !profile) {
+      return false
+    }
+
+    return profile.role === 'admin'
+  } catch (error) {
+    console.error('Error checking admin status:', error)
+    return false
+  }
+}
+
+/**
+ * Get current user profile with role information
+ */
+export async function getCurrentUserProfile() {
+  try {
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return null
+    }
+
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single()
+
+    if (error) {
+      console.error('Error fetching user profile:', error)
+      return null
+    }
+
+    return { user, profile }
+  } catch (error) {
+    console.error('Error getting current user profile:', error)
+    return null
+  }
 }

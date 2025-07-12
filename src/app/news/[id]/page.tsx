@@ -18,6 +18,7 @@ import { NewsItem, NEWS_CATEGORIES } from '@/lib/types/news'
 import { formatDateTime } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
+import ImageGallery from '@/components/ui/ImageGallery'
 
 export default function NewsDetailPage() {
   const params = useParams()
@@ -145,24 +146,22 @@ export default function NewsDetailPage() {
           className="bg-white rounded-lg shadow-sm overflow-hidden"
         >
           {/* Featured Image */}
-          {news.image_url && (
-            <div className="relative h-96 overflow-hidden">
-              <Image
-                src={news.image_url}
-                alt={news.title}
-                fill
-                className="object-cover"
-              />
-              {news.featured && (
-                <div className="absolute top-6 left-6">
-                  <div className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                    <Star className="w-4 h-4 mr-1" />
-                    精選新聞
-                  </div>
+          <div className="relative h-96 overflow-hidden">
+            <Image
+              src={news.image_url || '/hssl_profile.jpg'}
+              alt={news.title}
+              fill
+              className="object-cover"
+            />
+            {news.featured && (
+              <div className="absolute top-6 left-6">
+                <div className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                  <Star className="w-4 h-4 mr-1" />
+                  精選新聞
                 </div>
-              )}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
 
           <div className="p-8">
             {/* Meta Information */}
@@ -209,10 +208,22 @@ export default function NewsDetailPage() {
             </div>
 
             {/* Content */}
-            <div 
+            <div
               className="prose prose-lg max-w-none mb-8"
               dangerouslySetInnerHTML={{ __html: news.content }}
             />
+
+            {/* Content Images Gallery */}
+            {news.content_images && news.content_images.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">相關圖片</h3>
+                <ImageGallery
+                  images={news.content_images}
+                  showThumbnails={true}
+                  autoScroll={false}
+                />
+              </div>
+            )}
 
             {/* Tags */}
             {news.tags && news.tags.length > 0 && (

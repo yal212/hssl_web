@@ -63,7 +63,7 @@ export default function TestAuthPage() {
         setMessage('Sign in successful! User authenticated.')
         // Test navigation after successful login
         setTimeout(() => {
-          window.location.href = '/dashboard'
+          window.location.href = '/login-success'
         }, 2000)
       } else {
         setMessage('Sign in returned no user')

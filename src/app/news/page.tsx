@@ -2,14 +2,19 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Newspaper, Rss } from 'lucide-react'
+import { Newspaper, Plus, Settings, Edit, Trash2 } from 'lucide-react'
 import { NewsAPI } from '@/lib/api/news'
-import { NewsFilters, NewsResponse, DEFAULT_NEWS_FILTERS } from '@/lib/types/news'
+import { NewsItem, NewsFilters, NewsResponse, DEFAULT_NEWS_FILTERS } from '@/lib/types/news'
 import { NewsCard, NewsCardSkeleton } from '@/components/news/NewsCard'
 import { NewsFiltersComponent } from '@/components/news/NewsFilters'
 import { NewsPaginationComponent } from '@/components/news/NewsPagination'
 import { DatabaseMigrationNotice } from '@/components/news/DatabaseMigrationNotice'
+import CreateNewsModal from '@/components/news/CreateNewsModal'
+import EditNewsModal from '@/components/news/EditNewsModal'
+import ConfirmDialog from '@/components/ui/ConfirmDialog'
 import { Button } from '@/components/ui/Button'
+import { useAdmin } from '@/hooks/useAdmin'
+import Link from 'next/link'
 
 export default function NewsPage() {
   const [newsData, setNewsData] = useState<NewsResponse | null>(null)
@@ -19,6 +24,20 @@ export default function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [availableTags, setAvailableTags] = useState<string[]>([])
   const [needsMigration, setNeedsMigration] = useState(false)
+
+  // Admin state
+  const { isAdmin, loading: adminLoading, user: adminUser, profile } = useAdmin()
+
+  // Debug admin status
+  useEffect(() => {
+    console.log('Admin status:', { isAdmin, adminLoading, user: adminUser?.email, role: profile?.role })
+  }, [isAdmin, adminLoading, adminUser, profile])
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editingNews, setEditingNews] = useState<NewsItem | null>(null)
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [deletingNews, setDeletingNews] = useState<NewsItem | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   // Fetch news data
   const fetchNews = useCallback(async (newFilters: NewsFilters = filters, page: number = currentPage) => {
@@ -110,6 +129,46 @@ export default function NewsPage() {
     initialFetch()
   }
 
+  // Admin action handlers
+  const handleCreateNews = () => {
+    setShowCreateModal(true)
+  }
+
+  const handleEditNews = (newsItem: NewsItem) => {
+    setEditingNews(newsItem)
+    setShowEditModal(true)
+  }
+
+  const handleDeleteNews = (newsItem: NewsItem) => {
+    setDeletingNews(newsItem)
+    setShowDeleteDialog(true)
+  }
+
+  const confirmDelete = async () => {
+    if (!deletingNews) return
+
+    try {
+      setIsDeleting(true)
+      await NewsAPI.deleteNews(deletingNews.id)
+
+      // Refresh the news list
+      fetchNews()
+
+      // Close dialog
+      setShowDeleteDialog(false)
+      setDeletingNews(null)
+    } catch (error) {
+      console.error('Error deleting news:', error)
+    } finally {
+      setIsDeleting(false)
+    }
+  }
+
+  const handleModalSuccess = () => {
+    // Refresh the news list when create/edit is successful
+    fetchNews()
+  }
+
   // Show migration notice if needed
   if (needsMigration) {
     return <DatabaseMigrationNotice onRetry={handleRetryAfterMigration} />
@@ -139,15 +198,25 @@ export default function NewsPage() {
               了解我們在環保手工皂推廣和慈善事業上的最新進展。
             </p>
             
-            {/* RSS Feed Link */}
-            <div className="flex justify-center">
-              <a href="/api/rss" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="flex items-center">
-                  <Rss className="w-4 h-4 mr-2" />
-                  訂閱 RSS 更新
+            {/* Admin Controls */}
+            {isAdmin && (
+              <div className="flex justify-center gap-4">
+                <Button
+                  onClick={handleCreateNews}
+                  className="flex items-center"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  新增新聞
                 </Button>
-              </a>
-            </div>
+
+                <Link href="/admin/news">
+                  <Button variant="outline" className="flex items-center">
+                    <Settings className="w-4 h-4 mr-2" />
+                    管理後台
+                  </Button>
+                </Link>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
@@ -212,9 +281,12 @@ export default function NewsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                       >
-                        <NewsCard 
-                          news={news} 
+                        <NewsCard
+                          news={news}
                           featured={news.featured}
+                          showAdminControls={isAdmin}
+                          onEdit={handleEditNews}
+                          onDelete={handleDeleteNews}
                         />
                       </motion.div>
                     ))}
@@ -259,6 +331,42 @@ export default function NewsPage() {
           )}
         </div>
       </section>
+
+      {/* Admin Modals */}
+      {isAdmin && (
+        <>
+          <CreateNewsModal
+            isOpen={showCreateModal}
+            onClose={() => setShowCreateModal(false)}
+            onSuccess={handleModalSuccess}
+          />
+
+          <EditNewsModal
+            isOpen={showEditModal}
+            newsItem={editingNews}
+            onClose={() => {
+              setShowEditModal(false)
+              setEditingNews(null)
+            }}
+            onSuccess={handleModalSuccess}
+          />
+
+          <ConfirmDialog
+            isOpen={showDeleteDialog}
+            title="確認刪除"
+            message={`確定要刪除新聞「${deletingNews?.title}」嗎？此操作無法復原。`}
+            confirmText="刪除"
+            cancelText="取消"
+            onConfirm={confirmDelete}
+            onCancel={() => {
+              setShowDeleteDialog(false)
+              setDeletingNews(null)
+            }}
+            isLoading={isDeleting}
+            variant="danger"
+          />
+        </>
+      )}
     </div>
   )
 }

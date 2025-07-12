@@ -17,6 +17,7 @@ export interface NewsItem {
   category: NewsCategory
   tags: string[]
   image_url?: string
+  content_images?: string[]
   published_at?: string
   created_at: string
   updated_at: string
@@ -57,6 +58,7 @@ export interface CreateNewsItem {
   category: NewsCategory
   tags: string[]
   image_url?: string
+  content_images?: string[]
   featured?: boolean
   published?: boolean
 }

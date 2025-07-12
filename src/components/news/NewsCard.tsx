@@ -3,27 +3,69 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Calendar, User, Star } from 'lucide-react'
+import { Calendar, User, Star, Edit, Trash2, MoreVertical } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
 import { NewsItem, NEWS_CATEGORIES } from '@/lib/types/news'
 import { formatDate } from '@/lib/utils'
+import { useState, useRef, useEffect } from 'react'
 
 interface NewsCardProps {
   news: NewsItem
   featured?: boolean
   className?: string
+  showAdminControls?: boolean
+  onEdit?: (news: NewsItem) => void
+  onDelete?: (news: NewsItem) => void
 }
 
-export function NewsCard({ news, featured = false, className = '' }: NewsCardProps) {
+export function NewsCard({
+  news,
+  featured = false,
+  className = '',
+  showAdminControls = false,
+  onEdit,
+  onDelete
+}: NewsCardProps) {
   const categoryInfo = NEWS_CATEGORIES.find(cat => cat.value === news.category)
   const displayDate = news.published_at || news.created_at
+  const [showDropdown, setShowDropdown] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false)
+      }
+    }
+
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showDropdown])
+
+  const handleEdit = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    onEdit?.(news)
+    setShowDropdown(false)
+  }
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    onDelete?.(news)
+    setShowDropdown(false)
+  }
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={className}
+      className={`relative ${className}`}
     >
       <Link href={`/news/${news.id}`}>
         <Card hover className={`h-full overflow-hidden ${featured ? 'border-green-200 shadow-lg' : ''}`}>
@@ -38,18 +80,57 @@ export function NewsCard({ news, featured = false, className = '' }: NewsCardPro
               </div>
             )}
 
-            {/* Image */}
-            {news.image_url && (
-              <div className={`relative ${featured ? 'h-64' : 'h-48'} overflow-hidden`}>
-                <Image
-                  src={news.image_url}
-                  alt={news.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            {/* Admin Controls */}
+            {showAdminControls && (
+              <div className="absolute top-4 right-4 z-20">
+                <div className="relative" ref={dropdownRef}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      setShowDropdown(!showDropdown)
+                    }}
+                    className="bg-white/90 hover:bg-white shadow-sm"
+                  >
+                    <MoreVertical className="w-4 h-4" />
+                  </Button>
+
+                  {showDropdown && (
+                    <div className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border z-30">
+                      <div className="py-1">
+                        <button
+                          onClick={handleEdit}
+                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          <Edit className="w-4 h-4 mr-2" />
+                          編輯
+                        </button>
+                        <button
+                          onClick={handleDelete}
+                          className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                        >
+                          <Trash2 className="w-4 h-4 mr-2" />
+                          刪除
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
+
+            {/* Image */}
+            <div className={`relative ${featured ? 'h-64' : 'h-48'} overflow-hidden`}>
+              <Image
+                src={news.image_url || '/hssl_profile.jpg'}
+                alt={news.title}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
 
             {/* Content */}
             <div className="p-6">

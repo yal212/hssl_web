@@ -1,11 +1,22 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { XCircle, ArrowLeft } from 'lucide-react'
+import { XCircle, ArrowLeft, RefreshCw } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export default function AuthCodeErrorPage() {
+  const searchParams = useSearchParams()
+  const [debugInfo, setDebugInfo] = useState<string>('')
+
+  useEffect(() => {
+    // Capture URL parameters for debugging
+    const params = new URLSearchParams(window.location.search)
+    const info = Array.from(params.entries()).map(([key, value]) => `${key}: ${value}`).join(', ')
+    setDebugInfo(info)
+  }, [])
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center py-12 px-4">
       <motion.div
@@ -24,30 +35,47 @@ export default function AuthCodeErrorPage() {
         </motion.div>
         
         <h2 className="text-xl font-semibold text-gray-900 mb-2">
-          Authentication Error
+          驗證錯誤
         </h2>
-        
+
         <p className="text-gray-600 mb-6">
-          There was an error processing your authentication. This could happen if:
+          處理您的身份驗證時發生錯誤。這可能是因為：
         </p>
-        
+
         <ul className="text-left text-sm text-gray-600 mb-6 space-y-1">
-          <li>• The confirmation link has expired</li>
-          <li>• The link has already been used</li>
-          <li>• There was a network error</li>
+          <li>• 確認連結已過期</li>
+          <li>• 連結已經被使用過</li>
+          <li>• 發生網路錯誤</li>
+          <li>• 您的帳戶可能已經確認過了</li>
         </ul>
-        
+
         <div className="space-y-3">
           <Link href="/login">
             <Button variant="primary" className="w-full">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Login
+              返回登入頁面
             </Button>
           </Link>
-          
+
+          <Link href="/login">
+            <Button variant="outline" className="w-full">
+              <RefreshCw className="h-4 w-4 mr-2" />
+              嘗試登入現有帳戶
+            </Button>
+          </Link>
+
           <p className="text-xs text-gray-500">
-            If you continue to have issues, please try requesting a new confirmation email.
+            如果您持續遇到問題，請嘗試重新註冊或聯繫支援。
           </p>
+
+          {debugInfo && (
+            <details className="text-xs text-gray-400 mt-4">
+              <summary className="cursor-pointer">技術資訊 (點擊展開)</summary>
+              <p className="mt-2 p-2 bg-gray-50 rounded text-left break-all">
+                {debugInfo || '無參數'}
+              </p>
+            </details>
+          )}
         </div>
       </motion.div>
     </div>
