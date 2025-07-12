@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { NewsCategory, CreateNewsItem, UpdateNewsItem, NewsItem, NEWS_CATEGORIES } from '@/lib/types/news'
-import { X, Plus, Trash2, Camera, Upload, Image as ImageIcon } from 'lucide-react'
+import { X, Plus, Trash2, Camera, Upload } from 'lucide-react'
 import {
   validateImageFile,
   resizeImage,
@@ -37,7 +37,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
     image_url: ''
   })
   const [newTag, setNewTag] = useState('')
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({})
 
   // Image upload states
   const [mainImageFile, setMainImageFile] = useState<File | null>(null)
@@ -93,7 +93,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
 
     const validation = validateImageFile(file)
     if (!validation.isValid) {
-      setErrors(prev => ({ ...prev, mainImage: validation.error }))
+      setErrors(prev => ({ ...prev, mainImage: validation.error || 'Invalid image file' }))
       return
     }
 

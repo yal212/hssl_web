@@ -29,7 +29,7 @@ export async function ensureStorageBuckets() {
 
     // Try to create buckets if they don't exist
     if (!avatarsBucketExists) {
-      const { data, error } = await supabase.storage.createBucket(STORAGE_BUCKETS.AVATARS, {
+      const { error } = await supabase.storage.createBucket(STORAGE_BUCKETS.AVATARS, {
         public: true,
         fileSizeLimit: 5242880, // 5MB
         allowedMimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
@@ -45,7 +45,7 @@ export async function ensureStorageBuckets() {
     }
 
     if (!newsBucketExists) {
-      const { data, error } = await supabase.storage.createBucket(STORAGE_BUCKETS.NEWS, {
+      const { error } = await supabase.storage.createBucket(STORAGE_BUCKETS.NEWS, {
         public: true,
         fileSizeLimit: 10485760, // 10MB for news images
         allowedMimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
@@ -78,7 +78,7 @@ export async function uploadAvatar(userId: string, file: File): Promise<{
 }> {
   try {
     // Ensure bucket exists
-    const bucketResult = await ensureStorageBuckets()
+    await ensureStorageBuckets()
     // Continue even if bucket check fails
 
     const fileExt = file.name.split('.').pop()
@@ -156,7 +156,7 @@ export async function uploadNewsImage(userId: string, file: File, newsId?: strin
 }> {
   try {
     // Ensure bucket exists
-    const bucketResult = await ensureStorageBuckets()
+    await ensureStorageBuckets()
     // Continue even if bucket check fails
 
     const fileExt = file.name.split('.').pop()

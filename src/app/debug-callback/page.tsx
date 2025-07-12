@@ -1,13 +1,17 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { supabase } from '@/lib/supabase'
 
-export default function DebugCallbackPage() {
+function DebugCallbackContent() {
   const searchParams = useSearchParams()
   const [params, setParams] = useState<Record<string, string>>({})
-  const [authState, setAuthState] = useState<any>(null)
+  const [authState, setAuthState] = useState<{
+    session: boolean
+    user: string | undefined
+    error: string | undefined
+  } | null>(null)
 
   useEffect(() => {
     // Capture all URL parameters
@@ -75,5 +79,22 @@ export default function DebugCallbackPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function DebugCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 p-8">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">載入中...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <DebugCallbackContent />
+    </Suspense>
   )
 }

@@ -135,12 +135,12 @@ export default function TestResendPage() {
         <div className="mt-6 pt-6 border-t border-gray-200">
           <h3 className="font-semibold text-gray-900 mb-2">Testing Instructions:</h3>
           <ol className="text-sm text-gray-600 space-y-1">
-            <li>1. Click "Send Confirmation Email" above</li>
+            <li>1. Click &quot;Send Confirmation Email&quot; above</li>
             <li>2. Check the email inbox for yalee212@gmail.com</li>
             <li>3. Click the confirmation link in the NEW email</li>
-            <li>4. Should go to the new "Email Confirmed" page</li>
+            <li>4. Should go to the new &quot;Email Confirmed&quot; page</li>
             <li>5. Try clicking the same link again</li>
-            <li>6. Should go to the new "Already Confirmed" page</li>
+            <li>6. Should go to the new &quot;Already Confirmed&quot; page</li>
           </ol>
         </div>
 

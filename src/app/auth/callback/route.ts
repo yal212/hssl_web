@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     // Email confirmation flow
     const { error } = await supabase.auth.verifyOtp({
       token_hash,
-      type: type as any
+      type: type as 'signup' | 'email_change' | 'recovery' | 'invite'
     })
     console.log('Email confirmation verifyOtp result:', { error: error?.message })
 

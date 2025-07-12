@@ -24,7 +24,7 @@ export default function ImageGallery({
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalImageIndex, setModalImageIndex] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const autoScrollRef = useRef<NodeJS.Timeout>()
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null)
 
   // Auto scroll functionality
   useEffect(() => {

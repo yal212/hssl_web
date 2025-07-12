@@ -4,11 +4,9 @@ import { motion } from 'framer-motion'
 import { XCircle, ArrowLeft, RefreshCw } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function AuthCodeErrorPage() {
-  const searchParams = useSearchParams()
   const [debugInfo, setDebugInfo] = useState<string>('')
 
   useEffect(() => {

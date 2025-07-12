@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Newspaper, Plus, Settings, Edit, Trash2 } from 'lucide-react'
+import { Newspaper, Plus, Settings } from 'lucide-react'
 import { NewsAPI } from '@/lib/api/news'
 import { NewsItem, NewsFilters, NewsResponse, DEFAULT_NEWS_FILTERS } from '@/lib/types/news'
 import { NewsCard, NewsCardSkeleton } from '@/components/news/NewsCard'

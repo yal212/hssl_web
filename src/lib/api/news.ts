@@ -69,7 +69,7 @@ export class NewsAPI {
             )
           `
         }
-      } catch (e) {
+      } catch {
         // content_images column doesn't exist, use basic fields
         console.log('content_images column not found, using basic fields')
       }
@@ -130,18 +130,26 @@ export class NewsAPI {
       const totalPages = Math.ceil((count || 0) / limit)
 
       // Ensure all news items have required fields with defaults
-      const normalizedData = (data || []).map(item => ({
-        ...item,
-        author_id: (item as any).author_id || null, // eslint-disable-line @typescript-eslint/no-explicit-any
-        excerpt: item.excerpt || null,
-        category: item.category || 'general',
-        tags: item.tags || [],
-        featured: item.featured || false,
-        image_url: item.image_url || null,
-        content_images: item.content_images || [],
-        published_at: item.published_at || item.created_at,
-        author: Array.isArray(item.author) && item.author.length > 0 ? item.author[0] : null
-      })) as NewsItem[]
+      const normalizedData = (data || []).map((item) => {
+        const newsItem = item as unknown as NewsItem
+        return {
+          id: newsItem.id,
+          title: newsItem.title,
+          content: newsItem.content,
+          author_id: newsItem.author_id || null,
+          excerpt: newsItem.excerpt || null,
+          category: newsItem.category || 'general',
+          tags: newsItem.tags || [],
+          featured: newsItem.featured || false,
+          image_url: newsItem.image_url || null,
+          content_images: newsItem.content_images || [],
+          published_at: newsItem.published_at || newsItem.created_at,
+          created_at: newsItem.created_at,
+          updated_at: newsItem.updated_at,
+          published: newsItem.published,
+          author: Array.isArray(newsItem.author) && newsItem.author.length > 0 ? newsItem.author[0] : null
+        }
+      }) as NewsItem[]
 
       return {
         data: normalizedData,
@@ -354,7 +362,7 @@ export class NewsAPI {
         setTimeout(() => reject(new Error('Delete operation timed out after 10 seconds')), 10000)
       )
 
-      const { error } = await Promise.race([deletePromise, timeoutPromise]) as any
+      const { error } = await Promise.race([deletePromise, timeoutPromise]) as { error: Error | null }
 
       if (error) {
         console.error('Supabase delete error:', error)

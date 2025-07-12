@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { NewsAPI } from '@/lib/api/news'
-import { CreateNewsItem } from '@/lib/types/news'
+import { CreateNewsItem, UpdateNewsItem } from '@/lib/types/news'
 import NewsForm from './NewsForm'
 
 interface CreateNewsModalProps {
@@ -15,19 +15,19 @@ export default function CreateNewsModal({ isOpen, onClose, onSuccess }: CreateNe
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (data: CreateNewsItem) => {
+  const handleSubmit = async (data: CreateNewsItem | UpdateNewsItem) => {
     try {
       setIsLoading(true)
       setError(null)
       
-      await NewsAPI.createNews(data)
+      await NewsAPI.createNews(data as CreateNewsItem)
       
       // Success - close modal and refresh data
       onSuccess()
       onClose()
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error creating news:', err)
-      setError(err.message || '建立新聞時發生錯誤，請稍後再試。')
+      setError((err as Error).message || '建立新聞時發生錯誤，請稍後再試。')
     } finally {
       setIsLoading(false)
     }

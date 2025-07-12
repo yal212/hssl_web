@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { EmailCheckPrompt } from '@/components/EmailCheckPrompt'
 import { supabase } from '@/lib/supabase'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 
-export default function CheckEmailPage() {
+function CheckEmailContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [email, setEmail] = useState<string>('')
@@ -112,5 +112,20 @@ export default function CheckEmailPage() {
         </motion.div>
       </motion.div>
     </div>
+  )
+}
+
+export default function CheckEmailPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">載入中...</p>
+        </div>
+      </div>
+    }>
+      <CheckEmailContent />
+    </Suspense>
   )
 }
