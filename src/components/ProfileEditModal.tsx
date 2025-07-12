@@ -79,15 +79,15 @@ export function ProfileEditModal({
     const newErrors: FormErrors = {}
 
     if (formData.full_name.trim().length < 2) {
-      newErrors.full_name = 'Full name must be at least 2 characters long'
+      newErrors.full_name = '姓名至少需要2個字元'
     }
 
     if (formData.full_name.trim().length > 100) {
-      newErrors.full_name = 'Full name must be less than 100 characters'
+      newErrors.full_name = '姓名必須少於100個字元'
     }
 
     if (formData.bio.length > 500) {
-      newErrors.bio = 'Bio must be less than 500 characters'
+      newErrors.bio = '個人簡介必須少於500個字元'
     }
 
     setErrors(newErrors)
@@ -124,7 +124,7 @@ export function ProfileEditModal({
       setErrors(prev => ({ ...prev, image: undefined }))
     } catch (error) {
       console.error('Error processing image:', error)
-      setErrors(prev => ({ ...prev, image: 'Failed to process image. Please try again.' }))
+      setErrors(prev => ({ ...prev, image: '圖片處理失敗，請重試。' }))
     }
   }
 
@@ -135,7 +135,7 @@ export function ProfileEditModal({
       if (!result.success) {
         return {
           success: false,
-          error: result.error || 'Failed to upload image',
+          error: result.error || '圖片上傳失敗',
           errorType: ImageUploadError.UPLOAD_FAILED
         }
       }
@@ -148,7 +148,7 @@ export function ProfileEditModal({
       console.error('Upload error:', error)
       return {
         success: false,
-        error: 'Network error during upload',
+        error: '上傳時發生網路錯誤',
         errorType: ImageUploadError.NETWORK_ERROR
       }
     }
@@ -201,7 +201,7 @@ export function ProfileEditModal({
 
       if (error) {
         console.error('Profile update error:', error)
-        setErrors({ general: 'Failed to update profile. Please try again.' })
+        setErrors({ general: '更新個人資料失敗，請重試。' })
         return
       }
 
@@ -218,7 +218,7 @@ export function ProfileEditModal({
 
     } catch (error) {
       console.error('Error updating profile:', error)
-      setErrors({ general: 'An unexpected error occurred. Please try again.' })
+      setErrors({ general: '發生未預期的錯誤，請重試。' })
     } finally {
       setIsLoading(false)
     }
@@ -256,7 +256,7 @@ export function ProfileEditModal({
           {/* Header */}
           <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 text-white">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">Edit Profile</h2>
+              <h2 className="text-xl font-semibold">編輯個人資料</h2>
               <button
                 onClick={onClose}
                 className="p-1 hover:bg-white/20 rounded-full transition-colors"
@@ -277,13 +277,13 @@ export function ProfileEditModal({
                     {imagePreview ? (
                       <img
                         src={imagePreview}
-                        alt="Profile preview"
+                        alt="個人資料預覽"
                         className="w-full h-full object-cover"
                       />
                     ) : profile?.avatar_url ? (
                       <img
                         src={profile.avatar_url}
-                        alt="Current profile"
+                        alt="目前個人資料"
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -309,7 +309,7 @@ export function ProfileEditModal({
                   className="hidden"
                 />
                 <p className="text-sm text-gray-500 mt-2">
-                  Click the camera icon to upload a new profile picture
+                  點擊相機圖示上傳新的個人資料照片
                 </p>
                 {errors.image && (
                   <p className="text-red-500 text-sm mt-1">{errors.image}</p>
@@ -320,7 +320,7 @@ export function ProfileEditModal({
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <User size={16} className="inline mr-1" />
-                  Full Name
+                  姓名
                 </label>
                 <input
                   type="text"
@@ -329,7 +329,7 @@ export function ProfileEditModal({
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
                     errors.full_name ? 'border-red-500' : 'border-gray-300'
                   }`}
-                  placeholder="Enter your full name"
+                  placeholder="請輸入您的姓名"
                   disabled={isLoading}
                 />
                 {errors.full_name && (
@@ -341,7 +341,7 @@ export function ProfileEditModal({
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <FileText size={16} className="inline mr-1" />
-                  Bio
+                  個人簡介
                 </label>
                 <textarea
                   value={formData.bio}
@@ -350,7 +350,7 @@ export function ProfileEditModal({
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-none ${
                     errors.bio ? 'border-red-500' : 'border-gray-300'
                   }`}
-                  placeholder="Tell us about yourself..."
+                  placeholder="請告訴我們關於您的資訊..."
                   disabled={isLoading}
                 />
                 <div className="flex justify-between items-center mt-1">
@@ -376,7 +376,7 @@ export function ProfileEditModal({
               {isLoading && uploadProgress > 0 && (
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm text-gray-600">
-                    <span>Updating profile...</span>
+                    <span>更新個人資料中...</span>
                     <span>{uploadProgress}%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
@@ -396,7 +396,7 @@ export function ProfileEditModal({
                   className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
                   disabled={isLoading}
                 >
-                  Cancel
+                  取消
                 </button>
                 <button
                   type="submit"
@@ -406,12 +406,12 @@ export function ProfileEditModal({
                   {isLoading ? (
                     <>
                       <Loader2 size={16} className="animate-spin mr-2" />
-                      Saving...
+                      儲存中...
                     </>
                   ) : (
                     <>
                       <Save size={16} className="mr-2" />
-                      Save Changes
+                      儲存變更
                     </>
                   )}
                 </button>

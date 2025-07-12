@@ -53,7 +53,7 @@ export default function LoginPage() {
       console.error('Test user creation error:', err)
       setMessage('創建測試用戶時發生意外錯誤')
     } finally {
-      setLoading(false)
+      setIsLoading(false)
     }
   }
 

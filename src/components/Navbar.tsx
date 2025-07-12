@@ -36,6 +36,7 @@ export function Navbar() {
     { href: '/', label: '首頁' },
     { href: 'https://famistore.famiport.com.tw/users/3278142', label: '商店', external: true },
     { href: '/about', label: '關於我們' },
+    { href: '/news', label: '最新消息' },
     { href: '/education', label: '教育中心' },
     { href: '/support', label: '支持我們' },
   ]

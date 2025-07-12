@@ -52,7 +52,7 @@ export default function ProfilePage() {
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your profile...</p>
+          <p className="text-gray-600">載入您的個人資料中...</p>
         </div>
       </div>
     )
@@ -62,14 +62,14 @@ export default function ProfilePage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600">Redirecting to login...</p>
+          <p className="text-gray-600">重新導向至登入頁面...</p>
         </div>
       </div>
     )
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('zh-TW', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -86,8 +86,8 @@ export default function ProfilePage() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Your Profile</h1>
-          <p className="text-gray-600">Manage your account information and preferences</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">個人資料</h1>
+          <p className="text-gray-600">管理您的帳戶資訊和偏好設定</p>
         </motion.div>
 
         {/* Profile Card */}
@@ -104,7 +104,7 @@ export default function ProfilePage() {
                 {localProfile?.avatar_url ? (
                   <img
                     src={localProfile.avatar_url}
-                    alt="Profile picture"
+                    alt="個人資料照片"
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -113,13 +113,13 @@ export default function ProfilePage() {
               </div>
               <div>
                 <h2 className="text-3xl font-bold">
-                  {localProfile?.full_name || user?.email?.split('@')[0] || 'User'}
+                  {localProfile?.full_name || user?.email?.split('@')[0] || '使用者'}
                 </h2>
                 <p className="text-green-100 text-lg">{user?.email}</p>
                 <div className="flex items-center space-x-2 mt-2">
                   <Shield size={16} className="text-green-200" />
                   <span className="text-green-200 text-sm">
-                    {localProfile?.role || 'Member'}
+                    {localProfile?.role || '會員'}
                   </span>
                 </div>
               </div>
@@ -133,14 +133,14 @@ export default function ProfilePage() {
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                   <User className="mr-2 text-green-600" size={20} />
-                  Account Information
+                  帳戶資訊
                 </h3>
                 
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
                     <Mail className="text-gray-500" size={20} />
                     <div>
-                      <p className="text-sm text-gray-500">Email Address</p>
+                      <p className="text-sm text-gray-500">電子郵件地址</p>
                       <p className="font-medium text-gray-900">{user?.email}</p>
                     </div>
                   </div>
@@ -148,9 +148,9 @@ export default function ProfilePage() {
                   <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
                     <User className="text-gray-500" size={20} />
                     <div>
-                      <p className="text-sm text-gray-500">Full Name</p>
+                      <p className="text-sm text-gray-500">姓名</p>
                       <p className="font-medium text-gray-900">
-                        {localProfile?.full_name || 'Not provided'}
+                        {localProfile?.full_name || '未提供'}
                       </p>
                     </div>
                   </div>
@@ -158,9 +158,9 @@ export default function ProfilePage() {
                   <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
                     <Calendar className="text-gray-500" size={20} />
                     <div>
-                      <p className="text-sm text-gray-500">Member Since</p>
+                      <p className="text-sm text-gray-500">加入時間</p>
                       <p className="font-medium text-gray-900">
-                        {user?.created_at ? formatDate(user.created_at) : 'Unknown'}
+                        {user?.created_at ? formatDate(user.created_at) : '未知'}
                       </p>
                     </div>
                   </div>
@@ -171,12 +171,12 @@ export default function ProfilePage() {
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                   <Edit className="mr-2 text-green-600" size={20} />
-                  About
+                  關於我
                 </h3>
                 
                 <div className="p-4 bg-gray-50 rounded-lg">
                   <p className="text-gray-700">
-                    {localProfile?.bio || 'No bio provided yet. Tell us about yourself!'}
+                    {localProfile?.bio || '尚未提供個人簡介。請告訴我們關於您的資訊！'}
                   </p>
                 </div>
 
@@ -186,13 +186,13 @@ export default function ProfilePage() {
                     <p className="text-2xl font-bold text-green-600">
                       {localProfile?.role === 'admin' ? '∞' : '1'}
                     </p>
-                    <p className="text-sm text-gray-600">Access Level</p>
+                    <p className="text-sm text-gray-600">權限等級</p>
                   </div>
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
                     <p className="text-2xl font-bold text-blue-600">
                       {user?.email_confirmed_at ? '✓' : '?'}
                     </p>
-                    <p className="text-sm text-gray-600">Email Verified</p>
+                    <p className="text-sm text-gray-600">電子郵件驗證</p>
                   </div>
                 </div>
               </div>
@@ -207,7 +207,7 @@ export default function ProfilePage() {
                     className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center"
                   >
                     <Edit size={20} className="mr-2" />
-                    Edit Profile
+                    編輯個人資料
                   </button>
                 </div>
                 
@@ -216,7 +216,7 @@ export default function ProfilePage() {
                   className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center justify-center"
                 >
                   <LogOut size={20} className="mr-2" />
-                  Sign Out
+                  登出
                 </button>
               </div>
             </div>
@@ -231,23 +231,23 @@ export default function ProfilePage() {
           className="mt-8 bg-white rounded-2xl shadow-lg p-6"
         >
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            Account Security & Privacy
+            帳戶安全與隱私
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             <div className="p-4 bg-green-50 rounded-lg">
               <Shield className="mx-auto text-green-600 mb-2" size={24} />
-              <p className="text-sm font-medium text-gray-900">Secure Authentication</p>
-              <p className="text-xs text-gray-600 mt-1">Your account is protected</p>
+              <p className="text-sm font-medium text-gray-900">安全驗證</p>
+              <p className="text-xs text-gray-600 mt-1">您的帳戶受到保護</p>
             </div>
             <div className="p-4 bg-blue-50 rounded-lg">
               <Mail className="mx-auto text-blue-600 mb-2" size={24} />
-              <p className="text-sm font-medium text-gray-900">Email Notifications</p>
-              <p className="text-xs text-gray-600 mt-1">Stay updated with our news</p>
+              <p className="text-sm font-medium text-gray-900">電子郵件通知</p>
+              <p className="text-xs text-gray-600 mt-1">接收我們的最新消息</p>
             </div>
             <div className="p-4 bg-purple-50 rounded-lg">
               <User className="mx-auto text-purple-600 mb-2" size={24} />
-              <p className="text-sm font-medium text-gray-900">Privacy Controls</p>
-              <p className="text-xs text-gray-600 mt-1">Manage your data preferences</p>
+              <p className="text-sm font-medium text-gray-900">隱私控制</p>
+              <p className="text-xs text-gray-600 mt-1">管理您的資料偏好設定</p>
             </div>
           </div>
         </motion.div>
