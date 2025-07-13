@@ -10,39 +10,23 @@ import Image from 'next/image'
 export default function CharitySalesGroupPage() {
   const groupMembers = [
     {
-      name: '謝雅雯',
-      role: '義賣規劃組長',
-      grade: '12年級',
-      bio: '負責義賣活動的整體規劃和慈善合作策略，確保社會影響最大化。',
-      skills: ['義賣規劃', '策略制定', '影響評估'],
-      avatar: '謝',
+      name: '蔡昕恩',
+      role: '義賣規劃組員',
       color: 'bg-teal-500'
     },
     {
-      name: '何志豪',
-      role: '慈善合作專員',
-      grade: '11年級',
-      bio: '專責與慈善機構的聯繫合作，建立長期夥伴關係。',
-      skills: ['慈善合作', '夥伴關係', '聯繫協調'],
-      avatar: '何',
+      name: '陳語欣',
+      role: '義賣規劃組員',
       color: 'bg-teal-600'
     },
     {
-      name: '葉美玲',
-      role: '影響評估專員',
-      grade: '11年級',
-      bio: '負責社會影響的評估和追蹤，確保慈善效果的可見性。',
-      skills: ['影響評估', '數據分析', '報告撰寫'],
-      avatar: '葉',
+      name: '蔡昀恩',
+      role: '義賣規劃組員',
       color: 'bg-teal-700'
     },
     {
-      name: '陳建華',
-      role: '義賣執行專員',
-      grade: '10年級',
-      bio: '負責義賣活動的具體執行和現場管理，確保活動順利進行。',
-      skills: ['活動執行', '現場管理', '志工協調'],
-      avatar: '陳',
+      name: '林祖妤',
+      role: '義賣規劃組員',
       color: 'bg-teal-800'
     }
   ]
@@ -69,7 +53,7 @@ export default function CharitySalesGroupPage() {
                 義賣規劃
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責義賣活動規劃、慈善合作和社會影響評估，將商業成果轉化為有意義的社會貢獻。
+                負責企業認購、義賣文宣。
               </p>
             </div>
           </motion.div>
@@ -106,53 +90,34 @@ export default function CharitySalesGroupPage() {
                 <Card hover className="h-full">
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
-                    <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-teal-200">
                       <Image
                         src="/hssl_profile.jpg"
                         alt={member.name}
-                        width={80}
-                        height={80}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     </div>
 
                     {/* Info */}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-teal-600 font-medium mb-1">
+                    <p className="text-teal-600 font-semibold mb-6">
                       {member.role}
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
-                      {member.grade}
-                    </p>
-                    
-                    <p className="text-gray-600 text-sm mb-4">
-                      {member.bio}
-                    </p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap gap-2 justify-center mb-4">
-                      {member.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-2 py-1 bg-teal-100 text-teal-700 text-xs rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
 
                     {/* Social Links (placeholder) */}
                     <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-teal-600 transition-colors">
-                        <Mail className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-teal-600 transition-colors p-2">
+                        <Mail className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-teal-600 transition-colors">
-                        <Linkedin className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-teal-600 transition-colors p-2">
+                        <Linkedin className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-teal-600 transition-colors">
-                        <Instagram className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-teal-600 transition-colors p-2">
+                        <Instagram className="w-5 h-5" />
                       </button>
                     </div>
                   </CardContent>

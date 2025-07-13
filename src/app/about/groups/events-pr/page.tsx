@@ -10,40 +10,14 @@ import Image from 'next/image'
 export default function EventsPRGroupPage() {
   const groupMembers = [
     {
-      name: '馬雅婷',
-      role: '活動公關組長',
-      grade: '12年級',
-      bio: '負責對外聯繫和公關策略規劃，建立良好的外部關係。',
-      skills: ['公關策略', '對外聯繫', '關係建立'],
-      avatar: '馬',
+      name: '陳品蓁',
+      role: '活動公關組員',
       color: 'bg-pink-500'
     },
     {
-      name: '蔡志明',
-      role: '活動策劃專員',
-      grade: '11年級',
-      bio: '專責活動企劃和執行，確保活動順利進行並達成目標。',
-      skills: ['活動企劃', '執行管理', '專案協調'],
-      avatar: '蔡',
+      name: '侯柏任',
+      role: '活動公關組員',
       color: 'bg-pink-600'
-    },
-    {
-      name: '劉淑芬',
-      role: '媒體聯繫專員',
-      grade: '11年級',
-      bio: '負責媒體關係維護和新聞稿撰寫，提升組織知名度。',
-      skills: ['媒體關係', '新聞撰寫', '公關宣傳'],
-      avatar: '劉',
-      color: 'bg-pink-700'
-    },
-    {
-      name: '張建國',
-      role: '社群經營專員',
-      grade: '10年級',
-      bio: '負責社群媒體經營和線上互動，擴大影響力。',
-      skills: ['社群經營', '內容創作', '線上互動'],
-      avatar: '張',
-      color: 'bg-pink-800'
     }
   ]
 
@@ -69,7 +43,7 @@ export default function EventsPRGroupPage() {
                 活動公關
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責對外聯繫、活動策劃和公共關係維護，建立良好的外部形象和擴大社會影響力。
+                負責與單位合作以及Creat活動辦理。
               </p>
             </div>
           </motion.div>
@@ -106,53 +80,34 @@ export default function EventsPRGroupPage() {
                 <Card hover className="h-full">
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
-                    <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-pink-200">
                       <Image
                         src="/hssl_profile.jpg"
                         alt={member.name}
-                        width={80}
-                        height={80}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     </div>
 
                     {/* Info */}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-pink-600 font-medium mb-1">
+                    <p className="text-pink-600 font-semibold mb-6">
                       {member.role}
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
-                      {member.grade}
-                    </p>
-                    
-                    <p className="text-gray-600 text-sm mb-4">
-                      {member.bio}
-                    </p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap gap-2 justify-center mb-4">
-                      {member.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-2 py-1 bg-pink-100 text-pink-700 text-xs rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
 
                     {/* Social Links (placeholder) */}
                     <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-pink-600 transition-colors">
-                        <Mail className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-pink-600 transition-colors p-2">
+                        <Mail className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-pink-600 transition-colors">
-                        <Linkedin className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-pink-600 transition-colors p-2">
+                        <Linkedin className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-pink-600 transition-colors">
-                        <Instagram className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-pink-600 transition-colors p-2">
+                        <Instagram className="w-5 h-5" />
                       </button>
                     </div>
                   </CardContent>

@@ -21,6 +21,22 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export default function AboutPage() {
+  const advisorGroups = [
+    {
+      name: '指導老師',
+      description: '提供專業指導與學術支持',
+      responsibilities: ['學術指導', '專業諮詢', '計畫督導'],
+      avatar: '指',
+      color: 'bg-amber-500',
+      gradientFrom: 'from-amber-500',
+      gradientTo: 'to-amber-600',
+      badgeBg: 'bg-amber-50',
+      badgeText: 'text-amber-700',
+      badgeBorder: 'border-amber-200',
+      ctaText: 'text-amber-600'
+    }
+  ]
+
   const studentGroups = [
     {
       name: '設備組',
@@ -428,106 +444,214 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              我們的學生組織
+              我們的團隊組織
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的團隊分為不同的專業組別，每個組別都為我們的使命帶來獨特的技能和熱忱。
+              我們的團隊由專業指導老師和不同專業組別的學生組成，每個組別都為我們的使命帶來獨特的技能和熱忱。
               我們一起證明年輕人能夠創造有意義的改變。
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
-            {studentGroups.map((group, index) => {
-              const groupRoutes = {
-                '設備組': '/about/groups/equipment',
-                '教學組': '/about/groups/teaching',
-                '文書美宣組': '/about/groups/documentation',
-                '總務組': '/about/groups/general-affairs',
-                '資訊組': '/about/groups/information',
-                '活動公關': '/about/groups/events-pr',
-                '義賣規劃': '/about/groups/charity-sales'
-              }
+          {/* Advisor Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">指導老師</h3>
+            <div className="flex justify-center">
+              <div className="w-full max-w-md">
+                {advisorGroups.map((group, index) => {
+                  const groupRoutes = {
+                    '指導老師': '/about/groups/advisor'
+                  }
 
-              return (
-                <motion.div
-                  key={group.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Link href={groupRoutes[group.name as keyof typeof groupRoutes]}>
-                    <Card hover className="h-full cursor-pointer group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50">
-                      <CardContent className="p-0">
-                        {/* Header with gradient background */}
-                        <div className={`relative px-6 pt-8 pb-6 bg-gradient-to-br ${group.gradientFrom} ${group.gradientTo}`}>
-                          {/* Decorative pattern overlay */}
-                          <div className="absolute inset-0 opacity-10">
-                            <div className="absolute top-2 right-2 w-16 h-16 rounded-full border-2 border-white/30"></div>
-                            <div className="absolute bottom-2 left-2 w-8 h-8 rounded-full bg-white/20"></div>
-                            <div className="absolute top-1/2 right-6 w-4 h-4 rounded-full bg-white/30"></div>
-                          </div>
+                  return (
+                    <motion.div
+                      key={group.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <Link href={groupRoutes[group.name as keyof typeof groupRoutes]}>
+                        <Card hover className="h-full cursor-pointer group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50">
+                          <CardContent className="p-0">
+                            {/* Header with gradient background */}
+                            <div className={`relative px-6 pt-8 pb-6 bg-gradient-to-br ${group.gradientFrom} ${group.gradientTo}`}>
+                              {/* Decorative pattern overlay */}
+                              <div className="absolute inset-0 opacity-10">
+                                <div className="absolute top-2 right-2 w-16 h-16 rounded-full border-2 border-white/30"></div>
+                                <div className="absolute bottom-2 left-2 w-8 h-8 rounded-full bg-white/20"></div>
+                                <div className="absolute top-1/2 right-6 w-4 h-4 rounded-full bg-white/30"></div>
+                              </div>
 
-                          {/* Avatar */}
-                          <div className="relative z-10 text-center">
-                            <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-white/30 group-hover:scale-110 transition-transform duration-300">
-                              <Image
-                                src="/hssl_profile.jpg"
-                                alt={group.name}
-                                width={80}
-                                height={80}
-                                className="w-full h-full object-cover"
-                              />
+                              {/* Avatar */}
+                              <div className="relative z-10 text-center">
+                                <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-white/30 group-hover:scale-110 transition-transform duration-300">
+                                  <Image
+                                    src="/hssl_profile.jpg"
+                                    alt={group.name}
+                                    width={80}
+                                    height={80}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-2 drop-shadow-sm">
+                                  {group.name}
+                                </h3>
+                              </div>
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2 drop-shadow-sm">
-                              {group.name}
-                            </h3>
-                          </div>
-                        </div>
 
-                        {/* Content */}
-                        <div className="px-6 py-6">
-                          <p className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-2">
-                            {group.description}
-                          </p>
+                            {/* Content */}
+                            <div className="px-6 py-6">
+                              <p className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-2">
+                                {group.description}
+                              </p>
 
-                          {/* Responsibilities */}
-                          <div className="mb-6">
-                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
-                              主要職責
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {group.responsibilities.map((responsibility, idx) => (
-                                <span
-                                  key={idx}
-                                  className={`px-3 py-1 text-xs font-medium rounded-full ${group.badgeBg} ${group.badgeText} border ${group.badgeBorder}`}
-                                >
-                                  {responsibility}
+                              {/* Responsibilities */}
+                              <div className="mb-6">
+                                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
+                                  主要職責
+                                </h4>
+                                <div className="flex flex-wrap gap-2">
+                                  {group.responsibilities.map((responsibility, idx) => (
+                                    <span
+                                      key={idx}
+                                      className={`px-3 py-1 text-xs font-medium rounded-full ${group.badgeBg} ${group.badgeText} border ${group.badgeBorder}`}
+                                    >
+                                      {responsibility}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Call to action */}
+                              <div className="flex items-center justify-between">
+                                <span className="text-sm text-gray-500">
+                                  了解指導老師
                                 </span>
-                              ))}
+                                <div className={`flex items-center ${group.ctaText} font-medium text-sm group-hover:translate-x-1 transition-transform duration-200`}>
+                                  <span>探索更多</span>
+                                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Student Groups Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">學生組織</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+              {studentGroups.map((group, index) => {
+                const groupRoutes = {
+                  '設備組': '/about/groups/equipment',
+                  '教學組': '/about/groups/teaching',
+                  '文書美宣組': '/about/groups/documentation',
+                  '總務組': '/about/groups/general-affairs',
+                  '資訊組': '/about/groups/information',
+                  '活動公關': '/about/groups/events-pr',
+                  '義賣規劃': '/about/groups/charity-sales'
+                }
+
+                return (
+                  <motion.div
+                    key={group.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Link href={groupRoutes[group.name as keyof typeof groupRoutes]}>
+                      <Card hover className="h-full cursor-pointer group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50">
+                        <CardContent className="p-0">
+                          {/* Header with gradient background */}
+                          <div className={`relative px-6 pt-8 pb-6 bg-gradient-to-br ${group.gradientFrom} ${group.gradientTo}`}>
+                            {/* Decorative pattern overlay */}
+                            <div className="absolute inset-0 opacity-10">
+                              <div className="absolute top-2 right-2 w-16 h-16 rounded-full border-2 border-white/30"></div>
+                              <div className="absolute bottom-2 left-2 w-8 h-8 rounded-full bg-white/20"></div>
+                              <div className="absolute top-1/2 right-6 w-4 h-4 rounded-full bg-white/30"></div>
+                            </div>
+
+                            {/* Avatar */}
+                            <div className="relative z-10 text-center">
+                              <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-white/30 group-hover:scale-110 transition-transform duration-300">
+                                <Image
+                                  src="/hssl_profile.jpg"
+                                  alt={group.name}
+                                  width={80}
+                                  height={80}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <h3 className="text-xl font-bold text-white mb-2 drop-shadow-sm">
+                                {group.name}
+                              </h3>
                             </div>
                           </div>
 
-                          {/* Call to action */}
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-500">
-                              了解團隊成員
-                            </span>
-                            <div className={`flex items-center ${group.ctaText} font-medium text-sm group-hover:translate-x-1 transition-transform duration-200`}>
-                              <span>探索更多</span>
-                              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                              </svg>
+                          {/* Content */}
+                          <div className="px-6 py-6">
+                            <p className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-2">
+                              {group.description}
+                            </p>
+
+                            {/* Responsibilities */}
+                            <div className="mb-6">
+                              <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
+                                主要職責
+                              </h4>
+                              <div className="flex flex-wrap gap-2">
+                                {group.responsibilities.map((responsibility, idx) => (
+                                  <span
+                                    key={idx}
+                                    className={`px-3 py-1 text-xs font-medium rounded-full ${group.badgeBg} ${group.badgeText} border ${group.badgeBorder}`}
+                                  >
+                                    {responsibility}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Call to action */}
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm text-gray-500">
+                                了解團隊成員
+                              </span>
+                              <div className={`flex items-center ${group.ctaText} font-medium text-sm group-hover:translate-x-1 transition-transform duration-200`}>
+                                <span>探索更多</span>
+                                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </motion.div>
-              )
-            })}
-          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </motion.div>
         </div>
       </section>
 

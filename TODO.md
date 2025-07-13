@@ -1,3 +1,3 @@
 - google Oauth
 - news able to add photos
-- add linktree link soomewhere
+

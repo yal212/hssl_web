@@ -10,39 +10,23 @@ import Image from 'next/image'
 export default function GeneralAffairsGroupPage() {
   const groupMembers = [
     {
-      name: '趙文傑',
+      name: '謝舒安',
       role: '總務組組長',
-      grade: '12年級',
-      bio: '負責財務管理和營運協調的整體規劃，確保組織運作順暢。',
-      skills: ['財務管理', '營運協調', '策略規劃'],
-      avatar: '趙',
       color: 'bg-orange-500'
     },
     {
-      name: '錢淑惠',
-      role: '財務管理員',
-      grade: '11年級',
-      bio: '專責帳務處理和財務報表製作，確保財務透明度。',
-      skills: ['帳務處理', '財務報表', '預算控制'],
-      avatar: '錢',
+      name: '龔昀晴',
+      role: '總務組組長',
       color: 'bg-orange-600'
     },
     {
-      name: '孫志明',
-      role: '庫存管理員',
-      grade: '11年級',
-      bio: '負責原料和成品的庫存控制，確保供應鏈穩定。',
-      skills: ['庫存控制', '供應管理', '數據分析'],
-      avatar: '孫',
+      name: '劉峻成',
+      role: '總務組組員',
       color: 'bg-orange-700'
     },
     {
-      name: '李雅芳',
-      role: '營運助理',
-      grade: '10年級',
-      bio: '協助日常營運事務處理和跨組溝通協調。',
-      skills: ['營運支援', '溝通協調', '行政處理'],
-      avatar: '李',
+      name: '黃翊棠',
+      role: '總務組組員',
       color: 'bg-orange-800'
     }
   ]
@@ -69,7 +53,7 @@ export default function GeneralAffairsGroupPage() {
                 總務組
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責財務管理、庫存控制和日常營運，確保組織的穩定運作和資源有效利用。
+                負責餐飲安排以及原物料訂購。
               </p>
             </div>
           </motion.div>
@@ -106,53 +90,34 @@ export default function GeneralAffairsGroupPage() {
                 <Card hover className="h-full">
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
-                    <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-orange-200">
                       <Image
                         src="/hssl_profile.jpg"
                         alt={member.name}
-                        width={80}
-                        height={80}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     </div>
 
                     {/* Info */}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-orange-600 font-medium mb-1">
+                    <p className="text-orange-600 font-semibold mb-6">
                       {member.role}
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
-                      {member.grade}
-                    </p>
-                    
-                    <p className="text-gray-600 text-sm mb-4">
-                      {member.bio}
-                    </p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap gap-2 justify-center mb-4">
-                      {member.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
 
                     {/* Social Links (placeholder) */}
                     <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-orange-600 transition-colors">
-                        <Mail className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-orange-600 transition-colors p-2">
+                        <Mail className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-orange-600 transition-colors">
-                        <Linkedin className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-orange-600 transition-colors p-2">
+                        <Linkedin className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-orange-600 transition-colors">
-                        <Instagram className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-orange-600 transition-colors p-2">
+                        <Instagram className="w-5 h-5" />
                       </button>
                     </div>
                   </CardContent>

@@ -10,40 +10,29 @@ import Image from 'next/image'
 export default function DocumentationGroupPage() {
   const groupMembers = [
     {
-      name: '吳佩君',
+      name: '饒子儀',
       role: '文書美宣組組長',
-      grade: '12年級',
-      bio: '負責文件管理系統建立和視覺設計規劃，確保品牌形象一致性。',
-      skills: ['文件管理', '視覺設計', '品牌規劃'],
-      avatar: '吳',
       color: 'bg-purple-500'
     },
     {
-      name: '陳美玲',
-      role: '平面設計師',
-      grade: '11年級',
-      bio: '專責宣傳材料和包裝設計，創造吸引人的視覺效果。',
-      skills: ['平面設計', '包裝設計', '創意發想'],
-      avatar: '陳',
+      name: '張育瑄',
+      role: '文書美宣組組長',
       color: 'bg-purple-600'
     },
     {
-      name: '許志強',
-      role: '文案編輯',
-      grade: '11年級',
-      bio: '負責文案撰寫和內容編輯，確保所有文字內容的品質和一致性。',
-      skills: ['文案撰寫', '內容編輯', '校對審核'],
-      avatar: '許',
+      name: '林芸安',
+      role: '文書美宣組組長',
       color: 'bg-purple-700'
     },
     {
-      name: '楊雅雯',
-      role: '檔案管理員',
-      grade: '10年級',
-      bio: '負責文件歸檔和資料管理，維護組織的知識庫。',
-      skills: ['檔案管理', '資料整理', '系統維護'],
-      avatar: '楊',
+      name: '林祐安',
+      role: '文書美宣組組長',
       color: 'bg-purple-800'
+    },
+    {
+      name: '郭芃妘',
+      role: '文書美宣組組員',
+      color: 'bg-purple-900'
     }
   ]
 
@@ -69,7 +58,7 @@ export default function DocumentationGroupPage() {
                 文書美宣組
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責文件管理、視覺設計和宣傳材料製作，打造專業的品牌形象和有效的溝通工具。
+                負責臉書、IG以及海報。
               </p>
             </div>
           </motion.div>
@@ -106,53 +95,34 @@ export default function DocumentationGroupPage() {
                 <Card hover className="h-full">
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
-                    <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-purple-200">
                       <Image
                         src="/hssl_profile.jpg"
                         alt={member.name}
-                        width={80}
-                        height={80}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     </div>
 
                     {/* Info */}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-purple-600 font-medium mb-1">
+                    <p className="text-purple-600 font-semibold mb-6">
                       {member.role}
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
-                      {member.grade}
-                    </p>
-                    
-                    <p className="text-gray-600 text-sm mb-4">
-                      {member.bio}
-                    </p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap gap-2 justify-center mb-4">
-                      {member.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
 
                     {/* Social Links (placeholder) */}
                     <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-purple-600 transition-colors">
-                        <Mail className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-purple-600 transition-colors p-2">
+                        <Mail className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-purple-600 transition-colors">
-                        <Linkedin className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-purple-600 transition-colors p-2">
+                        <Linkedin className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-purple-600 transition-colors">
-                        <Instagram className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-purple-600 transition-colors p-2">
+                        <Instagram className="w-5 h-5" />
                       </button>
                     </div>
                   </CardContent>

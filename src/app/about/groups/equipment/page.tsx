@@ -10,31 +10,44 @@ import Image from 'next/image'
 export default function EquipmentGroupPage() {
   const groupMembers = [
     {
-      name: '陳志明',
+      name: '林秉用',
       role: '設備組組長',
-      grade: '12年級',
-      bio: '負責實驗室設備的整體管理和維護計劃制定，確保所有設備運作正常。',
-      skills: ['設備維護', '安全管理', '採購規劃'],
-      avatar: '陳',
       color: 'bg-green-500'
     },
     {
-      name: '李美華',
-      role: '安全管理員',
-      grade: '11年級',
-      bio: '專責實驗室安全規範制定和執行，確保所有操作符合安全標準。',
-      skills: ['安全檢查', '風險評估', '緊急應變'],
-      avatar: '李',
+      name: '林楷哲',
+      role: '設備組組長',
       color: 'bg-green-600'
     },
     {
-      name: '王大明',
-      role: '採購專員',
-      grade: '11年級',
-      bio: '負責設備和原料的採購協調，確保供應鏈穩定和成本控制。',
-      skills: ['採購管理', '供應商聯繫', '成本控制'],
-      avatar: '王',
+      name: '黃謙如',
+      role: '設備組組長',
       color: 'bg-green-700'
+    },
+    {
+      name: '林俊祥',
+      role: '設備組組長',
+      color: 'bg-green-800'
+    },
+    {
+      name: '賴秉宸',
+      role: '設備組組員',
+      color: 'bg-green-900'
+    },
+    {
+      name: '陳博軒',
+      role: '設備組組員',
+      color: 'bg-green-950'
+    },
+    {
+      name: '鄭嵐霙',
+      role: '設備組組員',
+      color: 'bg-emerald-500'
+    },
+    {
+      name: '張呈瑞',
+      role: '設備組組員',
+      color: 'bg-emerald-600'
     }
   ]
 
@@ -60,7 +73,7 @@ export default function EquipmentGroupPage() {
                 設備組
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責實驗室設備維護、採購和安全管理，確保所有設備運作正常並維持安全的工作環境。
+                負責器材準備、整理、交通運送、藥品配置、現場場佈。
               </p>
             </div>
           </motion.div>
@@ -81,7 +94,7 @@ export default function EquipmentGroupPage() {
               組員介紹
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的設備組成員致力於維護實驗室的安全和效率。
+              我們的設備組成員致力於維護作實驗時的安全和效率。
             </p>
           </motion.div>
 
@@ -97,53 +110,34 @@ export default function EquipmentGroupPage() {
                 <Card hover className="h-full">
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
-                    <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-green-200">
                       <Image
                         src="/hssl_profile.jpg"
                         alt={member.name}
-                        width={80}
-                        height={80}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     </div>
 
                     {/* Info */}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-green-600 font-medium mb-1">
+                    <p className="text-green-600 font-semibold mb-6">
                       {member.role}
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
-                      {member.grade}
-                    </p>
-                    
-                    <p className="text-gray-600 text-sm mb-4">
-                      {member.bio}
-                    </p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap gap-2 justify-center mb-4">
-                      {member.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
 
                     {/* Social Links (placeholder) */}
                     <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-green-600 transition-colors">
-                        <Mail className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
+                        <Mail className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-green-600 transition-colors">
-                        <Linkedin className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
+                        <Linkedin className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-green-600 transition-colors">
-                        <Instagram className="w-4 h-4" />
+                      <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
+                        <Instagram className="w-5 h-5" />
                       </button>
                     </div>
                   </CardContent>

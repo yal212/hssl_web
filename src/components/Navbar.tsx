@@ -38,6 +38,7 @@ export function Navbar() {
     { href: '/about', label: '關於我們' },
     { href: '/news', label: '最新消息' },
     { href: '/education', label: '教育中心' },
+    { href: 'https://linktr.ee/hsslforms', label: '表單', external: true },
     { href: '/support', label: '支持我們' },
   ]
 
