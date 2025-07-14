@@ -25,8 +25,8 @@ export default function AboutPage() {
     {
       name: '指導老師',
       description: '提供專業指導與學術支持',
-      responsibilities: ['學術指導', '專業諮詢', '計畫督導'],
-      avatar: '指',
+      responsibilities: ['學術指導', '專業諮詢'],
+      avatar: '',
       color: 'bg-amber-500',
       gradientFrom: 'from-amber-500',
       gradientTo: 'to-amber-600',
@@ -40,9 +40,9 @@ export default function AboutPage() {
   const studentGroups = [
     {
       name: '設備組',
-      description: '負責實驗室設備維護、採購和安全管理',
-      responsibilities: ['設備維護', '安全管理', '採購協調'],
-      avatar: '設',
+      description: '負責器材準備、整理、交通運送、藥品配置以及現場場佈',
+      responsibilities: ['器材管理', '藥品配置', '現場場佈'],
+      avatar: '',
       color: 'bg-green-500',
       gradientFrom: 'from-green-500',
       gradientTo: 'to-green-600',
@@ -53,9 +53,9 @@ export default function AboutPage() {
     },
     {
       name: '教學組',
-      description: '負責手工皂製作技術教學和知識傳承',
-      responsibilities: ['技術教學', '配方研發', '品質控制'],
-      avatar: '教',
+      description: '負責製作投影片設計以及配方設計',
+      responsibilities: ['技術教學', '配方研發'],
+      avatar: '',
       color: 'bg-blue-500',
       gradientFrom: 'from-blue-500',
       gradientTo: 'to-blue-600',
@@ -66,9 +66,9 @@ export default function AboutPage() {
     },
     {
       name: '文書美宣組',
-      description: '負責文件管理、視覺設計和宣傳材料製作',
-      responsibilities: ['文件管理', '視覺設計', '宣傳製作'],
-      avatar: '文',
+      description: '負責經營臉書、IG帳號以及海報設計',
+      responsibilities: ['社群媒體', '宣傳製作'],
+      avatar: '',
       color: 'bg-purple-500',
       gradientFrom: 'from-purple-500',
       gradientTo: 'to-purple-600',
@@ -79,9 +79,9 @@ export default function AboutPage() {
     },
     {
       name: '總務組',
-      description: '負責財務管理、庫存控制和日常營運',
-      responsibilities: ['財務管理', '庫存控制', '營運協調'],
-      avatar: '總',
+      description: '負責餐飲安排以及原物料訂購',
+      responsibilities: ['餐飲安排', '原物料訂購'],
+      avatar: '',
       color: 'bg-orange-500',
       gradientFrom: 'from-orange-500',
       gradientTo: 'to-orange-600',
@@ -92,9 +92,9 @@ export default function AboutPage() {
     },
     {
       name: '資訊組',
-      description: '負責網站維護、數位系統和線上平台管理',
-      responsibilities: ['網站維護', '系統管理', '數位營運'],
-      avatar: '資',
+      description: '負責製作問卷、網站設計以及處理保險資料',
+      responsibilities: ['問卷', '網站設計', '保險資料'],
+      avatar: '',
       color: 'bg-indigo-500',
       gradientFrom: 'from-indigo-500',
       gradientTo: 'to-indigo-600',
@@ -105,9 +105,9 @@ export default function AboutPage() {
     },
     {
       name: '活動公關',
-      description: '負責對外聯繫、活動策劃和公共關係維護',
-      responsibilities: ['活動策劃', '對外聯繫', '公關維護'],
-      avatar: '活',
+      description: '負責與單位合作以及Creat活動辦理',
+      responsibilities: ['單位合作', '活動辦理'],
+      avatar: '',
       color: 'bg-pink-500',
       gradientFrom: 'from-pink-500',
       gradientTo: 'to-pink-600',
@@ -118,9 +118,9 @@ export default function AboutPage() {
     },
     {
       name: '義賣規劃',
-      description: '負責義賣活動規劃、慈善合作和社會影響評估',
-      responsibilities: ['義賣規劃', '慈善合作', '影響評估'],
-      avatar: '義',
+      description: '負責企業認購以及設計義賣文宣',
+      responsibilities: ['企業認購', '義賣文宣'],
+      avatar: '',
       color: 'bg-teal-500',
       gradientFrom: 'from-teal-500',
       gradientTo: 'to-teal-600',
@@ -134,23 +134,23 @@ export default function AboutPage() {
   const achievements = [
     {
       icon: Heart,
-      title: '募款超過$0',
+      title: '募款超過$ - ',
       description: '捐贈給當地食物銀行和環保組織'
     },
     {
       icon: Users,
-      title: '超過0位顧客',
+      title: '超過 - 位顧客',
       description: '支持我們使命的滿意顧客'
     },
     {
       icon: Leaf,
-      title: '超過0塊手工皂',
+      title: '超過 - 塊手工皂',
       description: '生產和銷售的環保手工皂'
     },
     {
       icon: Award,
       title: '教育部認可',
-      description: '2024年青年創業家獎得主'
+      description: '2024年青志獎'
     }
   ]
 

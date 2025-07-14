@@ -53,7 +53,7 @@ export default function CharitySalesGroupPage() {
                 義賣規劃
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責企業認購、義賣文宣。
+                負責企業認購以及義賣文宣。
               </p>
             </div>
           </motion.div>

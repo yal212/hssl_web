@@ -15,7 +15,7 @@ export default function SupportPage() {
       action: '立即購買',
       href: 'https://famistore.famiport.com.tw/users/3278142',
       color: 'green',
-      impact: '100%利潤捐給慈善機構'
+      impact: ' - %利潤捐給慈善機構'
     },
     {
       icon: DollarSign,
@@ -24,7 +24,7 @@ export default function SupportPage() {
       action: '捐款',
       href: '#donate',
       color: 'blue',
-      impact: '每$10幫助我們製作5塊手工皂'
+      impact: '每$ - 幫助我們製作 - 塊手工皂'
     },
     {
       icon: Users,
@@ -47,30 +47,30 @@ export default function SupportPage() {
   ]
 
   const impactStats = [
-    { number: '$5,000+', label: '慈善捐款', icon: Heart },
-    { number: '500+', label: '手工皂銷售', icon: ShoppingBag },
-    { number: '15+', label: '志工', icon: Users },
-    { number: '3', label: '支持的慈善機構', icon: Handshake }
+    { number: '$ - ', label: '慈善捐款', icon: Heart },
+    { number: ' - ', label: '手工皂銷售', icon: ShoppingBag },
+    { number: ' - ', label: '志工', icon: Users },
+    { number: ' - ', label: '支持的慈善機構', icon: Handshake }
   ]
 
   const charities = [
     {
       name: '當地食物銀行',
       description: '為我們社區中有需要的家庭提供餐食',
-      amount: '$2,000',
-      impact: '提供400份餐食'
+      amount: '$ - ',
+      impact: '提供 - 份餐食'
     },
     {
       name: '環境保護組織',
       description: '支持當地河川清理和植樹倡議',
-      amount: '$1,500',
-      impact: '種植50棵樹'
+      amount: '$ - ',
+      impact: '種植 - 棵樹'
     },
     {
       name: '青年教育基金',
       description: '提供學校用品和教育資源',
-      amount: '$1,500',
-      impact: '支持30名學生'
+      amount: '$ - ',
+      impact: '支持 - 名學生'
     }
   ]
 

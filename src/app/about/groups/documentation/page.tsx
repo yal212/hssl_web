@@ -58,7 +58,7 @@ export default function DocumentationGroupPage() {
                 文書美宣組
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責臉書、IG以及海報。
+                負責經營臉書、IG帳號以及海報設計。
               </p>
             </div>
           </motion.div>

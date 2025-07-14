@@ -48,7 +48,7 @@ export default function TeachingGroupPage() {
                 教學組
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責投影片設計以及配方設計。
+                負責製作投影片設計以及配方設計。
               </p>
             </div>
           </motion.div>

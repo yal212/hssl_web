@@ -48,7 +48,7 @@ export default function InformationGroupPage() {
                 資訊組
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責處理問卷、網站設計以及保險資料。
+                負責製作問卷、網站設計以及處理保險資料。
               </p>
             </div>
           </motion.div>

@@ -73,7 +73,7 @@ export default function EquipmentGroupPage() {
                 設備組
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                負責器材準備、整理、交通運送、藥品配置、現場場佈。
+                負責器材準備、整理、交通運送、藥品配置以及現場場佈。
               </p>
             </div>
           </motion.div>
