@@ -87,14 +87,24 @@ export default function ShopPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Eco-Friendly Soaps
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+          >
+            <div className="w-12 h-8 bg-white rounded-lg shadow-md flex items-center justify-center">
+              <span className="text-green-600 font-bold text-sm">皂</span>
+            </div>
+          </motion.div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-balance">
+            我們的環保手工皂
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Handcrafted with love and natural ingredients. Every purchase supports our charitable mission 
-            and helps create a cleaner, greener world.
+          <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-pretty">
+            用愛心和天然成分手工製作。每一次購買都支持我們的慈善使命，
+            幫助創造一個更清潔、更環保的世界。
           </p>
         </motion.div>
 
@@ -162,50 +172,65 @@ export default function ShopPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card hover className="h-full flex flex-col">
+                <Card hover variant="elevated" className="h-full flex flex-col group overflow-hidden">
                   <CardContent className="p-0 flex-1">
                     {/* Product Image */}
-                    <div className="relative h-48 bg-gradient-to-br from-green-200 to-green-300 rounded-t-lg overflow-hidden">
+                    <div className="relative h-56 bg-gradient-to-br from-green-200 via-green-300 to-green-400 overflow-hidden">
+                      {/* Background Pattern */}
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="absolute top-4 left-4 w-8 h-8 rounded-full bg-white/30"></div>
+                        <div className="absolute top-8 right-6 w-4 h-4 rounded-full bg-white/40"></div>
+                        <div className="absolute bottom-6 left-8 w-6 h-6 rounded-full bg-white/25"></div>
+                        <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/20"></div>
+                      </div>
+
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-24 h-16 bg-white rounded-lg shadow-lg flex items-center justify-center">
-                          <span className="text-green-600 font-bold text-sm">
+                        <motion.div
+                          className="w-28 h-20 bg-white rounded-xl shadow-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                          whileHover={{ rotate: 5 }}
+                        >
+                          <span className="text-green-600 font-bold text-lg">
                             {product.name.split(' ').map(word => word[0]).join('')}
                           </span>
-                        </div>
+                        </motion.div>
                       </div>
-                      <div className="absolute top-4 right-4 bg-white rounded-full px-3 py-1 text-sm font-semibold text-green-600">
-                        ${product.price.toFixed(2)}
+
+                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-bold text-green-600 shadow-lg">
+                        NT${product.price.toFixed(0)}
                       </div>
+
                       {!product.in_stock && (
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                          <span className="text-white font-semibold">Out of Stock</span>
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+                          <div className="bg-white rounded-lg px-4 py-2">
+                            <span className="text-gray-900 font-semibold">暫時缺貨</span>
+                          </div>
                         </div>
                       )}
                     </div>
 
                     {/* Product Info */}
                     <div className="p-6 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-200">
                           {product.name}
                         </h3>
-                        <div className="flex items-center">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-sm text-gray-600 ml-1">4.9</span>
+                        <div className="flex items-center bg-yellow-50 px-2 py-1 rounded-lg">
+                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                          <span className="text-sm font-medium text-yellow-700 ml-1">4.9</span>
                         </div>
                       </div>
-                      
-                      <p className="text-gray-600 mb-4 text-sm">
+
+                      <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                         {product.description}
                       </p>
 
                       {/* Benefits */}
                       {product.benefits && (
-                        <div className="flex flex-wrap gap-1 mb-4">
+                        <div className="flex flex-wrap gap-2 mb-6">
                           {product.benefits.split(',').slice(0, 3).map((benefit, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full"
+                              className="px-3 py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-full border border-green-200 hover:bg-green-200 transition-colors duration-200"
                             >
                               {benefit.trim()}
                             </span>

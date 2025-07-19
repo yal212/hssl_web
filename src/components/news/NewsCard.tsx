@@ -68,7 +68,7 @@ export function NewsCard({
       className={`relative ${className}`}
     >
       <Link href={`/news/${news.id}`}>
-        <Card hover className={`h-full overflow-hidden ${featured ? 'border-green-200 shadow-lg' : ''}`}>
+        <Card hover variant={featured ? 'elevated' : 'default'} className={`h-full overflow-hidden group ${featured ? 'border-green-200 shadow-lg ring-1 ring-green-100' : ''}`}>
           <CardContent className="p-0">
             {/* Featured Badge */}
             {news.featured && (

@@ -24,9 +24,17 @@ export default function RootLayout({
   return (
     <html lang="zh-TW">
       <body className={`${inter.variable} font-sans antialiased bg-green-50 text-gray-900`}>
+        {/* Skip Navigation */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-green-600 text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        >
+          跳至主要內容
+        </a>
+
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow" role="main">
             {children}
           </main>
           <Footer />

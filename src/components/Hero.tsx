@@ -46,10 +46,13 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 leading-tight text-balance"
             >
               製作清潔{' '}
-              <span className="text-green-600">環保手工皂</span>{' '}
+              <span className="text-green-600 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+                環保手工皂
+              </span>{' '}
+              <br className="hidden sm:block" />
               創造更美好的世界
             </motion.h1>
 
@@ -57,7 +60,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-xl text-gray-600 mb-8 max-w-2xl"
+              className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-8 max-w-2xl leading-relaxed text-pretty"
             >
               我們是一群充滿熱忱的高中學生，製作環保手工皂為慈善事業籌款。
               每一塊售出的手工皂都有助於讓我們的地球更清潔，社區更強大。
@@ -67,7 +70,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center sm:items-start"
             >
               <Button size="lg" asChild>
                 <a href="https://famistore.famiport.com.tw/users/3278142" target="_blank" rel="noopener noreferrer">

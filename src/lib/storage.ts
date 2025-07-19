@@ -396,8 +396,8 @@ export async function uploadNewsMedia(userId: string, files: File[], newsId?: st
     const videoFiles = files.filter(file => file.type.startsWith('video/'))
 
     const results = await Promise.all([
-      imageFiles.length > 0 ? uploadNewsImages(userId, imageFiles, newsId) : Promise.resolve({ success: true, urls: [] }),
-      videoFiles.length > 0 ? uploadNewsVideos(userId, videoFiles, newsId) : Promise.resolve({ success: true, urls: [] })
+      imageFiles.length > 0 ? uploadNewsImages(userId, imageFiles, newsId) : Promise.resolve({ success: true, urls: [], error: undefined }),
+      videoFiles.length > 0 ? uploadNewsVideos(userId, videoFiles, newsId) : Promise.resolve({ success: true, urls: [], error: undefined })
     ])
 
     const [imageResult, videoResult] = results

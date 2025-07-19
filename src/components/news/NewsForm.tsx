@@ -6,19 +6,17 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { NewsCategory, CreateNewsItem, UpdateNewsItem, NewsItem, NEWS_CATEGORIES } from '@/lib/types/news'
-import { X, Plus, Trash2, Camera, Upload, Video, FileImage, ChevronLeft, ChevronRight } from 'lucide-react'
+import { X, Plus, Trash2, Camera, Upload, Video, ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   validateImageFile,
   validateVideoFile,
-  validateMediaFile,
   resizeImage,
   createImagePreview,
   createVideoPreview,
-  createMediaPreview,
   cleanupImagePreview,
   cleanupMediaPreview
 } from '@/lib/imageUtils'
-import { uploadNewsImage, uploadNewsImages, uploadNewsVideo, uploadNewsVideos, uploadNewsMedia, deleteNewsImage } from '@/lib/storage'
+import { uploadNewsImage, uploadNewsMedia, deleteNewsImage } from '@/lib/storage'
 import { useAdmin } from '@/hooks/useAdmin'
 
 interface NewsFormProps {

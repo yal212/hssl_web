@@ -3,16 +3,37 @@ import { cn } from '@/lib/utils'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   hover?: boolean
+  variant?: 'default' | 'elevated' | 'outlined' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, hover = false, children, ...props }, ref) => {
+  ({ className, hover = false, variant = 'default', size = 'md', children, ...props }, ref) => {
+    const baseClasses = 'rounded-lg bg-white transition-all duration-200'
+
+    const variants = {
+      default: 'border border-gray-200 shadow-sm',
+      elevated: 'border border-gray-100 shadow-md',
+      outlined: 'border-2 border-gray-200 shadow-none',
+      ghost: 'border-none shadow-none bg-transparent'
+    }
+
+    const sizes = {
+      sm: 'p-4',
+      md: 'p-6',
+      lg: 'p-8'
+    }
+
+    const hoverClasses = hover ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] hover:border-gray-300' : ''
+
     return (
       <div
         ref={ref}
         className={cn(
-          'rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200',
-          hover && 'cursor-pointer hover:shadow-md hover:-translate-y-1 hover:scale-[1.02]',
+          baseClasses,
+          variants[variant],
+          sizes[size],
+          hoverClasses,
           className
         )}
         {...props}
@@ -29,7 +50,7 @@ const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('flex flex-col space-y-1.5 pb-4', className)}
+      className={cn('flex flex-col space-y-2 pb-6', className)}
       {...props}
     />
   )
@@ -41,7 +62,7 @@ const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingEle
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn('text-lg font-semibold leading-none tracking-tight', className)}
+      className={cn('text-xl font-bold leading-tight tracking-tight text-gray-900', className)}
       {...props}
     />
   )
@@ -53,7 +74,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLPara
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('text-sm text-gray-600', className)}
+      className={cn('text-sm text-gray-600 leading-relaxed', className)}
       {...props}
     />
   )
@@ -73,7 +94,7 @@ const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('flex items-center pt-4', className)}
+      className={cn('flex items-center justify-between pt-6 border-t border-gray-100', className)}
       {...props}
     />
   )

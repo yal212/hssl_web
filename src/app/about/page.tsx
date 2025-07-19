@@ -175,22 +175,25 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Achievements */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {achievements.map((achievement, index) => (
               <motion.div
                 key={achievement.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
+                className="text-center group"
               >
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <achievement.icon className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <motion.div
+                  className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg"
+                  whileHover={{ rotate: 5 }}
+                >
+                  <achievement.icon className="w-10 h-10 text-green-600" />
+                </motion.div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-200">
                   {achievement.title}
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm leading-relaxed">
                   {achievement.description}
                 </p>
               </motion.div>
@@ -558,8 +561,8 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">學生組織</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+            <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">學生組織</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {studentGroups.map((group, index) => {
                 const groupRoutes = {
                   '設備組': '/about/groups/equipment',
