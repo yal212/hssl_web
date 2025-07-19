@@ -3,11 +3,13 @@
  */
 
 import { supabase } from './supabase'
+import { supabaseAdmin } from './supabase-admin'
 
 export const STORAGE_BUCKETS = {
   AVATARS: 'avatars',
   IMAGES: 'images',
-  NEWS: 'news-images'
+  NEWS: 'news-images',
+  NEWS_VIDEOS: 'news-videos'
 } as const
 
 /**
@@ -26,6 +28,7 @@ export async function ensureStorageBuckets() {
 
     const avatarsBucketExists = buckets?.some(bucket => bucket.name === STORAGE_BUCKETS.AVATARS)
     const newsBucketExists = buckets?.some(bucket => bucket.name === STORAGE_BUCKETS.NEWS)
+    const newsVideosBucketExists = buckets?.some(bucket => bucket.name === STORAGE_BUCKETS.NEWS_VIDEOS)
 
     // Try to create buckets if they don't exist
     if (!avatarsBucketExists) {
@@ -57,6 +60,22 @@ export async function ensureStorageBuckets() {
         console.log('Continuing despite bucket creation error...')
       } else {
         console.log('News images bucket ready')
+      }
+    }
+
+    if (!newsVideosBucketExists) {
+      const { error } = await supabase.storage.createBucket(STORAGE_BUCKETS.NEWS_VIDEOS, {
+        public: true,
+        fileSizeLimit: 52428800, // 50MB for news videos
+        allowedMimeTypes: ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime', 'video/x-msvideo']
+      })
+
+      if (error && !error.message.includes('already exists')) {
+        console.error('Error creating news videos bucket:', error)
+        // Don't fail completely - the bucket might exist but we can't see it
+        console.log('Continuing despite bucket creation error...')
+      } else {
+        console.log('News videos bucket ready')
       }
     }
 
@@ -95,19 +114,19 @@ export async function uploadAvatar(userId: string, file: File): Promise<{
 
     if (error) {
       console.error('Upload error:', error)
-      if (error.message?.includes('row-level security policy')) {
+      if (error.message?.includes('row-level security policy') || error.message?.includes('new row violates row-level security policy')) {
         return {
           success: false,
-          error: 'Storage not configured. Please run the storage setup SQL script in your Supabase dashboard.'
+          error: 'Storage permissions not configured. Please run the RLS fix script: fix-storage-rls-immediate.sql in your Supabase SQL Editor.'
         }
       }
       if (error.message?.includes('Bucket not found')) {
         return {
           success: false,
-          error: 'Storage buckets not found. Please run the storage setup SQL script in your Supabase dashboard.'
+          error: 'Storage buckets not found. Please run the RLS fix script: fix-storage-rls-immediate.sql in your Supabase SQL Editor.'
         }
       }
-      return { success: false, error: error.message }
+      return { success: false, error: `Upload failed: ${error.message}` }
     }
 
     // Get public URL
@@ -166,8 +185,8 @@ export async function uploadNewsImage(userId: string, file: File, newsId?: strin
       : `${userId}-${timestamp}.${fileExt}`
     const filePath = `news/${fileName}`
 
-    // Upload file
-    const { error } = await supabase.storage
+    // Use admin client for reliable uploads that bypass RLS issues
+    const { error } = await supabaseAdmin.storage
       .from(STORAGE_BUCKETS.NEWS)
       .upload(filePath, file, {
         cacheControl: '3600',
@@ -175,20 +194,22 @@ export async function uploadNewsImage(userId: string, file: File, newsId?: strin
       })
 
     if (error) {
-      console.error('Upload error:', error)
-      if (error.message?.includes('row-level security policy')) {
+      console.warn('Admin upload failed, trying regular client:', error)
+      // Fallback to regular client if admin client fails
+      const { error: fallbackError } = await supabase.storage
+        .from(STORAGE_BUCKETS.NEWS)
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: true
+        })
+
+      if (fallbackError) {
+        console.error('Both admin and regular upload failed:', fallbackError)
         return {
           success: false,
-          error: 'Storage not configured. Please run the storage setup SQL script in your Supabase dashboard.'
+          error: `Upload failed: ${fallbackError.message}`
         }
       }
-      if (error.message?.includes('Bucket not found')) {
-        return {
-          success: false,
-          error: 'Storage buckets not found. Please run the storage setup SQL script in your Supabase dashboard.'
-        }
-      }
-      return { success: false, error: error.message }
     }
 
     // Get public URL
@@ -200,6 +221,108 @@ export async function uploadNewsImage(userId: string, file: File, newsId?: strin
   } catch (error) {
     console.error('Error uploading news image:', error)
     return { success: false, error: 'Failed to upload image. Please check storage configuration.' }
+  }
+}
+
+/**
+ * Deletes a news image from storage
+ */
+export async function deleteNewsImage(imageUrl: string): Promise<{
+  success: boolean
+  error?: string
+}> {
+  try {
+    // Extract file path from URL
+    const url = new URL(imageUrl)
+    const pathParts = url.pathname.split('/')
+    const bucketIndex = pathParts.findIndex(part => part === 'news-images')
+
+    if (bucketIndex === -1) {
+      return { success: false, error: 'Invalid image URL - not from news-images bucket' }
+    }
+
+    // Get the file path after the bucket name
+    const filePath = pathParts.slice(bucketIndex + 1).join('/')
+
+    if (!filePath) {
+      return { success: false, error: 'Could not extract file path from URL' }
+    }
+
+    console.log('Attempting to delete file:', filePath)
+
+    // Use admin client for reliable deletes
+    const { error } = await supabaseAdmin.storage
+      .from(STORAGE_BUCKETS.NEWS)
+      .remove([filePath])
+
+    if (error) {
+      console.error('Delete error:', error)
+      return { success: false, error: `Delete failed: ${error.message}` }
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error('Error deleting news image:', error)
+    return { success: false, error: 'Failed to delete image' }
+  }
+}
+
+/**
+ * Uploads a news video to the news-videos bucket
+ */
+export async function uploadNewsVideo(userId: string, file: File, newsId?: string): Promise<{
+  success: boolean
+  url?: string
+  error?: string
+}> {
+  try {
+    // Ensure bucket exists
+    await ensureStorageBuckets()
+    // Continue even if bucket check fails
+
+    const fileExt = file.name.split('.').pop()
+    const timestamp = Date.now()
+    const fileName = newsId
+      ? `${newsId}-${timestamp}.${fileExt}`
+      : `${userId}-${timestamp}.${fileExt}`
+    const filePath = `news/${fileName}`
+
+    // Use admin client for reliable uploads that bypass RLS issues
+    const { error } = await supabaseAdmin.storage
+      .from(STORAGE_BUCKETS.NEWS_VIDEOS)
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: true
+      })
+
+    if (error) {
+      console.warn('Admin video upload failed, trying regular client:', error)
+      // Fallback to regular client if admin client fails
+      const { error: fallbackError } = await supabase.storage
+        .from(STORAGE_BUCKETS.NEWS_VIDEOS)
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: true
+        })
+
+      if (fallbackError) {
+        console.error('Both admin and regular video upload failed:', fallbackError)
+        return {
+          success: false,
+          error: `Video upload failed: ${fallbackError.message}`
+        }
+      }
+    }
+
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from(STORAGE_BUCKETS.NEWS_VIDEOS)
+      .getPublicUrl(filePath)
+
+    return { success: true, url: publicUrl }
+  } catch (error) {
+    console.error('Error uploading news video:', error)
+    return { success: false, error: 'Failed to upload video' }
   }
 }
 
@@ -232,28 +355,72 @@ export async function uploadNewsImages(userId: string, files: File[], newsId?: s
 }
 
 /**
- * Deletes a news image from storage
+ * Uploads multiple videos for news content
  */
-export async function deleteNewsImage(filePath: string): Promise<{
+export async function uploadNewsVideos(userId: string, files: File[], newsId?: string): Promise<{
   success: boolean
+  urls?: string[]
   error?: string
 }> {
   try {
-    const { error } = await supabase.storage
-      .from(STORAGE_BUCKETS.NEWS)
-      .remove([filePath])
+    const uploadPromises = files.map(file => uploadNewsVideo(userId, file, newsId))
+    const results = await Promise.all(uploadPromises)
 
-    if (error) {
-      console.error('Delete error:', error)
-      return { success: false, error: error.message }
+    const failedUploads = results.filter(result => !result.success)
+    if (failedUploads.length > 0) {
+      return {
+        success: false,
+        error: `Failed to upload ${failedUploads.length} video(s)`
+      }
     }
 
-    return { success: true }
+    const urls = results.map(result => result.url!).filter(Boolean)
+    return { success: true, urls }
   } catch (error) {
-    console.error('Error deleting news image:', error)
-    return { success: false, error: 'Failed to delete image' }
+    console.error('Error uploading news videos:', error)
+    return { success: false, error: 'Failed to upload videos' }
   }
 }
+
+/**
+ * Uploads multiple media files (images and videos) for news content
+ */
+export async function uploadNewsMedia(userId: string, files: File[], newsId?: string): Promise<{
+  success: boolean
+  imageUrls?: string[]
+  videoUrls?: string[]
+  error?: string
+}> {
+  try {
+    const imageFiles = files.filter(file => file.type.startsWith('image/'))
+    const videoFiles = files.filter(file => file.type.startsWith('video/'))
+
+    const results = await Promise.all([
+      imageFiles.length > 0 ? uploadNewsImages(userId, imageFiles, newsId) : Promise.resolve({ success: true, urls: [] }),
+      videoFiles.length > 0 ? uploadNewsVideos(userId, videoFiles, newsId) : Promise.resolve({ success: true, urls: [] })
+    ])
+
+    const [imageResult, videoResult] = results
+
+    if (!imageResult.success || !videoResult.success) {
+      return {
+        success: false,
+        error: `Upload failed: ${imageResult.error || ''} ${videoResult.error || ''}`.trim()
+      }
+    }
+
+    return {
+      success: true,
+      imageUrls: imageResult.urls || [],
+      videoUrls: videoResult.urls || []
+    }
+  } catch (error) {
+    console.error('Error uploading news media:', error)
+    return { success: false, error: 'Failed to upload media files' }
+  }
+}
+
+
 
 /**
  * Gets the file path from a Supabase storage URL

@@ -1,8 +1,21 @@
 /**
- * Image handling utilities for profile picture uploads
+ * Image and video handling utilities for uploads
  */
 
+export interface FileValidationResult {
+  isValid: boolean
+  error?: string
+  file?: File
+  fileType?: 'image' | 'video'
+}
+
 export interface ImageValidationResult {
+  isValid: boolean
+  error?: string
+  file?: File
+}
+
+export interface VideoValidationResult {
   isValid: boolean
   error?: string
   file?: File
@@ -15,7 +28,7 @@ export interface ImageResizeOptions {
 }
 
 /**
- * Validates an image file for profile picture upload
+ * Validates an image file for upload
  */
 export function validateImageFile(file: File): ImageValidationResult {
   // Check file type
@@ -39,6 +52,59 @@ export function validateImageFile(file: File): ImageValidationResult {
   return {
     isValid: true,
     file
+  }
+}
+
+/**
+ * Validates a video file for upload
+ */
+export function validateVideoFile(file: File): VideoValidationResult {
+  // Check file type
+  const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime', 'video/x-msvideo']
+  if (!allowedTypes.includes(file.type)) {
+    return {
+      isValid: false,
+      error: 'Please upload an MP4, WebM, OGG, MOV, or AVI video file.'
+    }
+  }
+
+  // Check file size (50MB limit for videos)
+  const maxSize = 50 * 1024 * 1024 // 50MB in bytes
+  if (file.size > maxSize) {
+    return {
+      isValid: false,
+      error: 'Video file size must be less than 50MB.'
+    }
+  }
+
+  return {
+    isValid: true,
+    file
+  }
+}
+
+/**
+ * Validates a media file (image or video) for upload
+ */
+export function validateMediaFile(file: File): FileValidationResult {
+  // Determine file type
+  if (file.type.startsWith('image/')) {
+    const imageResult = validateImageFile(file)
+    return {
+      ...imageResult,
+      fileType: 'image'
+    }
+  } else if (file.type.startsWith('video/')) {
+    const videoResult = validateVideoFile(file)
+    return {
+      ...videoResult,
+      fileType: 'video'
+    }
+  } else {
+    return {
+      isValid: false,
+      error: 'Please upload an image or video file.'
+    }
   }
 }
 
@@ -121,9 +187,30 @@ export function createImagePreview(file: File): string {
 }
 
 /**
+ * Creates a preview URL for a video file
+ */
+export function createVideoPreview(file: File): string {
+  return URL.createObjectURL(file)
+}
+
+/**
+ * Creates a preview URL for any media file (image or video)
+ */
+export function createMediaPreview(file: File): string {
+  return URL.createObjectURL(file)
+}
+
+/**
  * Cleans up a preview URL to prevent memory leaks
  */
 export function cleanupImagePreview(previewUrl: string): void {
+  URL.revokeObjectURL(previewUrl)
+}
+
+/**
+ * Cleans up a media preview URL to prevent memory leaks
+ */
+export function cleanupMediaPreview(previewUrl: string): void {
   URL.revokeObjectURL(previewUrl)
 }
 

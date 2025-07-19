@@ -225,6 +225,27 @@ export default function NewsDetailPage() {
               </div>
             )}
 
+            {/* Content Videos */}
+            {news.content_videos && news.content_videos.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">相關影片</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {news.content_videos.map((videoUrl, index) => (
+                    <div key={index} className="relative">
+                      <div className="relative w-full h-64 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
+                        <video
+                          src={videoUrl}
+                          className="w-full h-full object-cover"
+                          controls
+                          preload="metadata"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Tags */}
             {news.tags && news.tags.length > 0 && (
               <div className="border-t border-gray-200 pt-6">

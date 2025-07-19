@@ -1,4 +1,4 @@
-# News Image Features Implementation
+# News Media Features Implementation
 
 ## ✅ Completed Features
 
@@ -7,13 +7,15 @@
 - ✅ Removed RSS subscription button from news page hero section
 - ✅ Cleaned up imports and unused code
 
-### 2. Enhanced Image Upload System
-- ✅ Created comprehensive image upload functionality for news
+### 2. Enhanced Media Upload System (Images & Videos)
+- ✅ Created comprehensive media upload functionality for news
 - ✅ Added main image upload with preview and removal
 - ✅ Added multiple content images upload with grid preview
-- ✅ Integrated image validation, resizing, and storage upload
+- ✅ Added multiple content videos upload with video preview
+- ✅ Integrated media validation, resizing (for images), and storage upload
 - ✅ Added upload progress indicator
 - ✅ Automatic fallback to HSSL profile picture when no main image is selected
+- ✅ Support for video formats: MP4, WebM, OGG, MOV, AVI (up to 50MB)
 
 ### 3. Default HSSL Profile Picture Implementation
 - ✅ Updated NewsCard component to use `/hssl_profile.jpg` as fallback
@@ -31,22 +33,28 @@
 
 ### 5. Enhanced Storage Utilities
 - ✅ Added `NEWS: 'news-images'` bucket to storage configuration
+- ✅ Added `NEWS_VIDEOS: 'news-videos'` bucket for video storage
 - ✅ Created `uploadNewsImage()` function for single news image uploads
 - ✅ Created `uploadNewsImages()` function for multiple content image uploads
+- ✅ Created `uploadNewsVideo()` function for single news video uploads
+- ✅ Created `uploadNewsVideos()` function for multiple content video uploads
+- ✅ Created `uploadNewsMedia()` function for mixed media uploads
 - ✅ Created `deleteNewsImage()` function for cleanup
-- ✅ Updated `ensureStorageBuckets()` to create news images bucket with 10MB limit
+- ✅ Updated `ensureStorageBuckets()` to create news images bucket (10MB) and videos bucket (50MB)
 
 ### 6. Database Schema and Types Updates
 - ✅ Added `content_images` field to NewsItem interface
-- ✅ Updated API calls to handle the new field gracefully
+- ✅ Added `content_videos` field to NewsItem interface
+- ✅ Updated API calls to handle both new fields gracefully
 - ✅ Enhanced type definitions for CreateNewsItem and UpdateNewsItem
-- ✅ Created migration script for the new column
+- ✅ Created migration scripts for the new columns
 
 ### 7. News Form Integration
-- ✅ Complete overhaul of NewsForm component with image upload
+- ✅ Complete overhaul of NewsForm component with media upload
 - ✅ Integration with CreateNewsModal and EditNewsModal
-- ✅ Clean UI with drag-and-drop style file inputs
-- ✅ Error handling and validation
+- ✅ Clean UI with separate sections for images and videos
+- ✅ Video preview with controls
+- ✅ Error handling and validation for both images and videos
 
 ## 🔧 Setup Required
 
@@ -68,32 +76,36 @@ WHERE content_images IS NULL;
 ```
 
 ### Storage Bucket Setup
-The application will automatically create the `news-images` bucket when needed, but you can also create it manually in Supabase:
+The application will automatically create the storage buckets when needed, but you can also create them manually in Supabase:
 
 1. Go to Storage in your Supabase dashboard
-2. Create a new bucket named `news-images`
-3. Set it as public
-4. Set file size limit to 10MB
-5. Allow MIME types: `image/jpeg,image/jpg,image/png,image/webp`
+2. Create buckets:
+   - `news-images`: Set as public, 10MB limit, MIME types: `image/jpeg,image/jpg,image/png,image/webp`
+   - `news-videos`: Set as public, 50MB limit, MIME types: `video/mp4,video/webm,video/ogg,video/quicktime,video/x-msvideo`
 
 ## 🎯 How to Use
 
 ### For Admins Creating News:
 
 1. **Main Image Upload:**
-   - Click "上傳主要圖片" to select a main image
+   - Click "上傳圖片" to select a main image
    - Preview appears with option to remove/replace
    - If no image is uploaded, HSSL profile picture is used automatically
 
 2. **Content Images Upload:**
-   - Click "添加內容圖片" to select multiple images
+   - Enter image URLs or click "上傳" to select multiple images
    - Images appear in a grid with individual remove buttons
    - These images will display as a scrollable gallery in the news article
 
-3. **Upload Process:**
+3. **Content Videos Upload:**
+   - Enter video URLs or click "上傳影片" to select multiple videos
+   - Videos appear with preview controls and individual remove buttons
+   - Supports MP4, WebM, OGG, MOV, AVI formats up to 50MB each
+
+4. **Upload Process:**
    - Progress bar shows upload status
-   - All images are automatically resized and optimized
-   - Images are stored in Supabase storage with proper organization
+   - Images are automatically resized and optimized
+   - Media files are stored in Supabase storage with proper organization
 
 ### For Users Viewing News:
 
@@ -104,6 +116,7 @@ The application will automatically create the `news-images` bucket when needed, 
 2. **Individual News Articles:**
    - Main image displayed prominently at the top
    - Content images (if any) shown in scrollable gallery below content
+   - Content videos (if any) displayed with native video controls
    - Gallery features:
      - Click to view full-screen
      - Navigate with arrows or thumbnails

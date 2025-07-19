@@ -18,6 +18,7 @@ export interface NewsItem {
   tags: string[]
   image_url?: string
   content_images?: string[]
+  content_videos?: string[]
   published_at?: string
   created_at: string
   updated_at: string
@@ -59,6 +60,7 @@ export interface CreateNewsItem {
   tags: string[]
   image_url?: string
   content_images?: string[]
+  content_videos?: string[]
   featured?: boolean
   published?: boolean
 }

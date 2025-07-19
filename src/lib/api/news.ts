@@ -40,11 +40,11 @@ export class NewsAPI {
         )
       `
 
-      // Try to include content_images if it exists
+      // Try to include content_images and content_videos if they exist
       try {
         const testQuery = await supabase
           .from('posts')
-          .select('content_images')
+          .select('content_images, content_videos')
           .limit(1)
 
         if (!testQuery.error) {
@@ -61,6 +61,7 @@ export class NewsAPI {
             featured,
             image_url,
             content_images,
+            content_videos,
             published_at,
             author:profiles!posts_author_id_fkey(
               id,
@@ -70,8 +71,39 @@ export class NewsAPI {
           `
         }
       } catch {
-        // content_images column doesn't exist, use basic fields
-        console.log('content_images column not found, using basic fields')
+        // Try just content_images if content_videos doesn't exist
+        try {
+          const testQuery2 = await supabase
+            .from('posts')
+            .select('content_images')
+            .limit(1)
+
+          if (!testQuery2.error) {
+            selectFields = `
+              id,
+              title,
+              content,
+              published,
+              created_at,
+              updated_at,
+              excerpt,
+              category,
+              tags,
+              featured,
+              image_url,
+              content_images,
+              published_at,
+              author:profiles!posts_author_id_fkey(
+                id,
+                full_name,
+                avatar_url
+              )
+            `
+          }
+        } catch {
+          // Neither column exists, use basic fields
+          console.log('content_images and content_videos columns not found, using basic fields')
+        }
       }
 
       let query = supabase
@@ -200,6 +232,7 @@ export class NewsAPI {
         featured: data.featured || false,
         image_url: data.image_url || null,
         content_images: data.content_images || [], // Will be undefined if column doesn't exist
+        content_videos: data.content_videos || [], // Will be undefined if column doesn't exist
         published_at: data.published_at || data.created_at
       } as NewsItem
 

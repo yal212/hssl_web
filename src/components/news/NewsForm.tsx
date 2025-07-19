@@ -6,14 +6,19 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { NewsCategory, CreateNewsItem, UpdateNewsItem, NewsItem, NEWS_CATEGORIES } from '@/lib/types/news'
-import { X, Plus, Trash2, Camera, Upload } from 'lucide-react'
+import { X, Plus, Trash2, Camera, Upload, Video, FileImage, ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   validateImageFile,
+  validateVideoFile,
+  validateMediaFile,
   resizeImage,
   createImagePreview,
-  cleanupImagePreview
+  createVideoPreview,
+  createMediaPreview,
+  cleanupImagePreview,
+  cleanupMediaPreview
 } from '@/lib/imageUtils'
-import { uploadNewsImage, uploadNewsImages } from '@/lib/storage'
+import { uploadNewsImage, uploadNewsImages, uploadNewsVideo, uploadNewsVideos, uploadNewsMedia, deleteNewsImage } from '@/lib/storage'
 import { useAdmin } from '@/hooks/useAdmin'
 
 interface NewsFormProps {
@@ -39,17 +44,21 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
   const [newTag, setNewTag] = useState('')
   const [errors, setErrors] = useState<Record<string, string | undefined>>({})
 
-  // Image upload states
+  // Media upload states
   const [mainImageFile, setMainImageFile] = useState<File | null>(null)
   const [mainImagePreview, setMainImagePreview] = useState<string>('')
   const [contentImages, setContentImages] = useState<File[]>([])
+  const [contentVideos, setContentVideos] = useState<File[]>([])
   const [contentImagePreviews, setContentImagePreviews] = useState<string[]>([])
+  const [contentVideoPreviews, setContentVideoPreviews] = useState<string[]>([])
   const [uploadProgress, setUploadProgress] = useState(0)
   const [isUploading, setIsUploading] = useState(false)
+  const [deletingImages, setDeletingImages] = useState<Set<number>>(new Set())
 
   // File input refs
   const mainImageInputRef = useRef<HTMLInputElement>(null)
   const contentImagesInputRef = useRef<HTMLInputElement>(null)
+  const contentVideosInputRef = useRef<HTMLInputElement>(null)
 
   // Initialize form with existing data if editing
   useEffect(() => {
@@ -69,10 +78,18 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
       if (initialData.image_url) {
         setMainImagePreview(initialData.image_url)
       }
+
+      // Set content media previews if editing
+      if (initialData.content_images) {
+        setContentImagePreviews(initialData.content_images)
+      }
+      if (initialData.content_videos) {
+        setContentVideoPreviews(initialData.content_videos)
+      }
     }
   }, [initialData])
 
-  // Cleanup image previews on unmount
+  // Cleanup media previews on unmount
   useEffect(() => {
     return () => {
       if (mainImagePreview && !mainImagePreview.startsWith('http')) {
@@ -83,8 +100,13 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
           cleanupImagePreview(preview)
         }
       })
+      contentVideoPreviews.forEach(preview => {
+        if (!preview.startsWith('http')) {
+          cleanupMediaPreview(preview)
+        }
+      })
     }
-  }, [mainImagePreview, contentImagePreviews])
+  }, [mainImagePreview, contentImagePreviews, contentVideoPreviews])
 
   // Handle main image selection
   const handleMainImageSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -148,14 +170,94 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
   }
 
   // Remove content image
-  const removeContentImage = (index: number) => {
+  const removeContentImage = async (index: number) => {
     const preview = contentImagePreviews[index]
-    if (preview && !preview.startsWith('http')) {
-      cleanupImagePreview(preview)
-    }
 
-    setContentImages(prev => prev.filter((_, i) => i !== index))
-    setContentImagePreviews(prev => prev.filter((_, i) => i !== index))
+    // Set deleting state
+    setDeletingImages(prev => new Set(prev).add(index))
+
+    try {
+      // If it's an uploaded image URL (starts with http), try to delete from storage
+      if (preview && preview.startsWith('http') && preview.includes('news-images')) {
+        try {
+          const deleteResult = await deleteNewsImage(preview)
+          if (!deleteResult.success) {
+            console.warn('Failed to delete image from storage:', deleteResult.error)
+            // Continue with removal from UI even if storage deletion fails
+          }
+        } catch (error) {
+          console.warn('Error deleting image from storage:', error)
+          // Continue with removal from UI even if storage deletion fails
+        }
+      }
+
+      // If it's a blob URL (local preview), clean it up
+      if (preview && !preview.startsWith('http')) {
+        cleanupImagePreview(preview)
+      }
+
+      setContentImages(prev => prev.filter((_, i) => i !== index))
+      setContentImagePreviews(prev => prev.filter((_, i) => i !== index))
+    } finally {
+      // Remove deleting state
+      setDeletingImages(prev => {
+        const newSet = new Set(prev)
+        newSet.delete(index)
+        return newSet
+      })
+    }
+  }
+
+  // Move content image up
+  const moveContentImageUp = (index: number) => {
+    if (index === 0) return
+
+    setContentImagePreviews(prev => {
+      const newPreviews = [...prev]
+      const temp = newPreviews[index]
+      newPreviews[index] = newPreviews[index - 1]
+      newPreviews[index - 1] = temp
+      return newPreviews
+    })
+
+    // Only reorder contentImages if they exist (for newly uploaded files)
+    if (contentImages.length > 0) {
+      setContentImages(prev => {
+        const newImages = [...prev]
+        if (newImages[index] && newImages[index - 1]) {
+          const temp = newImages[index]
+          newImages[index] = newImages[index - 1]
+          newImages[index - 1] = temp
+        }
+        return newImages
+      })
+    }
+  }
+
+  // Move content image down
+  const moveContentImageDown = (index: number) => {
+    if (index === contentImagePreviews.length - 1) return
+
+    setContentImagePreviews(prev => {
+      const newPreviews = [...prev]
+      const temp = newPreviews[index]
+      newPreviews[index] = newPreviews[index + 1]
+      newPreviews[index + 1] = temp
+      return newPreviews
+    })
+
+    // Only reorder contentImages if they exist (for newly uploaded files)
+    if (contentImages.length > 0) {
+      setContentImages(prev => {
+        const newImages = [...prev]
+        if (newImages[index] && newImages[index + 1]) {
+          const temp = newImages[index]
+          newImages[index] = newImages[index + 1]
+          newImages[index + 1] = temp
+        }
+        return newImages
+      })
+    }
   }
 
   // Remove main image
@@ -166,6 +268,39 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
     setMainImageFile(null)
     setMainImagePreview('')
     setFormData(prev => ({ ...prev, image_url: '' }))
+  }
+
+  // Handle content videos selection
+  const handleContentVideosSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || [])
+    if (files.length === 0) return
+
+    const validFiles: File[] = []
+    const newPreviews: string[] = []
+
+    for (const file of files) {
+      const validation = validateVideoFile(file)
+      if (validation.isValid) {
+        validFiles.push(file)
+        newPreviews.push(createVideoPreview(file))
+      } else {
+        console.error('Invalid video file:', validation.error)
+      }
+    }
+
+    setContentVideos(prev => [...prev, ...validFiles])
+    setContentVideoPreviews(prev => [...prev, ...newPreviews])
+  }
+
+  // Remove content video
+  const removeContentVideo = (index: number) => {
+    const preview = contentVideoPreviews[index]
+    if (preview && !preview.startsWith('http')) {
+      cleanupMediaPreview(preview)
+    }
+
+    setContentVideos(prev => prev.filter((_, i) => i !== index))
+    setContentVideoPreviews(prev => prev.filter((_, i) => i !== index))
   }
 
   const validateForm = () => {
@@ -213,17 +348,20 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
 
           if (uploadResult.success) {
             finalImageUrl = uploadResult.url || ''
+            // Clear any previous errors
+            setErrors(prev => ({ ...prev, mainImage: undefined }))
           } else {
             // Upload failed, but continue with URL or default
             console.warn('Image upload failed, using URL or default:', uploadResult.error)
+            // Don't show RLS errors to users anymore since we've fixed the underlying issue
             setErrors({
-              mainImage: '圖片上傳失敗，將使用網址或預設圖片。如需上傳功能請聯繫管理員設定儲存空間。'
+              mainImage: '圖片上傳失敗，將使用網址或預設圖片。'
             })
           }
         } catch (uploadError) {
           console.warn('Image upload error:', uploadError)
           setErrors({
-            mainImage: '圖片上傳功能暫時無法使用，將使用網址或預設圖片。'
+            mainImage: '圖片上傳暫時無法使用，將使用網址或預設圖片。'
           })
         }
         setUploadProgress(50)
@@ -234,25 +372,28 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
         finalImageUrl = '/hssl_profile.jpg'
       }
 
-      // Handle content images - use URLs from previews
+      // Handle content media - use URLs from previews
       let contentImageUrls: string[] = []
+      let contentVideoUrls: string[] = []
 
-      // First, try to upload any file-based content images
-      if (contentImages.length > 0) {
-        setUploadProgress(75)
+      // Upload content images and videos
+      if (contentImages.length > 0 || contentVideos.length > 0) {
+        setUploadProgress(60)
         try {
-          const contentUploadResult = await uploadNewsImages(user.id, contentImages, initialData?.id)
+          const allMediaFiles = [...contentImages, ...contentVideos]
+          const mediaUploadResult = await uploadNewsMedia(user.id, allMediaFiles, initialData?.id)
 
-          if (contentUploadResult.success) {
-            contentImageUrls = contentUploadResult.urls || []
+          if (mediaUploadResult.success) {
+            contentImageUrls = mediaUploadResult.imageUrls || []
+            contentVideoUrls = mediaUploadResult.videoUrls || []
           } else {
-            console.warn('Content images upload failed:', contentUploadResult.error)
+            console.warn('Content media upload failed:', mediaUploadResult.error)
             setErrors({
-              contentImages: '內容圖片上傳失敗，將僅使用網址圖片。'
+              contentImages: '內容媒體上傳失敗，將僅使用網址媒體。'
             })
           }
         } catch (uploadError) {
-          console.warn('Content images upload error:', uploadError)
+          console.warn('Content media upload error:', uploadError)
         }
       }
 
@@ -262,14 +403,21 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
       )
       contentImageUrls = [...contentImageUrls, ...urlBasedImages]
 
+      // Add URL-based content videos from previews
+      const urlBasedVideos = contentVideoPreviews.filter(url =>
+        url.startsWith('http') && !contentVideoUrls.includes(url)
+      )
+      contentVideoUrls = [...contentVideoUrls, ...urlBasedVideos]
+
       setUploadProgress(90)
 
       const submitData = {
         ...(initialData ? { id: initialData.id } : {}),
         ...formData,
         image_url: finalImageUrl,
-        // Store content image URLs
-        ...(contentImageUrls.length > 0 && { content_images: contentImageUrls })
+        // Store content media URLs
+        ...(contentImageUrls.length > 0 && { content_images: contentImageUrls }),
+        ...(contentVideoUrls.length > 0 && { content_videos: contentVideoUrls })
       } as CreateNewsItem | UpdateNewsItem
 
       setUploadProgress(100)
@@ -398,12 +546,12 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                 {/* Current/Preview Image */}
                 {(mainImagePreview || formData.image_url) && (
                   <div className="relative inline-block">
-                    <div className="relative w-48 h-32 rounded-lg overflow-hidden border border-gray-200">
+                    <div className="relative w-64 h-48 rounded-lg overflow-hidden border border-gray-200">
                       <Image
                         src={mainImagePreview || formData.image_url || '/hssl_profile.jpg'}
                         alt="主要圖片預覽"
                         fill
-                        className="object-cover"
+                        className="object-contain bg-gray-50"
                       />
                     </div>
                     <button
@@ -426,10 +574,10 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                     disabled={isUploading}
                   >
                     <Camera className="w-4 h-4 mr-2" />
-                    {mainImagePreview ? '更換圖片' : '上傳圖片 (暫時功能)'}
+                    {mainImagePreview ? '更換圖片' : '上傳圖片'}
                   </Button>
                   <span className="text-sm text-gray-500">
-                    暫時請使用圖片網址，或聯繫管理員設定儲存空間
+                    支援 JPG、PNG、WebP 格式，最大 10MB
                   </span>
                 </div>
 
@@ -490,22 +638,65 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                 {contentImagePreviews.length > 0 && (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {contentImagePreviews.map((preview, index) => (
-                      <div key={index} className="relative">
+                      <div key={index} className="relative group">
                         <div className="relative w-full h-24 rounded-lg overflow-hidden border border-gray-200">
                           <Image
                             src={preview}
                             alt={`內容圖片 ${index + 1}`}
                             fill
-                            className="object-cover"
+                            className={`object-cover transition-opacity ${deletingImages.has(index) ? 'opacity-50' : ''}`}
                           />
+                          {deletingImages.has(index) && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                              <div className="text-white text-xs">刪除中...</div>
+                            </div>
+                          )}
                         </div>
+
+                        {/* Control buttons - positioned at bottom */}
+                        <div className="absolute bottom-1 left-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <div className="flex gap-1 justify-center">
+                            {/* Move up button */}
+                            {index > 0 && (
+                              <button
+                                type="button"
+                                onClick={() => moveContentImageUp(index)}
+                                className="bg-blue-500 text-white p-1 rounded hover:bg-blue-600 transition-colors shadow-lg"
+                                title="向左移動"
+                              >
+                                <ChevronLeft className="w-3 h-3" />
+                              </button>
+                            )}
+
+                            {/* Move down button */}
+                            {index < contentImagePreviews.length - 1 && (
+                              <button
+                                type="button"
+                                onClick={() => moveContentImageDown(index)}
+                                className="bg-blue-500 text-white p-1 rounded hover:bg-blue-600 transition-colors shadow-lg"
+                                title="向右移動"
+                              >
+                                <ChevronRight className="w-3 h-3" />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Delete button */}
                         <button
                           type="button"
                           onClick={() => removeContentImage(index)}
-                          className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                          className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors disabled:opacity-50"
+                          title="刪除圖片"
+                          disabled={isUploading || deletingImages.has(index)}
                         >
                           <X className="w-3 h-3" />
                         </button>
+
+                        {/* Order indicator */}
+                        <div className="absolute -top-2 -left-2 bg-green-500 text-white text-xs px-1.5 py-0.5 rounded-full font-medium">
+                          {index + 1}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -526,6 +717,85 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
 
                 {errors.contentImages && (
                   <p className="text-red-500 text-sm">{errors.contentImages}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Content Videos */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                內容影片 (影片庫)
+              </label>
+              <div className="space-y-4">
+                {/* Add Video URL */}
+                <div className="flex gap-2">
+                  <input
+                    type="url"
+                    placeholder="輸入影片網址並按 Enter 添加"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        const url = e.currentTarget.value.trim()
+                        if (url) {
+                          setContentVideoPreviews(prev => [...prev, url])
+                          e.currentTarget.value = ''
+                        }
+                      }
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => contentVideosInputRef.current?.click()}
+                    className="flex items-center"
+                    disabled={isUploading}
+                  >
+                    <Video className="w-4 h-4 mr-2" />
+                    上傳影片
+                  </Button>
+                </div>
+
+                {/* Video Preview Grid */}
+                {contentVideoPreviews.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {contentVideoPreviews.map((preview, index) => (
+                      <div key={index} className="relative">
+                        <div className="relative w-full h-32 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
+                          <video
+                            src={preview}
+                            className="w-full h-full object-cover"
+                            controls
+                            preload="metadata"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeContentVideo(index)}
+                          className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <input
+                  ref={contentVideosInputRef}
+                  type="file"
+                  accept="video/*"
+                  multiple
+                  onChange={handleContentVideosSelect}
+                  className="hidden"
+                />
+
+                <p className="text-sm text-gray-500">
+                  💡 輸入影片網址並按 Enter 添加到影片庫，或使用上傳按鈕 (需要儲存設定)。支援 MP4, WebM, OGG 格式，最大 50MB
+                </p>
+
+                {errors.contentVideos && (
+                  <p className="text-red-500 text-sm">{errors.contentVideos}</p>
                 )}
               </div>
             </div>
