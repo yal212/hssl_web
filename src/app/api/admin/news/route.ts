@@ -93,6 +93,12 @@ export async function PUT(request: NextRequest) {
     const body = await request.json()
     const { id, ...updateData } = body
 
+    console.log('Updating news with data:', {
+      id,
+      content_images: updateData.content_images,
+      content_videos: updateData.content_videos
+    })
+
     // If publishing for the first time, set published_at
     if (updateData.published && !updateData.published_at) {
       updateData.published_at = new Date().toISOString()

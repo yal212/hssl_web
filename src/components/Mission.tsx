@@ -1,96 +1,208 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Leaf, Heart, Users, Recycle } from 'lucide-react'
+import { Beaker, Recycle, Heart } from 'lucide-react'
 
 export function Mission() {
-  const values = [
-    {
-      icon: Leaf,
-      title: '環保友善',
-      description: '我們所有的手工皂都使用天然、永續的成分製作，對您的肌膚和環境都很溫和。'
-    },
-    {
-      icon: Heart,
-      title: '慈善影響',
-      description: '每一次購買都直接支持當地慈善機構和社區倡議，為我們的世界帶來真正的改變。'
-    },
-    {
-      icon: Users,
-      title: '學生主導',
-      description: '完全由充滿熱忱的高中學生經營，學習創業精神、化學知識和社會責任。'
-    },
-    {
-      icon: Recycle,
-      title: '永續發展',
-      description: '我們使用可生物分解的包裝和永續的生產方法，以減少對環境的影響。'
-    }
-  ]
-
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* What We Do */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            我們的使命與價值觀
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            這個慈善組織做什麼？
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            我們相信創造的產品不僅能清潔您的身體，也能為清潔我們的世界做出貢獻。
-            每一塊手工皂都代表著我們對永續發展、慈善事業和學生賦權的承諾。
-          </p>
+          <div className="max-w-4xl mx-auto">
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              High School Soap Lab (HSSL) 是由高中學生主導的環保慈善組織，
+              我們製作天然手工皂並將所有收益捐贈給慈善機構。
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="text-center group"
+              >
+                <motion.div
+                  className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors"
+                  whileHover={{ rotate: 15, scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Beaker className="w-8 h-8 text-green-600" />
+                </motion.div>
+                <motion.h3
+                  className="text-lg font-semibold text-gray-900 mb-2"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  製作手工皂
+                </motion.h3>
+                <motion.p
+                  className="text-gray-600"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  使用天然成分製作環保手工皂
+                </motion.p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="text-center group"
+              >
+                <motion.div
+                  className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors"
+                  whileHover={{ rotate: 15, scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Recycle className="w-8 h-8 text-blue-600" />
+                </motion.div>
+                <motion.h3
+                  className="text-lg font-semibold text-gray-900 mb-2"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  回收廢油
+                </motion.h3>
+                <motion.p
+                  className="text-gray-600"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  將過期油轉化為有用的清潔產品
+                </motion.p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="text-center group"
+              >
+                <motion.div
+                  className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-red-200 transition-colors"
+                  whileHover={{ rotate: 15, scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Heart className="w-8 h-8 text-red-600" />
+                </motion.div>
+                <motion.h3
+                  className="text-lg font-semibold text-gray-900 mb-2"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  慈善捐贈
+                </motion.h3>
+                <motion.p
+                  className="text-gray-600"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  將所有收益捐贈給需要幫助的機構
+                </motion.p>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Values Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, index) => (
-            <motion.div
-              key={value.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="text-center group"
-            >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.2 }}
-                className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors"
-              >
-                <value.icon className="w-8 h-8 text-green-600" />
-              </motion.div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {value.title}
-              </h3>
-              <p className="text-gray-600">
-                {value.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Mission Statement */}
+        {/* Why It Matters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mt-20 bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-8 md:p-12 text-center"
+          className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 md:p-12 text-center"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-            「製作清潔環保手工皂，為地球和世界創造更美好的未來。」
-          </h3>
-          <p className="text-lg text-gray-700 max-w-4xl mx-auto">
-            這不僅僅是我們的標語，更是我們的承諾。我們選擇的每一種成分、
-            遵循的每一個過程，以及捐贈的每一分錢，都反映了我們對創造正面改變的承諾。
-            我們不只是在製作手工皂，我們正在創造改變。
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            為什麼這很重要？
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+              市售清潔劑含有對環境有害的化學物質，而我們的手工皂提供了天然、環保的替代方案。
+              同時，我們將收益用於支持社會弱勢群體，創造雙重正面影響。
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+              <motion.div
+                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow group"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -3, scale: 1.02 }}
+              >
+                <motion.h3
+                  className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-green-600 transition-colors"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  環境保護
+                </motion.h3>
+                <motion.p
+                  className="text-gray-600"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  減少化學污染，推廣永續生活方式
+                </motion.p>
+              </motion.div>
+              <motion.div
+                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow group"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -3, scale: 1.02 }}
+              >
+                <motion.h3
+                  className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  社會關懷
+                </motion.h3>
+                <motion.p
+                  className="text-gray-600"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  支持弱勢群體，創造社會正面改變
+                </motion.p>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

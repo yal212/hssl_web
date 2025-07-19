@@ -58,13 +58,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://famistore.famiport.com.tw/users/3278142" target="_blank" rel="noopener noreferrer" className="text-green-200 hover:text-white transition-colors">
-                  商店
-                </a>
-              </li>
-              <li>
                 <Link href="/about" className="text-green-200 hover:text-white transition-colors">
                   關於我們
+                </Link>
+              </li>
+              <li>
+                <Link href="/news" className="text-green-200 hover:text-white transition-colors">
+                  最新消息
+                </Link>
+              </li>
+              <li>
+                <Link href="/education" className="text-green-200 hover:text-white transition-colors">
+                  教育中心
                 </Link>
               </li>
               <li>

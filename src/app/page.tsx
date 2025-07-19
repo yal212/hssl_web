@@ -1,6 +1,6 @@
 import { Hero } from '@/components/Hero'
-import { FeaturedProducts } from '@/components/FeaturedProducts'
 import { Mission } from '@/components/Mission'
+import { ImpactSummary } from '@/components/ImpactSummary'
 import { CallToAction } from '@/components/CallToAction'
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Hero />
       <Mission />
-      <FeaturedProducts />
+      <ImpactSummary />
       <CallToAction />
     </div>
   )

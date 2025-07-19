@@ -48,12 +48,12 @@ export function Hero() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 leading-tight text-balance"
             >
-              製作清潔{' '}
+              高中學生{' '}
               <span className="text-green-600 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
-                環保手工皂
+                環保慈善
               </span>{' '}
               <br className="hidden sm:block" />
-              創造更美好的世界
+              改變世界
             </motion.h1>
 
             <motion.p
@@ -62,8 +62,8 @@ export function Hero() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-8 max-w-2xl leading-relaxed text-pretty"
             >
-              我們是一群充滿熱忱的高中學生，製作環保手工皂為慈善事業籌款。
-              每一塊售出的手工皂都有助於讓我們的地球更清潔，社區更強大。
+              製作天然手工皂，回收廢油，將所有收益捐贈給慈善機構。
+              
             </motion.p>
 
             <motion.div

@@ -1,3 +1,0 @@
-- google Oauth
-- news able to add photos
-- fix the stats

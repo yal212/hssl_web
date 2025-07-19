@@ -232,23 +232,38 @@ export async function deleteNewsImage(imageUrl: string): Promise<{
   error?: string
 }> {
   try {
+    console.log('Attempting to delete image URL:', imageUrl)
+
     // Extract file path from URL
     const url = new URL(imageUrl)
-    const pathParts = url.pathname.split('/')
-    const bucketIndex = pathParts.findIndex(part => part === 'news-images')
+    const pathParts = url.pathname.split('/').filter(part => part.length > 0)
+
+    console.log('URL path parts:', pathParts)
+
+    // Look for the bucket name in the path
+    const bucketIndex = pathParts.findIndex(part => part === STORAGE_BUCKETS.NEWS)
 
     if (bucketIndex === -1) {
-      return { success: false, error: 'Invalid image URL - not from news-images bucket' }
+      // Try alternative patterns - sometimes the URL structure might be different
+      const alternativeBucketIndex = pathParts.findIndex(part => part.includes('news'))
+      if (alternativeBucketIndex === -1) {
+        console.error('Could not find news bucket in URL path:', pathParts)
+        return { success: false, error: `Invalid image URL - not from ${STORAGE_BUCKETS.NEWS} bucket` }
+      }
+      console.log('Found alternative bucket pattern at index:', alternativeBucketIndex)
     }
 
     // Get the file path after the bucket name
-    const filePath = pathParts.slice(bucketIndex + 1).join('/')
+    const actualBucketIndex = bucketIndex !== -1 ? bucketIndex : pathParts.findIndex(part => part.includes('news'))
+    const filePath = pathParts.slice(actualBucketIndex + 1).join('/')
 
     if (!filePath) {
+      console.error('Could not extract file path from URL')
       return { success: false, error: 'Could not extract file path from URL' }
     }
 
-    console.log('Attempting to delete file:', filePath)
+    console.log('Extracted file path:', filePath)
+    console.log('Using bucket:', STORAGE_BUCKETS.NEWS)
 
     // Use admin client for reliable deletes
     const { error } = await supabaseAdmin.storage
@@ -256,10 +271,11 @@ export async function deleteNewsImage(imageUrl: string): Promise<{
       .remove([filePath])
 
     if (error) {
-      console.error('Delete error:', error)
+      console.error('Storage delete error:', error)
       return { success: false, error: `Delete failed: ${error.message}` }
     }
 
+    console.log('Successfully deleted image from storage')
     return { success: true }
   } catch (error) {
     console.error('Error deleting news image:', error)

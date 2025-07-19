@@ -52,6 +52,9 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
   const [uploadProgress, setUploadProgress] = useState(0)
   const [isUploading, setIsUploading] = useState(false)
   const [deletingImages, setDeletingImages] = useState<Set<number>>(new Set())
+  const [deletingVideos, setDeletingVideos] = useState<Set<number>>(new Set())
+  const [originalContentImages, setOriginalContentImages] = useState<string[]>([])
+  const [imagesToDelete, setImagesToDelete] = useState<string[]>([])
 
   // File input refs
   const mainImageInputRef = useRef<HTMLInputElement>(null)
@@ -80,6 +83,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
       // Set content media previews if editing
       if (initialData.content_images) {
         setContentImagePreviews(initialData.content_images)
+        setOriginalContentImages(initialData.content_images)
       }
       if (initialData.content_videos) {
         setContentVideoPreviews(initialData.content_videos)
@@ -171,21 +175,38 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
   const removeContentImage = async (index: number) => {
     const preview = contentImagePreviews[index]
 
+    console.log('Removing content image:', {
+      index,
+      preview,
+      currentPreviews: contentImagePreviews,
+      originalImages: originalContentImages,
+      isOriginalImage: originalContentImages.includes(preview)
+    })
+
     // Set deleting state
     setDeletingImages(prev => new Set(prev).add(index))
 
     try {
       // If it's an uploaded image URL (starts with http), try to delete from storage
-      if (preview && preview.startsWith('http') && preview.includes('news-images')) {
-        try {
-          const deleteResult = await deleteNewsImage(preview)
-          if (!deleteResult.success) {
-            console.warn('Failed to delete image from storage:', deleteResult.error)
+      if (preview && preview.startsWith('http')) {
+        // Check if this was an original image that needs to be deleted from storage
+        if (originalContentImages.includes(preview)) {
+          console.log('Marking original image for deletion:', preview)
+          setImagesToDelete(prev => [...prev, preview])
+
+          // Try to delete immediately for better UX
+          try {
+            const deleteResult = await deleteNewsImage(preview)
+            if (!deleteResult.success) {
+              console.warn('Failed to delete image from storage:', deleteResult.error)
+              // Continue with removal from UI even if storage deletion fails
+            } else {
+              console.log('Successfully deleted image from storage')
+            }
+          } catch (error) {
+            console.warn('Error deleting image from storage:', error)
             // Continue with removal from UI even if storage deletion fails
           }
-        } catch (error) {
-          console.warn('Error deleting image from storage:', error)
-          // Continue with removal from UI even if storage deletion fails
         }
       }
 
@@ -195,7 +216,15 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
       }
 
       setContentImages(prev => prev.filter((_, i) => i !== index))
-      setContentImagePreviews(prev => prev.filter((_, i) => i !== index))
+      setContentImagePreviews(prev => {
+        const newPreviews = prev.filter((_, i) => i !== index)
+        console.log('Updated content image previews:', {
+          oldPreviews: prev,
+          newPreviews,
+          removedIndex: index
+        })
+        return newPreviews
+      })
     } finally {
       // Remove deleting state
       setDeletingImages(prev => {
@@ -292,13 +321,25 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
 
   // Remove content video
   const removeContentVideo = (index: number) => {
-    const preview = contentVideoPreviews[index]
-    if (preview && !preview.startsWith('http')) {
-      cleanupMediaPreview(preview)
-    }
+    // Set deleting state
+    setDeletingVideos(prev => new Set(prev).add(index))
 
-    setContentVideos(prev => prev.filter((_, i) => i !== index))
-    setContentVideoPreviews(prev => prev.filter((_, i) => i !== index))
+    try {
+      const preview = contentVideoPreviews[index]
+      if (preview && !preview.startsWith('http')) {
+        cleanupMediaPreview(preview)
+      }
+
+      setContentVideos(prev => prev.filter((_, i) => i !== index))
+      setContentVideoPreviews(prev => prev.filter((_, i) => i !== index))
+    } finally {
+      // Remove deleting state
+      setDeletingVideos(prev => {
+        const newSet = new Set(prev)
+        newSet.delete(index)
+        return newSet
+      })
+    }
   }
 
   const validateForm = () => {
@@ -401,6 +442,15 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
       )
       contentImageUrls = [...contentImageUrls, ...urlBasedImages]
 
+      console.log('Image processing details:', {
+        originalContentImages,
+        contentImagePreviews,
+        newlyUploadedImages: contentImageUrls.filter(url => !urlBasedImages.includes(url)),
+        urlBasedImages,
+        finalContentImageUrls: contentImageUrls,
+        imagesToDelete
+      })
+
       // Add URL-based content videos from previews
       const urlBasedVideos = contentVideoPreviews.filter(url =>
         url.startsWith('http') && !contentVideoUrls.includes(url)
@@ -413,10 +463,19 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
         ...(initialData ? { id: initialData.id } : {}),
         ...formData,
         image_url: finalImageUrl,
-        // Store content media URLs
-        ...(contentImageUrls.length > 0 && { content_images: contentImageUrls }),
-        ...(contentVideoUrls.length > 0 && { content_videos: contentVideoUrls })
+        // Always include content media URLs (even if empty arrays)
+        content_images: contentImageUrls,
+        content_videos: contentVideoUrls
       } as CreateNewsItem | UpdateNewsItem
+
+      console.log('Submitting news data:', {
+        id: 'id' in submitData ? submitData.id : 'new',
+        title: submitData.title,
+        content_images: submitData.content_images,
+        content_videos: submitData.content_videos,
+        originalImages: originalContentImages,
+        imagesToDelete: imagesToDelete
+      })
 
       setUploadProgress(100)
       await onSubmit(submitData)
@@ -770,7 +829,8 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                         <button
                           type="button"
                           onClick={() => removeContentVideo(index)}
-                          className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                          className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors disabled:opacity-50"
+                          disabled={isUploading || deletingVideos.has(index)}
                         >
                           <X className="w-3 h-3" />
                         </button>
