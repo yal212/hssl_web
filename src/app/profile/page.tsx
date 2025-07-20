@@ -78,17 +78,25 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12 lg:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">個人資料</h1>
-          <p className="text-gray-600">管理您的帳戶資訊和偏好設定</p>
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-full mb-8 shadow-lg">
+            <User className="w-10 h-10 text-white" />
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+            個人
+            <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent block">
+              資料中心
+            </span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">管理您的帳戶資訊和偏好設定</p>
         </motion.div>
 
         {/* Profile Card */}

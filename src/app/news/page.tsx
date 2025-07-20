@@ -3,6 +3,15 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Newspaper, Plus, Settings } from 'lucide-react'
+import {
+  fadeInUp,
+  fadeInDown,
+  staggerContainer,
+  staggerItem,
+  floating,
+  scrollReveal,
+  colorTheme
+} from '@/lib/animations'
 import { NewsAPI } from '@/lib/api/news'
 import { NewsItem, NewsFilters, NewsResponse, DEFAULT_NEWS_FILTERS } from '@/lib/types/news'
 import { NewsCard, NewsCardSkeleton } from '@/components/news/NewsCard'
@@ -175,28 +184,56 @@ export default function NewsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <motion.div
+      className="min-h-screen bg-gray-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 via-white to-green-100 py-16">
+      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-white py-24 lg:py-32 overflow-hidden`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={fadeInDown}
+            initial="initial"
+            animate="animate"
             className="text-center"
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mr-4">
-                <Newspaper className="w-8 h-8 text-white" />
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-                最新消息
-              </h1>
-            </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <motion.div
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
+              <Newspaper className="w-10 h-10 text-white" />
+            </motion.div>
+
+            <motion.h1
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight"
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+            >
+              最新
+              <motion.span
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
+                消息動態
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
+              className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
               掌握 High School Soap Lab 的最新動態、活動消息和重要公告。
               了解我們在環保手工皂推廣和慈善事業上的最新進展。
-            </p>
+            </motion.p>
             
             {/* Admin Controls */}
             {isAdmin && (
@@ -222,20 +259,22 @@ export default function NewsPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-12">
+      <section className="py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-8"
+            className="mb-12"
           >
-            <NewsFiltersComponent
-              filters={filters}
-              onFiltersChange={handleFiltersChange}
-              availableTags={availableTags}
-            />
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 lg:p-8">
+              <NewsFiltersComponent
+                filters={filters}
+                onFiltersChange={handleFiltersChange}
+                availableTags={availableTags}
+              />
+            </div>
           </motion.div>
 
           {/* Error State */}
@@ -243,11 +282,14 @@ export default function NewsPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="bg-red-50 border border-red-200 rounded-lg p-6 mb-8"
+              className="bg-red-50 border border-red-200 rounded-2xl p-8 mb-12 shadow-lg"
             >
-              <p className="text-red-800 text-center">{error}</p>
-              <div className="flex justify-center mt-4">
-                <Button onClick={() => fetchNews()} variant="outline">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Newspaper className="w-8 h-8 text-red-600" />
+                </div>
+                <p className="text-red-800 text-lg font-medium mb-4">{error}</p>
+                <Button onClick={() => fetchNews()} variant="outline" size="lg">
                   重新載入
                 </Button>
               </div>
@@ -256,7 +298,7 @@ export default function NewsPage() {
 
           {/* Loading State */}
           {loading && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {Array.from({ length: 6 }).map((_, index) => (
                 <NewsCardSkeleton key={index} />
               ))}
@@ -272,7 +314,7 @@ export default function NewsPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
                   >
                     {newsData.data.map((news, index) => (
                       <motion.div
@@ -367,6 +409,6 @@ export default function NewsPage() {
           />
         </>
       )}
-    </div>
+    </motion.div>
   )
 }

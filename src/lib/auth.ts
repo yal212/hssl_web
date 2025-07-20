@@ -71,22 +71,24 @@ export async function updateSession(request: NextRequest) {
     user = fetchedUser
   }
 
-  // Debug logging
-  console.log('Auth middleware check:', {
-    hasSession: !!session,
-    hasUser: !!user,
-    userEmail: user?.email,
-    sessionError: sessionError?.message,
-    cookieCount: request.cookies.getAll().length
-  })
-
-  // Debug logging for protected routes
-  if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/profile') || request.nextUrl.pathname.startsWith('/admin')) {
-    console.log('Middleware auth check:', {
-      path: request.nextUrl.pathname,
-      user: user ? { id: user.id, email: user.email } : null,
-      cookies: request.cookies.getAll().map(c => ({ name: c.name, hasValue: !!c.value }))
+  // Debug logging (only in development)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Auth middleware check:', {
+      hasSession: !!session,
+      hasUser: !!user,
+      userEmail: user?.email,
+      sessionError: sessionError?.message,
+      cookieCount: request.cookies.getAll().length
     })
+
+    // Debug logging for protected routes
+    if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/profile') || request.nextUrl.pathname.startsWith('/admin')) {
+      console.log('Middleware auth check:', {
+        path: request.nextUrl.pathname,
+        user: user ? { id: user.id, email: user.email } : null,
+        cookies: request.cookies.getAll().map(c => ({ name: c.name, hasValue: !!c.value }))
+      })
+    }
   }
 
   // Skip middleware for API routes
@@ -108,11 +110,18 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // TEMPORARY: Disable admin route protection for debugging
+  // Protect admin routes - require authentication and admin role
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    console.log('Admin route accessed:', request.nextUrl.pathname, 'User:', user ? user.email : 'none')
-    console.log('TEMPORARILY ALLOWING ALL ADMIN ACCESS - REMOVE IN PRODUCTION')
-    // Let AdminGuard component handle the protection
+    if (!user) {
+      console.log('Redirecting to login - admin route requires authentication')
+      const url = request.nextUrl.clone()
+      url.pathname = '/login'
+      url.searchParams.set('next', request.nextUrl.pathname)
+      return NextResponse.redirect(url)
+    }
+
+    // Admin routes are further protected by AdminGuard component
+    // which checks for admin role in the database
     return supabaseResponse
   }
 

@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import { Heart, ShoppingBag, Users, Megaphone, Gift, DollarSign, Handshake } from 'lucide-react'
 import Link from 'next/link'
+import { colorTheme } from '@/lib/animations'
 
 export default function SupportPage() {
   const supportWays = [
@@ -14,7 +15,7 @@ export default function SupportPage() {
       description: '每一次購買手工皂都直接支持我們的慈善使命和永續實踐。',
       action: '立即購買',
       href: 'https://famistore.famiport.com.tw/users/3278142',
-      color: 'green',
+      color: 'primary',
       impact: ' - %利潤捐給慈善機構'
     },
     {
@@ -23,7 +24,7 @@ export default function SupportPage() {
       description: '直接捐款幫助我們擴大營運並增加慈善影響力。',
       action: '捐款',
       href: '#donate',
-      color: 'blue',
+      color: 'secondary',
       impact: '每$ - 幫助我們製作 - 塊手工皂'
     },
     {
@@ -32,7 +33,7 @@ export default function SupportPage() {
       description: '加入我們的團隊成為志工，協助生產、行銷或活動。',
       action: '參與其中',
       href: '#volunteer',
-      color: 'purple',
+      color: 'accent',
       impact: '幫助我們觸及更多社區'
     },
     {
@@ -41,7 +42,7 @@ export default function SupportPage() {
       description: '在社群媒體上分享我們的使命，幫助我們觸及更多支持者。',
       action: '分享',
       href: '#share',
-      color: 'orange',
+      color: 'primary',
       impact: '透過提高認知擴大我們的影響力'
     }
   ]
@@ -77,42 +78,56 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 via-white to-green-100 py-20">
+      <section className="bg-gradient-to-br from-green-50 via-white to-green-100 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              支持我們的使命
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-full mb-8 shadow-lg">
+              <Heart className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+              支持我們的
+              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent block">
+                環保使命
+              </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               幫助我們創造更清潔的地球和更強大的社區。有許多方式可以支持
               High School Soap Lab，一起創造有意義的影響。
             </p>
           </motion.div>
 
           {/* Impact Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {impactStats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
+                className="group"
               >
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-8 h-8 text-green-600" />
-                </div>
-                <div className="text-2xl font-bold text-green-600 mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 text-sm">
-                  {stat.label}
-                </div>
+                <Card hover className="h-full text-center border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-8">
+                    <motion.div
+                      className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <stat.icon className="w-10 h-10 text-white" />
+                    </motion.div>
+                    <div className="text-3xl font-bold text-green-600 mb-2 group-hover:text-green-700 transition-colors duration-200">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-600 font-medium">
+                      {stat.label}
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -149,30 +164,24 @@ export default function SupportPage() {
               >
                 <Card hover className="h-full">
                   <CardHeader>
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4
-                      ${way.color === 'green' ? 'bg-green-100' : ''}
-                      ${way.color === 'blue' ? 'bg-blue-100' : ''}
-                      ${way.color === 'purple' ? 'bg-purple-100' : ''}
-                      ${way.color === 'orange' ? 'bg-orange-100' : ''}
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg
+                      ${way.color === 'primary' ? `bg-gradient-to-br ${colorTheme.primary.gradient}` : ''}
+                      ${way.color === 'secondary' ? `bg-gradient-to-br ${colorTheme.secondary.gradient}` : ''}
+                      ${way.color === 'accent' ? `bg-gradient-to-br ${colorTheme.accent.gradient}` : ''}
                     `}>
-                      <way.icon className={`w-6 h-6
-                        ${way.color === 'green' ? 'text-green-600' : ''}
-                        ${way.color === 'blue' ? 'text-blue-600' : ''}
-                        ${way.color === 'purple' ? 'text-purple-600' : ''}
-                        ${way.color === 'orange' ? 'text-orange-600' : ''}
-                      `} />
+                      <way.icon className="w-8 h-8 text-white" />
                     </div>
-                    <CardTitle>{way.title}</CardTitle>
-                    <CardDescription>{way.description}</CardDescription>
+                    <CardTitle className="text-xl mb-3">{way.title}</CardTitle>
+                    <CardDescription className="text-gray-600 leading-relaxed">{way.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="mb-4">
-                      <span className="text-sm font-medium text-green-600">
+                    <div className="mb-6">
+                      <span className={`text-sm font-medium ${colorTheme.primary.text}`}>
                         Impact: {way.impact}
                       </span>
                     </div>
                     <Button
-                      variant={way.color === 'green' ? 'primary' : 'outline'}
+                      variant="primary"
                       className="w-full"
                       asChild
                     >
