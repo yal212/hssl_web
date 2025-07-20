@@ -9,6 +9,9 @@
 - ✅ **Hydration**: Fixed hydration mismatch errors
 - ✅ **Navigation**: Reorganized and working correctly
 - ✅ **Image Deletion**: Fixed news image deletion functionality
+- ✅ **Database Schema**: Added content_images and content_videos columns
+- ✅ **Admin Authentication**: Fixed admin access and added setup utilities
+- ✅ **News Image Upload**: Fixed image/video upload in news editing
 
 ### **Cleaned Up Files**
 - ✅ **Removed 17 documentation files**: All setup guides and troubleshooting docs
@@ -16,6 +19,8 @@
 - ✅ **Removed 11 test files**: All debugging and test scripts
 - ✅ **Removed duplicate directories**: `hssl-web/` and `images/`
 - ✅ **Removed unused assets**: 5 unused SVG files from public/
+- ✅ **Removed debug pages**: debug-auth, debug-callback, test-auth, test-resend, auth-status
+- ✅ **Removed admin-setup page**: Admin users created via Supabase only
 - ✅ **Clean project structure**: Only production-ready files remain
 
 ### **Core Features Working**
@@ -44,9 +49,15 @@ SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
 ### **2. Database Setup**
 1. Create new Supabase project for production
 2. Run `supabase-schema.sql` in SQL Editor
-3. Configure Google OAuth in Authentication > Providers
-4. Set up storage buckets and RLS policies
-5. Test database connection
+3. **CRITICAL**: Run additional migration for news features:
+   ```sql
+   -- Add missing columns for news image galleries
+   ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_images TEXT[] DEFAULT '{}';
+   ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_videos TEXT[] DEFAULT '{}';
+   ```
+4. Configure Google OAuth in Authentication > Providers
+5. Set up storage buckets and RLS policies
+6. Test database connection
 
 ### **3. Vercel Deployment**
 1. Push code to GitHub repository
@@ -96,6 +107,25 @@ hssl-web/
 ### **Admin Pages**
 - `/admin/news` - News management (protected)
 - `/admin/setup` - Database initialization (protected)
+
+## 🔑 Admin Setup (Post-Deployment)
+
+### **Create Admin User in Supabase**
+1. Go to your Supabase project dashboard
+2. Navigate to Authentication > Users
+3. Create a new user or use existing user email
+4. In SQL Editor, run:
+```sql
+-- Promote user to admin role
+UPDATE public.profiles
+SET role = 'admin'
+WHERE email = 'your-admin-email@example.com';
+
+-- Verify admin user was created
+SELECT id, email, full_name, role, created_at
+FROM public.profiles
+WHERE role = 'admin';
+```
 
 ### **API Endpoints**
 - `/api/admin/news` - News CRUD operations

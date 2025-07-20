@@ -18,6 +18,7 @@ import {
 } from '@/lib/imageUtils'
 import { uploadNewsImage, uploadNewsMedia, deleteNewsImage } from '@/lib/storage'
 import { useAdmin } from '@/hooks/useAdmin'
+import { sanitizeText, sanitizeHTML, sanitizeURL } from '@/lib/sanitization'
 
 interface NewsFormProps {
   initialData?: NewsItem | null
@@ -345,16 +346,30 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
 
-    if (!formData.title.trim()) {
+    // Sanitize and validate title
+    const sanitizedTitle = sanitizeText(formData.title)
+    if (!sanitizedTitle.trim()) {
       newErrors.title = '標題為必填項目'
+    } else if (sanitizedTitle.length > 200) {
+      newErrors.title = '標題不能超過200個字符'
     }
 
-    if (!formData.content.trim()) {
+    // Sanitize and validate content
+    const sanitizedContent = sanitizeHTML(formData.content)
+    if (!sanitizedContent.trim()) {
       newErrors.content = '內容為必填項目'
+    } else if (sanitizedContent.length < 50) {
+      newErrors.content = '內容至少需要50個字符'
     }
 
-    if (formData.content.length < 50) {
-      newErrors.content = '內容至少需要50個字符'
+    // Validate excerpt length
+    if (formData.excerpt && sanitizeText(formData.excerpt).length > 500) {
+      newErrors.excerpt = '摘要不能超過500個字符'
+    }
+
+    // Validate image URL if provided
+    if (formData.image_url && !sanitizeURL(formData.image_url)) {
+      newErrors.image_url = '請提供有效的圖片網址'
     }
 
     setErrors(newErrors)
@@ -489,10 +504,11 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
   }
 
   const addTag = () => {
-    if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
+    const sanitizedTag = sanitizeText(newTag).substring(0, 30)
+    if (sanitizedTag && !formData.tags.includes(sanitizedTag)) {
       setFormData(prev => ({
         ...prev,
-        tags: [...prev.tags, newTag.trim()]
+        tags: [...prev.tags, sanitizedTag]
       }))
       setNewTag('')
     }
@@ -672,9 +688,12 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                       if (e.key === 'Enter') {
                         e.preventDefault()
                         const url = e.currentTarget.value.trim()
-                        if (url) {
-                          setContentImagePreviews(prev => [...prev, url])
+                        const sanitizedUrl = sanitizeURL(url)
+                        if (sanitizedUrl) {
+                          setContentImagePreviews(prev => [...prev, sanitizedUrl])
                           e.currentTarget.value = ''
+                        } else if (url) {
+                          setErrors(prev => ({ ...prev, contentImages: '請提供有效的圖片網址' }))
                         }
                       }
                     }}
@@ -794,9 +813,12 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                       if (e.key === 'Enter') {
                         e.preventDefault()
                         const url = e.currentTarget.value.trim()
-                        if (url) {
-                          setContentVideoPreviews(prev => [...prev, url])
+                        const sanitizedUrl = sanitizeURL(url)
+                        if (sanitizedUrl) {
+                          setContentVideoPreviews(prev => [...prev, sanitizedUrl])
                           e.currentTarget.value = ''
+                        } else if (url) {
+                          setErrors(prev => ({ ...prev, contentVideos: '請提供有效的影片網址' }))
                         }
                       }
                     }}

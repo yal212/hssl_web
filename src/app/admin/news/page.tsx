@@ -12,6 +12,7 @@ import CreateNewsModal from '@/components/news/CreateNewsModal'
 import EditNewsModal from '@/components/news/EditNewsModal'
 import ConfirmDialog from '@/components/ui/ConfirmDialog'
 import AdminGuard from '@/components/AdminGuard'
+import { DatabaseMigrationChecker } from '@/components/DatabaseMigrationChecker'
 import Link from 'next/link'
 
 export default function AdminNewsPage() {
@@ -128,6 +129,16 @@ export default function AdminNewsPage() {
             <Plus className="w-4 h-4 mr-2" />
             新增新聞
           </Button>
+        </motion.div>
+
+        {/* Database Migration Checker */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-6"
+        >
+          <DatabaseMigrationChecker />
         </motion.div>
 
         {/* Error State */}

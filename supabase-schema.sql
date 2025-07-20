@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS public.posts (
     category TEXT DEFAULT 'general' CHECK (category IN ('general', 'events', 'achievements', 'announcements', 'workshops', 'partnerships')),
     tags TEXT[], -- Array of tags for better categorization
     image_url TEXT, -- Featured image for news items
+    content_images TEXT[], -- Array of image URLs for news content galleries
+    content_videos TEXT[], -- Array of video URLs for news content
     published_at TIMESTAMP WITH TIME ZONE, -- When the post was published
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -274,3 +276,28 @@ SELECT * FROM (VALUES
 WHERE NOT EXISTS (
     SELECT 1 FROM public.posts WHERE posts.title = new_posts.title
 );
+
+-- ADMIN USER SETUP
+-- To create an admin user, you can either:
+-- 1. Visit /admin-setup page after deployment
+-- 2. Run the following SQL commands manually in Supabase SQL Editor:
+
+/*
+-- Example: Create admin user manually (replace with your details)
+-- First, create the user in Supabase Auth (do this in the Auth section of Supabase dashboard)
+-- Then update their profile role:
+
+UPDATE public.profiles
+SET role = 'admin'
+WHERE email = 'your-admin-email@example.com';
+
+-- Or if you know the user ID:
+UPDATE public.profiles
+SET role = 'admin'
+WHERE id = 'your-user-uuid-here';
+
+-- To check existing admin users:
+SELECT id, email, full_name, role, created_at
+FROM public.profiles
+WHERE role = 'admin';
+*/

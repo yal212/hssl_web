@@ -34,7 +34,6 @@ export function useAuth() {
         }
 
         if (user) {
-          console.log('useAuth - User found:', user.email, 'ID:', user.id)
           // Fetch user profile
           const { data: profile, error: profileError } = await supabase
             .from('profiles')
@@ -47,7 +46,6 @@ export function useAuth() {
             console.error('Error fetching profile:', profileError)
           }
 
-          console.log('useAuth - Setting authenticated state, profile:', !!profile)
           setAuthState({
             user,
             profile: profile || null,
@@ -55,7 +53,6 @@ export function useAuth() {
             error: null
           })
         } else {
-          console.log('useAuth - No user found, setting unauthenticated state')
           setAuthState({
             user: null,
             profile: null,

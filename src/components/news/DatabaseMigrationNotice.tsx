@@ -19,6 +19,8 @@ ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS featured BOOLEAN DEFAULT false
 ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS category TEXT DEFAULT 'general';
 ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS tags TEXT[] DEFAULT '{}';
 ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS image_url TEXT;
+ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_images TEXT[] DEFAULT '{}';
+ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_videos TEXT[] DEFAULT '{}';
 ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS published_at TIMESTAMP WITH TIME ZONE;
 
 -- Add category constraint

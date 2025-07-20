@@ -1,8 +1,23 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { NewsAPI } from '@/lib/api/news'
+import { rateLimiters, getClientIP } from '@/lib/rate-limit'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // Apply rate limiting
+    const clientIP = getClientIP(request)
+    const rateLimitResult = rateLimiters.api(clientIP)
+
+    if (!rateLimitResult.success) {
+      return new NextResponse('Too many requests. Please try again later.', {
+        status: 429,
+        headers: {
+          'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+          'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+          'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString(),
+        }
+      })
+    }
     // Fetch recent published news
     const newsResponse = await NewsAPI.getNews({ published: true }, 1, 20)
     const news = newsResponse.data

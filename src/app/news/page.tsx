@@ -6,10 +6,7 @@ import { Newspaper, Plus, Settings } from 'lucide-react'
 import {
   fadeInUp,
   fadeInDown,
-  staggerContainer,
-  staggerItem,
   floating,
-  scrollReveal,
   colorTheme
 } from '@/lib/animations'
 import { NewsAPI } from '@/lib/api/news'

@@ -25,10 +25,7 @@ import {
   staggerContainer,
   staggerItem,
   floating,
-  hoverScale,
-  hoverRotate,
   scrollReveal,
-  scrollStagger,
   colorTheme
 } from '@/lib/animations'
 

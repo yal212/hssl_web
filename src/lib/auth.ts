@@ -71,24 +71,14 @@ export async function updateSession(request: NextRequest) {
     user = fetchedUser
   }
 
-  // Debug logging (only in development)
+  // Minimal logging for debugging (development only)
   if (process.env.NODE_ENV === 'development') {
     console.log('Auth middleware check:', {
       hasSession: !!session,
       hasUser: !!user,
-      userEmail: user?.email,
-      sessionError: sessionError?.message,
-      cookieCount: request.cookies.getAll().length
+      path: request.nextUrl.pathname,
+      sessionError: sessionError ? 'Session error occurred' : null
     })
-
-    // Debug logging for protected routes
-    if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/profile') || request.nextUrl.pathname.startsWith('/admin')) {
-      console.log('Middleware auth check:', {
-        path: request.nextUrl.pathname,
-        user: user ? { id: user.id, email: user.email } : null,
-        cookies: request.cookies.getAll().map(c => ({ name: c.name, hasValue: !!c.value }))
-      })
-    }
   }
 
   // Skip middleware for API routes
@@ -96,15 +86,12 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse
   }
 
-  // Protect dashboard and profile routes
+  // Protect dashboard routes (profile route protection handled client-side)
   if (
     !user &&
-    (request.nextUrl.pathname.startsWith('/dashboard'))
-    // Temporarily disable profile protection to test client-side auth
-    // || request.nextUrl.pathname.startsWith('/profile'))
+    request.nextUrl.pathname.startsWith('/dashboard')
   ) {
     // no user, redirect to login page
-    console.log('Redirecting to login - no user found in middleware')
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
@@ -113,7 +100,6 @@ export async function updateSession(request: NextRequest) {
   // Protect admin routes - require authentication and admin role
   if (request.nextUrl.pathname.startsWith('/admin')) {
     if (!user) {
-      console.log('Redirecting to login - admin route requires authentication')
       const url = request.nextUrl.clone()
       url.pathname = '/login'
       url.searchParams.set('next', request.nextUrl.pathname)

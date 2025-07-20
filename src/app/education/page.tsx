@@ -14,7 +14,7 @@ import {
   Heart,
   Recycle
 } from 'lucide-react'
-import { colorTheme } from '@/lib/animations'
+
 
 export default function EducationPage() {
 

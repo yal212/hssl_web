@@ -18,17 +18,32 @@ export default function ProfilePage() {
   const [localProfile, setLocalProfile] = useState<Profile | null>(profile)
 
   useEffect(() => {
-    console.log('Profile page - Auth state:', { loading, isAuthenticated, user: !!user, profile: !!profile })
     if (!loading && !isAuthenticated) {
-      console.log('Profile page - Redirecting to login (not authenticated)')
       router.push('/login')
     }
-  }, [loading, isAuthenticated, router, user, profile])
+  }, [loading, isAuthenticated, router])
 
   // Update local profile when auth profile changes
   useEffect(() => {
     setLocalProfile(profile)
   }, [profile])
+
+  // Show loading state while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">載入中...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show nothing if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null
+  }
 
   const handleSignOut = async () => {
     const { error } = await signOut()

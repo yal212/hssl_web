@@ -102,7 +102,6 @@ export class NewsAPI {
           }
         } catch {
           // Neither column exists, use basic fields
-          console.log('content_images and content_videos columns not found, using basic fields')
         }
       }
 
@@ -309,7 +308,6 @@ export class NewsAPI {
    */
   static async createNews(newsItem: CreateNewsItem): Promise<NewsItem | null> {
     try {
-      console.log('Creating news item:', newsItem.title)
 
       // Get user session for auth
       const { data: { session } } = await supabase.auth.getSession()
@@ -333,7 +331,6 @@ export class NewsAPI {
       }
 
       const data = await response.json()
-      console.log('News item created successfully')
       return data as NewsItem
     } catch (error) {
       console.error('Error creating news item:', error)
@@ -346,7 +343,6 @@ export class NewsAPI {
    */
   static async updateNews(newsItem: UpdateNewsItem): Promise<NewsItem | null> {
     try {
-      console.log('Updating news item:', newsItem.id)
 
       // Get user session for auth
       const { data: { session } } = await supabase.auth.getSession()
@@ -370,7 +366,6 @@ export class NewsAPI {
       }
 
       const data = await response.json()
-      console.log('News item updated successfully')
       return data as NewsItem
     } catch (error) {
       console.error('Error updating news item:', error)
@@ -383,7 +378,6 @@ export class NewsAPI {
    */
   static async deleteNews(id: string): Promise<boolean> {
     try {
-      console.log('Deleting news item:', id)
 
       // Add timeout to prevent hanging
       const deletePromise = supabase
@@ -398,11 +392,9 @@ export class NewsAPI {
       const { error } = await Promise.race([deletePromise, timeoutPromise]) as { error: Error | null }
 
       if (error) {
-        console.error('Supabase delete error:', error)
         throw new Error(`Delete failed: ${error.message}`)
       }
 
-      console.log('News item deleted successfully')
       return true
     } catch (error) {
       console.error('Error deleting news item:', error)
