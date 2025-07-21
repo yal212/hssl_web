@@ -682,11 +682,8 @@ export default function AboutPage() {
                 description: '與企業攜手推動永續發展與社會責任',
                 benefits: [
                   'ESG 永續發展合作夥伴',
-                  '員工環保教育工作坊',
-                  '企業社會責任活動規劃',
                   '綠色供應鏈循環經濟',
                   '品牌永續形象提升',
-                  '客製化環保解決方案'
                 ],
                 color: 'from-amber-400 to-orange-600',
                 bgColor: 'bg-amber-50',
