@@ -5,11 +5,8 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { ShoppingBag, Heart, Share2, Sparkles } from 'lucide-react'
 import {
-  fadeInUp,
-  fadeInDown,
   staggerContainer,
   staggerItem,
-  floating,
   colorTheme
 } from '@/lib/animations'
 
@@ -55,50 +52,33 @@ export function CallToAction() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          variants={fadeInDown}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <motion.div
-            className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
-            variants={floating}
-            initial="initial"
-            animate="animate"
-          >
+        <div className="text-center mb-20">
+          <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}>
             <Sparkles className="w-10 h-10 text-white" />
-          </motion.div>
+          </div>
 
           <motion.h2
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
           >
             我現在如何
-            <motion.span
-              className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <span className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}>
               幫助？
-            </motion.span>
+            </span>
           </motion.h2>
           <motion.p
             className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
           >
             每一個行動都能創造改變。選擇最適合您的方式，立即開始幫助我們！
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Action Options */}
         <motion.div
@@ -119,72 +99,37 @@ export function CallToAction() {
               <motion.div
                 key={action.title}
                 variants={staggerItem}
-                className={`relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group ${
+                className={`relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 group ${
                   action.urgent ? `ring-2 ring-emerald-500 ring-opacity-50` : ''
                 }`}
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.99 }}
               >
               {action.urgent && action.title === '立即購買手工皂' && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <motion.span
-                    className={`bg-gradient-to-r ${colorTheme.primary.gradient} text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg`}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-                    viewport={{ once: true }}
-                  >
+                  <span className={`bg-gradient-to-r ${colorTheme.primary.gradient} text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg`}>
                     最推薦
-                  </motion.span>
+                  </span>
                 </div>
               )}
 
-              <motion.div
-                className={`w-20 h-20 mx-auto mb-8 rounded-2xl flex items-center justify-center bg-gradient-to-br ${cardColors[index]} shadow-lg relative overflow-hidden`}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <div className={`w-20 h-20 mx-auto mb-8 rounded-2xl flex items-center justify-center bg-gradient-to-br ${cardColors[index]} shadow-lg relative overflow-hidden`}>
                 <action.icon className="w-10 h-10 text-white relative z-10" />
-              </motion.div>
+              </div>
 
-              <motion.h3
-                className="text-2xl font-bold text-gray-900 mb-4 text-center group-hover:text-emerald-600 transition-colors duration-200"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ once: true }}
-              >
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center group-hover:text-emerald-600 transition-colors duration-200">
                 {action.title}
-              </motion.h3>
+              </h3>
 
-              <motion.p
-                className="text-gray-600 mb-6 text-center leading-relaxed"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                viewport={{ once: true }}
-              >
+              <p className="text-gray-600 mb-6 text-center leading-relaxed">
                 {action.description}
-              </motion.p>
+              </p>
 
-              <motion.div
-                className="text-center mb-8"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7 }}
-                viewport={{ once: true }}
-              >
-                <motion.span
-                  className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${colorTheme.primary.light} ${colorTheme.primary.text} shadow-sm`}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
-                >
+              <div className="text-center mb-8">
+                <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${colorTheme.primary.light} ${colorTheme.primary.text} shadow-sm`}>
                   {action.impact}
-                </motion.span>
-              </motion.div>
+                </span>
+              </div>
 
               <div className="text-center">
                 <Button
@@ -225,13 +170,11 @@ export function CallToAction() {
 
         {/* Bottom Encouragement */}
         <motion.div
-          variants={fadeInDown}
-          initial="initial"
-          whileInView="animate"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className={`text-center bg-gradient-to-r ${colorTheme.primary.gradient} rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden`}
-          whileHover={{ scale: 1.02, y: -5 }}
-          transition={{ duration: 0.3 }}
         >
           {/* Decorative background */}
           <div className="absolute inset-0 opacity-10">
@@ -241,25 +184,13 @@ export function CallToAction() {
           </div>
 
           <div className="relative z-10">
-            <motion.h3
-              className="text-3xl md:text-4xl font-bold mb-6"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
+            <h3 className="text-3xl md:text-4xl font-bold mb-6">
               每一個小行動都很重要
-            </motion.h3>
-            <motion.p
-              className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              viewport={{ once: true }}
-            >
+            </h3>
+            <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
               無論您選擇哪種方式支持我們，都在為環境保護和社會關懷貢獻力量。
               讓我們一起創造更美好的世界！
-            </motion.p>
+            </p>
           </div>
         </motion.div>
       </div>
