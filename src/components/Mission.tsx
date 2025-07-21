@@ -39,7 +39,7 @@ export function Mission() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            這個慈善組織
+            這個學生團體
             <motion.span
               className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -47,7 +47,7 @@ export function Mission() {
               transition={{ delay: 0.5, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              做什麼？
+              在做什麼？
             </motion.span>
           </motion.h2>
           <div className="max-w-4xl mx-auto">
@@ -203,7 +203,7 @@ export function Mission() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              為什麼這
+              為什麼這很重要？
               <motion.span
                 className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -211,7 +211,7 @@ export function Mission() {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                很重要？
+                
               </motion.span>
             </motion.h2>
             <div className="max-w-4xl mx-auto">
