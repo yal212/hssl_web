@@ -40,7 +40,7 @@
 - News system with full CRUD operations
 - Image upload and gallery functionality
 - Admin authentication and management
-- User authentication via Google OAuth
+- User authentication via email/password
 - Responsive design across all devices
 
 ## Deployment Requirements

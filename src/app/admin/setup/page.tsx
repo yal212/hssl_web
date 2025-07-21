@@ -208,7 +208,7 @@ export default function AdminSetupPage() {
                   Click &quot;Setup Database&quot; to populate your database with sample products
                 </li>
                 <li>
-                  Configure Google OAuth in your Supabase Authentication settings
+                  Email authentication is configured by default in Supabase
                 </li>
               </ol>
               

@@ -27,11 +27,13 @@
 - ✅ **Home Page**: New structure with 3 key questions
 - ✅ **Navigation**: Reorganized without "商店" link
 - ✅ **News System**: Full CRUD with image upload/deletion
-- ✅ **Authentication**: Google OAuth via Supabase
+- ✅ **Authentication**: Email/password authentication via Supabase
 - ✅ **About Page**: Team member profiles
 - ✅ **Support Page**: Donation and support options
 - ✅ **Education Center**: Educational content
 - ✅ **Responsive Design**: Mobile-friendly across all pages
+- ✅ **Login UI**: Cleaned up Chinese text elements from sign in/up pages
+- ✅ **Authentication Simplified**: Removed Google OAuth, now uses email/password only
 
 ## 🔧 Deployment Steps
 
@@ -55,7 +57,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
    ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_images TEXT[] DEFAULT '{}';
    ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_videos TEXT[] DEFAULT '{}';
    ```
-4. Configure Google OAuth in Authentication > Providers
+4. Email authentication is configured by default
 5. Set up storage buckets and RLS policies
 6. Test database connection
 
@@ -130,13 +132,13 @@ WHERE role = 'admin';
 ### **API Endpoints**
 - `/api/admin/news` - News CRUD operations
 - `/api/rss` - RSS feed
-- `/auth/callback` - OAuth callback
+- `/auth/callback` - Email confirmation callback
 
 ## 🔒 Security Checklist
 
 - ✅ **Environment Variables**: Properly configured
 - ✅ **RLS Policies**: Database security enabled
-- ✅ **Authentication**: Google OAuth working
+- ✅ **Authentication**: Email/password authentication working
 - ✅ **File Uploads**: Secure image handling
 - ✅ **API Protection**: Admin routes protected
 - ✅ **CORS**: Properly configured for domain
@@ -159,5 +161,8 @@ The HSSL website is now **production-ready** with:
 - SEO-friendly structure
 - Secure authentication
 - Efficient image management
+- Clean UI without unnecessary Chinese text elements
+
+**Latest Update**: Completely removed Google OAuth authentication. The website now uses email/password authentication only for a simpler, cleaner user experience.
 
 **Next Step**: Deploy to Vercel and configure production environment variables.

@@ -6,6 +6,14 @@ import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardFooter } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Star, ShoppingCart, Search } from 'lucide-react'
+import {
+  fadeInUp,
+  fadeInDown,
+  staggerContainer,
+  staggerItem,
+  floating,
+  colorTheme
+} from '@/lib/animations'
 
 interface Product {
   id: string
@@ -80,32 +88,60 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="min-h-screen bg-green-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className={`min-h-screen bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-50 py-12 relative overflow-hidden`}>
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          variants={fadeInDown}
+          initial="initial"
+          animate="animate"
+          className="text-center mb-20"
         >
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+            className={`inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br ${colorTheme.primary.gradient} rounded-2xl mx-auto mb-8 shadow-lg relative overflow-hidden`}
+            variants={floating}
+            initial="initial"
+            animate="animate"
           >
-            <div className="w-12 h-8 bg-white rounded-lg shadow-md flex items-center justify-center">
-              <span className="text-green-600 font-bold text-sm">皂</span>
+            {/* Shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></div>
+            <div className="w-16 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center relative z-10">
+              <span className="text-emerald-600 font-bold text-lg">皂</span>
             </div>
           </motion.div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-balance">
-            我們的環保手工皂
-          </h1>
-          <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-pretty">
+
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+          >
+            我們的環保
+            <motion.span
+              className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              手工皂
+            </motion.span>
+          </motion.h1>
+          <motion.p
+            className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
             用愛心和天然成分手工製作。每一次購買都支持我們的慈善使命，
             幫助創造一個更清潔、更環保的世界。
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Filters and Search */}
@@ -164,18 +200,24 @@ export default function ShopPage() {
             </p>
           </motion.div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product, index) => (
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {filteredProducts.map((product) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                variants={staggerItem}
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
               >
-                <Card hover variant="elevated" className="h-full flex flex-col group overflow-hidden">
+                <Card hover variant="elevated" className="h-full flex flex-col group overflow-hidden bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300">
                   <CardContent className="p-0 flex-1">
                     {/* Product Image */}
-                    <div className="relative h-56 bg-gradient-to-br from-green-200 via-green-300 to-green-400 overflow-hidden">
+                    <div className={`relative h-56 bg-gradient-to-br ${colorTheme.primary.gradient} overflow-hidden`}>
                       {/* Background Pattern */}
                       <div className="absolute inset-0 opacity-20">
                         <div className="absolute top-4 left-4 w-8 h-8 rounded-full bg-white/30"></div>
@@ -186,16 +228,19 @@ export default function ShopPage() {
 
                       <div className="absolute inset-0 flex items-center justify-center">
                         <motion.div
-                          className="w-28 h-20 bg-white rounded-xl shadow-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
-                          whileHover={{ rotate: 5 }}
+                          className="w-28 h-20 bg-white rounded-xl shadow-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative overflow-hidden"
+                          whileHover={{ rotate: 5, scale: 1.15 }}
+                          transition={{ duration: 0.3 }}
                         >
-                          <span className="text-green-600 font-bold text-lg">
+                          {/* Shine effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                          <span className={`${colorTheme.primary.text} font-bold text-lg relative z-10`}>
                             {product.name.split(' ').map(word => word[0]).join('')}
                           </span>
                         </motion.div>
                       </div>
 
-                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-bold text-green-600 shadow-lg">
+                      <div className={`absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-bold ${colorTheme.primary.text} shadow-lg`}>
                         NT${product.price.toFixed(0)}
                       </div>
 
@@ -210,14 +255,18 @@ export default function ShopPage() {
 
                     {/* Product Info */}
                     <div className="p-6 flex-1">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-200">
+                      <div className="flex items-start justify-between mb-4">
+                        <h3 className={`text-xl font-bold text-gray-900 group-hover:${colorTheme.primary.text} transition-colors duration-200`}>
                           {product.name}
                         </h3>
-                        <div className="flex items-center bg-yellow-50 px-2 py-1 rounded-lg">
-                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                          <span className="text-sm font-medium text-yellow-700 ml-1">4.9</span>
-                        </div>
+                        <motion.div
+                          className="flex items-center bg-amber-50 px-3 py-1.5 rounded-lg shadow-sm"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Star className="w-4 h-4 text-amber-500 fill-current" />
+                          <span className="text-sm font-medium text-amber-700 ml-1">4.9</span>
+                        </motion.div>
                       </div>
 
                       <p className="text-gray-600 mb-6 text-sm leading-relaxed">
@@ -228,12 +277,14 @@ export default function ShopPage() {
                       {product.benefits && (
                         <div className="flex flex-wrap gap-2 mb-6">
                           {product.benefits.split(',').slice(0, 3).map((benefit, idx) => (
-                            <span
+                            <motion.span
                               key={idx}
-                              className="px-3 py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-full border border-green-200 hover:bg-green-200 transition-colors duration-200"
+                              className={`px-3 py-1.5 ${colorTheme.primary.light} ${colorTheme.primary.text} text-xs font-medium rounded-full border ${colorTheme.primary.border} hover:bg-emerald-200 transition-colors duration-200`}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.2 }}
                             >
                               {benefit.trim()}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
                       )}
@@ -254,30 +305,56 @@ export default function ShopPage() {
                 </Card>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {/* Call to Action */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-8 md:p-12 text-center text-white"
+          variants={fadeInDown}
+          initial="initial"
+          animate="animate"
+          className={`mt-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-2xl p-8 md:p-12 text-center text-white shadow-2xl relative overflow-hidden`}
+          whileHover={{ scale: 1.02, y: -5 }}
+          transition={{ duration: 0.3 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Every Purchase Makes a Difference
-          </h3>
-          <p className="text-xl text-green-100 mb-6 max-w-3xl mx-auto">
-            When you buy our soaps, you&apos;re not just getting a great product—you&apos;re supporting
-            student entrepreneurs and contributing to charitable causes in our community.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary">
-              Learn About Our Mission
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
-              Contact Us
-            </Button>
+          {/* Decorative background */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-4 right-4 w-24 h-24 rounded-full border-2 border-white/30"></div>
+            <div className="absolute bottom-4 left-4 w-16 h-16 rounded-full bg-white/20"></div>
+            <div className="absolute top-1/2 right-12 w-8 h-8 rounded-full bg-white/30"></div>
+          </div>
+
+          <div className="relative z-10">
+            <motion.h3
+              className="text-3xl md:text-4xl font-bold mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              每一次購買都創造改變
+            </motion.h3>
+            <motion.p
+              className="text-xl text-emerald-100 mb-8 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              當您購買我們的手工皂時，您不僅獲得了優質產品，更支持了學生創業家，
+              並為我們社區的慈善事業做出貢獻。
+            </motion.p>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              <Button size="lg" variant="secondary" className="bg-white text-emerald-600 hover:bg-gray-100">
+                了解我們的使命
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm">
+                聯絡我們
+              </Button>
+            </motion.div>
           </div>
         </motion.div>
       </div>

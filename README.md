@@ -9,7 +9,7 @@ High School Soap Lab is a group of passionate high school students who make and 
 ## ✨ Features
 
 - **Modern Design**: Clean, eco-friendly design with smooth animations
-- **Authentication**: Google OAuth integration via Supabase
+- **Authentication**: Email/password authentication via Supabase
 - **Product Showcase**: Dynamic product listings with search and filtering
 - **Team Profiles**: Meet our student team members
 - **Dashboard**: Protected member area for managing content
@@ -22,7 +22,7 @@ High School Soap Lab is a group of passionate high school students who make and 
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **Backend**: Supabase (Database, Auth, Storage)
-- **Authentication**: Google OAuth via Supabase
+- **Authentication**: Email/password authentication via Supabase
 - **Icons**: Lucide React
 
 ## 🚀 Getting Started
@@ -61,7 +61,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 4. Set up the database:
    - Go to your Supabase project
    - Run the SQL from `supabase-schema.sql` in the SQL Editor
-   - Configure Google OAuth in Authentication > Providers
+   - Email authentication is configured by default
 
 5. Run the development server:
 ```bash
@@ -82,7 +82,7 @@ npm run dev
 - **Shop** (`/shop`) - Product catalog with search and filtering
 - **About** (`/about`) - Team member profiles and our story
 - **Support** (`/support`) - Ways to help and donation information
-- **Login** (`/login`) - Google OAuth authentication
+- **Login** (`/login`) - Email/password authentication
 - **Dashboard** (`/dashboard`) - Protected member area
 - **Admin Setup** (`/admin/setup`) - Database initialization
 
@@ -107,12 +107,13 @@ npm run dev
 
 ## 🔐 Authentication
 
-The app uses Supabase Auth with Google OAuth:
+The app uses Supabase Auth with email/password authentication:
 
-1. Users sign in with Google
-2. Profile created automatically in `profiles` table
-3. Role-based access (admin, member, volunteer)
-4. Protected routes via middleware
+1. Users sign up with email and password
+2. Email confirmation required for account activation
+3. Profile created automatically in `profiles` table
+4. Role-based access (admin, member, volunteer)
+5. Protected routes via middleware
 
 ## 📊 Database Schema
 

@@ -14,6 +14,12 @@ import {
   Heart,
   Recycle
 } from 'lucide-react'
+import {
+  fadeInUp,
+  fadeInDown,
+  floating,
+  colorTheme
+} from '@/lib/animations'
 
 
 export default function EducationPage() {
@@ -21,30 +27,63 @@ export default function EducationPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 via-white to-blue-50 py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-100 py-24 lg:py-32 relative overflow-hidden`}>
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={fadeInDown}
+            initial="initial"
+            animate="animate"
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-full mb-8 shadow-lg">
+            <motion.div
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
               <Beaker className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+            </motion.div>
+
+            <motion.h1
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight"
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+            >
               High School
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent block">
+              <motion.span
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
                 Soap Lab
-              </span>
-            </h1>
+              </motion.span>
+            </motion.h1>
             <div className="max-w-5xl mx-auto">
-              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8">
+              <motion.p
+                className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+              >
                 High School Soap Lab (簡稱 HSSL) 是成立自2021年的跨校團隊，因對市售清潔劑的隱憂，結合化學學科知識與技能，推廣手工皂替代市售清潔劑，也推廣過期油與實用廢油的循環再生。
-              </p>
-              <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
+              </motion.p>
+              <motion.p
+                className="text-lg md:text-xl text-gray-500 leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.8 }}
+              >
                 推廣與教學從個人在家分享給家人，到學校分享給老師與同學，再走出校園在社區中舉辦製皂教學，除了鼓勵民眾參加製皂活動，同步回收過期油作為推廣課的原料，與多個環保與公益團體合作開課及參與環境永續攤位與民眾互動。
-              </p>
+              </motion.p>
             </div>
           </motion.div>
         </div>

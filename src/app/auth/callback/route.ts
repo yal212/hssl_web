@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
   // Handle different types of auth callbacks
   if (code) {
-    // OAuth flow (Google, etc.)
+    // OAuth flow (for email confirmations)
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     console.log('OAuth exchangeCodeForSession result:', { error: error?.message })
 

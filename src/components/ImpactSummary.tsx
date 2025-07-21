@@ -2,11 +2,18 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar } from 'lucide-react'
+import { Calendar, Newspaper } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { NewsAPI } from '@/lib/api/news'
 import { NewsItem } from '@/lib/types/news'
+import {
+  fadeInDown,
+  staggerContainer,
+  staggerItem,
+  floating,
+  colorTheme
+} from '@/lib/animations'
 
 export function ImpactSummary() {
   const [latestNews, setLatestNews] = useState<NewsItem[]>([])
@@ -66,26 +73,55 @@ export function ImpactSummary() {
   }, [])
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Latest News */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          variants={fadeInDown}
+          initial="initial"
+          whileInView="animate"
           viewport={{ once: true }}
-          className="bg-white rounded-2xl p-8 md:p-12"
+          className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl relative overflow-hidden"
         >
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              最新動態
-            </h2>
-            <Button variant="outline" asChild>
-              <Link href="/news">
-                查看所有消息
-              </Link>
-            </Button>
+          {/* Decorative background */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-4 right-4 w-32 h-32 rounded-full border-2 border-emerald-300"></div>
+            <div className="absolute bottom-4 left-4 w-20 h-20 rounded-full bg-emerald-300"></div>
+            <div className="absolute top-1/2 right-16 w-12 h-12 rounded-full bg-teal-300"></div>
           </div>
+
+          <div className="relative z-10">
+            <motion.div
+              className="flex flex-col sm:flex-row sm:items-center justify-between mb-12 gap-6"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              <motion.div variants={staggerItem} className="flex items-center">
+                <motion.div
+                  className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mr-4 shadow-lg`}
+                  variants={floating}
+                  initial="initial"
+                  animate="animate"
+                >
+                  <Newspaper className="w-8 h-8 text-white" />
+                </motion.div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+                  最新
+                  <span className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent`}>
+                    動態
+                  </span>
+                </h2>
+              </motion.div>
+              <motion.div variants={staggerItem}>
+                <Button variant="outline" size="lg" asChild>
+                  <Link href="/news">
+                    查看所有消息
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
           
           {newsLoading ? (
             <div className="space-y-6">
@@ -109,8 +145,14 @@ export function ImpactSummary() {
               ))}
             </div>
           ) : (
-            <div className="space-y-6">
-              {latestNews.map((news, index) => {
+            <motion.div
+              className="space-y-6"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              {latestNews.map((news) => {
                 const publishedDate = new Date(news.published_at || news.created_at)
                 const formattedDate = publishedDate.toLocaleDateString('zh-TW', {
                   year: 'numeric',
@@ -120,33 +162,33 @@ export function ImpactSummary() {
                 return (
                   <motion.div
                     key={news.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-300 cursor-pointer group"
+                    variants={staggerItem}
+                    className="flex items-start space-x-6 p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border border-gray-100"
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <motion.div
                       className="flex-shrink-0"
-                      whileHover={{ rotate: 10 }}
-                      transition={{ duration: 0.2 }}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-200 transition-colors">
-                        <Calendar className="w-6 h-6 text-green-600" />
+                      <div className={`w-16 h-16 bg-gradient-to-br ${colorTheme.primary.gradient} rounded-2xl flex items-center justify-center shadow-lg relative overflow-hidden`}>
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                        <Calendar className="w-8 h-8 text-white relative z-10" />
                       </div>
                     </motion.div>
                     <div className="flex-1">
                       <motion.div
-                        className="flex items-center space-x-3 mb-2"
+                        className="flex items-center space-x-3 mb-4"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                        transition={{ duration: 0.4, delay: 0.2 }}
                         viewport={{ once: true }}
                       >
-                        <span className="text-sm text-gray-500">{formattedDate}</span>
+                        <span className="text-sm font-medium text-gray-500">{formattedDate}</span>
                         <motion.span
-                          className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800"
+                          className={`px-3 py-1 text-xs font-medium rounded-full ${colorTheme.primary.light} ${colorTheme.primary.text}`}
                           whileHover={{ scale: 1.1 }}
                           transition={{ duration: 0.2 }}
                         >
@@ -154,19 +196,19 @@ export function ImpactSummary() {
                         </motion.span>
                       </motion.div>
                       <motion.h3
-                        className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-green-600 transition-colors"
+                        className={`text-xl font-bold text-gray-900 mb-3 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
+                        transition={{ duration: 0.4, delay: 0.3 }}
                         viewport={{ once: true }}
                       >
                         {news.title}
                       </motion.h3>
                       <motion.p
-                        className="text-gray-600"
+                        className="text-gray-600 leading-relaxed"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
+                        transition={{ duration: 0.4, delay: 0.4 }}
                         viewport={{ once: true }}
                       >
                         {news.excerpt || news.content?.substring(0, 100) + '...'}
@@ -175,8 +217,9 @@ export function ImpactSummary() {
                   </motion.div>
                 )
               })}
-            </div>
+            </motion.div>
           )}
+          </div>
         </motion.div>
       </div>
     </section>

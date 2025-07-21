@@ -3,9 +3,16 @@
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Heart, ShoppingBag, Users, Megaphone, Gift, DollarSign, Handshake } from 'lucide-react'
+import { Heart, ShoppingBag, Users, Megaphone, Gift, DollarSign, Handshake, Sparkles } from 'lucide-react'
 import Link from 'next/link'
-import { colorTheme } from '@/lib/animations'
+import {
+  fadeInUp,
+  fadeInDown,
+  staggerContainer,
+  staggerItem,
+  floating,
+  colorTheme
+} from '@/lib/animations'
 
 export default function SupportPage() {
   const supportWays = [
@@ -78,101 +85,208 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 via-white to-green-100 py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-100 py-24 lg:py-32 relative overflow-hidden`}>
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={fadeInDown}
+            initial="initial"
+            animate="animate"
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-full mb-8 shadow-lg">
+            <motion.div
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
               <Heart className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+            </motion.div>
+
+            <motion.h1
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight"
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+            >
               支持我們的
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent block">
+              <motion.span
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
                 環保使命
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              </motion.span>
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
               幫助我們創造更清潔的地球和更強大的社區。有許多方式可以支持
               High School Soap Lab，一起創造有意義的影響。
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Impact Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {impactStats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
-              >
-                <Card hover className="h-full text-center border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-8">
-                    <motion.div
-                      className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <stat.icon className="w-10 h-10 text-white" />
-                    </motion.div>
-                    <div className="text-3xl font-bold text-green-600 mb-2 group-hover:text-green-700 transition-colors duration-200">
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-600 font-medium">
-                      {stat.label}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {impactStats.map((stat, index) => {
+              const statColors = [
+                'from-emerald-500 to-teal-600',
+                'from-rose-500 to-pink-600',
+                'from-indigo-500 to-purple-600',
+                'from-amber-500 to-orange-600'
+              ]
+
+              return (
+                <motion.div
+                  key={stat.label}
+                  variants={staggerItem}
+                  className="group"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card hover className="h-full text-center border-0 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <CardContent className="p-8">
+                      <motion.div
+                        className={`w-20 h-20 bg-gradient-to-br ${statColors[index]} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                        <stat.icon className="w-10 h-10 text-white relative z-10" />
+                      </motion.div>
+                      <motion.div
+                        className={`text-3xl font-bold ${colorTheme.primary.text} mb-2 group-hover:text-emerald-700 transition-colors duration-200`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        {stat.number}
+                      </motion.div>
+                      <motion.div
+                        className="text-gray-600 font-medium"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                      >
+                        {stat.label}
+                      </motion.div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
+          </motion.div>
         </div>
       </section>
 
       {/* Ways to Support */}
-      <section className="py-20 bg-green-50">
+      <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={fadeInDown}
+            initial="initial"
+            whileInView="animate"
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              幫助我們的方式
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              選擇最適合您的方式。每一種形式的支持，
-              無論大小，都對我們的使命產生真正的影響。
-            </p>
-          </motion.div>
+            <motion.div
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
+              <Sparkles className="w-10 h-10 text-white" />
+            </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {supportWays.map((way, index) => (
-              <motion.div
-                key={way.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              幫助我們的
+              <motion.span
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <Card hover className="h-full">
+                方式
+              </motion.span>
+            </motion.h2>
+            <motion.p
+              className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              選擇最適合您的方式。每一種形式的支持，
+              無論大小，都對我們的使命產生真正的影響。
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {supportWays.map((way, index) => {
+              const wayColors = [
+                'from-emerald-500 to-teal-600',
+                'from-rose-500 to-pink-600',
+                'from-indigo-500 to-purple-600',
+                'from-amber-500 to-orange-600'
+              ]
+
+              return (
+                <motion.div
+                  key={way.title}
+                  variants={staggerItem}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.3 }}
+                >
+                <Card hover className="h-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300 group">
                   <CardHeader>
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg
-                      ${way.color === 'primary' ? `bg-gradient-to-br ${colorTheme.primary.gradient}` : ''}
-                      ${way.color === 'secondary' ? `bg-gradient-to-br ${colorTheme.secondary.gradient}` : ''}
-                      ${way.color === 'accent' ? `bg-gradient-to-br ${colorTheme.accent.gradient}` : ''}
-                    `}>
-                      <way.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <CardTitle className="text-xl mb-3">{way.title}</CardTitle>
-                    <CardDescription className="text-gray-600 leading-relaxed">{way.description}</CardDescription>
+                    <motion.div
+                      className={`w-20 h-20 bg-gradient-to-br ${wayColors[index]} rounded-2xl flex items-center justify-center mb-6 shadow-lg relative overflow-hidden`}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {/* Shine effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                      <way.icon className="w-10 h-10 text-white relative z-10" />
+                    </motion.div>
+                    <CardTitle className={`text-2xl mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}>
+                      {way.title}
+                    </CardTitle>
+                    <CardDescription className="text-gray-600 leading-relaxed text-lg">
+                      {way.description}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="mb-6">
@@ -198,8 +312,9 @@ export default function SupportPage() {
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
-          </div>
+              )
+            })}
+          </motion.div>
         </div>
       </section>
 
