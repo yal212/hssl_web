@@ -65,8 +65,15 @@ export async function updateSession(request: NextRequest) {
 
   let user = session?.user || null
 
-  // If we have a session but no user, try getUser
-  if (session && !user) {
+  // If we have a session error (like invalid refresh token), clear the session
+  if (sessionError) {
+    console.log('Session error detected, clearing session:', sessionError.message)
+    // Clear any invalid session cookies
+    supabaseResponse.cookies.delete('sb-access-token')
+    supabaseResponse.cookies.delete('sb-refresh-token')
+    user = null
+  } else if (session && !user) {
+    // If we have a session but no user, try getUser
     const { data: { user: fetchedUser } } = await supabase.auth.getUser()
     user = fetchedUser
   }

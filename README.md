@@ -163,7 +163,7 @@ This project is licensed under the MIT License.
 
 ## 📞 Contact
 
-- Email: contact@hssoapllab.org
+- Email: contact@hssoapllab.org  
 - Website: [High School Soap Lab](https://hssoapllab.org)
 
 ---

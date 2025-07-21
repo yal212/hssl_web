@@ -26,10 +26,46 @@ export function useAuth() {
     // Get initial user and profile
     const getInitialAuth = async () => {
       try {
+        // First check if we have a session before trying to get user
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+
+        if (sessionError) {
+          console.error('Session error:', sessionError)
+          setAuthState({
+            user: null,
+            profile: null,
+            loading: false,
+            error: null
+          })
+          return
+        }
+
+        // Only try to get user if we have a valid session
+        if (!session) {
+          setAuthState({
+            user: null,
+            profile: null,
+            loading: false,
+            error: null
+          })
+          return
+        }
+
         const { data: { user }, error: userError } = await supabase.auth.getUser()
-        
+
         if (userError) {
-          setAuthState(prev => ({ ...prev, error: userError.message, loading: false }))
+          console.error('Error getting user:', userError)
+          // If it's an auth session missing error, just set no user
+          if (userError.message.includes('session') || userError.message.includes('token')) {
+            console.log('Auth session missing, clearing state')
+            await supabase.auth.signOut()
+          }
+          setAuthState({
+            user: null,
+            profile: null,
+            loading: false,
+            error: null // Don't show token errors to user
+          })
           return
         }
 

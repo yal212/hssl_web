@@ -1,23 +1,23 @@
 import { Variants } from 'framer-motion'
 
-// Simplified color theme - primarily green with minimal variations
+// Improved green color theme with better variations
 export const colorTheme = {
   primary: {
-    gradient: 'from-green-500 to-green-600',
-    bg: 'bg-green-600',
-    text: 'text-green-600',
-    light: 'bg-green-50',
-    border: 'border-green-200'
+    gradient: 'from-emerald-500 to-teal-600',
+    bg: 'bg-emerald-600',
+    text: 'text-emerald-600',
+    light: 'bg-emerald-50',
+    border: 'border-emerald-200'
   },
   secondary: {
-    gradient: 'from-green-400 to-green-500',
+    gradient: 'from-green-400 to-emerald-500',
     bg: 'bg-green-500',
     text: 'text-green-500',
     light: 'bg-green-25',
     border: 'border-green-100'
   },
   accent: {
-    gradient: 'from-green-600 to-green-700',
+    gradient: 'from-teal-600 to-green-700',
     bg: 'bg-green-700',
     text: 'text-green-700',
     light: 'bg-green-100',

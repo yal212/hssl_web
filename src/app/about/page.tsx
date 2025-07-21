@@ -25,7 +25,6 @@ import {
   staggerContainer,
   staggerItem,
   floating,
-  scrollReveal,
   colorTheme
 } from '@/lib/animations'
 
@@ -171,8 +170,15 @@ export default function AboutPage() {
       transition={{ duration: 0.8 }}
     >
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 via-white to-green-100 py-24 lg:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-100 py-24 lg:py-32 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInDown}
             initial="initial"
@@ -232,15 +238,20 @@ export default function AboutPage() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card hover className="h-full text-center border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-8">
+                <Card hover className="h-full text-center border-0 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-emerald-50/50">
+                  <CardContent className="p-8 relative">
+                    {/* Subtle decorative element */}
+                    <div className="absolute top-4 right-4 w-8 h-8 bg-emerald-100/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
                     <motion.div
-                      className={`w-20 h-20 bg-gradient-to-br ${colorTheme.primary.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg`}
+                      className={`w-20 h-20 bg-gradient-to-br ${colorTheme.primary.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <achievement.icon className="w-10 h-10 text-white" />
+                      {/* Shine effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                      <achievement.icon className="w-10 h-10 text-white relative z-10" />
                     </motion.div>
                     <motion.h3
                       className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
@@ -270,9 +281,9 @@ export default function AboutPage() {
       <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} to-white`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            variants={scrollReveal}
+            variants={fadeInDown}
             initial="initial"
-            whileInView="whileInView"
+            whileInView="animate"
             viewport={{ once: true }}
             className="text-center mb-20"
           >
@@ -287,9 +298,9 @@ export default function AboutPage() {
 
             <motion.h2
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
               viewport={{ once: true }}
             >
               HSSL 的使命與
@@ -297,7 +308,7 @@ export default function AboutPage() {
                 className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
                 viewport={{ once: true }}
               >
                 核心活動
@@ -306,16 +317,22 @@ export default function AboutPage() {
 
             <motion.p
               className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
               viewport={{ once: true }}
             >
               從化學學科知識出發，推廣環保手工皂，實現廢油循環再生，建立永續生活模式。
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {[
               {
                 icon: Beaker,
@@ -329,47 +346,77 @@ export default function AboutPage() {
                 title: '廢油循環再生',
                 description: '推廣過期油與實用廢油的循環再生利用。',
                 detail: '將廢棄油脂轉化為有用的清潔用品，實現零廢棄目標。',
-                color: 'from-green-500 to-green-600'
+                color: 'from-emerald-500 to-emerald-600'
               },
               {
                 icon: Heart,
                 title: '社區教育推廣',
                 description: '從家庭到學校，再到社區，全面推廣環保理念。',
                 detail: '透過製皂教學活動，提升民眾環保意識與實踐能力。',
-                color: 'from-red-500 to-red-600'
+                color: 'from-pink-500 to-pink-600'
               }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Card hover className="h-full text-center border-0 bg-white shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-8 lg:p-10">
-                    <motion.div
-                      className={`w-20 h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.2 }}
+            ].map((step, index) => {
+              // Enhanced color palette for mission cards
+              const enhancedColors = [
+                'from-indigo-500 to-purple-600', // Science/Chemistry
+                'from-emerald-500 to-teal-600',  // Environment/Recycling
+                'from-rose-500 to-pink-600'      // Community/Heart
+              ]
+
+              return (
+                <motion.div
+                  key={index}
+                  variants={staggerItem}
+                  className="group"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card hover className="h-full text-center border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+                    <CardContent className="p-8 lg:p-10">
+                      <motion.div
+                        className={`w-20 h-20 bg-gradient-to-br ${enhancedColors[index]} rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg relative overflow-hidden`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                        <step.icon className="w-10 h-10 text-white relative z-10" />
+                      </motion.div>
+                    <motion.h3
+                      className={`text-2xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: index * 0.1 + 0.3 }}
+                      viewport={{ once: true }}
                     >
-                      <step.icon className="w-10 h-10 text-white" />
-                    </motion.div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-200">
                       {step.title}
-                    </h3>
-                    <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                    </motion.h3>
+                    <motion.p
+                      className="text-gray-600 mb-6 leading-relaxed text-lg"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: index * 0.1 + 0.5 }}
+                      viewport={{ once: true }}
+                    >
                       {step.description}
-                    </p>
-                    <p className="text-gray-500 leading-relaxed">
+                    </motion.p>
+                    <motion.p
+                      className="text-gray-500 leading-relaxed"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: index * 0.1 + 0.7 }}
+                      viewport={{ once: true }}
+                    >
                       {step.detail}
-                    </p>
+                    </motion.p>
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
-          </div>
+              )
+            })}
+          </motion.div>
         </div>
       </section>
 
@@ -377,32 +424,63 @@ export default function AboutPage() {
       <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={fadeInDown}
+            initial="initial"
+            whileInView="animate"
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-full mb-8">
-              <Heart className="w-8 h-8 text-white" />
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <motion.div
+              className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mb-8 shadow-lg"
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
+              <Heart className="w-10 h-10 text-white" />
+            </motion.div>
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
               團隊核心
-              <span className="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent block">
+              <motion.span
+                className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent block"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                viewport={{ once: true }}
+              >
                 理念價值
-              </span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              </motion.span>
+            </motion.h2>
+            <motion.p
+              className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               人文關懷與環境永續 - HSSL 致力於透過手工皂推廣實現社會責任與環境保護的雙重目標。
-            </p>
+            </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {[
               {
                 title: '公共衛生',
                 icon: Shield,
-                color: 'from-blue-500 to-blue-600',
+                color: 'from-cyan-500 to-blue-600',
+                bgColor: 'bg-cyan-50',
+                textColor: 'text-cyan-700',
                 items: [
                   '健康清潔',
                   '天然無毒添加物'
@@ -411,7 +489,9 @@ export default function AboutPage() {
               {
                 title: '環境永續',
                 icon: TreePine,
-                color: 'from-green-500 to-green-600',
+                color: 'from-emerald-500 to-green-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
                 items: [
                   '100% 分解',
                   '無石化油原料',
@@ -422,7 +502,9 @@ export default function AboutPage() {
               {
                 title: '公益關懷',
                 icon: Heart,
-                color: 'from-red-500 to-red-600',
+                color: 'from-rose-500 to-pink-600',
+                bgColor: 'bg-rose-50',
+                textColor: 'text-rose-700',
                 items: [
                   '弱勢製皂工作坊',
                   '偏鄉與非洲肯亞送皂',
@@ -432,7 +514,9 @@ export default function AboutPage() {
               {
                 title: '社會 ESG 合作',
                 icon: Lightbulb,
-                color: 'from-purple-500 to-purple-600',
+                color: 'from-violet-500 to-purple-600',
+                bgColor: 'bg-violet-50',
+                textColor: 'text-violet-700',
                 items: [
                   '永續攤位',
                   '製皂工作坊'
@@ -441,25 +525,37 @@ export default function AboutPage() {
             ].map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                variants={staggerItem}
                 className="group"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
               >
-                <Card hover className="h-full border-0 bg-white shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-8 lg:p-10">
+                <Card hover className={`h-full border-0 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 group-hover:${value.bgColor}/50`}>
+                  <CardContent className="p-8 lg:p-10 relative">
+                    {/* Subtle decorative element */}
+                    <div className={`absolute top-4 right-4 w-8 h-8 ${value.bgColor} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+
                     <div className="flex items-center mb-8">
                       <motion.div
-                        className={`w-16 h-16 bg-gradient-to-r ${value.color} rounded-2xl flex items-center justify-center mr-6 shadow-lg`}
+                        className={`w-16 h-16 bg-gradient-to-r ${value.color} rounded-2xl flex items-center justify-center mr-6 shadow-lg relative overflow-hidden`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        <value.icon className="w-8 h-8 text-white" />
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                        <value.icon className="w-8 h-8 text-white relative z-10" />
                       </motion.div>
-                      <h3 className="text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-200">
+                      <motion.h3
+                        className={`text-2xl font-bold text-gray-900 group-hover:${value.textColor} transition-colors duration-200`}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: index * 0.1 + 0.3 }}
+                        viewport={{ once: true }}
+                      >
                         {value.title}
-                      </h3>
+                      </motion.h3>
                     </div>
 
                     <ul className="space-y-4">
@@ -481,7 +577,7 @@ export default function AboutPage() {
                 </Card>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Impact Highlight */}
           <motion.div
@@ -489,94 +585,215 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mt-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-center text-white"
+            className="mt-16 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-center text-white relative overflow-hidden"
           >
-            <h3 className="text-2xl font-bold mb-4">HSSL 的社會影響力</h3>
-            <p className="text-lg text-green-100 max-w-4xl mx-auto leading-relaxed">
-              從個人家庭到學校社區，再到國際公益合作，HSSL 透過手工皂教育推廣，
-              不僅實現了環保理念的傳播，更建立了跨越地域的人文關懷網絡，
-              將永續生活的種子播撒到世界各個角落。
-            </p>
+            {/* Decorative background */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-4 right-4 w-24 h-24 rounded-full border-2 border-white/30"></div>
+              <div className="absolute bottom-4 left-4 w-16 h-16 rounded-full bg-white/20"></div>
+              <div className="absolute top-1/2 right-12 w-8 h-8 rounded-full bg-white/30"></div>
+            </div>
+
+            <div className="relative z-10">
+              <h3 className="text-2xl md:text-3xl font-bold mb-6">HSSL 的社會影響力</h3>
+              <p className="text-lg text-emerald-100 max-w-4xl mx-auto leading-relaxed">
+                從個人家庭到學校社區，再到國際公益合作，HSSL 透過手工皂教育推廣，
+                不僅實現了環保理念的傳播，更建立了跨越地域的人文關懷網絡，
+                將永續生活的種子播撒到世界各個角落。
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* HSSL Educational Journey Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-50 via-white to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              HSSL 的教育推廣歷程
+            <motion.div
+              className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-violet-500 to-purple-600 rounded-full mb-8 shadow-lg"
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
+              <Sparkles className="w-10 h-10 text-white" />
+            </motion.div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              HSSL 的教育
+              <motion.span
+                className="bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent block"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                推廣歷程
+              </motion.span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              從個人家庭開始，逐步擴展到學校與社區，建立完整的環保教育網絡。
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              從個人家庭開始，逐步擴展到學校與社區，再到企業合作，建立完整的環保教育生態系統。
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {[
               {
                 name: '家庭分享',
+                description: '從個人實踐開始，將環保理念帶入家庭生活',
                 benefits: ['個人在家實踐', '分享給家人', '建立環保習慣'],
-                color: 'from-green-400 to-green-600'
+                color: 'from-rose-400 to-pink-600',
+                bgColor: 'bg-rose-50',
+                textColor: 'text-rose-700',
+                icon: Heart
               },
               {
                 name: '校園推廣',
+                description: '在學校環境中推廣環保教育與實踐',
                 benefits: ['分享給老師', '教導同學', '校內環保活動'],
-                color: 'from-blue-400 to-blue-600'
+                color: 'from-indigo-400 to-blue-600',
+                bgColor: 'bg-indigo-50',
+                textColor: 'text-indigo-700',
+                icon: Users
               },
               {
                 name: '社區教學',
+                description: '走入社區，舉辦實作教學與環保推廣',
                 benefits: ['舉辦製皂教學', '回收過期油', '環保攤位互動'],
-                color: 'from-purple-400 to-purple-600'
+                color: 'from-emerald-400 to-teal-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
+                icon: TreePine
+              },
+              {
+                name: '企業合作',
+                description: '與企業攜手推動永續發展與社會責任',
+                benefits: [
+                  'ESG 永續發展合作夥伴',
+                  '員工環保教育工作坊',
+                  '企業社會責任活動規劃',
+                  '綠色供應鏈循環經濟',
+                  '品牌永續形象提升',
+                  '客製化環保解決方案'
+                ],
+                color: 'from-amber-400 to-orange-600',
+                bgColor: 'bg-amber-50',
+                textColor: 'text-amber-700',
+                icon: Lightbulb
               }
             ].map((stage, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                variants={staggerItem}
+                className="group"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className={`w-full h-32 bg-gradient-to-br ${stage.color} rounded-xl mb-6 flex items-center justify-center`}>
-                  <Sparkles className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{stage.name}</h3>
-                <ul className="space-y-2">
-                  {stage.benefits.map((benefit, benefitIndex) => (
-                    <li key={benefitIndex} className="flex items-center text-gray-600">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span className="text-sm">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+                <Card hover className={`h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group-hover:${stage.bgColor}/30`}>
+                  <CardContent className="p-0">
+                    {/* Header with gradient background */}
+                    <div className={`relative px-8 py-10 bg-gradient-to-br ${stage.color}`}>
+                      {/* Enhanced decorative elements */}
+                      <div className="absolute inset-0 opacity-10">
+                        <div className="absolute top-4 right-4 w-20 h-20 rounded-full border-2 border-white/30"></div>
+                        <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-white/20"></div>
+                        <div className="absolute top-1/2 right-8 w-6 h-6 rounded-full bg-white/30"></div>
+                        <div className="absolute top-8 left-8 w-4 h-4 rounded-full bg-white/20"></div>
+                      </div>
+
+                      <div className="relative z-10 text-center">
+                        <motion.div
+                          className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/30 relative overflow-hidden"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {/* Shine effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                          <stage.icon className="w-10 h-10 text-white relative z-10" />
+                        </motion.div>
+                        <h3 className="text-2xl font-bold text-white mb-3 drop-shadow-sm">
+                          {stage.name}
+                        </h3>
+                        <p className="text-white/90 text-sm leading-relaxed">
+                          {stage.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="px-8 py-8">
+                      <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+                        主要特色
+                      </h4>
+                      <ul className="space-y-3">
+                        {stage.benefits.map((benefit, benefitIndex) => (
+                          <motion.li
+                            key={benefitIndex}
+                            className="flex items-start"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: benefitIndex * 0.1 }}
+                            viewport={{ once: true }}
+                          >
+                            <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-700 leading-relaxed">{benefit}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-green-50">
+      <section className="py-24 lg:py-32 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              我們的團隊組織
+            <motion.div
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
+              <Users className="w-10 h-10 text-white" />
+            </motion.div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              我們的團隊
+              <motion.span
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                組織架構
+              </motion.span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               我們的團隊由專業指導老師和不同專業組別的學生組成，每個組別都為我們的使命帶來獨特的技能和熱忱。
               我們一起證明年輕人能夠創造有意義的改變。
             </p>
@@ -588,11 +805,16 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mb-16"
+            className="mb-20"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">指導老師</h3>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">指導老師</h3>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                提供專業指導與學術支持，引領團隊朝向永續發展目標前進
+              </p>
+            </div>
             <div className="flex justify-center">
-              <div className="w-full max-w-md">
+              <div className="w-full max-w-lg">
                 {advisorGroups.map((group, index) => {
                   const groupRoutes = {
                     '指導老師': '/about/groups/advisor'
@@ -688,7 +910,12 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">學生組織</h3>
+            <div className="text-center mb-16">
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">學生組織</h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                七個專業組別分工合作，各司其職，共同推動 HSSL 的環保教育使命
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {studentGroups.map((group, index) => {
                 const groupRoutes = {
@@ -786,54 +1013,106 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story */}
-      <section className="py-20 bg-white">
+      <section className="py-24 lg:py-32 bg-gradient-to-br from-white via-gray-50 to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <motion.div
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
+              <Heart className="w-10 h-10 text-white" />
+            </motion.div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              我們的
+              <motion.span
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                創立故事
+              </motion.span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                我們的故事
-              </h2>
-              <div className="space-y-4 text-gray-600">
-                <p>
-                  High School Soap Lab (簡稱 HSSL) 是成立自2021年的跨校團隊，因對市售清潔劑的隱憂，結合化學學科知識與技能，推廣手工皂替代市售清潔劑，也推廣過期油與實用廢油的循環再生。
-                </p>
-                <p>
-                  推廣與教學從個人在家分享給家人，到學校分享給老師與同學，再走出校園在社區中舉辦製皂教學，除了鼓勵民眾參加製皂活動，同步回收過期油作為推廣課的原料。
-                </p>
-                <p>
-                  與多個環保與公益團體合作開課及參與環境永續攤位與民眾互動，致力於推廣環保理念與永續生活實踐。
-                </p>
-              </div>
+              <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl">
+                <CardContent className="p-8 lg:p-10">
+                  <div className="space-y-6 text-gray-700 leading-relaxed">
+                    <p className="text-lg">
+                      <strong className="text-green-600">High School Soap Lab (簡稱 HSSL)</strong> 是成立自2021年的跨校團隊，因對市售清潔劑的隱憂，結合化學學科知識與技能，推廣手工皂替代市售清潔劑，也推廣過期油與實用廢油的循環再生。
+                    </p>
+                    <p className="text-lg">
+                      推廣與教學從個人在家分享給家人，到學校分享給老師與同學，再走出校園在社區中舉辦製皂教學，除了鼓勵民眾參加製皂活動，同步回收過期油作為推廣課的原料。
+                    </p>
+                    <p className="text-lg">
+                      與多個環保與公益團體合作開課及參與環境永續攤位與民眾互動，致力於推廣環保理念與永續生活實踐。
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-green-400 to-green-600 rounded-2xl p-8 text-white"
+              className="relative"
             >
-              <h3 className="text-2xl font-bold mb-6">加入我們的使命</h3>
-              <p className="mb-6">
-                想要參與嗎？我們一直在尋找充滿熱忱的學生、志工和支持者，
-                他們分享我們對更清潔、更環保世界的願景。
-              </p>
-              <div className="space-y-3">
-                <Button variant="secondary" className="w-full" asChild>
-                  <Link href="/support">
-                    支持我們的事業
-                  </Link>
-                </Button>
-                <Button variant="outline" className="w-full border-white text-white hover:bg-white hover:text-green-600">
-                  <Mail className="w-4 h-4 mr-2" />
-                  聯絡我們
-                </Button>
-              </div>
+              <Card className={`border-0 bg-gradient-to-br ${colorTheme.primary.gradient} text-white shadow-2xl overflow-hidden`}>
+                <CardContent className="p-0">
+                  {/* Decorative background */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-4 right-4 w-32 h-32 rounded-full border-2 border-white/30"></div>
+                    <div className="absolute bottom-4 left-4 w-20 h-20 rounded-full bg-white/20"></div>
+                    <div className="absolute top-1/2 right-8 w-12 h-12 rounded-full bg-white/30"></div>
+                  </div>
+
+                  <div className="relative z-10 p-8 lg:p-10">
+                    <motion.div
+                      className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Users className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6">加入我們的使命</h3>
+                    <p className="mb-8 text-emerald-100 text-lg leading-relaxed">
+                      想要參與嗎？我們一直在尋找充滿熱忱的學生、志工和支持者，
+                      他們分享我們對更清潔、更環保世界的願景。
+                    </p>
+                    <div className="space-y-4">
+                      <Button variant="secondary" className="w-full bg-white text-emerald-600 hover:bg-gray-100 font-semibold py-3" asChild>
+                        <Link href="/support">
+                          支持我們的事業
+                        </Link>
+                      </Button>
+                      <Button variant="outline" className="w-full border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold py-3">
+                        <Mail className="w-5 h-5 mr-2" />
+                        聯絡我們
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           </div>
         </div>
