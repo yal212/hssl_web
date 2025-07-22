@@ -72,19 +72,19 @@ npm run dev
 
 ### Database Setup
 
-1. Visit `/admin/setup` to initialize sample data
-2. Test the database connection
-3. Run the setup to populate products
+1. Run the SQL schema from `supabase-schema.sql` in your Supabase SQL Editor
+2. Configure environment variables in `.env.local`
+3. Create admin users through Supabase dashboard
 
 ## 📱 Pages
 
 - **Home** (`/`) - Hero section, mission, featured products
-- **Shop** (`/shop`) - Product catalog with search and filtering
 - **About** (`/about`) - Team member profiles and our story
+- **News** (`/news`) - Latest news and updates
+- **Education** (`/education`) - Educational content
 - **Support** (`/support`) - Ways to help and donation information
 - **Login** (`/login`) - Email/password authentication
-- **Dashboard** (`/dashboard`) - Protected member area
-- **Admin Setup** (`/admin/setup`) - Database initialization
+- **Admin News** (`/admin/news`) - News management (protected)
 
 ## 🎨 Design System
 

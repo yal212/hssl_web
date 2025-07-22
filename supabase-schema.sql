@@ -278,9 +278,7 @@ WHERE NOT EXISTS (
 );
 
 -- ADMIN USER SETUP
--- To create an admin user, you can either:
--- 1. Visit /admin-setup page after deployment
--- 2. Run the following SQL commands manually in Supabase SQL Editor:
+-- To create an admin user, run the following SQL commands manually in Supabase SQL Editor:
 
 /*
 -- Example: Create admin user manually (replace with your details)

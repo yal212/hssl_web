@@ -88,7 +88,6 @@ Verify these exist in Supabase Storage:
 
 ### **Admin Pages** (Protected)
 - `/admin/news` - News management
-- `/admin/setup` - Database setup
 
 ### **API Routes**
 - `/api/admin/news` - News CRUD operations

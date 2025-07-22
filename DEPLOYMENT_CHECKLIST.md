@@ -108,7 +108,6 @@ hssl-web/
 
 ### **Admin Pages**
 - `/admin/news` - News management (protected)
-- `/admin/setup` - Database initialization (protected)
 
 ## 🔑 Admin Setup (Post-Deployment)
 
