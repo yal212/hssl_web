@@ -110,7 +110,7 @@ export function Footer() {
 
         <div className="border-t border-green-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-green-200 text-sm">
-            © 2021 High School Soap Lab。保留所有權利。
+            © 2021-2025 High School Soap Lab。保留所有權利。
           </p>
           <p className="text-green-200 text-sm flex items-center mt-2 md:mt-0">
             由學生用 <Heart size={16} className="mx-1 text-red-400" /> 製作，為更美好的世界
