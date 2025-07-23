@@ -103,10 +103,18 @@ function LoginContent() {
           window.location.href = `/check-email?email=${encodeURIComponent(email)}`
         }
       } else {
-        const { data, error } = await supabase.auth.signInWithPassword({
+        // Add timeout to prevent hanging
+        const loginPromise = supabase.auth.signInWithPassword({
           email,
           password
         })
+
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('登入請求超時，請重試')), 15000)
+        )
+
+        const result = await Promise.race([loginPromise, timeoutPromise])
+        const { data, error } = result as { data: { user: unknown } | null; error: { message: string } | null }
 
         console.log('Login attempt result:', { data, error })
 
@@ -116,22 +124,36 @@ function LoginContent() {
             setMessage('請檢查您的電子郵件並在登入前點擊確認連結。如果您沒有看到電子郵件，請檢查垃圾郵件資料夾。')
           } else if (error.message.includes('Invalid login credentials')) {
             setMessage('電子郵件或密碼無效。請檢查您的憑證並重試。')
+          } else if (error.message.includes('超時')) {
+            setMessage('登入請求超時，請檢查網路連線並重試。')
           } else {
             setMessage(`登入失敗：${error.message}`)
           }
-        } else if (data.user) {
+        } else if (data?.user) {
           console.log('Login successful, user:', data.user)
           setMessage('登入成功！正在重新導向...')
-          // Use window.location for immediate redirect to ensure session is included
-          window.location.href = '/login-success'
+
+          // Wait a moment for session to be established
+          await new Promise(resolve => setTimeout(resolve, 500))
+
+          // Use router.push for better navigation
+          const redirectTo = searchParams.get('next') || '/'
+          window.location.href = redirectTo
         } else {
           console.log('Login returned no user')
           setMessage('登入失敗：未返回用戶')
         }
       }
-    } catch (error) {
-      setMessage('發生意外錯誤。請重試。')
+    } catch (error: unknown) {
       console.error('Error:', error)
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      if (errorMessage?.includes('超時') || errorMessage?.includes('timeout')) {
+        setMessage('請求超時，請檢查網路連線並重試。')
+      } else if (errorMessage?.includes('Network')) {
+        setMessage('網路連線問題，請檢查您的網路並重試。')
+      } else {
+        setMessage('發生意外錯誤。請重試。')
+      }
     } finally {
       setIsLoading(false)
     }

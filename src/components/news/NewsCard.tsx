@@ -122,12 +122,14 @@ export function NewsCard({
             )}
 
             {/* Image */}
-            <div className={`relative ${featured ? 'h-64' : 'h-48'} overflow-hidden`}>
+            <div className={`relative ${featured ? 'min-h-64 max-h-80' : 'min-h-48 max-h-64'} overflow-hidden bg-gray-50 flex items-center justify-center`}>
               <Image
                 src={news.image_url || '/hssl_profile.jpg'}
                 alt={news.title}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                width={400}
+                height={featured ? 320 : 256}
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                style={{ maxHeight: featured ? '320px' : '256px' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>

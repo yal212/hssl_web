@@ -1,13 +1,14 @@
 import { supabase } from '@/lib/supabase'
-import { 
-  NewsItem, 
-  NewsFilters, 
-  NewsResponse, 
-  CreateNewsItem, 
+import {
+  NewsItem,
+  NewsFilters,
+  NewsResponse,
+  CreateNewsItem,
   UpdateNewsItem,
   NEWS_PAGE_SIZE,
-  DEFAULT_NEWS_FILTERS 
+  DEFAULT_NEWS_FILTERS
 } from '@/lib/types/news'
+import { getSafeSession } from '@/lib/auth-utils'
 
 export class NewsAPI {
   /**
@@ -308,11 +309,15 @@ export class NewsAPI {
    */
   static async createNews(newsItem: CreateNewsItem): Promise<NewsItem | null> {
     try {
+      // Get user session for auth with safe session handling
+      const { session, error: sessionError } = await getSafeSession()
 
-      // Get user session for auth
-      const { data: { session } } = await supabase.auth.getSession()
-      if (!session) {
-        throw new Error('User not authenticated')
+      if (sessionError) {
+        throw new Error('會話錯誤，請重新登入')
+      }
+
+      if (!session?.access_token) {
+        throw new Error('用戶未登入或會話已過期，請重新登入')
       }
 
       // Use API route for reliable admin operations
@@ -327,6 +332,11 @@ export class NewsAPI {
 
       if (!response.ok) {
         const errorData = await response.json()
+        if (response.status === 401) {
+          throw new Error('認證失敗，請重新登入')
+        } else if (response.status === 403) {
+          throw new Error('權限不足，需要管理員權限')
+        }
         throw new Error(errorData.error || 'Create failed')
       }
 
@@ -343,11 +353,15 @@ export class NewsAPI {
    */
   static async updateNews(newsItem: UpdateNewsItem): Promise<NewsItem | null> {
     try {
+      // Get user session for auth with safe session handling
+      const { session, error: sessionError } = await getSafeSession()
 
-      // Get user session for auth
-      const { data: { session } } = await supabase.auth.getSession()
-      if (!session) {
-        throw new Error('User not authenticated')
+      if (sessionError) {
+        throw new Error('會話錯誤，請重新登入')
+      }
+
+      if (!session?.access_token) {
+        throw new Error('用戶未登入或會話已過期，請重新登入')
       }
 
       // Use API route for reliable admin operations
@@ -362,6 +376,11 @@ export class NewsAPI {
 
       if (!response.ok) {
         const errorData = await response.json()
+        if (response.status === 401) {
+          throw new Error('認證失敗，請重新登入')
+        } else if (response.status === 403) {
+          throw new Error('權限不足，需要管理員權限')
+        }
         throw new Error(errorData.error || 'Update failed')
       }
 

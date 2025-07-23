@@ -603,28 +603,19 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
               </label>
               <div className="space-y-4">
                 {/* Image URL Input */}
-                <div>
-                  <label className="block text-sm text-gray-600 mb-1">
-                    圖片網址 (或上傳圖片)
-                  </label>
-                  <input
-                    type="url"
-                    value={formData.image_url}
-                    onChange={(e) => setFormData(prev => ({ ...prev, image_url: e.target.value }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="https://example.com/image.jpg 或上傳圖片"
-                  />
-                </div>
+
 
                 {/* Current/Preview Image */}
                 {(mainImagePreview || formData.image_url) && (
                   <div className="relative inline-block">
-                    <div className="relative w-64 h-48 rounded-lg overflow-hidden border border-gray-200">
+                    <div className="relative max-w-64 rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
                       <Image
                         src={mainImagePreview || formData.image_url || '/hssl_profile.jpg'}
                         alt="主要圖片預覽"
-                        fill
-                        className="object-contain bg-gray-50"
+                        width={256}
+                        height={192}
+                        className="w-full h-auto object-contain"
+                        style={{ maxHeight: '192px' }}
                       />
                     </div>
                     <button
@@ -678,26 +669,8 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                 內容圖片 (圖片庫)
               </label>
               <div className="space-y-4">
-                {/* Add Image URL */}
+                {/* Upload Button */}
                 <div className="flex gap-2">
-                  <input
-                    type="url"
-                    placeholder="輸入圖片網址並按 Enter 添加"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault()
-                        const url = e.currentTarget.value.trim()
-                        const sanitizedUrl = sanitizeURL(url)
-                        if (sanitizedUrl) {
-                          setContentImagePreviews(prev => [...prev, sanitizedUrl])
-                          e.currentTarget.value = ''
-                        } else if (url) {
-                          setErrors(prev => ({ ...prev, contentImages: '請提供有效的圖片網址' }))
-                        }
-                      }
-                    }}
-                  />
                   <Button
                     type="button"
                     variant="outline"
@@ -706,7 +679,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                     disabled={isUploading}
                   >
                     <Upload className="w-4 h-4 mr-2" />
-                    上傳
+                    上傳圖片
                   </Button>
                 </div>
 
@@ -715,12 +688,14 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {contentImagePreviews.map((preview, index) => (
                       <div key={index} className="relative group">
-                        <div className="relative w-full h-24 rounded-lg overflow-hidden border border-gray-200">
+                        <div className="relative w-full rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
                           <Image
                             src={preview}
                             alt={`內容圖片 ${index + 1}`}
-                            fill
-                            className={`object-cover transition-opacity ${deletingImages.has(index) ? 'opacity-50' : ''}`}
+                            width={200}
+                            height={150}
+                            className={`w-full h-auto object-contain transition-opacity ${deletingImages.has(index) ? 'opacity-50' : ''}`}
+                            style={{ maxHeight: '150px' }}
                           />
                           {deletingImages.has(index) && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -788,7 +763,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                 />
 
                 <p className="text-sm text-gray-500">
-                  💡 輸入圖片網址並按 Enter 添加到圖片庫，或使用上傳按鈕 (需要儲存設定)
+                  💡 使用上傳按鈕添加圖片到圖片庫 (需要儲存設定)
                 </p>
 
                 {errors.contentImages && (
@@ -803,26 +778,8 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                 內容影片 (影片庫)
               </label>
               <div className="space-y-4">
-                {/* Add Video URL */}
+                {/* Upload Video Button */}
                 <div className="flex gap-2">
-                  <input
-                    type="url"
-                    placeholder="輸入影片網址並按 Enter 添加"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault()
-                        const url = e.currentTarget.value.trim()
-                        const sanitizedUrl = sanitizeURL(url)
-                        if (sanitizedUrl) {
-                          setContentVideoPreviews(prev => [...prev, sanitizedUrl])
-                          e.currentTarget.value = ''
-                        } else if (url) {
-                          setErrors(prev => ({ ...prev, contentVideos: '請提供有效的影片網址' }))
-                        }
-                      }
-                    }}
-                  />
                   <Button
                     type="button"
                     variant="outline"
@@ -871,7 +828,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                 />
 
                 <p className="text-sm text-gray-500">
-                  💡 輸入影片網址並按 Enter 添加到影片庫，或使用上傳按鈕 (需要儲存設定)。支援 MP4, WebM, OGG 格式，最大 50MB
+                  💡 使用上傳按鈕添加影片到影片庫 (需要儲存設定)。支援 MP4, WebM, OGG 格式，最大 50MB
                 </p>
 
                 {errors.contentVideos && (

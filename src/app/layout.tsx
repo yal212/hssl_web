@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import { AuthErrorHandler } from "@/components/AuthErrorHandler";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
           跳至主要內容
         </a>
 
+        <AuthErrorHandler />
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <main id="main-content" className="flex-grow" role="main">

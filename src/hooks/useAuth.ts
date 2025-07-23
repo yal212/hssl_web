@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { User } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 import { Database } from '@/lib/supabase'
+import { getSafeSession } from '@/lib/auth-utils'
 
 type Profile = Database['public']['Tables']['profiles']['Row']
 
@@ -14,6 +15,30 @@ interface AuthState {
   error: string | null
 }
 
+// Cache profile data to avoid repeated fetches
+let profileCache: { [userId: string]: Profile | null } = {}
+
+// Helper function to check if error is a refresh token error
+const isRefreshTokenErrorLocal = (error: unknown): boolean => {
+  if (!error) return false
+  const message = (error as Error).message || String(error)
+  return message.includes('refresh_token_not_found') ||
+         message.includes('Invalid Refresh Token') ||
+         message.includes('refresh token') ||
+         message.includes('AuthApiError')
+}
+
+// Helper function to handle refresh token errors
+const handleRefreshTokenError = async () => {
+  console.log('Handling refresh token error - clearing session')
+  try {
+    await supabase.auth.signOut()
+    profileCache = {} // Clear cache
+  } catch (error) {
+    console.error('Error during signOut:', error)
+  }
+}
+
 export function useAuth() {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
@@ -22,12 +47,49 @@ export function useAuth() {
     error: null
   })
 
+  // Optimized profile fetching with caching
+  const fetchProfile = useCallback(async (userId: string): Promise<Profile | null> => {
+    // Check cache first
+    if (profileCache[userId]) {
+      return profileCache[userId]
+    }
+
+    try {
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single()
+
+      if (profileError && profileError.code !== 'PGRST116') {
+        console.error('Error fetching profile:', profileError)
+        return null
+      }
+
+      // Cache the result
+      profileCache[userId] = profile || null
+      return profile || null
+    } catch (error) {
+      console.error('Error in fetchProfile:', error)
+      return null
+    }
+  }, [])
+
+  // Clear profile cache when user changes
+  const clearProfileCache = useCallback(() => {
+    profileCache = {}
+  }, [])
+
   useEffect(() => {
+    let isMounted = true
+
     // Get initial user and profile
     const getInitialAuth = async () => {
       try {
-        // First check if we have a session before trying to get user
-        const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+        // Use safe session getter with error handling
+        const { session, error: sessionError } = await getSafeSession()
+
+        if (!isMounted) return
 
         if (sessionError) {
           console.error('Session error:', sessionError)
@@ -40,8 +102,7 @@ export function useAuth() {
           return
         }
 
-        // Only try to get user if we have a valid session
-        if (!session) {
+        if (!session?.user) {
           setAuthState({
             user: null,
             profile: null,
@@ -51,58 +112,35 @@ export function useAuth() {
           return
         }
 
-        const { data: { user }, error: userError } = await supabase.auth.getUser()
+        const user = session.user
 
-        if (userError) {
-          console.error('Error getting user:', userError)
-          // If it's an auth session missing error, just set no user
-          if (userError.message.includes('session') || userError.message.includes('token')) {
-            console.log('Auth session missing, clearing state')
-            await supabase.auth.signOut()
-          }
+        // Fetch profile in parallel, don't block on it
+        const profile = await fetchProfile(user.id)
+
+        if (!isMounted) return
+
+        setAuthState({
+          user,
+          profile,
+          loading: false,
+          error: null
+        })
+      } catch (error: unknown) {
+        console.error('Error in getInitialAuth:', error)
+
+        // Handle refresh token errors
+        if (isRefreshTokenErrorLocal(error)) {
+          await handleRefreshTokenError()
+        }
+
+        if (isMounted) {
           setAuthState({
             user: null,
             profile: null,
             loading: false,
             error: null // Don't show token errors to user
           })
-          return
         }
-
-        if (user) {
-          // Fetch user profile
-          const { data: profile, error: profileError } = await supabase
-            .from('profiles')
-            .select('*')
-            .eq('id', user.id)
-            .single()
-
-          if (profileError && profileError.code !== 'PGRST116') {
-            // PGRST116 is "not found" error, which is okay for new users
-            console.error('Error fetching profile:', profileError)
-          }
-
-          setAuthState({
-            user,
-            profile: profile || null,
-            loading: false,
-            error: null
-          })
-        } else {
-          setAuthState({
-            user: null,
-            profile: null,
-            loading: false,
-            error: null
-          })
-        }
-      } catch (error) {
-        console.error('Error in getInitialAuth:', error)
-        setAuthState(prev => ({ 
-          ...prev, 
-          error: 'Failed to load authentication state', 
-          loading: false 
-        }))
       }
     }
 
@@ -111,25 +149,47 @@ export function useAuth() {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        if (session?.user) {
-          // Fetch user profile when user signs in
-          const { data: profile, error: profileError } = await supabase
-            .from('profiles')
-            .select('*')
-            .eq('id', session.user.id)
-            .single()
+        if (!isMounted) return
 
-          if (profileError && profileError.code !== 'PGRST116') {
-            console.error('Error fetching profile:', profileError)
+        console.log('Auth state change:', event, !!session)
+
+        if (event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+          if (event === 'SIGNED_OUT') {
+            clearProfileCache()
           }
 
           setAuthState({
-            user: session.user,
-            profile: profile || null,
+            user: null,
+            profile: null,
             loading: false,
             error: null
           })
-        } else {
+          return
+        }
+
+        if (event === 'SIGNED_IN' && session?.user) {
+          // Set user immediately, fetch profile async
+          setAuthState(prev => ({
+            ...prev,
+            user: session.user,
+            loading: false,
+            error: null
+          }))
+
+          // Fetch profile in background
+          try {
+            const profile = await fetchProfile(session.user.id)
+
+            if (isMounted) {
+              setAuthState(prev => ({
+                ...prev,
+                profile
+              }))
+            }
+          } catch (error) {
+            console.error('Error fetching profile after sign in:', error)
+          }
+        } else if (!session) {
           setAuthState({
             user: null,
             profile: null,
@@ -140,11 +200,15 @@ export function useAuth() {
       }
     )
 
-    return () => subscription.unsubscribe()
-  }, [])
+    return () => {
+      isMounted = false
+      subscription.unsubscribe()
+    }
+  }, [fetchProfile, clearProfileCache])
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     try {
+      clearProfileCache()
       await supabase.auth.signOut()
       return { error: null }
     } catch {
@@ -152,30 +216,22 @@ export function useAuth() {
       setAuthState(prev => ({ ...prev, error: errorMessage }))
       return { error: { message: errorMessage } }
     }
-  }
+  }, [clearProfileCache])
 
-  const refreshProfile = async () => {
+  const refreshProfile = useCallback(async () => {
     if (!authState.user) return
 
     try {
-      const { data: profile, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', authState.user.id)
-        .single()
+      // Clear cache for this user and fetch fresh data
+      delete profileCache[authState.user.id]
+      const profile = await fetchProfile(authState.user.id)
 
-      if (error && error.code !== 'PGRST116') {
-        console.error('Error refreshing profile:', error)
-        setAuthState(prev => ({ ...prev, error: error.message }))
-        return
-      }
-
-      setAuthState(prev => ({ ...prev, profile: profile || null }))
+      setAuthState(prev => ({ ...prev, profile }))
     } catch (error) {
       console.error('Error refreshing profile:', error)
       setAuthState(prev => ({ ...prev, error: 'Failed to refresh profile' }))
     }
-  }
+  }, [authState.user, fetchProfile])
 
   return {
     ...authState,

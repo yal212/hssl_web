@@ -146,12 +146,14 @@ export default function NewsDetailPage() {
           className="bg-white rounded-lg shadow-sm overflow-hidden"
         >
           {/* Featured Image */}
-          <div className="relative h-96 overflow-hidden">
+          <div className="relative min-h-96 max-h-[500px] overflow-hidden bg-gray-50 flex items-center justify-center">
             <Image
               src={news.image_url || '/hssl_profile.jpg'}
               alt={news.title}
-              fill
-              className="object-cover"
+              width={800}
+              height={500}
+              className="w-full h-auto object-contain"
+              style={{ maxHeight: '500px' }}
             />
             {news.featured && (
               <div className="absolute top-6 left-6">

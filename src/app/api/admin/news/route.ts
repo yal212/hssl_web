@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { supabase } from '@/lib/supabase'
 import { rateLimiters, getClientIP } from '@/lib/rate-limit'
 import { sanitizeNewsContent } from '@/lib/sanitization'
 
@@ -17,15 +17,36 @@ async function verifyAdmin(request: NextRequest) {
     // Create client with user's token
     const token = authHeader.replace('Bearer ', '')
 
-    // Verify the token with Supabase
-    const { data: { user }, error: userError } = await supabase.auth.getUser(token)
-
-    if (userError || !user) {
-      console.log('Admin verification failed: Invalid token or user not found', { userError, hasUser: !!user })
-      return { error: 'Invalid token', status: 401 }
+    if (!token || token === 'undefined' || token === 'null') {
+      console.log('Admin verification failed: Invalid token format')
+      return { error: 'Invalid token format', status: 401 }
     }
 
-    // Check if user is admin
+    // Create a temporary client with the user's token for verification
+    const tempClient = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        global: {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      }
+    )
+
+    // Verify the token with Supabase
+    const { data: { user }, error: userError } = await tempClient.auth.getUser()
+
+    if (userError || !user) {
+      console.log('Admin verification failed: Invalid token or user not found', {
+        userError: userError?.message,
+        hasUser: !!user
+      })
+      return { error: 'Invalid or expired token', status: 401 }
+    }
+
+    // Check if user is admin using admin client
     const { data: profile, error: profileError } = await supabaseAdmin
       .from('profiles')
       .select('role')
@@ -33,7 +54,10 @@ async function verifyAdmin(request: NextRequest) {
       .single()
 
     if (profileError) {
-      console.log('Admin verification failed: Profile error', { profileError, userId: user.id })
+      console.log('Admin verification failed: Profile error', {
+        profileError: profileError.message,
+        userId: user.id
+      })
       return { error: 'Profile not found', status: 403 }
     }
 
@@ -43,7 +67,10 @@ async function verifyAdmin(request: NextRequest) {
     }
 
     if (profile.role !== 'admin') {
-      console.log('Admin verification failed: User is not admin', { userId: user.id, role: profile.role })
+      console.log('Admin verification failed: User is not admin', {
+        userId: user.id,
+        role: profile.role
+      })
       return { error: 'Admin access required', status: 403 }
     }
 
