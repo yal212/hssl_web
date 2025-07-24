@@ -138,7 +138,7 @@ export default function ImageGallery({
   return (
     <div className={`relative ${className}`}>
       {/* Main Gallery */}
-      <div className="relative min-h-64 md:min-h-80 lg:min-h-96 max-h-[500px] overflow-hidden rounded-lg bg-gray-50 flex items-center justify-center">
+      <div className="relative rounded-lg bg-gray-50 flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -146,16 +146,16 @@ export default function ImageGallery({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.3 }}
-            className="relative w-full h-full cursor-zoom-in flex items-center justify-center"
+            className="relative w-full cursor-zoom-in flex items-center justify-center"
             onClick={() => openModal(currentIndex)}
           >
             <Image
               src={images[currentIndex]}
               alt={`Gallery image ${currentIndex + 1}`}
               width={800}
-              height={500}
-              className="w-full h-auto object-contain"
-              style={{ maxHeight: '500px' }}
+              height={600}
+              className="w-full h-auto object-contain rounded-lg"
+              style={{ maxWidth: '100%', height: 'auto' }}
             />
             <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
               <ZoomIn className="w-8 h-8 text-white opacity-0 hover:opacity-100 transition-opacity duration-300" />
@@ -208,7 +208,7 @@ export default function ImageGallery({
                   alt={`Thumbnail ${index + 1}`}
                   width={64}
                   height={64}
-                  className="w-full h-full object-contain bg-gray-50"
+                  className="w-full h-full object-contain bg-gray-50 p-1"
                 />
               </button>
             ))}

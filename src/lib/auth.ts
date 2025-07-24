@@ -65,13 +65,24 @@ export async function updateSession(request: NextRequest) {
 
   let user = session?.user || null
 
-  // If we have a session error (like invalid refresh token), clear the session
+  // Handle session errors more carefully
   if (sessionError) {
-    console.log('Session error detected, clearing session:', sessionError.message)
-    // Clear any invalid session cookies
-    supabaseResponse.cookies.delete('sb-access-token')
-    supabaseResponse.cookies.delete('sb-refresh-token')
-    user = null
+    console.log('Session error detected:', sessionError.message)
+
+    // Only clear session for specific critical errors
+    if (sessionError.message?.includes('refresh_token_not_found') ||
+        sessionError.message?.includes('invalid_refresh_token') ||
+        sessionError.message?.includes('refresh token is invalid')) {
+      console.log('Critical session error, clearing session')
+      supabaseResponse.cookies.delete('sb-access-token')
+      supabaseResponse.cookies.delete('sb-refresh-token')
+      user = null
+    } else {
+      // For other session errors, try to get user anyway
+      console.log('Non-critical session error, attempting to get user')
+      const { data: { user: fetchedUser } } = await supabase.auth.getUser()
+      user = fetchedUser
+    }
   } else if (session && !user) {
     // If we have a session but no user, try getUser
     const { data: { user: fetchedUser } } = await supabase.auth.getUser()
@@ -106,7 +117,17 @@ export async function updateSession(request: NextRequest) {
 
   // Protect admin routes - require authentication and admin role
   if (request.nextUrl.pathname.startsWith('/admin')) {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Admin route access attempt:', {
+        path: request.nextUrl.pathname,
+        hasUser: !!user,
+        userId: user?.id,
+        sessionError: sessionError ? sessionError.message : null
+      })
+    }
+
     if (!user) {
+      console.log('No user found for admin route, redirecting to login')
       const url = request.nextUrl.clone()
       url.pathname = '/login'
       url.searchParams.set('next', request.nextUrl.pathname)

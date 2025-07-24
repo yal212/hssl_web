@@ -153,17 +153,38 @@ export function useAuth() {
 
         console.log('Auth state change:', event, !!session)
 
-        if (event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
-          if (event === 'SIGNED_OUT') {
-            clearProfileCache()
-          }
-
+        if (event === 'SIGNED_OUT') {
+          clearProfileCache()
           setAuthState({
             user: null,
             profile: null,
             loading: false,
             error: null
           })
+          return
+        }
+
+        if (event === 'TOKEN_REFRESHED' && session?.user) {
+          // Update user state with refreshed session
+          setAuthState(prev => ({
+            ...prev,
+            user: session.user,
+            loading: false,
+            error: null
+          }))
+
+          // Refresh profile if needed
+          try {
+            const profile = await fetchProfile(session.user.id)
+            if (isMounted) {
+              setAuthState(prev => ({
+                ...prev,
+                profile
+              }))
+            }
+          } catch (error) {
+            console.error('Error fetching profile after token refresh:', error)
+          }
           return
         }
 

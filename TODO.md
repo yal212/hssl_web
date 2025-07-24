@@ -1,6 +1,5 @@
 # TODO (don't change this  I'll do it myself)
-- the 內容圖片 (圖片庫) in the news in the news page is not the exact size there are some parts of the original image that was cutted out
-- when signed in as an admin the 管理後台 button in the news page just redirects me to the sign in page fix it
+- when signed in as an admin account the 管理後台 button in the news page just redirects me to the sign in page, fix it to redirect to the correct page when signed in as an admin account
 
 # DO EVERY TIME (DON'T CHANGE)
 - check if there are any errors 
