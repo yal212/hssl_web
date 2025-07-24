@@ -14,7 +14,7 @@ interface AdminGuardProps {
 }
 
 export default function AdminGuard({ children, fallback }: AdminGuardProps) {
-  const { isAdmin, loading, user, profile } = useAdmin()
+  const { isAdmin, loading, user } = useAdmin()
   const router = useRouter()
 
   useEffect(() => {

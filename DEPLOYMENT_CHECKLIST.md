@@ -109,29 +109,6 @@ hssl-web/
 ### **Admin Pages**
 - `/admin/news` - News management (protected)
 
-## 🔑 Admin Setup (Post-Deployment)
-
-### **Create Admin User in Supabase**
-1. Go to your Supabase project dashboard
-2. Navigate to Authentication > Users
-3. Create a new user or use existing user email
-4. In SQL Editor, run:
-```sql
--- Promote user to admin role
-UPDATE public.profiles
-SET role = 'admin'
-WHERE email = 'your-admin-email@example.com';
-
--- Verify admin user was created
-SELECT id, email, full_name, role, created_at
-FROM public.profiles
-WHERE role = 'admin';
-```
-
-### **API Endpoints**
-- `/api/admin/news` - News CRUD operations
-- `/api/rss` - RSS feed
-- `/auth/callback` - Email confirmation callback
 
 ## 🔒 Security Checklist
 
