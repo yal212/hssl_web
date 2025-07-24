@@ -910,7 +910,7 @@ export default function AboutPage() {
             <div className="text-center mb-16">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">學生組織</h3>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                七個專業組別分工合作，各司其職，共同推動 HSSL 的環保教育使命
+                七個組別分工合作，各司其職，共同推動 HSSL 的環保教育使命
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
