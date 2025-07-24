@@ -8,12 +8,18 @@ import { useEffect, useState } from 'react'
 
 export default function AuthCodeErrorPage() {
   const [debugInfo, setDebugInfo] = useState<string>('')
+  const [errorType, setErrorType] = useState<string>('')
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   useEffect(() => {
     // Capture URL parameters for debugging
     const params = new URLSearchParams(window.location.search)
     const info = Array.from(params.entries()).map(([key, value]) => `${key}: ${value}`).join(', ')
     setDebugInfo(info)
+
+    // Get specific error information
+    setErrorType(params.get('error') || '')
+    setErrorMessage(params.get('message') || '')
   }, [])
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center py-12 px-4">
@@ -37,15 +43,28 @@ export default function AuthCodeErrorPage() {
         </h2>
 
         <p className="text-gray-600 mb-6">
-          處理您的身份驗證時發生錯誤。這可能是因為：
+          {errorType === 'oauth_error'
+            ? '使用Google登入時發生錯誤。請重試或使用電子郵件登入。'
+            : '處理您的身份驗證時發生錯誤。這可能是因為：'
+          }
         </p>
 
-        <ul className="text-left text-sm text-gray-600 mb-6 space-y-1">
-          <li>• 確認連結已過期</li>
-          <li>• 連結已經被使用過</li>
-          <li>• 發生網路錯誤</li>
-          <li>• 您的帳戶可能已經確認過了</li>
-        </ul>
+        {errorMessage && (
+          <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-4">
+            <p className="text-sm text-red-700">
+              <strong>錯誤詳情：</strong> {errorMessage}
+            </p>
+          </div>
+        )}
+
+        {errorType !== 'oauth_error' && (
+          <ul className="text-left text-sm text-gray-600 mb-6 space-y-1">
+            <li>• 確認連結已過期</li>
+            <li>• 連結已經被使用過</li>
+            <li>• 發生網路錯誤</li>
+            <li>• 您的帳戶可能已經確認過了</li>
+          </ul>
+        )}
 
         <div className="space-y-3">
           <Link href="/login">

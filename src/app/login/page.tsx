@@ -78,20 +78,22 @@ function LoginContent() {
   const handleGoogleAuth = async () => {
     try {
       setIsLoading(true)
-      setMessage('')
+      setMessage('正在重新導向到Google...')
 
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`
-        }
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google'
       })
 
       if (error) {
         console.error('Google auth error:', error)
         setMessage(`Google登入失敗：${error.message}`)
+      } else if (data?.url) {
+        console.log('Google OAuth URL generated:', data.url)
+        // Supabase will handle the redirect automatically
+        window.location.href = data.url
+      } else {
+        setMessage('Google登入配置錯誤，請聯繫管理員')
       }
-      // Note: If successful, user will be redirected to Google, so no success handling needed here
     } catch (error: unknown) {
       console.error('Google auth error:', error)
       const errorMessage = error instanceof Error ? error.message : String(error)
