@@ -70,21 +70,16 @@ npm run dev
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-### Database Setup
-
-1. Run the SQL schema from `supabase-schema.sql` in your Supabase SQL Editor
-2. Configure environment variables in `.env.local`
-3. Create admin users through Supabase dashboard
 
 ## 📱 Pages
 
 - **Home** (`/`) - Hero section, mission, featured products
+- **Shop** (`/shop`) - Product catalog with search and filtering
 - **About** (`/about`) - Team member profiles and our story
-- **News** (`/news`) - Latest news and updates
-- **Education** (`/education`) - Educational content
 - **Support** (`/support`) - Ways to help and donation information
 - **Login** (`/login`) - Email/password authentication
-- **Admin News** (`/admin/news`) - News management (protected)
+- **Dashboard** (`/dashboard`) - Protected member area
+- **Admin Setup** (`/admin/setup`) - Database initialization
 
 ## 🎨 Design System
 
@@ -128,23 +123,7 @@ The app uses Supabase Auth with email/password authentication:
 - Users can only edit their own content
 - Admins have elevated permissions
 
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push to GitHub
-2. Connect to Vercel
-3. Add environment variables
-4. Deploy
-
-### Environment Variables for Production
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_production_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_production_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
-```
-
-## 🤝 Contributing
+## 🤝 Contributing (not supported yet)
 
 1. Fork the repository
 2. Create a feature branch
@@ -164,8 +143,8 @@ This project is licensed under the MIT License.
 
 ## 📞 Contact
 
-- Email: contact@hssoapllab.org  
-- Website: [High School Soap Lab](https://hssoapllab.org)
+- Email:  
+- Website: [High School Soap Lab](https://hssl-web.vercel.app)
 
 ---
 
