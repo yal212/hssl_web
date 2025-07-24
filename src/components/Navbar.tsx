@@ -96,7 +96,13 @@ export function Navbar() {
                 </button>
               </div>
             ) : (
-              <div className="ml-4 pl-4 border-l border-gray-200">
+              <div className="ml-4 pl-4 border-l border-gray-200 flex items-center space-x-3">
+                <Link
+                  href="/signup"
+                  className="text-green-600 hover:text-green-700 px-4 py-2 text-sm font-medium transition-colors duration-200"
+                >
+                  註冊
+                </Link>
                 <Link
                   href="/login"
                   className="bg-green-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-green-700 hover:shadow-md transition-all duration-200 transform hover:scale-105"
@@ -211,13 +217,22 @@ export function Navbar() {
                     </button>
                   </div>
                 ) : (
-                  <Link
-                    href="/login"
-                    className="block px-4 py-3 text-center bg-green-600 text-white hover:bg-green-700 rounded-lg text-base font-medium transition-all duration-200 shadow-sm hover:shadow-md"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    登入
-                  </Link>
+                  <div className="space-y-2">
+                    <Link
+                      href="/signup"
+                      className="block px-4 py-3 text-center border border-green-600 text-green-600 hover:bg-green-50 rounded-lg text-base font-medium transition-all duration-200"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      註冊
+                    </Link>
+                    <Link
+                      href="/login"
+                      className="block px-4 py-3 text-center bg-green-600 text-white hover:bg-green-700 rounded-lg text-base font-medium transition-all duration-200 shadow-sm hover:shadow-md"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      登入
+                    </Link>
+                  </div>
                 )}
               </motion.div>
             </div>
