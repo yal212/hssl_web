@@ -279,11 +279,11 @@ export default function NewsPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`${colorTheme.contrast.light} border ${colorTheme.contrast.border} rounded-2xl p-8 mb-12 shadow-lg`}
+              className={`${colorTheme.accent.light} border ${colorTheme.accent.border} rounded-2xl p-8 mb-12 shadow-lg`}
             >
               <div className="text-center">
                 <div className={`w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                  <Newspaper className={`w-8 h-8 ${colorTheme.contrast.text}`} />
+                  <Newspaper className={`w-8 h-8 ${colorTheme.accent.text}`} />
                 </div>
                 <p className={`text-emerald-800 text-lg font-medium mb-4`}>{error}</p>
                 <Button onClick={() => fetchNews()} variant="outline" size="lg">

@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
+import { colorUtils } from '@/lib/colors'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'success'
@@ -16,13 +17,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2'
 
     const variants = {
-      default: 'bg-green-600 text-white hover:bg-green-700 focus-visible:ring-green-500 shadow-sm hover:shadow-md active:scale-[0.98]',
-      primary: 'bg-green-600 text-white hover:bg-green-700 focus-visible:ring-green-500 shadow-sm hover:shadow-md active:scale-[0.98]',
-      secondary: 'bg-green-100 text-green-800 hover:bg-green-200 focus-visible:ring-green-500 border border-green-200 hover:border-green-300',
-      outline: 'border border-green-600 text-green-600 hover:bg-green-50 focus-visible:ring-green-500 hover:border-green-700 hover:text-green-700',
-      ghost: 'text-green-600 hover:bg-green-50 focus-visible:ring-green-500 hover:text-green-700',
-      destructive: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500 shadow-sm hover:shadow-md active:scale-[0.98]',
-      success: 'bg-emerald-600 text-white hover:bg-emerald-700 focus-visible:ring-emerald-500 shadow-sm hover:shadow-md active:scale-[0.98]'
+      default: colorUtils.getButtonClasses('primary') + ' shadow-sm hover:shadow-md active:scale-[0.98]',
+      primary: colorUtils.getButtonClasses('primary') + ' shadow-sm hover:shadow-md active:scale-[0.98]',
+      secondary: colorUtils.getButtonClasses('secondary') + ' border',
+      outline: colorUtils.getButtonClasses('outline') + ' border',
+      ghost: colorUtils.getButtonClasses('ghost'),
+      destructive: colorUtils.getButtonClasses('destructive') + ' shadow-sm hover:shadow-md active:scale-[0.98]',
+      success: colorUtils.getButtonClasses('success') + ' shadow-sm hover:shadow-md active:scale-[0.98]'
     }
 
     const sizes = {

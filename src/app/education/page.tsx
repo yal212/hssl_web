@@ -155,7 +155,7 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <AlertTriangle className={`w-8 h-8 ${colorTheme.contrast.text} mr-4`} />
+              <AlertTriangle className={`w-8 h-8 ${colorTheme.accent.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">潛在過敏或刺激性成分</h3>
             </div>
 
@@ -198,16 +198,16 @@ export default function EducationPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className={`bg-gradient-to-br ${colorTheme.contrast.light} to-orange-50 rounded-xl p-6 border ${colorTheme.contrast.border}`}
+                  className={`bg-gradient-to-br ${colorTheme.accent.light} to-orange-50 rounded-xl p-6 border ${colorTheme.accent.border}`}
                 >
                   <h4 className="font-bold text-gray-900 mb-3 text-sm leading-tight">{ingredient.name}</h4>
                   <div className="space-y-2">
                     <div>
-                      <span className={`text-xs font-semibold ${colorTheme.contrast.text}`}>功能：</span>
+                      <span className={`text-xs font-semibold ${colorTheme.accent.text}`}>功能：</span>
                       <span className="text-xs text-gray-700">{ingredient.function}</span>
                     </div>
                     <div>
-                      <span className={`text-xs font-semibold ${colorTheme.contrast.text}`}>反應：</span>
+                      <span className={`text-xs font-semibold ${colorTheme.accent.text}`}>反應：</span>
                       <span className="text-xs text-gray-700">{ingredient.reactions}</span>
                     </div>
                     <div>
@@ -229,11 +229,11 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <Factory className={`w-8 h-8 ${colorTheme.contrast.text} mr-4`} />
+              <Factory className={`w-8 h-8 ${colorTheme.accent.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">可能不易分解的成分</h3>
             </div>
 
-            <div className={`bg-gradient-to-br ${colorTheme.contrast.light} to-emerald-50 rounded-2xl p-8`}>
+            <div className={`bg-gradient-to-br ${colorTheme.accent.light} to-emerald-50 rounded-2xl p-8`}>
               <div className="space-y-6">
                 {[
                   {
@@ -268,14 +268,14 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className={`bg-white rounded-xl p-6 border ${colorTheme.contrast.border}`}
+                    className={`bg-white rounded-xl p-6 border ${colorTheme.accent.border}`}
                   >
                     <div className="flex items-start">
-                      <div className={`w-3 h-3 ${colorTheme.contrast.bg} rounded-full mt-2 mr-4 flex-shrink-0`}></div>
+                      <div className={`w-3 h-3 ${colorTheme.accent.bg} rounded-full mt-2 mr-4 flex-shrink-0`}></div>
                       <div className="flex-1">
                         <h4 className="font-bold text-gray-900 mb-2">{ingredient.name}</h4>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                          <span className={`text-sm font-semibold ${colorTheme.contrast.text}`}>類別：</span>
+                          <span className={`text-sm font-semibold ${colorTheme.accent.text}`}>類別：</span>
                           <span className="text-sm text-gray-700">{ingredient.category}</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:items-start gap-2">
@@ -564,30 +564,30 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <AlertTriangle className={`w-8 h-8 ${colorTheme.contrast.text} mr-4`} />
+              <AlertTriangle className={`w-8 h-8 ${colorTheme.accent.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">安全須知</h3>
             </div>
 
-            <div className={`bg-gradient-to-br ${colorTheme.contrast.light} to-emerald-50 rounded-2xl p-8`}>
+            <div className={`bg-gradient-to-br ${colorTheme.accent.light} to-emerald-50 rounded-2xl p-8`}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
                   {
                     title: '防護裝備',
                     description: '全程務必穿戴手套操作',
                     icon: Shield,
-                    color: `${colorTheme.contrast.text}`
+                    color: `${colorTheme.accent.text}`
                   },
                   {
                     title: '化學安全',
                     description: '氫氧化鈉具腐蝕性',
                     icon: AlertTriangle,
-                    color: `${colorTheme.contrast.text}`
+                    color: `${colorTheme.accent.text}`
                   },
                   {
                     title: '精確測量',
                     description: '天平量測單位選用與歸零操作',
                     icon: Beaker,
-                    color: `${colorTheme.contrast.text}`
+                    color: `${colorTheme.accent.text}`
                   }
                 ].map((safety, index) => (
                   <motion.div
@@ -596,7 +596,7 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className={`bg-white rounded-xl p-6 border-2 ${colorTheme.contrast.border} text-center`}
+                    className={`bg-white rounded-xl p-6 border-2 ${colorTheme.accent.border} text-center`}
                   >
                     <safety.icon className={`w-12 h-12 ${safety.color} mx-auto mb-4`} />
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{safety.title}</h4>

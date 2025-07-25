@@ -148,7 +148,7 @@ export function Mission() {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className={`w-20 h-20 bg-gradient-to-br ${colorTheme.contrast.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden`}
+                  className={`w-20 h-20 bg-gradient-to-br ${colorTheme.accent.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.3 }}
@@ -158,7 +158,7 @@ export function Mission() {
                   <Heart className="w-10 h-10 text-white relative z-10" />
                 </motion.div>
                 <motion.h3
-                  className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.contrast.text} transition-colors duration-200`}
+                  className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -264,7 +264,7 @@ export function Mission() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <motion.h3
-                    className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.contrast.text} transition-colors duration-200`}
+                    className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}

@@ -170,7 +170,7 @@ export default function AboutPage() {
       transition={{ duration: 0.8 }}
     >
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-100 py-24 lg:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-50 py-24 lg:py-32 overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
@@ -356,11 +356,11 @@ export default function AboutPage() {
                 color: 'from-emerald-500 to-teal-600'
               }
             ].map((step, index) => {
-              // Enhanced color palette for mission cards
+              // Enhanced color palette for mission cards - consistent emerald-teal theme
               const enhancedColors = [
                 'from-emerald-500 to-teal-600', // Science/Chemistry
-                'from-emerald-500 to-teal-600',  // Environment/Recycling
-                'from-emerald-500 to-teal-600'      // Community/Heart
+                'from-teal-500 to-emerald-600',  // Environment/Recycling
+                'from-emerald-600 to-green-700'      // Community/Heart
               ]
 
               return (

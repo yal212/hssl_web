@@ -260,12 +260,12 @@ export default function ShopPage() {
                           {product.name}
                         </h3>
                         <motion.div
-                          className={`flex items-center ${colorTheme.contrast.light} px-3 py-1.5 rounded-lg shadow-sm`}
+                          className={`flex items-center ${colorTheme.accent.light} px-3 py-1.5 rounded-lg shadow-sm`}
                           whileHover={{ scale: 1.05 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <Star className={`w-4 h-4 ${colorTheme.contrast.bg} fill-current`} />
-                          <span className={`text-sm font-medium ${colorTheme.contrast.text} ml-1`}>4.9</span>
+                          <Star className={`w-4 h-4 ${colorTheme.accent.bg} fill-current`} />
+                          <span className={`text-sm font-medium ${colorTheme.accent.text} ml-1`}>4.9</span>
                         </motion.div>
                       </div>
 

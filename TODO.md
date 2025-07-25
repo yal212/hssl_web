@@ -1,5 +1,6 @@
 # TODO (don't change this  I'll do it myself)
 - when signed in as an admin account the 管理後台 button in the news page just redirects me to the sign in page, fix it to redirect to the correct page when signed in as an admin account
+- make the 最新動態 in the home page clickable
 
 # DO EVERY TIME (DON'T CHANGE)
 - check if there are any errors 

@@ -16,7 +16,7 @@ import {
 
 export function Hero() {
   return (
-    <section className={`relative bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-100 py-20 lg:py-32 overflow-hidden`}>
+    <section className={`relative bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50 py-20 lg:py-32 overflow-hidden`}>
       {/* Enhanced background decorations */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
@@ -168,14 +168,14 @@ export function Hero() {
                   創造永續產品，同時支持慈善事業並學習寶貴的創業技能。
                 </p>
                 <div className="flex justify-center mt-6">
-                  <Heart className={`w-6 h-6 ${colorTheme.contrast.text}`} />
+                  <Heart className="w-6 h-6 text-white" />
                 </div>
               </motion.div>
             </div>
 
             {/* Enhanced floating elements */}
             <motion.div
-              className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${colorTheme.contrast.gradient} rounded-full flex items-center justify-center shadow-lg`}
+              className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${colorTheme.accent.gradient} rounded-full flex items-center justify-center shadow-lg`}
               variants={floating}
               initial="initial"
               animate="animate"
