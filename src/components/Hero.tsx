@@ -16,12 +16,12 @@ import {
 
 export function Hero() {
   return (
-    <section className={`relative bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-100 py-20 lg:py-32 overflow-hidden`}>
+    <section className={`relative bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-100 py-20 lg:py-32 overflow-hidden`}>
       {/* Enhanced background decorations */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
         <motion.div
           className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200 rounded-full opacity-20"
           animate={{ rotate: 360 }}
@@ -164,18 +164,18 @@ export function Hero() {
                 <h3 className="text-2xl font-bold text-center mb-4">
                   我們的使命
                 </h3>
-                <p className="text-center text-green-100">
+                <p className="text-center text-white/80">
                   創造永續產品，同時支持慈善事業並學習寶貴的創業技能。
                 </p>
                 <div className="flex justify-center mt-6">
-                  <Heart className="w-6 h-6 text-red-300" />
+                  <Heart className={`w-6 h-6 ${colorTheme.contrast.text}`} />
                 </div>
               </motion.div>
             </div>
 
             {/* Enhanced floating elements */}
             <motion.div
-              className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg"
+              className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${colorTheme.contrast.gradient} rounded-full flex items-center justify-center shadow-lg`}
               variants={floating}
               initial="initial"
               animate="animate"

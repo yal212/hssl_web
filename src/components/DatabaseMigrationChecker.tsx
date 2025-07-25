@@ -103,37 +103,37 @@ ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_videos TEXT[] DEFAULT 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <Card className="border-orange-200 bg-orange-50">
+      <Card className="border-emerald-200 bg-emerald-50">
         <CardHeader>
-          <CardTitle className="flex items-center text-orange-800">
+          <CardTitle className="flex items-center text-emerald-800">
             <AlertTriangle className="w-5 h-5 mr-2" />
             Database Migration Required
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <p className="text-orange-700">
-              The database needs to be updated to support news image galleries. 
+            <p className="text-emerald-700">
+              The database needs to be updated to support news image galleries.
               The following columns are missing:
             </p>
-            
+
             <div className="space-y-2">
               {!status.hasContentImages && (
-                <div className="flex items-center text-orange-700">
+                <div className="flex items-center text-emerald-700">
                   <AlertTriangle className="w-4 h-4 mr-2" />
                   <span>content_images column</span>
                 </div>
               )}
               {!status.hasContentVideos && (
-                <div className="flex items-center text-orange-700">
+                <div className="flex items-center text-emerald-700">
                   <AlertTriangle className="w-4 h-4 mr-2" />
                   <span>content_videos column</span>
                 </div>
               )}
             </div>
 
-            <div className="bg-white p-4 rounded-lg border border-orange-200">
-              <h4 className="font-medium text-orange-800 mb-2">
+            <div className="bg-white p-4 rounded-lg border border-emerald-200">
+              <h4 className="font-medium text-emerald-800 mb-2">
                 Run this SQL in Supabase SQL Editor:
               </h4>
               <pre className="text-sm bg-gray-100 p-3 rounded overflow-x-auto">

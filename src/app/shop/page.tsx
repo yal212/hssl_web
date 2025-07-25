@@ -76,10 +76,10 @@ export default function ShopPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-green-50 py-12">
+      <div className={`min-h-screen ${colorTheme.primary.light} py-12`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+            <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${colorTheme.primary.border} mx-auto`}></div>
             <p className="mt-4 text-gray-600">Loading our amazing soaps...</p>
           </div>
         </div>
@@ -88,12 +88,12 @@ export default function ShopPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-50 py-12 relative overflow-hidden`}>
+    <div className={`min-h-screen bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50 py-12 relative overflow-hidden`}>
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -113,7 +113,7 @@ export default function ShopPage() {
             {/* Shine effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700"></div>
             <div className="w-16 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center relative z-10">
-              <span className="text-emerald-600 font-bold text-lg">皂</span>
+              <span className={`${colorTheme.primary.text} font-bold text-lg`}>皂</span>
             </div>
           </motion.div>
 
@@ -160,7 +160,7 @@ export default function ShopPage() {
                 placeholder="Search soaps..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className={`w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent`}
               />
             </div>
 
@@ -169,7 +169,7 @@ export default function ShopPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as 'name' | 'price')}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className={`px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent`}
               >
                 <option value="name">Sort by Name</option>
                 <option value="price">Sort by Price</option>
@@ -180,7 +180,7 @@ export default function ShopPage() {
                   type="checkbox"
                   checked={showOutOfStock}
                   onChange={(e) => setShowOutOfStock(e.target.checked)}
-                  className="mr-2 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                  className={`mr-2 rounded border-gray-300 ${colorTheme.primary.text} focus:ring-emerald-500`}
                 />
                 <span className="text-sm text-gray-700">Show out of stock</span>
               </label>
@@ -260,12 +260,12 @@ export default function ShopPage() {
                           {product.name}
                         </h3>
                         <motion.div
-                          className="flex items-center bg-amber-50 px-3 py-1.5 rounded-lg shadow-sm"
+                          className={`flex items-center ${colorTheme.contrast.light} px-3 py-1.5 rounded-lg shadow-sm`}
                           whileHover={{ scale: 1.05 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <Star className="w-4 h-4 text-amber-500 fill-current" />
-                          <span className="text-sm font-medium text-amber-700 ml-1">4.9</span>
+                          <Star className={`w-4 h-4 ${colorTheme.contrast.bg} fill-current`} />
+                          <span className={`text-sm font-medium ${colorTheme.contrast.text} ml-1`}>4.9</span>
                         </motion.div>
                       </div>
 
@@ -279,7 +279,7 @@ export default function ShopPage() {
                           {product.benefits.split(',').slice(0, 3).map((benefit, idx) => (
                             <motion.span
                               key={idx}
-                              className={`px-3 py-1.5 ${colorTheme.primary.light} ${colorTheme.primary.text} text-xs font-medium rounded-full border ${colorTheme.primary.border} hover:bg-emerald-200 transition-colors duration-200`}
+                              className={`px-3 py-1.5 ${colorTheme.primary.light} ${colorTheme.primary.text} text-xs font-medium rounded-full border ${colorTheme.primary.border} hover:bg-emerald-100 transition-colors duration-200`}
                               whileHover={{ scale: 1.05 }}
                               transition={{ duration: 0.2 }}
                             >
@@ -334,7 +334,7 @@ export default function ShopPage() {
               每一次購買都創造改變
             </motion.h3>
             <motion.p
-              className="text-xl text-emerald-100 mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -348,7 +348,7 @@ export default function ShopPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              <Button size="lg" variant="secondary" className="bg-white text-emerald-600 hover:bg-gray-100">
+              <Button size="lg" variant="secondary" className={`bg-white ${colorTheme.primary.text} hover:${colorTheme.primary.light}`}>
                 了解我們的使命
               </Button>
               <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm">

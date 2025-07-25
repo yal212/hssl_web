@@ -182,7 +182,7 @@ export default function NewsPage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -265,7 +265,7 @@ export default function NewsPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-12"
           >
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 lg:p-8">
+            <div className={`bg-white rounded-2xl shadow-lg border ${colorTheme.primary.border} p-6 lg:p-8`}>
               <NewsFiltersComponent
                 filters={filters}
                 onFiltersChange={handleFiltersChange}
@@ -279,13 +279,13 @@ export default function NewsPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="bg-red-50 border border-red-200 rounded-2xl p-8 mb-12 shadow-lg"
+              className={`${colorTheme.contrast.light} border ${colorTheme.contrast.border} rounded-2xl p-8 mb-12 shadow-lg`}
             >
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Newspaper className="w-8 h-8 text-red-600" />
+                <div className={`w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <Newspaper className={`w-8 h-8 ${colorTheme.contrast.text}`} />
                 </div>
-                <p className="text-red-800 text-lg font-medium mb-4">{error}</p>
+                <p className={`text-emerald-800 text-lg font-medium mb-4`}>{error}</p>
                 <Button onClick={() => fetchNews()} variant="outline" size="lg">
                   重新載入
                 </Button>
@@ -349,8 +349,8 @@ export default function NewsPage() {
                   animate={{ opacity: 1 }}
                   className="text-center py-16"
                 >
-                  <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Newspaper className="w-12 h-12 text-gray-400" />
+                  <div className={`w-24 h-24 ${colorTheme.primary.light} rounded-full flex items-center justify-center mx-auto mb-6`}>
+                    <Newspaper className={`w-12 h-12 ${colorTheme.primary.text}`} />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     沒有找到相關新聞

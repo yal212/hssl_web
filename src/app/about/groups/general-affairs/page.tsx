@@ -12,22 +12,22 @@ export default function GeneralAffairsGroupPage() {
     {
       name: '謝舒安',
       role: '總務組組長',
-      color: 'bg-orange-500'
+      color: 'bg-emerald-500'
     },
     {
       name: '龔昀晴',
       role: '總務組組長',
-      color: 'bg-orange-600'
+      color: 'bg-emerald-600'
     },
     {
       name: '劉峻成',
       role: '總務組組員',
-      color: 'bg-orange-700'
+      color: 'bg-teal-600'
     },
     {
       name: '黃翊棠',
       role: '總務組組員',
-      color: 'bg-orange-800'
+      color: 'bg-teal-700'
     }
   ]
 
@@ -61,7 +61,7 @@ export default function GeneralAffairsGroupPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-orange-50">
+      <section className="py-20 bg-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

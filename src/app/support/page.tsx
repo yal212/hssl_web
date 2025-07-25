@@ -85,12 +85,12 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-100 py-24 lg:py-32 relative overflow-hidden`}>
+      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-100 py-24 lg:py-32 relative overflow-hidden`}>
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,9 +146,9 @@ export default function SupportPage() {
             {impactStats.map((stat, index) => {
               const statColors = [
                 'from-emerald-500 to-teal-600',
-                'from-rose-500 to-pink-600',
-                'from-indigo-500 to-purple-600',
-                'from-amber-500 to-orange-600'
+                'from-emerald-500 to-teal-600',
+                'from-emerald-500 to-teal-600',
+                'from-emerald-500 to-teal-600'
               ]
 
               return (
@@ -173,7 +173,7 @@ export default function SupportPage() {
                         <stat.icon className="w-10 h-10 text-white relative z-10" />
                       </motion.div>
                       <motion.div
-                        className={`text-3xl font-bold ${colorTheme.primary.text} mb-2 group-hover:text-emerald-700 transition-colors duration-200`}
+                        className={`text-3xl font-bold ${colorTheme.primary.text} mb-2 group-hover:text-emerald-800 transition-colors duration-200`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
@@ -198,7 +198,7 @@ export default function SupportPage() {
       </section>
 
       {/* Ways to Support */}
-      <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-50`}>
+      <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInDown}
@@ -256,9 +256,9 @@ export default function SupportPage() {
             {supportWays.map((way, index) => {
               const wayColors = [
                 'from-emerald-500 to-teal-600',
-                'from-rose-500 to-pink-600',
-                'from-indigo-500 to-purple-600',
-                'from-amber-500 to-orange-600'
+                'from-emerald-500 to-teal-600',
+                'from-emerald-500 to-teal-600',
+                'from-emerald-500 to-teal-600'
               ]
 
               return (
@@ -348,8 +348,8 @@ export default function SupportPage() {
               >
                 <Card className="h-full text-center">
                   <CardContent className="p-6">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Heart className="w-8 h-8 text-green-600" />
+                    <div className={`w-16 h-16 ${colorTheme.primary.light} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                      <Heart className={`w-8 h-8 ${colorTheme.primary.text}`} />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {charity.name}
@@ -357,8 +357,8 @@ export default function SupportPage() {
                     <p className="text-gray-600 mb-4">
                       {charity.description}
                     </p>
-                    <div className="bg-green-50 rounded-lg p-4">
-                      <div className="text-2xl font-bold text-green-600 mb-1">
+                    <div className={`${colorTheme.primary.light} rounded-lg p-4`}>
+                      <div className={`text-2xl font-bold ${colorTheme.primary.text} mb-1`}>
                         {charity.amount}
                       </div>
                       <div className="text-sm text-gray-600">
@@ -374,7 +374,7 @@ export default function SupportPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-green-700">
+      <section className={`py-20 bg-gradient-to-r ${colorTheme.primary.gradient}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -386,7 +386,7 @@ export default function SupportPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               準備好創造改變了嗎？
             </h2>
-            <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
               加入數百位正在幫助我們創造正面改變的支持者。
               讓我們一起建設更清潔的地球和更強大的社區。
             </p>
@@ -397,7 +397,7 @@ export default function SupportPage() {
                   購買我們的手工皂
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
+              <Button size="lg" variant="outline" className={`border-white text-white hover:bg-white hover:${colorTheme.primary.text}`}>
                 <Gift className="w-5 h-5 mr-2" />
                 進行捐款
               </Button>
@@ -407,7 +407,7 @@ export default function SupportPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-gray-50">
+      <section className={`py-16 ${colorTheme.primary.light}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

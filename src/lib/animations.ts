@@ -1,6 +1,6 @@
 import { Variants } from 'framer-motion'
 
-// Improved green color theme with better variations
+// Improved emerald-teal color theme with contrast color
 export const colorTheme = {
   primary: {
     gradient: 'from-emerald-500 to-teal-600',
@@ -10,11 +10,18 @@ export const colorTheme = {
     border: 'border-emerald-200'
   },
   secondary: {
-    gradient: 'from-green-400 to-emerald-500',
-    bg: 'bg-green-500',
-    text: 'text-green-500',
-    light: 'bg-green-25',
-    border: 'border-green-100'
+    gradient: 'from-emerald-400 to-teal-500',
+    bg: 'bg-teal-500',
+    text: 'text-teal-500',
+    light: 'bg-teal-50',
+    border: 'border-teal-200'
+  },
+  contrast: {
+    gradient: 'from-emerald-500 to-teal-600',
+    bg: 'bg-emerald-500',
+    text: 'text-emerald-600',
+    light: 'bg-emerald-50',
+    border: 'border-emerald-200'
   },
   accent: {
     gradient: 'from-teal-600 to-green-700',

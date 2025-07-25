@@ -76,7 +76,7 @@ export function Mission() {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden"
+                  className={`w-20 h-20 bg-gradient-to-br ${colorTheme.primary.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.3 }}
@@ -86,7 +86,7 @@ export function Mission() {
                   <Beaker className="w-10 h-10 text-white relative z-10" />
                 </motion.div>
                 <motion.h3
-                  className="text-xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors duration-200"
+                  className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -148,7 +148,7 @@ export function Mission() {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className="w-20 h-20 bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden"
+                  className={`w-20 h-20 bg-gradient-to-br ${colorTheme.contrast.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.3 }}
@@ -158,7 +158,7 @@ export function Mission() {
                   <Heart className="w-10 h-10 text-white relative z-10" />
                 </motion.div>
                 <motion.h3
-                  className="text-xl font-bold text-gray-900 mb-4 group-hover:text-rose-600 transition-colors duration-200"
+                  className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.contrast.text} transition-colors duration-200`}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -186,7 +186,7 @@ export function Mission() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className={`bg-gradient-to-r ${colorTheme.primary.light} to-emerald-50 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden`}
+          className={`bg-gradient-to-r ${colorTheme.primary.light} to-teal-50 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden`}
         >
           {/* Decorative background */}
           <div className="absolute inset-0 opacity-10">
@@ -264,7 +264,7 @@ export function Mission() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <motion.h3
-                    className="text-xl font-bold text-gray-900 mb-4 group-hover:text-rose-600 transition-colors duration-200"
+                    className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.contrast.text} transition-colors duration-200`}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}

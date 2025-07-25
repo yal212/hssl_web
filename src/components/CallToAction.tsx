@@ -42,12 +42,12 @@ export function CallToAction() {
   ]
 
   return (
-    <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-50 relative overflow-hidden`}>
+    <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50 relative overflow-hidden`}>
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,8 +91,8 @@ export function CallToAction() {
           {urgentActions.map((action, index) => {
             const cardColors = [
               'from-emerald-500 to-teal-600',
-              'from-rose-500 to-pink-600',
-              'from-indigo-500 to-purple-600'
+              'from-emerald-500 to-teal-600',
+              'from-emerald-500 to-teal-600'
             ]
 
             return (
@@ -117,7 +117,7 @@ export function CallToAction() {
                 <action.icon className="w-10 h-10 text-white relative z-10" />
               </div>
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center group-hover:text-emerald-600 transition-colors duration-200">
+              <h3 className={`text-2xl font-bold text-gray-900 mb-4 text-center group-hover:${colorTheme.primary.text} transition-colors duration-200`}>
                 {action.title}
               </h3>
 
@@ -187,7 +187,7 @@ export function CallToAction() {
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
               每一個小行動都很重要
             </h3>
-            <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               無論您選擇哪種方式支持我們，都在為環境保護和社會關懷貢獻力量。
               讓我們一起創造更美好的世界！
             </p>

@@ -56,11 +56,11 @@ WHERE NOT EXISTS (SELECT 1 FROM public.posts WHERE posts.title = new_posts.title
         transition={{ duration: 0.6 }}
         className="max-w-2xl w-full"
       >
-        <Card className="border-orange-200 bg-orange-50">
+        <Card className="border-emerald-200 bg-emerald-50">
           <CardContent className="p-8">
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Database className="w-8 h-8 text-orange-600" />
+              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Database className="w-8 h-8 text-emerald-600" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">
                 資料庫需要更新
@@ -70,10 +70,10 @@ WHERE NOT EXISTS (SELECT 1 FROM public.posts WHERE posts.title = new_posts.title
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 mb-6 border border-orange-200">
+            <div className="bg-white rounded-lg p-4 mb-6 border border-emerald-200">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold text-gray-900 flex items-center">
-                  <AlertTriangle className="w-4 h-4 mr-2 text-orange-500" />
+                  <AlertTriangle className="w-4 h-4 mr-2 text-emerald-500" />
                   遷移步驟
                 </h3>
               </div>

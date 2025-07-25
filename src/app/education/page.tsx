@@ -27,12 +27,12 @@ export default function EducationPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-100 py-24 lg:py-32 relative overflow-hidden`}>
+      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-100 py-24 lg:py-32 relative overflow-hidden`}>
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,13 +126,13 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <Lightbulb className="w-8 h-8 text-blue-600 mr-4" />
+              <Lightbulb className={`w-8 h-8 ${colorTheme.primary.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">原始成分清單</h3>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
+            <div className={`bg-gradient-to-br ${colorTheme.primary.light} to-teal-50 rounded-2xl p-8`}>
               <p className="text-sm text-gray-600 mb-4">以下為典型市售沐浴乳的完整成分清單：</p>
-              <div className="bg-white rounded-xl p-6 border border-blue-200">
+              <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
                 <div className="text-sm text-gray-800 leading-relaxed font-mono select-all">
                   Water, Sodium Laureth Sulfate, Cocamidopropyl Betaine, Sodium Chloride,
                   Cocamide Methyl MEA, Fragrance, Polyquaternium-7, Citric Acid,
@@ -155,7 +155,7 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <AlertTriangle className="w-8 h-8 text-orange-600 mr-4" />
+              <AlertTriangle className={`w-8 h-8 ${colorTheme.contrast.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">潛在過敏或刺激性成分</h3>
             </div>
 
@@ -198,16 +198,16 @@ export default function EducationPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200"
+                  className={`bg-gradient-to-br ${colorTheme.contrast.light} to-orange-50 rounded-xl p-6 border ${colorTheme.contrast.border}`}
                 >
                   <h4 className="font-bold text-gray-900 mb-3 text-sm leading-tight">{ingredient.name}</h4>
                   <div className="space-y-2">
                     <div>
-                      <span className="text-xs font-semibold text-orange-700">功能：</span>
+                      <span className={`text-xs font-semibold ${colorTheme.contrast.text}`}>功能：</span>
                       <span className="text-xs text-gray-700">{ingredient.function}</span>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold text-red-700">反應：</span>
+                      <span className={`text-xs font-semibold ${colorTheme.contrast.text}`}>反應：</span>
                       <span className="text-xs text-gray-700">{ingredient.reactions}</span>
                     </div>
                     <div>
@@ -229,11 +229,11 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <Factory className="w-8 h-8 text-red-600 mr-4" />
+              <Factory className={`w-8 h-8 ${colorTheme.contrast.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">可能不易分解的成分</h3>
             </div>
 
-            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8">
+            <div className={`bg-gradient-to-br ${colorTheme.contrast.light} to-emerald-50 rounded-2xl p-8`}>
               <div className="space-y-6">
                 {[
                   {
@@ -268,14 +268,14 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white rounded-xl p-6 border border-red-200"
+                    className={`bg-white rounded-xl p-6 border ${colorTheme.contrast.border}`}
                   >
                     <div className="flex items-start">
-                      <div className="w-3 h-3 bg-red-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
+                      <div className={`w-3 h-3 ${colorTheme.contrast.bg} rounded-full mt-2 mr-4 flex-shrink-0`}></div>
                       <div className="flex-1">
                         <h4 className="font-bold text-gray-900 mb-2">{ingredient.name}</h4>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                          <span className="text-sm font-semibold text-red-700">類別：</span>
+                          <span className={`text-sm font-semibold ${colorTheme.contrast.text}`}>類別：</span>
                           <span className="text-sm text-gray-700">{ingredient.category}</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:items-start gap-2">
@@ -323,7 +323,7 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <Droplets className="w-8 h-8 text-blue-600 mr-4" />
+              <Droplets className={`w-8 h-8 ${colorTheme.primary.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">基本油脂特性</h3>
             </div>
 
@@ -332,32 +332,32 @@ export default function EducationPage() {
                 {
                   name: '椰子油',
                   characteristics: '洗淨力強，能作出較硬且泡沫多的肥皂，若太多會對皮膚乾澀。',
-                  color: 'from-yellow-100 to-yellow-200',
-                  borderColor: 'border-yellow-300'
+                  color: 'from-emerald-100 to-teal-200',
+                  borderColor: 'border-emerald-300'
                 },
                 {
                   name: '棕櫚油',
                   characteristics: '對皮膚溫和，並使香皂較堅硬，但沒什麼泡沫，是做肥皂的基本油。',
-                  color: 'from-orange-100 to-orange-200',
-                  borderColor: 'border-orange-300'
+                  color: 'from-emerald-100 to-teal-200',
+                  borderColor: 'border-emerald-300'
                 },
                 {
                   name: '橄欖油',
                   characteristics: '含保濕、保護功能，能製造細緻泡沫。橄欖油皂溫和適合乾性肌膚。',
-                  color: 'from-green-100 to-green-200',
-                  borderColor: 'border-green-300'
+                  color: 'from-emerald-100 to-teal-200',
+                  borderColor: 'border-emerald-300'
                 },
                 {
                   name: '芥花油',
                   characteristics: '保濕強，可軟化肌膚，並產生細緻又持久的泡沫。',
-                  color: 'from-blue-100 to-blue-200',
-                  borderColor: 'border-blue-300'
+                  color: 'from-emerald-100 to-teal-200',
+                  borderColor: 'border-emerald-300'
                 },
                 {
                   name: '乳油木果脂',
                   characteristics: '增加滋潤度與硬度',
-                  color: 'from-purple-100 to-purple-200',
-                  borderColor: 'border-purple-300'
+                  color: 'from-emerald-100 to-teal-200',
+                  borderColor: 'border-emerald-300'
                 }
               ].map((oil, index) => (
                 <motion.div
@@ -384,21 +384,21 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <Beaker className="w-8 h-8 text-purple-600 mr-4" />
+              <Beaker className={`w-8 h-8 ${colorTheme.primary.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">皂化值計算</h3>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8">
+            <div className={`bg-gradient-to-br ${colorTheme.primary.light} to-teal-50 rounded-2xl p-8`}>
               <div className="mb-8">
                 <h4 className="text-lg font-bold text-gray-900 mb-4">網路自動計算工具</h4>
-                <div className="bg-white rounded-xl p-6 border border-purple-200">
+                <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
                   <p className="text-gray-700 mb-2">推薦使用：</p>
                   <div className="text-gray-600">
                     <a
                       href="https://www.soap-diy.com/Soap_Calculators.php"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 underline hover:no-underline transition-colors"
+                      className={`${colorTheme.primary.text} hover:text-emerald-800 underline hover:no-underline transition-colors`}
                     >
                       手工皂配方計算 Helen&apos;s Lye calculator
                     </a>
@@ -408,7 +408,7 @@ export default function EducationPage() {
 
               <div className="mb-8">
                 <h4 className="text-lg font-bold text-gray-900 mb-4">皂化反應的化學計量</h4>
-                <div className="bg-white rounded-xl p-6 border border-purple-200">
+                <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
                   <p className="text-gray-700 mb-4">
                     <strong>皂化價</strong> = 將 1 公克的油脂完全皂化，所需要鹼質的克數
                   </p>
@@ -442,7 +442,7 @@ export default function EducationPage() {
 
               <div>
                 <h4 className="text-lg font-bold text-gray-900 mb-4">計算方法範例</h4>
-                <div className="bg-white rounded-xl p-6 border border-purple-200">
+                <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
                   <div className="space-y-4">
                     <div>
                       <h5 className="font-semibold text-gray-900 mb-2">① 計算氫氧化鈉用量：</h5>
@@ -475,11 +475,11 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <Factory className="w-8 h-8 text-green-600 mr-4" />
+              <Factory className={`w-8 h-8 ${colorTheme.primary.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">手工皂製作流程 - Cold Process</h3>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8">
+            <div className={`bg-gradient-to-br ${colorTheme.primary.light} to-teal-50 rounded-2xl p-8`}>
               <div className="space-y-6">
                 {[
                   {
@@ -537,14 +537,14 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white rounded-xl p-6 border border-green-200 flex items-start"
+                    className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border} flex items-start`}
                   >
-                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-6 flex-shrink-0">
+                    <div className={`w-12 h-12 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full flex items-center justify-center text-white font-bold text-lg mr-6 flex-shrink-0`}>
                       {process.step}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center mb-2">
-                        <process.icon className="w-5 h-5 text-green-600 mr-2" />
+                        <process.icon className={`w-5 h-5 ${colorTheme.primary.text} mr-2`} />
                         <h4 className="text-lg font-bold text-gray-900">{process.title}</h4>
                       </div>
                       <p className="text-gray-600">{process.description}</p>
@@ -564,30 +564,30 @@ export default function EducationPage() {
             className="mb-16"
           >
             <div className="flex items-center mb-8">
-              <AlertTriangle className="w-8 h-8 text-red-600 mr-4" />
+              <AlertTriangle className={`w-8 h-8 ${colorTheme.contrast.text} mr-4`} />
               <h3 className="text-2xl font-bold text-gray-900">安全須知</h3>
             </div>
 
-            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8">
+            <div className={`bg-gradient-to-br ${colorTheme.contrast.light} to-emerald-50 rounded-2xl p-8`}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
                   {
                     title: '防護裝備',
                     description: '全程務必穿戴手套操作',
                     icon: Shield,
-                    color: 'text-red-600'
+                    color: `${colorTheme.contrast.text}`
                   },
                   {
                     title: '化學安全',
                     description: '氫氧化鈉具腐蝕性',
                     icon: AlertTriangle,
-                    color: 'text-orange-600'
+                    color: `${colorTheme.contrast.text}`
                   },
                   {
                     title: '精確測量',
                     description: '天平量測單位選用與歸零操作',
                     icon: Beaker,
-                    color: 'text-yellow-600'
+                    color: `${colorTheme.contrast.text}`
                   }
                 ].map((safety, index) => (
                   <motion.div
@@ -596,7 +596,7 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white rounded-xl p-6 border-2 border-red-200 text-center"
+                    className={`bg-white rounded-xl p-6 border-2 ${colorTheme.contrast.border} text-center`}
                   >
                     <safety.icon className={`w-12 h-12 ${safety.color} mx-auto mb-4`} />
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{safety.title}</h4>
@@ -614,7 +614,7 @@ export default function EducationPage() {
 
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600">
+      <section className={`py-20 bg-gradient-to-r ${colorTheme.primary.gradient}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -625,7 +625,7 @@ export default function EducationPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               加入 HSSL 的環保行動
             </h2>
-            <p className="text-xl text-green-100 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
               與多個環保與公益團體合作，參與環境永續攤位與民眾互動。
               一起推廣手工皂替代市售清潔劑，實現廢油循環再生的永續目標。
             </p>
@@ -634,7 +634,7 @@ export default function EducationPage() {
                 href="https://famistore.famiport.com.tw/users/3278142"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors"
+                className={`bg-white ${colorTheme.primary.text} px-8 py-3 rounded-lg font-semibold hover:${colorTheme.primary.light} transition-colors`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -642,7 +642,7 @@ export default function EducationPage() {
               </motion.a>
               <motion.a
                 href="/support"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors"
+                className={`border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:${colorTheme.primary.text} transition-colors`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -35,13 +35,13 @@ export default function AboutPage() {
       description: '提供專業指導與學術支持',
       responsibilities: ['學術指導', '專業諮詢'],
       avatar: '',
-      color: 'bg-amber-500',
-      gradientFrom: 'from-amber-500',
-      gradientTo: 'to-amber-600',
-      badgeBg: 'bg-amber-50',
-      badgeText: 'text-amber-700',
-      badgeBorder: 'border-amber-200',
-      ctaText: 'text-amber-600'
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     }
   ]
 
@@ -51,91 +51,91 @@ export default function AboutPage() {
       description: '負責器材準備、整理、交通運送、藥品配置以及現場場佈',
       responsibilities: ['器材管理', '藥品配置', '現場場佈'],
       avatar: '',
-      color: 'bg-green-500',
-      gradientFrom: 'from-green-500',
-      gradientTo: 'to-green-600',
-      badgeBg: 'bg-green-50',
-      badgeText: 'text-green-700',
-      badgeBorder: 'border-green-200',
-      ctaText: 'text-green-600'
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     },
     {
       name: '教學組',
       description: '負責製作投影片設計以及配方設計',
       responsibilities: ['技術教學', '配方研發'],
       avatar: '',
-      color: 'bg-blue-500',
-      gradientFrom: 'from-blue-500',
-      gradientTo: 'to-blue-600',
-      badgeBg: 'bg-blue-50',
-      badgeText: 'text-blue-700',
-      badgeBorder: 'border-blue-200',
-      ctaText: 'text-blue-600'
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     },
     {
       name: '文書美宣組',
       description: '負責經營臉書、IG帳號以及海報設計',
       responsibilities: ['社群媒體', '宣傳製作'],
       avatar: '',
-      color: 'bg-purple-500',
-      gradientFrom: 'from-purple-500',
-      gradientTo: 'to-purple-600',
-      badgeBg: 'bg-purple-50',
-      badgeText: 'text-purple-700',
-      badgeBorder: 'border-purple-200',
-      ctaText: 'text-purple-600'
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     },
     {
       name: '總務組',
       description: '負責餐飲安排以及原物料訂購',
       responsibilities: ['餐飲安排', '原物料訂購'],
       avatar: '',
-      color: 'bg-orange-500',
-      gradientFrom: 'from-orange-500',
-      gradientTo: 'to-orange-600',
-      badgeBg: 'bg-orange-50',
-      badgeText: 'text-orange-700',
-      badgeBorder: 'border-orange-200',
-      ctaText: 'text-orange-600'
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     },
     {
       name: '資訊組',
       description: '負責製作問卷、網站設計以及處理保險資料',
       responsibilities: ['問卷', '網站設計', '保險資料'],
       avatar: '',
-      color: 'bg-indigo-500',
-      gradientFrom: 'from-indigo-500',
-      gradientTo: 'to-indigo-600',
-      badgeBg: 'bg-indigo-50',
-      badgeText: 'text-indigo-700',
-      badgeBorder: 'border-indigo-200',
-      ctaText: 'text-indigo-600'
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     },
     {
       name: '活動公關',
       description: '負責與單位合作以及Creat活動辦理',
       responsibilities: ['單位合作', '活動辦理'],
       avatar: '',
-      color: 'bg-pink-500',
-      gradientFrom: 'from-pink-500',
-      gradientTo: 'to-pink-600',
-      badgeBg: 'bg-pink-50',
-      badgeText: 'text-pink-700',
-      badgeBorder: 'border-pink-200',
-      ctaText: 'text-pink-600'
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     },
     {
       name: '義賣規劃',
       description: '負責企業認購以及設計義賣文宣',
       responsibilities: ['企業認購', '義賣文宣'],
       avatar: '',
-      color: 'bg-teal-500',
-      gradientFrom: 'from-teal-500',
+      color: 'bg-emerald-500',
+      gradientFrom: 'from-emerald-500',
       gradientTo: 'to-teal-600',
-      badgeBg: 'bg-teal-50',
-      badgeText: 'text-teal-700',
-      badgeBorder: 'border-teal-200',
-      ctaText: 'text-teal-600'
+      badgeBg: 'bg-emerald-50',
+      badgeText: 'text-emerald-700',
+      badgeBorder: 'border-emerald-200',
+      ctaText: 'text-emerald-600'
     }
   ]
 
@@ -175,7 +175,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -339,28 +339,28 @@ export default function AboutPage() {
                 title: '化學知識應用',
                 description: '結合化學學科知識與技能，深入了解皂化反應原理。',
                 detail: '透過科學方法製作安全有效的天然清潔產品。',
-                color: 'from-blue-500 to-blue-600'
+                color: 'from-emerald-500 to-teal-600'
               },
               {
                 icon: Recycle,
                 title: '廢油循環再生',
                 description: '推廣過期油與實用廢油的循環再生利用。',
                 detail: '將廢棄油脂轉化為有用的清潔用品，實現零廢棄目標。',
-                color: 'from-emerald-500 to-emerald-600'
+                color: 'from-emerald-500 to-teal-600'
               },
               {
                 icon: Heart,
                 title: '社區教育推廣',
                 description: '從家庭到學校，再到社區，全面推廣環保理念。',
                 detail: '透過製皂教學活動，提升民眾環保意識與實踐能力。',
-                color: 'from-pink-500 to-pink-600'
+                color: 'from-emerald-500 to-teal-600'
               }
             ].map((step, index) => {
               // Enhanced color palette for mission cards
               const enhancedColors = [
-                'from-indigo-500 to-purple-600', // Science/Chemistry
+                'from-emerald-500 to-teal-600', // Science/Chemistry
                 'from-emerald-500 to-teal-600',  // Environment/Recycling
-                'from-rose-500 to-pink-600'      // Community/Heart
+                'from-emerald-500 to-teal-600'      // Community/Heart
               ]
 
               return (
@@ -431,7 +431,7 @@ export default function AboutPage() {
             className="text-center mb-20"
           >
             <motion.div
-              className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mb-8 shadow-lg"
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
               variants={floating}
               initial="initial"
               animate="animate"
@@ -447,7 +447,7 @@ export default function AboutPage() {
             >
               團隊核心
               <motion.span
-                className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent block"
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
@@ -478,9 +478,9 @@ export default function AboutPage() {
               {
                 title: '公共衛生',
                 icon: Shield,
-                color: 'from-cyan-500 to-blue-600',
-                bgColor: 'bg-cyan-50',
-                textColor: 'text-cyan-700',
+                color: 'from-emerald-500 to-teal-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
                 items: [
                   '健康清潔',
                   '天然無毒添加物'
@@ -489,7 +489,7 @@ export default function AboutPage() {
               {
                 title: '環境永續',
                 icon: TreePine,
-                color: 'from-emerald-500 to-green-600',
+                color: 'from-emerald-500 to-teal-600',
                 bgColor: 'bg-emerald-50',
                 textColor: 'text-emerald-700',
                 items: [
@@ -502,9 +502,9 @@ export default function AboutPage() {
               {
                 title: '公益關懷',
                 icon: Heart,
-                color: 'from-rose-500 to-pink-600',
-                bgColor: 'bg-rose-50',
-                textColor: 'text-rose-700',
+                color: 'from-emerald-500 to-teal-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
                 items: [
                   '弱勢製皂工作坊',
                   '偏鄉與非洲肯亞送皂',
@@ -514,9 +514,9 @@ export default function AboutPage() {
               {
                 title: '社會 ESG 合作',
                 icon: Lightbulb,
-                color: 'from-violet-500 to-purple-600',
-                bgColor: 'bg-violet-50',
-                textColor: 'text-violet-700',
+                color: 'from-emerald-500 to-teal-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
                 items: [
                   '永續攤位',
                   '製皂工作坊'
@@ -568,7 +568,7 @@ export default function AboutPage() {
                           transition={{ duration: 0.3, delay: itemIndex * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-4 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-emerald-500 mr-4 flex-shrink-0" />
                           <span className="text-gray-700 text-lg leading-relaxed">{item}</span>
                         </motion.li>
                       ))}
@@ -585,7 +585,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mt-16 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-center text-white relative overflow-hidden"
+            className={`mt-16 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-2xl p-8 text-center text-white relative overflow-hidden`}
           >
             {/* Decorative background */}
             <div className="absolute inset-0 opacity-10">
@@ -596,7 +596,7 @@ export default function AboutPage() {
 
             <div className="relative z-10">
               <h3 className="text-2xl md:text-3xl font-bold mb-6">HSSL 的社會影響力</h3>
-              <p className="text-lg text-emerald-100 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-lg text-white/80 max-w-4xl mx-auto leading-relaxed">
                 從個人家庭到學校社區，再到國際公益合作，HSSL 透過手工皂教育推廣，
                 不僅實現了環保理念的傳播，更建立了跨越地域的人文關懷網絡，
                 將永續生活的種子播撒到世界各個角落。
@@ -607,7 +607,7 @@ export default function AboutPage() {
       </section>
 
       {/* HSSL Educational Journey Section */}
-      <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-50 via-white to-green-50">
+      <section className="py-24 lg:py-32 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -617,7 +617,7 @@ export default function AboutPage() {
             className="text-center mb-20"
           >
             <motion.div
-              className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-violet-500 to-purple-600 rounded-full mb-8 shadow-lg"
+              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
               variants={floating}
               initial="initial"
               animate="animate"
@@ -628,7 +628,7 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               HSSL 的教育
               <motion.span
-                className="bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent block"
+                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -654,25 +654,25 @@ export default function AboutPage() {
                 name: '家庭分享',
                 description: '從個人實踐開始，將環保理念帶入家庭生活',
                 benefits: ['個人在家實踐', '分享給家人', '建立環保習慣'],
-                color: 'from-rose-400 to-pink-600',
-                bgColor: 'bg-rose-50',
-                textColor: 'text-rose-700',
+                color: 'from-emerald-500 to-teal-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
                 icon: Heart
               },
               {
                 name: '校園推廣',
                 description: '在學校環境中推廣環保教育與實踐',
                 benefits: ['分享給老師', '教導同學', '校內環保活動'],
-                color: 'from-indigo-400 to-blue-600',
-                bgColor: 'bg-indigo-50',
-                textColor: 'text-indigo-700',
+                color: 'from-emerald-500 to-teal-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
                 icon: Users
               },
               {
                 name: '社區教學',
                 description: '走入社區，舉辦實作教學與環保推廣',
                 benefits: ['舉辦製皂教學', '回收過期油', '環保攤位互動'],
-                color: 'from-emerald-400 to-teal-600',
+                color: 'from-emerald-500 to-teal-600',
                 bgColor: 'bg-emerald-50',
                 textColor: 'text-emerald-700',
                 icon: TreePine
@@ -685,9 +685,9 @@ export default function AboutPage() {
                   '綠色供應鏈循環經濟',
                   '品牌永續形象提升',
                 ],
-                color: 'from-amber-400 to-orange-600',
-                bgColor: 'bg-amber-50',
-                textColor: 'text-amber-700',
+                color: 'from-emerald-500 to-teal-600',
+                bgColor: 'bg-emerald-50',
+                textColor: 'text-emerald-700',
                 icon: Lightbulb
               }
             ].map((stage, index) => (
@@ -745,7 +745,7 @@ export default function AboutPage() {
                             transition={{ duration: 0.3, delay: benefitIndex * 0.1 }}
                             viewport={{ once: true }}
                           >
-                            <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                            <CheckCircle className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
                             <span className="text-gray-700 leading-relaxed">{benefit}</span>
                           </motion.li>
                         ))}
@@ -1010,7 +1010,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story */}
-      <section className="py-24 lg:py-32 bg-gradient-to-br from-white via-gray-50 to-emerald-50">
+      <section className="py-24 lg:py-32 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1053,7 +1053,7 @@ export default function AboutPage() {
                 <CardContent className="p-8 lg:p-10">
                   <div className="space-y-6 text-gray-700 leading-relaxed">
                     <p className="text-lg">
-                      <strong className="text-green-600">High School Soap Lab (簡稱 HSSL)</strong> 是成立自2021年的跨校團隊，因對市售清潔劑的隱憂，結合化學學科知識與技能，推廣手工皂替代市售清潔劑，也推廣過期油與實用廢油的循環再生。
+                      <strong className="text-emerald-600">High School Soap Lab (簡稱 HSSL)</strong> 是成立自2021年的跨校團隊，因對市售清潔劑的隱憂，結合化學學科知識與技能，推廣手工皂替代市售清潔劑，也推廣過期油與實用廢油的循環再生。
                     </p>
                     <p className="text-lg">
                       推廣與教學從個人在家分享給家人，到學校分享給老師與同學，再走出校園在社區中舉辦製皂教學，除了鼓勵民眾參加製皂活動，同步回收過期油作為推廣課的原料。
@@ -1097,7 +1097,7 @@ export default function AboutPage() {
                       他們分享我們對更清潔、更環保世界的願景。
                     </p>
                     <div className="space-y-4">
-                      <Button variant="secondary" className="w-full bg-white text-emerald-600 hover:bg-gray-100 font-semibold py-3" asChild>
+                      <Button variant="secondary" className="w-full bg-white text-emerald-600 hover:bg-emerald-50 font-semibold py-3" asChild>
                         <Link href="/support">
                           支持我們的事業
                         </Link>
