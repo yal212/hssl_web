@@ -1,0 +1,38 @@
+# Robots.txt for High School Soap Lab (HSSL) Website
+
+User-agent: *
+Allow: /
+
+# Allow all main pages
+Allow: /about
+Allow: /news
+Allow: /education
+Allow: /shop
+Allow: /support
+
+# Allow about team group pages
+Allow: /about/groups/
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/admin/
+Disallow: /profile
+Disallow: /debug-profile
+Disallow: /test-auth
+
+# Disallow authentication callback pages
+Disallow: /auth/
+Disallow: /login-success
+Disallow: /email-confirmed
+Disallow: /check-email
+Disallow: /already-confirmed
+
+# Allow authentication pages for indexing (some users might search for login)
+Allow: /login
+Allow: /signup
+
+# Sitemap location
+Sitemap: https://hssl-web.vercel.app/sitemap.xml
+
+# Crawl delay (optional - be respectful to server resources)
+Crawl-delay: 1
