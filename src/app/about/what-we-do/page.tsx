@@ -7,8 +7,7 @@ import {
   Recycle, 
   Users, 
   GraduationCap, 
-  Heart, 
-  TreePine, 
+
   Lightbulb,
   Target,
   Globe,
@@ -141,7 +140,7 @@ export default function WhatWeDoPage() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {activities.map((activity, index) => (
+            {activities.map((activity) => (
               <motion.div
                 key={activity.title}
                 variants={fadeInUp}
@@ -193,7 +192,7 @@ export default function WhatWeDoPage() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {goals.map((goal, index) => (
+            {goals.map((goal) => (
               <motion.div
                 key={goal.title}
                 variants={fadeInUp}

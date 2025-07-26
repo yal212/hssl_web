@@ -11,8 +11,8 @@ import {
   Clock,
   MessageCircle,
   Send,
-  Instagram,
-  Facebook,
+  Camera,
+  Users,
   ExternalLink
 } from 'lucide-react'
 import { useState } from 'react'
@@ -77,14 +77,14 @@ export default function ContactPage() {
 
   const socialMedia = [
     {
-      icon: Instagram,
+      icon: Camera,
       name: 'Instagram',
       handle: '@high.school.soap.lab',
       url: 'https://www.instagram.com/high.school.soap.lab',
       color: 'text-pink-600'
     },
     {
-      icon: Facebook,
+      icon: Users,
       name: 'Facebook',
       handle: 'High School Soap Lab.',
       url: 'https://www.facebook.com/groups/488135418924034/',
@@ -160,7 +160,7 @@ export default function ContactPage() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {contactInfo.map((info, index) => (
+            {contactInfo.map((info) => (
               <motion.div
                 key={info.title}
                 variants={fadeInUp}
@@ -300,7 +300,7 @@ export default function ContactPage() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {socialMedia.map((social, index) => (
+            {socialMedia.map((social) => (
               <motion.div
                 key={social.name}
                 variants={fadeInUp}

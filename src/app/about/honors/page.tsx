@@ -13,7 +13,7 @@ import {
   Target,
   Users,
   Calendar,
-  MapPin,
+
   ExternalLink
 } from 'lucide-react'
 
@@ -187,7 +187,7 @@ export default function HonorsPage() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {achievements.map((achievement, index) => (
+            {achievements.map((achievement) => (
               <motion.div
                 key={`${achievement.year}-${achievement.title}`}
                 variants={fadeInUp}
@@ -242,7 +242,7 @@ export default function HonorsPage() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {recognitions.map((recognition, index) => (
+            {recognitions.map((recognition) => (
               <motion.div
                 key={recognition.title}
                 variants={fadeInUp}
@@ -294,7 +294,7 @@ export default function HonorsPage() {
             {/* Timeline line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-green-200"></div>
             
-            {milestones.map((milestone, index) => (
+            {milestones.map((milestone) => (
               <motion.div
                 key={`${milestone.year}-${milestone.month}`}
                 variants={fadeInUp}
