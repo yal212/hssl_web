@@ -4,8 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
-import { Sparkles, Leaf, Heart, Share2, Copy } from 'lucide-react'
-import { useState } from 'react'
+import { Sparkles, Leaf, Heart } from 'lucide-react'
 import {
   fadeInUp,
   fadeInDown,
@@ -16,39 +15,6 @@ import {
 } from '@/lib/animations'
 
 export function Hero() {
-  const [copied, setCopied] = useState(false)
-
-  const handleShare = async () => {
-    const url = 'https://hssl-web.vercel.app/'
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'High School Soap Lab - 製作清潔環保手工皂',
-          text: '製作天然手工皂，回收廢油，將所有收益捐贈給慈善機構。',
-          url: url,
-        })
-      } catch (err) {
-        console.log('Error sharing:', err)
-        // Fallback to clipboard
-        await copyToClipboard(url)
-      }
-    } else {
-      // Fallback: copy to clipboard
-      await copyToClipboard(url)
-    }
-  }
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.log('Failed to copy:', err)
-    }
-  }
-
   return (
     <section className={`relative bg-cream py-20 lg:py-32 overflow-hidden`}>
       {/* Enhanced background decorations */}
@@ -230,69 +196,7 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Sharing Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-20 text-center"
-        >
-          <motion.h2
-            className="text-2xl md:text-3xl font-bold text-green-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
-          >
-            分享我們的使命
-          </motion.h2>
-          <motion.p
-            className="text-lg text-green-700 mb-6 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, duration: 0.6 }}
-          >
-            在社群媒體分享，擴大影響力
-          </motion.p>
-          <motion.p
-            className="text-base text-green-600 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.6 }}
-          >
-            觸及更多人
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.0, duration: 0.6 }}
-          >
-            <Button
-              onClick={handleShare}
-              size="lg"
-              className="relative overflow-hidden group"
-            >
-              <motion.div
-                className="flex items-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                {copied ? (
-                  <>
-                    <Copy className="w-5 h-5 mr-2" />
-                    已複製連結！
-                  </>
-                ) : (
-                  <>
-                    <Share2 className="w-5 h-5 mr-2" />
-                    立即分享
-                  </>
-                )}
-              </motion.div>
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            </Button>
-          </motion.div>
-        </motion.div>
+
       </div>
     </section>
   )
