@@ -30,7 +30,7 @@ export default function LoginSuccessPage() {
   // Show loading state while checking authentication
   if (loading || !showContent) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center">
+      <div className="min-h-screen bg-cream flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -44,7 +44,7 @@ export default function LoginSuccessPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-cream flex items-center justify-center py-12 px-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}

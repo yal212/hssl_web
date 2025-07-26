@@ -52,7 +52,7 @@ function CheckEmailContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-cream flex items-center justify-center py-12 px-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -72,7 +72,7 @@ function CheckEmailContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="mt-6 bg-white rounded-lg shadow-sm p-6"
+          className="mt-6 bg-cream rounded-lg shadow-sm p-6"
         >
           <h3 className="font-semibold text-gray-900 mb-3">為什麼需要確認電子郵件？</h3>
           <ul className="text-sm text-gray-600 space-y-2">
@@ -118,7 +118,7 @@ function CheckEmailContent() {
 export default function CheckEmailPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center">
+      <div className="min-h-screen bg-cream flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">載入中...</p>

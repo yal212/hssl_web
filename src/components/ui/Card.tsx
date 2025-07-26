@@ -9,12 +9,12 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, hover = false, variant = 'default', size = 'md', children, ...props }, ref) => {
-    const baseClasses = 'rounded-lg bg-white transition-all duration-200'
+    const baseClasses = 'rounded-lg bg-cream transition-all duration-200'
 
     const variants = {
-      default: 'border border-gray-200 shadow-sm',
-      elevated: 'border border-gray-100 shadow-md',
-      outlined: 'border-2 border-gray-200 shadow-none',
+      default: 'border border-green-200 shadow-sm',
+      elevated: 'border border-green-100 shadow-md',
+      outlined: 'border-2 border-green-200 shadow-none',
       ghost: 'border-none shadow-none bg-transparent'
     }
 
@@ -24,7 +24,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       lg: 'p-8'
     }
 
-    const hoverClasses = hover ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] hover:border-gray-300' : ''
+    const hoverClasses = hover ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] hover:border-green-300' : ''
 
     return (
       <div
@@ -62,7 +62,7 @@ const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingEle
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn('text-xl font-bold leading-tight tracking-tight text-gray-900', className)}
+      className={cn('text-xl font-bold leading-tight tracking-tight text-green-900', className)}
       {...props}
     />
   )
@@ -74,7 +74,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLPara
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('text-sm text-gray-600 leading-relaxed', className)}
+      className={cn('text-sm text-green-700 leading-relaxed', className)}
       {...props}
     />
   )

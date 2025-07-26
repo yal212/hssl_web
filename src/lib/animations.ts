@@ -1,62 +1,62 @@
 import { Variants } from 'framer-motion'
 
-// 🌱 HSSL Organic Eco-Friendly Color System
-// Unified emerald-teal theme with clearly defined roles and accessibility focus
+// 🌿 HSSL Warm Forest Color System
+// Cream background with deep forest green and layered green accents
 export const colorTheme = {
-  // 🎯 Primary Actions - Bold, accessible emerald for main CTAs
+  // 🎯 Primary Actions - Deep Green for main CTAs
   primary: {
-    gradient: 'from-emerald-500 to-teal-600',
-    gradientHover: 'from-emerald-600 to-teal-700',
-    bg: 'bg-emerald-600',
-    bgHover: 'bg-emerald-700',
-    bgActive: 'bg-emerald-800',
-    text: 'text-emerald-600',
-    textHover: 'text-emerald-700',
-    light: 'bg-emerald-50',
-    lightHover: 'bg-emerald-100',
-    border: 'border-emerald-200',
-    borderHover: 'border-emerald-300',
-    ring: 'ring-emerald-500',
-    shadow: 'shadow-emerald-500/25'
+    gradient: 'from-green-800 to-green-600',
+    gradientHover: 'from-green-900 to-green-700',
+    bg: 'bg-green-800',
+    bgHover: 'bg-green-900',
+    bgActive: 'bg-green-950',
+    text: 'text-green-800',
+    textHover: 'text-green-900',
+    light: 'bg-green-50',
+    lightHover: 'bg-green-100',
+    border: 'border-green-200',
+    borderHover: 'border-green-300',
+    ring: 'ring-green-700',
+    shadow: 'shadow-green-800/25'
   },
 
-  // 🌊 Secondary Actions - Soft teal for supporting elements
+  // 🌿 Secondary Actions - Mid Green for supporting elements
   secondary: {
-    gradient: 'from-teal-400 to-emerald-500',
-    gradientHover: 'from-teal-500 to-emerald-600',
-    bg: 'bg-teal-500',
-    bgHover: 'bg-teal-600',
-    bgActive: 'bg-teal-700',
-    text: 'text-teal-600',
-    textHover: 'text-teal-700',
-    light: 'bg-teal-50',
-    lightHover: 'bg-teal-100',
-    border: 'border-teal-200',
-    borderHover: 'border-teal-300',
-    ring: 'ring-teal-500',
-    shadow: 'shadow-teal-500/25'
+    gradient: 'from-green-600 to-green-400',
+    gradientHover: 'from-green-700 to-green-500',
+    bg: 'bg-green-600',
+    bgHover: 'bg-green-700',
+    bgActive: 'bg-green-800',
+    text: 'text-green-600',
+    textHover: 'text-green-700',
+    light: 'bg-green-50',
+    lightHover: 'bg-green-100',
+    border: 'border-green-200',
+    borderHover: 'border-green-300',
+    ring: 'ring-green-600',
+    shadow: 'shadow-green-600/25'
   },
 
-  // ✨ Success States - Cool emerald variants for positive feedback
+  // ✨ Success States - Light Mint Green for positive feedback
   success: {
-    gradient: 'from-emerald-400 to-green-500',
-    gradientHover: 'from-emerald-500 to-green-600',
-    bg: 'bg-emerald-500',
-    bgHover: 'bg-emerald-600',
-    text: 'text-emerald-700',
-    light: 'bg-emerald-50',
-    border: 'border-emerald-200',
-    ring: 'ring-emerald-500',
-    shadow: 'shadow-emerald-500/20'
+    gradient: 'from-green-300 to-green-400',
+    gradientHover: 'from-green-400 to-green-500',
+    bg: 'bg-green-300',
+    bgHover: 'bg-green-400',
+    text: 'text-green-800',
+    light: 'bg-green-50',
+    border: 'border-green-200',
+    ring: 'ring-green-300',
+    shadow: 'shadow-green-300/20'
   },
 
-  // ⚠️ Warning States - Earthy amber for alerts (organic, not neon)
+  // ⚠️ Warning States - Warm amber for alerts
   warning: {
-    gradient: 'from-amber-400 to-orange-500',
-    gradientHover: 'from-amber-500 to-orange-600',
-    bg: 'bg-amber-500',
-    bgHover: 'bg-amber-600',
-    text: 'text-amber-700',
+    gradient: 'from-amber-500 to-amber-600',
+    gradientHover: 'from-amber-600 to-amber-700',
+    bg: 'bg-amber-600',
+    bgHover: 'bg-amber-700',
+    text: 'text-amber-800',
     light: 'bg-amber-50',
     border: 'border-amber-200',
     ring: 'ring-amber-500',
@@ -92,83 +92,83 @@ export const colorTheme = {
     shadow: 'shadow-slate-500/10'
   },
 
-  // 🌱 Accent/Contrast - Deep forest green for emphasis
+  // 🌱 Accent/Contrast - Pale Green Tint for emphasis
   accent: {
-    gradient: 'from-green-600 to-emerald-700',
-    gradientHover: 'from-green-700 to-emerald-800',
-    bg: 'bg-green-700',
-    bgHover: 'bg-green-800',
-    text: 'text-green-700',
-    textHover: 'text-green-800',
+    gradient: 'from-green-200 to-green-300',
+    gradientHover: 'from-green-300 to-green-400',
+    bg: 'bg-green-200',
+    bgHover: 'bg-green-300',
+    text: 'text-green-800',
+    textHover: 'text-green-900',
     light: 'bg-green-50',
     lightHover: 'bg-green-100',
-    border: 'border-green-300',
-    borderHover: 'border-green-400',
-    ring: 'ring-green-600',
-    shadow: 'shadow-green-600/25'
+    border: 'border-green-200',
+    borderHover: 'border-green-300',
+    ring: 'ring-green-300',
+    shadow: 'shadow-green-200/25'
   }
 }
 
-// 🌈 Recommended Gradient System for Different Use Cases
+// 🌈 Forest Theme Gradient System for Different Use Cases
 export const gradientSystem = {
-  // Hero sections - Bold, eye-catching gradients
+  // Hero sections - Bold, forest gradients
   hero: {
-    primary: 'from-emerald-500 via-teal-500 to-green-600',
-    secondary: 'from-teal-400 via-emerald-400 to-lime-500',
-    accent: 'from-green-600 via-emerald-600 to-teal-700'
+    primary: 'from-green-800 via-green-600 to-green-400',
+    secondary: 'from-green-600 via-green-400 to-green-200',
+    accent: 'from-green-700 via-green-500 to-green-300'
   },
 
-  // Card backgrounds and overlays - Subtle, elegant
+  // Card backgrounds and overlays - Subtle, warm
   cards: {
-    primary: 'from-emerald-50 via-white to-teal-50',
-    secondary: 'from-teal-50 via-emerald-50 to-green-50',
-    accent: 'from-white via-emerald-50 to-white'
+    primary: 'from-green-50 via-cream to-green-50',
+    secondary: 'from-cream via-green-50 to-cream',
+    accent: 'from-green-100 via-green-50 to-cream'
   },
 
-  // Buttons and interactive elements - Vibrant, engaging
+  // Buttons and interactive elements - Deep forest tones
   interactive: {
-    primary: 'from-emerald-500 to-teal-600',
-    secondary: 'from-teal-400 to-emerald-500',
-    accent: 'from-green-600 to-emerald-700',
+    primary: 'from-green-800 to-green-600',
+    secondary: 'from-green-600 to-green-400',
+    accent: 'from-green-700 to-green-500',
     hover: {
-      primary: 'from-emerald-600 to-teal-700',
-      secondary: 'from-teal-500 to-emerald-600',
-      accent: 'from-green-700 to-emerald-800'
+      primary: 'from-green-900 to-green-700',
+      secondary: 'from-green-700 to-green-500',
+      accent: 'from-green-800 to-green-600'
     }
   },
 
-  // Section backgrounds - Organic, flowing transitions
+  // Section backgrounds - Warm, earthy transitions
   sections: {
-    light: 'from-emerald-50 via-white to-teal-50',
-    medium: 'from-emerald-100 via-teal-50 to-green-100',
-    dark: 'from-emerald-800 via-teal-800 to-green-900'
+    light: 'from-green-50 via-cream to-green-50',
+    medium: 'from-green-100 via-green-50 to-cream',
+    dark: 'from-green-800 via-green-700 to-green-900'
   }
 }
 
-// 🎨 Section Background Alternation Patterns
+// 🎨 Section Background Alternation Patterns - Forest Theme
 export const sectionPatterns = {
   // Standard alternating pattern
   standard: [
-    'bg-white',
-    'bg-gradient-to-br from-emerald-50 via-white to-teal-50',
-    'bg-emerald-50',
-    'bg-gradient-to-br from-teal-50 via-emerald-50 to-green-50'
+    'bg-cream',
+    'bg-gradient-to-br from-green-50 via-cream to-green-100',
+    'bg-green-50',
+    'bg-gradient-to-br from-green-100 via-green-50 to-cream'
   ],
 
   // Subtle gradient pattern
   subtle: [
-    'bg-gradient-to-br from-white via-emerald-50 to-white',
-    'bg-gradient-to-br from-emerald-50 via-white to-teal-50',
-    'bg-gradient-to-br from-teal-50 via-emerald-50 to-white',
-    'bg-gradient-to-br from-white via-teal-50 to-emerald-50'
+    'bg-gradient-to-br from-cream via-green-50 to-cream',
+    'bg-gradient-to-br from-green-50 via-cream to-green-100',
+    'bg-gradient-to-br from-green-100 via-green-50 to-cream',
+    'bg-gradient-to-br from-cream via-green-100 to-green-50'
   ],
 
   // Bold contrast pattern
   bold: [
-    'bg-white',
-    'bg-gradient-to-br from-emerald-500 to-teal-600',
-    'bg-emerald-50',
-    'bg-gradient-to-br from-teal-600 to-green-700'
+    'bg-cream',
+    'bg-gradient-to-br from-green-800 to-green-600',
+    'bg-green-50',
+    'bg-gradient-to-br from-green-600 to-green-700'
   ]
 }
 

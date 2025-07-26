@@ -35,13 +35,13 @@ export default function AboutPage() {
       description: '提供專業指導與學術支持',
       responsibilities: ['學術指導', '專業諮詢'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     }
   ]
 
@@ -51,91 +51,91 @@ export default function AboutPage() {
       description: '負責器材準備、整理、交通運送、藥品配置以及現場場佈',
       responsibilities: ['器材管理', '藥品配置', '現場場佈'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     },
     {
       name: '教學組',
       description: '負責製作投影片設計以及配方設計',
       responsibilities: ['技術教學', '配方研發'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     },
     {
       name: '文書美宣組',
       description: '負責經營臉書、IG帳號以及海報設計',
       responsibilities: ['社群媒體', '宣傳製作'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     },
     {
       name: '總務組',
       description: '負責餐飲安排以及原物料訂購',
       responsibilities: ['餐飲安排', '原物料訂購'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     },
     {
       name: '資訊組',
       description: '負責製作問卷、網站設計以及處理保險資料',
       responsibilities: ['問卷', '網站設計', '保險資料'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     },
     {
       name: '活動公關',
       description: '負責與單位合作以及Creat活動辦理',
       responsibilities: ['單位合作', '活動辦理'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     },
     {
       name: '義賣規劃',
       description: '負責企業認購以及設計義賣文宣',
       responsibilities: ['企業認購', '義賣文宣'],
       avatar: '',
-      color: 'bg-emerald-500',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-700',
-      badgeBorder: 'border-emerald-200',
-      ctaText: 'text-emerald-600'
+      color: 'bg-green-500',
+      gradientFrom: 'from-green-500',
+      gradientTo: 'to-green-600',
+      badgeBg: 'bg-green-50',
+      badgeText: 'text-green-700',
+      badgeBorder: 'border-green-200',
+      ctaText: 'text-green-600'
     }
   ]
 
@@ -170,7 +170,7 @@ export default function AboutPage() {
       transition={{ duration: 0.8 }}
     >
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-50 py-24 lg:py-32 overflow-hidden">
+      <section className="relative bg-cream py-24 lg:py-32 overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
@@ -278,7 +278,7 @@ export default function AboutPage() {
       </section>
 
       {/* HSSL Mission Section */}
-      <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} to-white`}>
+      <section className="py-24 lg:py-32 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInDown}
@@ -356,11 +356,11 @@ export default function AboutPage() {
                 color: 'from-emerald-500 to-teal-600'
               }
             ].map((step, index) => {
-              // Enhanced color palette for mission cards - consistent emerald-teal theme
+              // Enhanced color palette for mission cards - consistent forest theme
               const enhancedColors = [
-                'from-emerald-500 to-teal-600', // Science/Chemistry
-                'from-teal-500 to-emerald-600',  // Environment/Recycling
-                'from-emerald-600 to-green-700'      // Community/Heart
+                'from-green-800 to-green-600', // Science/Chemistry
+                'from-green-700 to-green-500',  // Environment/Recycling
+                'from-green-600 to-green-400'      // Community/Heart
               ]
 
               return (
@@ -478,9 +478,9 @@ export default function AboutPage() {
               {
                 title: '公共衛生',
                 icon: Shield,
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 items: [
                   '健康清潔',
                   '天然無毒添加物'
@@ -489,9 +489,9 @@ export default function AboutPage() {
               {
                 title: '環境永續',
                 icon: TreePine,
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 items: [
                   '100% 分解',
                   '無石化油原料',
@@ -502,9 +502,9 @@ export default function AboutPage() {
               {
                 title: '公益關懷',
                 icon: Heart,
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 items: [
                   '弱勢製皂工作坊',
                   '偏鄉與非洲肯亞送皂',
@@ -514,9 +514,9 @@ export default function AboutPage() {
               {
                 title: '社會 ESG 合作',
                 icon: Lightbulb,
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 items: [
                   '永續攤位',
                   '製皂工作坊'
@@ -607,7 +607,7 @@ export default function AboutPage() {
       </section>
 
       {/* HSSL Educational Journey Section */}
-      <section className="py-24 lg:py-32 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      <section className="py-24 lg:py-32 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -654,27 +654,27 @@ export default function AboutPage() {
                 name: '家庭分享',
                 description: '從個人實踐開始，將環保理念帶入家庭生活',
                 benefits: ['個人在家實踐', '分享給家人', '建立環保習慣'],
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 icon: Heart
               },
               {
                 name: '校園推廣',
                 description: '在學校環境中推廣環保教育與實踐',
                 benefits: ['分享給老師', '教導同學', '校內環保活動'],
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 icon: Users
               },
               {
                 name: '社區教學',
                 description: '走入社區，舉辦實作教學與環保推廣',
                 benefits: ['舉辦製皂教學', '回收過期油', '環保攤位互動'],
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 icon: TreePine
               },
               {
@@ -685,9 +685,9 @@ export default function AboutPage() {
                   '綠色供應鏈循環經濟',
                   '品牌永續形象提升',
                 ],
-                color: 'from-emerald-500 to-teal-600',
-                bgColor: 'bg-emerald-50',
-                textColor: 'text-emerald-700',
+                color: 'from-green-500 to-green-600',
+                bgColor: 'bg-green-50',
+                textColor: 'text-green-700',
                 icon: Lightbulb
               }
             ].map((stage, index) => (
@@ -760,7 +760,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-24 lg:py-32 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      <section className="py-24 lg:py-32 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1010,7 +1010,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story */}
-      <section className="py-24 lg:py-32 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      <section className="py-24 lg:py-32 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

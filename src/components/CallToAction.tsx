@@ -42,12 +42,12 @@ export function CallToAction() {
   ]
 
   return (
-    <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50 relative overflow-hidden`}>
+    <section className={`py-24 lg:py-32 bg-cream relative overflow-hidden`}>
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,17 +90,17 @@ export function CallToAction() {
         >
           {urgentActions.map((action, index) => {
             const cardColors = [
-              'from-emerald-500 to-teal-600',
-              'from-emerald-500 to-teal-600',
-              'from-emerald-500 to-teal-600'
+              'from-green-800 to-green-600',
+              'from-green-700 to-green-500',
+              'from-green-600 to-green-400'
             ]
 
             return (
               <motion.div
                 key={action.title}
                 variants={staggerItem}
-                className={`relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 group ${
-                  action.urgent ? `ring-2 ring-emerald-500 ring-opacity-50` : ''
+                className={`relative bg-cream/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 group ${
+                  action.urgent ? `ring-2 ring-green-600 ring-opacity-50` : ''
                 }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.99 }}
@@ -117,11 +117,11 @@ export function CallToAction() {
                 <action.icon className="w-10 h-10 text-white relative z-10" />
               </div>
 
-              <h3 className={`text-2xl font-bold text-gray-900 mb-4 text-center group-hover:${colorTheme.primary.text} transition-colors duration-200`}>
+              <h3 className={`text-2xl font-bold text-green-900 mb-4 text-center group-hover:${colorTheme.primary.text} transition-colors duration-200`}>
                 {action.title}
               </h3>
 
-              <p className="text-gray-600 mb-6 text-center leading-relaxed">
+              <p className="text-green-700 mb-6 text-center leading-relaxed">
                 {action.description}
               </p>
 

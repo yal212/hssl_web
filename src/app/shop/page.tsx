@@ -88,12 +88,12 @@ export default function ShopPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50 py-12 relative overflow-hidden`}>
+    <div className="min-h-screen bg-cream py-12 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -214,7 +214,7 @@ export default function ShopPage() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card hover variant="elevated" className="h-full flex flex-col group overflow-hidden bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300">
+                <Card hover variant="elevated" className="h-full flex flex-col group overflow-hidden bg-cream/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300">
                   <CardContent className="p-0 flex-1">
                     {/* Product Image */}
                     <div className={`relative h-56 bg-gradient-to-br ${colorTheme.primary.gradient} overflow-hidden`}>

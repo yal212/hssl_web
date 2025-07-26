@@ -73,7 +73,7 @@ export function ImpactSummary() {
   }, [])
 
   return (
-    <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-50`}>
+    <section className={`py-24 lg:py-32 bg-cream`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Latest News */}
         <motion.div
@@ -81,13 +81,13 @@ export function ImpactSummary() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl relative overflow-hidden"
+          className="bg-cream rounded-2xl p-8 md:p-12 shadow-xl relative overflow-hidden"
         >
           {/* Decorative background */}
           <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-4 right-4 w-32 h-32 rounded-full border-2 border-emerald-300"></div>
-            <div className="absolute bottom-4 left-4 w-20 h-20 rounded-full bg-emerald-300"></div>
-            <div className="absolute top-1/2 right-16 w-12 h-12 rounded-full bg-teal-300"></div>
+            <div className="absolute top-4 right-4 w-32 h-32 rounded-full border-2 border-green-300"></div>
+            <div className="absolute bottom-4 left-4 w-20 h-20 rounded-full bg-green-300"></div>
+            <div className="absolute top-1/2 right-16 w-12 h-12 rounded-full bg-green-400"></div>
           </div>
 
           <div className="relative z-10">
@@ -107,7 +107,7 @@ export function ImpactSummary() {
                 >
                   <Newspaper className="w-8 h-8 text-white" />
                 </motion.div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-900">
                   最新
                   <span className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent`}>
                     動態
@@ -186,7 +186,7 @@ export function ImpactSummary() {
                         transition={{ duration: 0.4, delay: 0.2 }}
                         viewport={{ once: true }}
                       >
-                        <span className="text-sm font-medium text-gray-500">{formattedDate}</span>
+                        <span className="text-sm font-medium text-green-600">{formattedDate}</span>
                         <motion.span
                           className={`px-3 py-1 text-xs font-medium rounded-full ${colorTheme.primary.light} ${colorTheme.primary.text}`}
                           whileHover={{ scale: 1.1 }}
@@ -196,7 +196,7 @@ export function ImpactSummary() {
                         </motion.span>
                       </motion.div>
                       <motion.h3
-                        className={`text-xl font-bold text-gray-900 mb-3 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
+                        className={`text-xl font-bold text-green-900 mb-3 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.3 }}
@@ -205,7 +205,7 @@ export function ImpactSummary() {
                         {news.title}
                       </motion.h3>
                       <motion.p
-                        className="text-gray-600 leading-relaxed"
+                        className="text-green-700 leading-relaxed"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.4 }}

@@ -25,11 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-TW">
-      <body className={`${inter.variable} font-sans antialiased bg-emerald-50 text-slate-900`}>
+      <body className={`${inter.variable} font-sans antialiased text-green-900`} style={{backgroundColor: '#f4efe1'}}>
         {/* Skip Navigation */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-emerald-600 text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-green-800 text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
         >
           跳至主要內容
         </a>

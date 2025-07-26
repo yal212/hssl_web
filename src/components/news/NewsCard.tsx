@@ -143,20 +143,20 @@ export function NewsCard({
                     {categoryInfo.label}
                   </span>
                 )}
-                <div className="flex items-center text-gray-500 text-sm">
+                <div className="flex items-center text-green-600 text-sm">
                   <Calendar className="w-4 h-4 mr-1" />
                   {formatDate(displayDate)}
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className={`font-bold text-gray-900 mb-3 line-clamp-2 ${featured ? 'text-xl' : 'text-lg'}`}>
+              <h3 className={`font-bold text-green-900 mb-3 line-clamp-2 ${featured ? 'text-xl' : 'text-lg'}`}>
                 {news.title}
               </h3>
 
               {/* Excerpt */}
               {news.excerpt && (
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                <p className="text-green-700 text-sm mb-4 line-clamp-3">
                   {news.excerpt}
                 </p>
               )}

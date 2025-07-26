@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/Button'
 
 export default function EmailConfirmedPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-cream flex items-center justify-center py-12 px-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center"
+        className="max-w-md w-full bg-cream rounded-lg shadow-lg p-8 text-center"
       >
         {/* Success Icon */}
         <motion.div
@@ -23,7 +23,7 @@ export default function EmailConfirmedPage() {
         >
           <div className="relative">
             <Mail className="h-16 w-16 text-green-600 mx-auto" />
-            <CheckCircle className="h-8 w-8 text-green-600 absolute -bottom-1 -right-1 bg-white rounded-full" />
+            <CheckCircle className="h-8 w-8 text-green-600 absolute -bottom-1 -right-1 bg-cream rounded-full" />
           </div>
         </motion.div>
         

@@ -174,11 +174,11 @@ function LoginContent() {
 
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${colorTheme.primary.light} via-white to-emerald-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden`}>
+    <div className="min-h-screen bg-cream flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 rounded-full blur-3xl"></div>
         <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
       </div>
 
@@ -222,7 +222,7 @@ function LoginContent() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0">
+          <Card className="bg-cream/90 backdrop-blur-sm shadow-2xl border-0">
             <CardHeader className="text-center pb-8">
               <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
                 會員登入
@@ -327,7 +327,7 @@ function LoginContent() {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">或</span>
+                <span className="px-2 bg-cream text-gray-500">或</span>
               </div>
             </div>
 
@@ -436,7 +436,7 @@ function LoginContent() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center">
+      <div className="min-h-screen bg-cream flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
           <p className="text-gray-600">載入中...</p>

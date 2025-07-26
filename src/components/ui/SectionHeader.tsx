@@ -77,7 +77,7 @@ export function SectionHeader({
         </div>
       )}
       
-      <h1 className={`font-bold text-gray-900 mb-6 leading-tight ${sizeConfig.title}`}>
+      <h1 className={`font-bold text-green-900 mb-6 leading-tight ${sizeConfig.title}`}>
         {subtitle ? (
           <>
             {title}
@@ -89,9 +89,9 @@ export function SectionHeader({
           title
         )}
       </h1>
-      
+
       {description && (
-        <p className={`text-gray-600 max-w-4xl mx-auto leading-relaxed ${sizeConfig.description}`}>
+        <p className={`text-green-700 max-w-4xl mx-auto leading-relaxed ${sizeConfig.description}`}>
           {description}
         </p>
       )}
@@ -121,7 +121,7 @@ export function EnhancedCard({
 }: EnhancedCardProps) {
   const baseClasses = 'rounded-2xl border-0 shadow-lg transition-all duration-300'
   const hoverClasses = hover ? 'hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02]' : ''
-  const gradientClasses = gradient ? `bg-gradient-to-br ${gradientFrom} ${gradientTo}` : 'bg-white'
+  const gradientClasses = gradient ? `bg-gradient-to-br ${gradientFrom} ${gradientTo}` : 'bg-cream'
 
   return (
     <motion.div

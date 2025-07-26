@@ -19,11 +19,11 @@ export function Section({
   maxWidth = '7xl'
 }: SectionProps) {
   const backgrounds = {
-    white: 'bg-white',
-    gray: 'bg-gray-50',
+    white: 'bg-cream',
+    gray: 'bg-green-50',
     'gradient-green': 'bg-gradient-to-br from-green-50 to-green-100',
-    'gradient-blue': 'bg-gradient-to-br from-blue-50 to-blue-100',
-    'gradient-mixed': 'bg-gradient-to-br from-green-50 via-white to-blue-50'
+    'gradient-blue': 'bg-gradient-to-br from-green-100 to-green-200',
+    'gradient-mixed': 'bg-gradient-to-br from-green-50 via-cream to-green-100'
   }
 
   const paddings = {

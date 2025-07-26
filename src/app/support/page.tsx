@@ -83,14 +83,14 @@ export default function SupportPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       {/* Hero Section */}
-      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-100 py-24 lg:py-32 relative overflow-hidden`}>
+      <section className="bg-cream py-24 lg:py-32 relative overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -255,10 +255,10 @@ export default function SupportPage() {
           >
             {supportWays.map((way, index) => {
               const wayColors = [
-                'from-emerald-500 to-teal-600',
-                'from-emerald-500 to-teal-600',
-                'from-emerald-500 to-teal-600',
-                'from-emerald-500 to-teal-600'
+                'from-green-800 to-green-600',
+                'from-green-700 to-green-500',
+                'from-green-600 to-green-400',
+                'from-green-800 to-green-600'
               ]
 
               return (

@@ -13,7 +13,7 @@ import {
 
 export function Mission() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* What We Do */}
         <motion.div
@@ -186,7 +186,7 @@ export function Mission() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className={`bg-gradient-to-r ${colorTheme.primary.light} to-teal-50 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden`}
+          className="bg-cream rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
         >
           {/* Decorative background */}
           <div className="absolute inset-0 opacity-10">
@@ -197,7 +197,7 @@ export function Mission() {
 
           <div className="relative z-10">
             <motion.h2
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+              className="text-4xl md:text-5xl font-bold text-green-900 mb-6 leading-tight"
               variants={fadeInUp}
               initial="initial"
               whileInView="animate"
@@ -216,7 +216,7 @@ export function Mission() {
             </motion.h2>
             <div className="max-w-4xl mx-auto">
               <motion.p
-                className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed"
+                className="text-xl md:text-2xl text-green-800 mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
@@ -234,12 +234,12 @@ export function Mission() {
               >
                 <motion.div
                   variants={staggerItem}
-                  className="bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="bg-cream/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <motion.h3
-                    className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
+                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
@@ -248,7 +248,7 @@ export function Mission() {
                     環境保護
                   </motion.h3>
                   <motion.p
-                    className="text-gray-600 leading-relaxed"
+                    className="text-green-700 leading-relaxed"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
@@ -259,12 +259,12 @@ export function Mission() {
                 </motion.div>
                 <motion.div
                   variants={staggerItem}
-                  className="bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="bg-cream/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <motion.h3
-                    className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
+                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
@@ -273,7 +273,7 @@ export function Mission() {
                     社會關懷
                   </motion.h3>
                   <motion.p
-                    className="text-gray-600 leading-relaxed"
+                    className="text-green-700 leading-relaxed"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}

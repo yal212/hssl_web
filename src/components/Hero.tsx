@@ -16,14 +16,14 @@ import {
 
 export function Hero() {
   return (
-    <section className={`relative bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50 py-20 lg:py-32 overflow-hidden`}>
+    <section className={`relative bg-cream py-20 lg:py-32 overflow-hidden`}>
       {/* Enhanced background decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-200/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
         <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200 rounded-full opacity-20"
+          className="absolute -top-40 -right-40 w-80 h-80 bg-green-200 rounded-full opacity-20"
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
@@ -63,7 +63,7 @@ export function Hero() {
               variants={fadeInUp}
               initial="initial"
               animate="animate"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 leading-tight text-balance"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-green-900 mb-6 leading-tight text-balance"
             >
               高中學生{' '}
               <motion.span
@@ -82,7 +82,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-8 max-w-2xl leading-relaxed text-pretty"
+              className="text-lg sm:text-xl lg:text-2xl text-green-700 mb-8 max-w-2xl leading-relaxed text-pretty"
             >
               製作天然手工皂，回收廢油，將所有收益捐贈給慈善機構。
 

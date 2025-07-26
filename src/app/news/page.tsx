@@ -182,13 +182,13 @@ export default function NewsPage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-white"
+      className="min-h-screen bg-cream"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
       {/* Hero Section */}
-      <section className={`bg-gradient-to-br ${colorTheme.primary.light} via-white to-white py-24 lg:py-32 overflow-hidden`}>
+      <section className={`bg-cream py-24 lg:py-32 overflow-hidden`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInDown}
@@ -265,7 +265,7 @@ export default function NewsPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-12"
           >
-            <div className={`bg-white rounded-2xl shadow-lg border ${colorTheme.primary.border} p-6 lg:p-8`}>
+            <div className={`bg-cream rounded-2xl shadow-lg border ${colorTheme.primary.border} p-6 lg:p-8`}>
               <NewsFiltersComponent
                 filters={filters}
                 onFiltersChange={handleFiltersChange}

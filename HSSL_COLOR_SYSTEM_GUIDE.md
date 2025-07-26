@@ -1,219 +1,134 @@
-# 🌱 HSSL Color System Guide
+# 🌿 HSSL Warm Forest Color System Guide
 
 ## Overview
-This comprehensive color system establishes a unified, organic, eco-friendly visual identity for the HSSL website. All colors are designed to work harmoniously while maintaining excellent accessibility standards.
+This comprehensive color system establishes a warm, earthy, forest-inspired visual identity for the HSSL website. Built around a cream background with deep forest green text and a 4-layer green accent system, all colors are designed to work harmoniously while maintaining excellent accessibility standards.
 
-## 🎨 Color Roles & Usage
+## 🎨 Color Palette
 
-### Primary Actions (Emerald)
-**Use for:** Main CTAs, primary buttons, key interactive elements
+### Background & Text
+- **Background:** Cream (#f4efe1) - Warm, welcoming site-wide background
+- **Primary Text:** Deep Forest Green (#214d3a) - Deep, legible, grounded text
+
+### 4-Layer Green Accent System
+
+#### Layer 1: Deep Green (#2a5e44)
+**Use for:** Primary buttons, key UI elements, main branding
 ```css
 /* Tailwind Classes */
-bg-emerald-600 text-white
-hover:bg-emerald-700
-focus:ring-emerald-500
-border-emerald-600
+bg-green-800 text-cream
+hover:bg-green-900
+focus:ring-green-700
+border-green-800
 
 /* CSS Variables */
 var(--primary-600)
 var(--primary-700)
 ```
 
-### Secondary Actions (Teal)
-**Use for:** Supporting buttons, secondary CTAs, info components
+#### Layer 2: Mid Green (#639a73)
+**Use for:** Secondary buttons, highlights, visual balance
 ```css
 /* Tailwind Classes */
-bg-teal-500 text-white
-hover:bg-teal-600
-focus:ring-teal-500
-border-teal-500
+bg-green-600 text-cream
+hover:bg-green-700
+focus:ring-green-600
+border-green-600
 
 /* CSS Variables */
 var(--secondary-500)
 var(--secondary-600)
 ```
 
-### Success States (Cool Emerald)
-**Use for:** Success messages, positive feedback, completed states
+#### Layer 3: Light Mint Green (#aecea9)
+**Use for:** Background layers, cards, soft dividers
 ```css
 /* Tailwind Classes */
-bg-emerald-500 text-white
-bg-emerald-50 text-emerald-700
-border-emerald-200
+bg-green-300 text-green-900
+hover:bg-green-400
+focus:ring-green-300
+border-green-300
 
 /* CSS Variables */
-var(--success-500)
-var(--success-50)
+var(--accent-400)
+var(--accent-500)
 ```
 
-### Warning States (Earthy Amber)
-**Use for:** Warnings, caution messages, pending states
+#### Layer 4: Pale Green Tint (#d1e0cd)
+**Use for:** Hover states, input backgrounds, neutral zones
 ```css
 /* Tailwind Classes */
-bg-amber-500 text-white
-bg-amber-50 text-amber-700
-border-amber-200
+bg-green-200 text-green-800
+hover:bg-green-300
+border-green-200
 
 /* CSS Variables */
-var(--warning-500)
-var(--warning-50)
+var(--accent-300)
+var(--accent-200)
 ```
 
-### Error States (Muted Rust)
-**Use for:** Error messages, destructive actions, failed states
+## 🎯 Semantic Colors
+
+### Success States
+**Color:** Light Mint Green (#aecea9)
+**Use for:** Success messages, completed states, positive feedback
 ```css
-/* Tailwind Classes */
-bg-red-500 text-white
-bg-red-50 text-red-700
-border-red-200
-
-/* CSS Variables */
-var(--error-500)
-var(--error-50)
+bg-green-300 text-green-900
+border-green-300
 ```
 
-### Neutral/Tertiary (Sage & Warm Grays)
-**Use for:** Backgrounds, borders, muted text, disabled states
+### Warning States
+**Color:** Warm Amber (#d97706)
+**Use for:** Warnings, caution messages, important notices
 ```css
-/* Tailwind Classes */
-bg-slate-100 text-slate-600
-bg-stone-50 text-stone-700
-border-slate-200
-
-/* CSS Variables */
-var(--neutral-100)
-var(--neutral-600)
+bg-amber-600 text-white
+border-amber-600
 ```
 
-## 🌈 Recommended Gradients
+### Error States
+**Color:** Muted Red (#dc2626)
+**Use for:** Error messages, destructive actions, validation errors
+```css
+bg-red-600 text-white
+border-red-600
+```
 
-### Hero Sections
+## 🌈 Gradients
+
+### Hero Gradients
 ```css
 /* Primary Hero */
-bg-gradient-to-br from-emerald-500 via-teal-500 to-green-600
+.gradient-hero-primary {
+  background: linear-gradient(135deg, #2a5e44 0%, #639a73 50%, #aecea9 100%);
+}
 
 /* Secondary Hero */
-bg-gradient-to-br from-teal-400 via-emerald-400 to-lime-500
-
-/* Accent Hero */
-bg-gradient-to-br from-green-600 via-emerald-600 to-teal-700
+.gradient-hero-secondary {
+  background: linear-gradient(135deg, #639a73 0%, #aecea9 50%, #d1e0cd 100%);
+}
 ```
 
-### Card Backgrounds
+### Card Gradients
 ```css
-/* Subtle Card */
-bg-gradient-to-br from-emerald-50 via-white to-teal-50
-
-/* Medium Card */
-bg-gradient-to-br from-teal-50 via-emerald-50 to-green-50
-
-/* Accent Card */
-bg-gradient-to-br from-white via-emerald-50 to-white
+/* Subtle Card Background */
+.gradient-card-subtle {
+  background: linear-gradient(135deg, #f8fbf7 0%, #f4efe1 50%, #f0f6ef 100%);
+}
 ```
 
-### Interactive Elements
+### Interactive Gradients
 ```css
-/* Primary Button */
-bg-gradient-to-r from-emerald-500 to-teal-600
-hover:from-emerald-600 hover:to-teal-700
+/* Primary Interactive */
+.gradient-interactive-primary {
+  background: linear-gradient(135deg, #2a5e44 0%, #639a73 100%);
+}
 
-/* Secondary Button */
-bg-gradient-to-r from-teal-400 to-emerald-500
-hover:from-teal-500 hover:to-emerald-600
+/* Hover State */
+.gradient-interactive-hover {
+  background: linear-gradient(135deg, #214d3a 0%, #4f7d5c 100%);
+}
 ```
 
-## 🧩 Component Guidelines
-
-### Buttons
-```tsx
-// Primary Action
-<Button className="btn-primary">Primary Action</Button>
-
-// Secondary Action
-<Button className="btn-secondary">Secondary Action</Button>
-
-// Outline Style
-<Button className="btn-outline">Outline Button</Button>
-
-// Ghost Style
-<Button className="btn-ghost">Ghost Button</Button>
-```
-
-### Cards
-```tsx
-// Default Card
-<Card className="card-default">Content</Card>
-
-// Gradient Card
-<Card className="card-gradient">Content</Card>
-
-// Colored Card
-<Card className="card-emerald">Emerald Content</Card>
-<Card className="card-teal">Teal Content</Card>
-```
-
-### Focus States
-```tsx
-// Primary Focus
-<input className="focus-ring" />
-
-// Secondary Focus
-<input className="focus-ring-secondary" />
-
-// Success Focus
-<input className="focus-ring-success" />
-```
-
-## 📋 Section Background Patterns
-
-### Standard Alternating
-```css
-/* Section 1 */ bg-white
-/* Section 2 */ bg-gradient-to-br from-emerald-50 via-white to-teal-50
-/* Section 3 */ bg-emerald-50
-/* Section 4 */ bg-gradient-to-br from-teal-50 via-emerald-50 to-green-50
-```
-
-### Subtle Gradient
-```css
-/* Section 1 */ bg-gradient-to-br from-white via-emerald-50 to-white
-/* Section 2 */ bg-gradient-to-br from-emerald-50 via-white to-teal-50
-/* Section 3 */ bg-gradient-to-br from-teal-50 via-emerald-50 to-white
-/* Section 4 */ bg-gradient-to-br from-white via-teal-50 to-emerald-50
-```
-
-## ♿ Accessibility Guidelines
-
-### Contrast Ratios (WCAG 2.1)
-- **Normal Text:** 4.5:1 minimum (AA)
-- **Large Text:** 3:1 minimum (AA)
-- **Enhanced:** 7:1 (AAA)
-
-### High Contrast Combinations
-```css
-/* White background with dark text */
-bg-white text-slate-900
-
-/* Emerald background with white text */
-bg-emerald-600 text-white
-
-/* Dark background with white text */
-bg-slate-900 text-white
-```
-
-### Medium Contrast Combinations
-```css
-/* Light emerald with dark emerald text */
-bg-emerald-50 text-emerald-900
-
-/* Light teal with dark teal text */
-bg-teal-50 text-teal-900
-
-/* Light slate with dark slate text */
-bg-slate-100 text-slate-800
-```
-
-## 🚀 Implementation Examples
+## 🎨 Color Utilities
 
 ### Using the Color Utils
 ```tsx
@@ -246,14 +161,49 @@ className={`${colorTheme.primary.bg} ${colorTheme.primary.bgHover}`}
 className={`${colorTheme.primary.ring}`}
 ```
 
-## 📝 Best Practices
+## 📋 Accessibility Guidelines
 
-1. **Consistency:** Always use the defined color roles for their intended purposes
+### High Contrast Combinations
+```css
+/* Cream background with deep forest text */
+bg-cream text-green-900
+
+/* Deep green background with cream text */
+bg-green-800 text-cream
+
+/* Light backgrounds with dark text */
+bg-green-50 text-green-900
+```
+
+### Medium Contrast Combinations
+```css
+/* Light mint with dark green text */
+bg-green-300 text-green-800
+
+/* Pale green with medium green text */
+bg-green-200 text-green-700
+
+/* Cream with medium green text */
+bg-cream text-green-700
+```
+
+## 🔧 Implementation Best Practices
+
+1. **Consistency:** Always use the 4-layer system for green accents
 2. **Accessibility:** Test color combinations for sufficient contrast
-3. **Hierarchy:** Use color to establish clear visual hierarchy
-4. **Restraint:** Don't use too many colors in a single component
-5. **Context:** Consider the emotional context of color choices
+3. **Hierarchy:** Use deeper greens for more important elements
+4. **Restraint:** Don't use too many green variations in one component
+5. **Context:** Consider the warm, earthy feeling of the color choices
 6. **Testing:** Test colors across different devices and lighting conditions
+
+## 🌱 Color Philosophy
+
+This warm forest color system reflects HSSL's commitment to:
+- **Sustainability:** Earthy, natural colors
+- **Warmth:** Cream background creates welcoming feel
+- **Growth:** Green represents life and environmental consciousness
+- **Professionalism:** Deep forest green provides serious, trustworthy tone
+- **Accessibility:** High contrast ensures readability for all users
 
 ## 🔧 Maintenance
 
@@ -261,3 +211,9 @@ className={`${colorTheme.primary.ring}`}
 - CSS variables are defined in `/src/app/globals.css`
 - Update colors in one place to affect the entire system
 - Use the utility functions for consistent application
+
+---
+
+**Color System Version:** 2.0 - Warm Forest Theme  
+**Last Updated:** 2025-01-27  
+**Accessibility Standard:** WCAG 2.1 AA/AAA

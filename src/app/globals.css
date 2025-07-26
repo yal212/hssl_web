@@ -1,53 +1,57 @@
 @import "tailwindcss";
 
 :root {
-  /* 🌱 HSSL Organic Eco-Friendly Color System */
-  --background: #ffffff;
-  --foreground: #0f172a;
+  /* 🌿 HSSL Warm Forest Color System */
+  /* Cream background with deep forest green text and layered green accents */
+  --background: #f4efe1;
+  --foreground: #214d3a;
 
-  /* Primary Brand Colors - Emerald (Main Actions) */
-  --primary: #059669;
-  --primary-foreground: #ffffff;
-  --primary-50: #ecfdf5;
-  --primary-100: #d1fae5;
-  --primary-200: #a7f3d0;
-  --primary-300: #6ee7b7;
-  --primary-400: #34d399;
-  --primary-500: #10b981;
-  --primary-600: #059669;
-  --primary-700: #047857;
-  --primary-800: #065f46;
-  --primary-900: #064e3b;
+  /* Custom Cream Color */
+  --cream: #f4efe1;
 
-  /* Secondary Brand Colors - Teal (Supporting Actions) */
-  --secondary: #0d9488;
-  --secondary-foreground: #ffffff;
-  --secondary-50: #f0fdfa;
-  --secondary-100: #ccfbf1;
-  --secondary-200: #99f6e4;
-  --secondary-300: #5eead4;
-  --secondary-400: #2dd4bf;
-  --secondary-500: #14b8a6;
-  --secondary-600: #0d9488;
-  --secondary-700: #0f766e;
-  --secondary-800: #115e59;
-  --secondary-900: #134e4a;
+  /* Primary Brand Colors - Deep Green (Main Actions) */
+  --primary: #2a5e44;
+  --primary-foreground: #f4efe1;
+  --primary-50: #f0f7f3;
+  --primary-100: #dbeee3;
+  --primary-200: #b8dcc8;
+  --primary-300: #8bc4a4;
+  --primary-400: #5ea67d;
+  --primary-500: #3f8b60;
+  --primary-600: #2a5e44;
+  --primary-700: #214d3a;
+  --primary-800: #1c3f30;
+  --primary-900: #173327;
 
-  /* Success Colors - Cool Emerald */
-  --success: #10b981;
-  --success-50: #ecfdf5;
-  --success-100: #d1fae5;
-  --success-200: #a7f3d0;
-  --success-300: #6ee7b7;
-  --success-400: #34d399;
-  --success-500: #10b981;
-  --success-600: #059669;
-  --success-700: #047857;
-  --success-800: #065f46;
-  --success-900: #064e3b;
+  /* Secondary Brand Colors - Mid Green (Supporting Actions) */
+  --secondary: #639a73;
+  --secondary-foreground: #f4efe1;
+  --secondary-50: #f4f9f5;
+  --secondary-100: #e6f2ea;
+  --secondary-200: #cee5d6;
+  --secondary-300: #a8d1b7;
+  --secondary-400: #7db591;
+  --secondary-500: #639a73;
+  --secondary-600: #4f7d5c;
+  --secondary-700: #42654b;
+  --secondary-800: #37523e;
+  --secondary-900: #2f4434;
 
-  /* Warning Colors - Earthy Amber */
-  --warning: #f59e0b;
+  /* Success Colors - Light Mint Green */
+  --success: #aecea9;
+  --success-50: #f8fbf7;
+  --success-100: #f0f6ef;
+  --success-200: #e1edde;
+  --success-300: #ccdfc6;
+  --success-400: #aecea9;
+  --success-500: #8fb888;
+  --success-600: #739f6b;
+  --success-700: #5d8356;
+  --success-800: #4d6b47;
+  --success-900: #41593d;
+
+  /* Warning Colors - Warm Amber (complementary to forest theme) */
+  --warning: #d97706;
   --warning-50: #fffbeb;
   --warning-100: #fef3c7;
   --warning-200: #fde68a;
@@ -59,8 +63,8 @@
   --warning-800: #92400e;
   --warning-900: #78350f;
 
-  /* Error Colors - Muted Rust */
-  --error: #ef4444;
+  /* Error Colors - Muted Rust (complementary to forest theme) */
+  --error: #dc2626;
   --error-50: #fef2f2;
   --error-100: #fee2e2;
   --error-200: #fecaca;
@@ -72,43 +76,44 @@
   --error-800: #991b1b;
   --error-900: #7f1d1d;
 
-  /* Accent Colors - Deep Forest Green */
-  --accent: #15803d;
-  --accent-50: #f0fdf4;
-  --accent-100: #dcfce7;
-  --accent-200: #bbf7d0;
-  --accent-300: #86efac;
-  --accent-400: #4ade80;
-  --accent-500: #22c55e;
-  --accent-600: #16a34a;
-  --accent-700: #15803d;
-  --accent-800: #166534;
-  --accent-900: #14532d;
+  /* Accent Colors - Pale Green Tint (Layer 4) */
+  --accent: #d1e0cd;
+  --accent-foreground: #214d3a;
+  --accent-50: #f9faf8;
+  --accent-100: #f3f5f1;
+  --accent-200: #e7ebe3;
+  --accent-300: #d1e0cd;
+  --accent-400: #b8d0b1;
+  --accent-500: #9bbf92;
+  --accent-600: #7da873;
+  --accent-700: #639058;
+  --accent-800: #4f7347;
+  --accent-900: #42603c;
 
-  /* Neutral Colors - Sage and Warm Grays */
-  --neutral: #64748b;
-  --neutral-50: #f8fafc;
-  --neutral-100: #f1f5f9;
-  --neutral-200: #e2e8f0;
-  --neutral-300: #cbd5e1;
-  --neutral-400: #94a3b8;
-  --neutral-500: #64748b;
-  --neutral-600: #475569;
-  --neutral-700: #334155;
-  --neutral-800: #1e293b;
-  --neutral-900: #0f172a;
+  /* Neutral Colors - Warm Cream-based Grays */
+  --neutral: #78716c;
+  --neutral-50: #faf9f7;
+  --neutral-100: #f5f4f1;
+  --neutral-200: #ebe8e3;
+  --neutral-300: #ddd8d1;
+  --neutral-400: #b8b0a7;
+  --neutral-500: #8b8078;
+  --neutral-600: #78716c;
+  --neutral-700: #5d564f;
+  --neutral-800: #4a433d;
+  --neutral-900: #3d362f;
 
-  /* Gray Scale - Warm Tones */
-  --gray-50: #fafaf9;
-  --gray-100: #f5f5f4;
-  --gray-200: #e7e5e4;
-  --gray-300: #d6d3d1;
-  --gray-400: #a8a29e;
-  --gray-500: #78716c;
-  --gray-600: #57534e;
-  --gray-700: #44403c;
-  --gray-800: #292524;
-  --gray-900: #1c1917;
+  /* Gray Scale - Cream-based Warm Tones */
+  --gray-50: #faf9f7;
+  --gray-100: #f5f4f1;
+  --gray-200: #ebe8e3;
+  --gray-300: #ddd8d1;
+  --gray-400: #b8b0a7;
+  --gray-500: #8b8078;
+  --gray-600: #78716c;
+  --gray-700: #5d564f;
+  --gray-800: #4a433d;
+  --gray-900: #3d362f;
 
   /* Spacing Scale */
   --spacing-xs: 0.25rem;   /* 4px */
@@ -148,19 +153,21 @@
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+
+
+html {
+  background-color: #f4efe1;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #f4efe1;
+  background-color: #f4efe1;
+  color: #214d3a;
   font-family: var(--font-inter), system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 /* Typography Utilities */
@@ -170,6 +177,15 @@ body {
 
 .text-pretty {
   text-wrap: pretty;
+}
+
+/* Custom Background Utilities */
+.bg-cream {
+  background-color: #f4efe1;
+}
+
+.text-forest {
+  color: #214d3a;
 }
 
 /* Custom scrollbar */
@@ -191,96 +207,264 @@ body {
 }
 
 /* 🎨 Enhanced Focus Styles */
-.focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #2a5e44, 0 0 0 4px rgba(42, 94, 68, 0.2);
 }
 
-.focus-ring-secondary {
-  @apply focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2;
+.focus-ring-secondary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #639a73, 0 0 0 4px rgba(99, 154, 115, 0.2);
 }
 
-.focus-ring-success {
-  @apply focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+.focus-ring-success:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #aecea9, 0 0 0 4px rgba(174, 206, 169, 0.2);
 }
 
-.focus-ring-warning {
-  @apply focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2;
+.focus-ring-warning:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #d97706, 0 0 0 4px rgba(217, 119, 6, 0.2);
 }
 
-.focus-ring-error {
-  @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+.focus-ring-error:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #dc2626, 0 0 0 4px rgba(220, 38, 38, 0.2);
 }
 
 /* 🌈 Gradient Utilities */
 .gradient-hero-primary {
-  background: linear-gradient(135deg, #10b981 0%, #14b8a6 50%, #16a34a 100%);
+  background: linear-gradient(135deg, #2a5e44 0%, #639a73 50%, #aecea9 100%);
 }
 
 .gradient-hero-secondary {
-  background: linear-gradient(135deg, #2dd4bf 0%, #34d399 50%, #84cc16 100%);
+  background: linear-gradient(135deg, #639a73 0%, #aecea9 50%, #d1e0cd 100%);
 }
 
 .gradient-card-subtle {
-  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 50%, #f0fdfa 100%);
+  background: linear-gradient(135deg, #f8fbf7 0%, #f4efe1 50%, #f0f6ef 100%);
 }
 
 .gradient-interactive-primary {
-  background: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
+  background: linear-gradient(135deg, #2a5e44 0%, #639a73 100%);
 }
 
 .gradient-interactive-hover {
-  background: linear-gradient(135deg, #059669 0%, #0f766e 100%);
+  background: linear-gradient(135deg, #214d3a 0%, #4f7d5c 100%);
 }
 
-/* 🃏 Card Component Styles */
+/* 🃏 Card Component Styles - Forest Theme */
 .card-default {
-  @apply bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200;
+  background-color: #f4efe1;
+  border: 1px solid #cee5d6;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: all 0.2s ease;
+}
+
+.card-default:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-color: #a8d1b7;
 }
 
 .card-gradient {
-  @apply bg-gradient-to-br from-white to-emerald-50 border border-emerald-100 rounded-lg shadow-sm hover:shadow-lg transition-all duration-200;
+  background: linear-gradient(to bottom right, #f4efe1, #f0f6ef);
+  border: 1px solid #e1edde;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: all 0.2s ease;
+}
+
+.card-gradient:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border-color: #ccdfc6;
 }
 
 .card-elevated {
-  @apply bg-white border border-slate-200 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200;
+  background-color: #f4efe1;
+  border: 1px solid #cee5d6;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease;
 }
 
-.card-emerald {
-  @apply bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-lg hover:bg-emerald-100 hover:border-emerald-300 transition-all duration-200;
+.card-elevated:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-color: #a8d1b7;
 }
 
-.card-teal {
-  @apply bg-teal-50 border border-teal-200 text-teal-900 rounded-lg hover:bg-teal-100 hover:border-teal-300 transition-all duration-200;
+.card-forest-light {
+  background-color: #f0f6ef;
+  border: 1px solid #e1edde;
+  color: #214d3a;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
 }
 
-/* 🔘 Button Component Styles */
+.card-forest-light:hover {
+  background-color: #e1edde;
+  border-color: #ccdfc6;
+}
+
+.card-forest-mint {
+  background-color: #f8fbf7;
+  border: 1px solid #ccdfc6;
+  color: #214d3a;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.card-forest-mint:hover {
+  background-color: #f0f6ef;
+  border-color: #aecea9;
+}
+
+/* 🔘 Button Component Styles - Forest Theme */
 .btn-primary {
-  @apply bg-emerald-600 text-white border-emerald-600 hover:bg-emerald-700 hover:border-emerald-700 active:bg-emerald-800 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:bg-emerald-300 disabled:border-emerald-300 transition-all duration-200;
+  background-color: #2a5e44;
+  color: #ffffff;
+  border: 1px solid #2a5e44;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #214d3a;
+  border-color: #214d3a;
+}
+
+.btn-primary:active {
+  background-color: #1c3f30;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 2px #2a5e44, 0 0 0 4px rgba(42, 94, 68, 0.2);
+}
+
+.btn-primary:disabled {
+  background-color: #8bc4a4;
+  border-color: #8bc4a4;
 }
 
 .btn-secondary {
-  @apply bg-teal-100 text-teal-800 border-teal-200 hover:bg-teal-200 hover:border-teal-300 active:bg-teal-300 focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:bg-teal-50 disabled:text-teal-400 transition-all duration-200;
+  background-color: #e6f2ea;
+  color: #214d3a;
+  border: 1px solid #cee5d6;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #cee5d6;
+  border-color: #a8d1b7;
+}
+
+.btn-secondary:active {
+  background-color: #a8d1b7;
+}
+
+.btn-secondary:focus {
+  box-shadow: 0 0 0 2px #14b8a6, 0 0 0 4px rgba(20, 184, 166, 0.2);
+}
+
+.btn-secondary:disabled {
+  background-color: #f0fdfa;
+  color: #5eead4;
 }
 
 .btn-outline {
-  @apply bg-transparent text-emerald-600 border-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 hover:text-emerald-700 active:bg-emerald-100 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:text-emerald-300 disabled:border-emerald-300 transition-all duration-200;
+  background-color: transparent;
+  color: #059669;
+  border: 1px solid #059669;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: #ecfdf5;
+  border-color: #047857;
+  color: #047857;
+}
+
+.btn-outline:active {
+  background-color: #d1fae5;
+}
+
+.btn-outline:focus {
+  box-shadow: 0 0 0 2px #10b981, 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.btn-outline:disabled {
+  color: #6ee7b7;
+  border-color: #6ee7b7;
 }
 
 .btn-ghost {
-  @apply bg-transparent text-emerald-600 border-transparent hover:bg-emerald-50 hover:text-emerald-700 active:bg-emerald-100 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:text-emerald-300 transition-all duration-200;
+  background-color: transparent;
+  color: #059669;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.btn-ghost:active {
+  background-color: #d1fae5;
+}
+
+.btn-ghost:focus {
+  box-shadow: 0 0 0 2px #10b981, 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.btn-ghost:disabled {
+  color: #6ee7b7;
 }
 
 /* 📱 Responsive Design Utilities */
 .section-padding {
-  @apply py-16 lg:py-24;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
 }
 
 .section-padding-lg {
-  @apply py-24 lg:py-32;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+  .section-padding-lg {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
 }
 
 .container-responsive {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 /* Performance optimizations */
@@ -359,7 +543,7 @@ html {
 
 /* Focus styles for accessibility */
 .focus-visible:focus {
-  outline: 2px solid #16a34a;
+  outline: 2px solid #2a5e44;
   outline-offset: 2px;
 }
 
@@ -369,6 +553,7 @@ html {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  line-clamp: 1;
 }
 
 .line-clamp-2 {
@@ -376,6 +561,7 @@ html {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .line-clamp-3 {
@@ -383,4 +569,5 @@ html {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
 }

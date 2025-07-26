@@ -103,16 +103,16 @@ ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS content_videos TEXT[] DEFAULT 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <Card className="border-emerald-200 bg-emerald-50">
+      <Card className="border-green-200 bg-green-50">
         <CardHeader>
-          <CardTitle className="flex items-center text-emerald-800">
+          <CardTitle className="flex items-center text-green-800">
             <AlertTriangle className="w-5 h-5 mr-2" />
             Database Migration Required
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <p className="text-emerald-700">
+            <p className="text-green-700">
               The database needs to be updated to support news image galleries.
               The following columns are missing:
             </p>
