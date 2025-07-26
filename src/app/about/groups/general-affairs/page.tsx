@@ -87,7 +87,7 @@ export default function GeneralAffairsGroupPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card hover className="h-full">
+                <Card hover className="h-full border-2 border-white">
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
                     <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-orange-200">

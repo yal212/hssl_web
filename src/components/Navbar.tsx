@@ -1,26 +1,52 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Menu, X, User, LogOut } from 'lucide-react'
+import { Menu, X, User, LogOut, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/hooks/useAuth'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
   const { user, signOut } = useAuth()
   const router = useRouter()
+  const aboutDropdownRef = useRef<HTMLDivElement>(null)
 
   const handleSignOut = async () => {
     await signOut()
     router.push('/')
   }
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target as Node)) {
+        setAboutDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
   const navItems = [
     { href: '/', label: '首頁' },
-    { href: '/about', label: '關於我們' },
+    {
+      href: '/about',
+      label: '關於我們',
+      hasDropdown: true,
+      dropdownItems: [
+        { href: '/about/what-we-do', label: '我們在做什麼' },
+        { href: '/about/our-team', label: '我們的團隊' },
+        { href: '/about/honors', label: '榮譽榜' },
+        { href: '/about/contact', label: '聯絡我們' },
+      ]
+    },
     { href: '/news', label: '最新消息' },
     { href: '/education', label: '教育中心' },
     { href: '/support', label: '支持我們' },
@@ -66,6 +92,49 @@ export function Navbar() {
                   {item.label}
                   <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-green-600 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-200"></span>
                 </a>
+              ) : item.hasDropdown ? (
+                <div
+                  key={item.href}
+                  className="relative"
+                  ref={item.label === '關於我們' ? aboutDropdownRef : undefined}
+                >
+                  <button
+                    onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                    onMouseEnter={() => setAboutDropdownOpen(true)}
+                    className="text-gray-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative group flex items-center"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={16}
+                      className={`ml-1 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`}
+                    />
+                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-green-600 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-200"></span>
+                  </button>
+
+                  <AnimatePresence>
+                    {aboutDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-green-100 py-2 z-50"
+                        onMouseLeave={() => setAboutDropdownOpen(false)}
+                      >
+                        {item.dropdownItems?.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.href}
+                            href={dropdownItem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:text-green-600 hover:bg-green-50 transition-all duration-200"
+                            onClick={() => setAboutDropdownOpen(false)}
+                          >
+                            {dropdownItem.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ) : (
                 <Link
                   key={item.href}
@@ -176,6 +245,22 @@ export function Navbar() {
                     >
                       {item.label}
                     </a>
+                  ) : item.hasDropdown ? (
+                    <div className="space-y-1">
+                      <div className="px-4 py-3 text-gray-700 text-base font-medium">
+                        {item.label}
+                      </div>
+                      {item.dropdownItems?.map((dropdownItem) => (
+                        <Link
+                          key={dropdownItem.href}
+                          href={dropdownItem.href}
+                          className="block px-8 py-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg text-sm transition-all duration-200 border border-transparent hover:border-green-100"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {dropdownItem.label}
+                        </Link>
+                      ))}
+                    </div>
                   ) : (
                     <Link
                       href={item.href}
