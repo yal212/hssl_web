@@ -68,7 +68,7 @@ export function NewsFiltersComponent({
   )
 
   return (
-    <div className={`bg-white rounded-lg shadow-sm border border-gray-200 p-6 ${className}`}>
+    <div className={`bg-cream rounded-lg shadow-sm border border-green-200 p-6 ${className}`}>
       {/* Search Bar */}
       <div className="relative mb-4">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -121,7 +121,7 @@ export function NewsFiltersComponent({
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   !filters.category
                     ? 'bg-green-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-green-100 text-green-700 hover:bg-green-200'
                 }`}
               >
                 全部
@@ -133,7 +133,7 @@ export function NewsFiltersComponent({
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                     filters.category === category.value
                       ? 'bg-green-500 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : 'bg-green-100 text-green-700 hover:bg-green-200'
                   }`}
                 >
                   {category.label}
@@ -150,7 +150,7 @@ export function NewsFiltersComponent({
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 filters.featured
                   ? 'bg-yellow-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-green-100 text-green-700 hover:bg-green-200'
               }`}
             >
               僅顯示精選
@@ -169,7 +169,7 @@ export function NewsFiltersComponent({
                     className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                       filters.tags?.includes(tag)
                         ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        : 'bg-green-100 text-green-700 hover:bg-green-200'
                     }`}
                   >
                     #{tag}

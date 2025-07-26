@@ -160,7 +160,7 @@ export default function SupportPage() {
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Card hover className="h-full text-center border-0 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300">
+                  <Card hover className="h-full text-center border-0 bg-cream/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300">
                     <CardContent className="p-8">
                       <motion.div
                         className={`w-20 h-20 bg-gradient-to-br ${statColors[index]} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative overflow-hidden`}
@@ -198,7 +198,7 @@ export default function SupportPage() {
       </section>
 
       {/* Ways to Support */}
-      <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-white to-teal-50`}>
+      <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-cream to-green-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInDown}
@@ -269,7 +269,7 @@ export default function SupportPage() {
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.3 }}
                 >
-                <Card hover className="h-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                <Card hover className="h-full bg-cream/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300 group">
                   <CardHeader>
                     <motion.div
                       className={`w-20 h-20 bg-gradient-to-br ${wayColors[index]} rounded-2xl flex items-center justify-center mb-6 shadow-lg relative overflow-hidden`}
@@ -319,7 +319,7 @@ export default function SupportPage() {
       </section>
 
       {/* Charities We Support */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -397,7 +397,7 @@ export default function SupportPage() {
                   購買我們的手工皂
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className={`border-white text-white hover:bg-white hover:${colorTheme.primary.text}`}>
+              <Button size="lg" variant="outline" className={`border-white text-white hover:bg-cream hover:${colorTheme.primary.text}`}>
                 <Gift className="w-5 h-5 mr-2" />
                 進行捐款
               </Button>

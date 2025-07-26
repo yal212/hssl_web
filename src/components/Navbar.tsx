@@ -156,7 +156,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-lg"
+            className="md:hidden bg-cream/95 backdrop-blur-md border-t border-green-100 shadow-lg"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
               {navItems.map((item, index) => (

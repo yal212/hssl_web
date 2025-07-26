@@ -608,7 +608,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                 {/* Current/Preview Image */}
                 {(mainImagePreview || formData.image_url) && (
                   <div className="relative inline-block">
-                    <div className="relative max-w-64 rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+                    <div className="relative max-w-64 rounded-lg overflow-hidden border border-green-200 bg-green-50">
                       <Image
                         src={mainImagePreview || formData.image_url || '/hssl_profile.jpg'}
                         alt="主要圖片預覽"
@@ -688,7 +688,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {contentImagePreviews.map((preview, index) => (
                       <div key={index} className="relative group">
-                        <div className="relative w-full rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+                        <div className="relative w-full rounded-lg overflow-hidden border border-green-200 bg-green-50">
                           <Image
                             src={preview}
                             alt={`內容圖片 ${index + 1}`}
@@ -797,7 +797,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {contentVideoPreviews.map((preview, index) => (
                       <div key={index} className="relative">
-                        <div className="relative w-full h-32 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
+                        <div className="relative w-full h-32 rounded-lg overflow-hidden border border-green-200 bg-green-100">
                           <video
                             src={preview}
                             className="w-full h-full object-cover"
@@ -922,7 +922,7 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
                   <span>上傳進度</span>
                   <span>{uploadProgress}%</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="w-full bg-green-200 rounded-full h-2">
                   <div
                     className="bg-green-600 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${uploadProgress}%` }}

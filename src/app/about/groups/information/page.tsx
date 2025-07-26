@@ -12,24 +12,24 @@ export default function InformationGroupPage() {
     {
       name: '江新泉',
       role: '資訊組組長',
-      color: 'bg-indigo-500'
+      color: 'bg-green-500'
     },
     {
       name: '陳宇碩',
       role: '資訊組組員',
-      color: 'bg-indigo-600'
+      color: 'bg-green-600'
     },
     {
       name: '李曜安',
       role: '資訊組組員',
-      color: 'bg-indigo-700'
+      color: 'bg-green-700'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       {/* Header */}
-      <section className="bg-gradient-to-br from-indigo-50 via-white to-indigo-100 py-20">
+      <section className="bg-gradient-to-br from-green-50 via-cream to-green-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -56,7 +56,7 @@ export default function InformationGroupPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-indigo-50">
+      <section className="py-20 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ export default function InformationGroupPage() {
                 <Card hover className="h-full">
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
-                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-indigo-200">
+                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-green-200">
                       <Image
                         src="/hssl_profile.jpg"
                         alt={member.name}
@@ -99,19 +99,19 @@ export default function InformationGroupPage() {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-indigo-600 font-semibold mb-6">
+                    <p className="text-green-600 font-semibold mb-6">
                       {member.role}
                     </p>
 
                     {/* Social Links (placeholder) */}
                     <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-indigo-600 transition-colors p-2">
+                      <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
                         <Mail className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-indigo-600 transition-colors p-2">
+                      <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
                         <Linkedin className="w-5 h-5" />
                       </button>
-                      <button className="text-gray-400 hover:text-indigo-600 transition-colors p-2">
+                      <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
                         <Instagram className="w-5 h-5" />
                       </button>
                     </div>

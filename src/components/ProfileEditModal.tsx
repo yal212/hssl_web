@@ -252,7 +252,7 @@ export function ProfileEditModal({
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-hidden"
+          className="relative bg-cream rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-hidden"
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 text-white">

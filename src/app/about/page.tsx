@@ -164,7 +164,7 @@ export default function AboutPage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-white"
+      className="min-h-screen bg-cream"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -238,7 +238,7 @@ export default function AboutPage() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card hover className="h-full text-center border-0 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-emerald-50/50">
+                <Card hover className="h-full text-center border-0 bg-cream/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-cream group-hover:to-emerald-50/50">
                   <CardContent className="p-8 relative">
                     {/* Subtle decorative element */}
                     <div className="absolute top-4 right-4 w-8 h-8 bg-emerald-100/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -372,7 +372,7 @@ export default function AboutPage() {
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Card hover className="h-full text-center border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Card hover className="h-full text-center border-0 bg-cream/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
                     <CardContent className="p-8 lg:p-10">
                       <motion.div
                         className={`w-20 h-20 bg-gradient-to-br ${enhancedColors[index]} rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg relative overflow-hidden`}
@@ -421,7 +421,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values Section */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-24 lg:py-32 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInDown}
@@ -531,7 +531,7 @@ export default function AboutPage() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card hover className={`h-full border-0 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 group-hover:${value.bgColor}/50`}>
+                <Card hover className={`h-full border-0 bg-cream/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 group-hover:${value.bgColor}/50`}>
                   <CardContent className="p-8 lg:p-10 relative">
                     {/* Subtle decorative element */}
                     <div className={`absolute top-4 right-4 w-8 h-8 ${value.bgColor} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
@@ -699,7 +699,7 @@ export default function AboutPage() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card hover className={`h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group-hover:${stage.bgColor}/30`}>
+                <Card hover className={`h-full border-0 bg-cream shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group-hover:${stage.bgColor}/30`}>
                   <CardContent className="p-0">
                     {/* Header with gradient background */}
                     <div className={`relative px-8 py-10 bg-gradient-to-br ${stage.color}`}>
@@ -826,7 +826,7 @@ export default function AboutPage() {
                       viewport={{ once: true }}
                     >
                       <Link href={groupRoutes[group.name as keyof typeof groupRoutes]}>
-                        <Card hover className="h-full cursor-pointer group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50">
+                        <Card hover className="h-full cursor-pointer group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-cream to-green-50">
                           <CardContent className="p-0">
                             {/* Header with gradient background */}
                             <div className={`relative px-6 pt-8 pb-6 bg-gradient-to-br ${group.gradientFrom} ${group.gradientTo}`}>
@@ -934,7 +934,7 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                   >
                     <Link href={groupRoutes[group.name as keyof typeof groupRoutes]}>
-                      <Card hover className="h-full cursor-pointer group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50">
+                      <Card hover className="h-full cursor-pointer group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-cream to-green-50">
                         <CardContent className="p-0">
                           {/* Header with gradient background */}
                           <div className={`relative px-6 pt-8 pb-6 bg-gradient-to-br ${group.gradientFrom} ${group.gradientTo}`}>
@@ -1049,7 +1049,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl">
+              <Card className="border-0 bg-cream/80 backdrop-blur-sm shadow-xl">
                 <CardContent className="p-8 lg:p-10">
                   <div className="space-y-6 text-gray-700 leading-relaxed">
                     <p className="text-lg">
@@ -1097,7 +1097,7 @@ export default function AboutPage() {
                       他們分享我們對更清潔、更環保世界的願景。
                     </p>
                     <div className="space-y-4">
-                      <Button variant="secondary" className="w-full bg-white text-emerald-600 hover:bg-emerald-50 font-semibold py-3" asChild>
+                      <Button variant="secondary" className="w-full bg-cream text-emerald-600 hover:bg-emerald-50 font-semibold py-3" asChild>
                         <Link href="/support">
                           支持我們的事業
                         </Link>

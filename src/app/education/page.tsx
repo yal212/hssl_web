@@ -96,7 +96,7 @@ export default function EducationPage() {
 
 
       {/* Commercial Soap Analysis Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Introduction */}
           <motion.div
@@ -132,7 +132,7 @@ export default function EducationPage() {
 
             <div className={`bg-gradient-to-br ${colorTheme.primary.light} to-teal-50 rounded-2xl p-8`}>
               <p className="text-sm text-gray-600 mb-4">以下為典型市售沐浴乳的完整成分清單：</p>
-              <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
+              <div className={`bg-cream rounded-xl p-6 border ${colorTheme.primary.border}`}>
                 <div className="text-sm text-gray-800 leading-relaxed font-mono select-all">
                   Water, Sodium Laureth Sulfate, Cocamidopropyl Betaine, Sodium Chloride,
                   Cocamide Methyl MEA, Fragrance, Polyquaternium-7, Citric Acid,
@@ -268,7 +268,7 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className={`bg-white rounded-xl p-6 border ${colorTheme.accent.border}`}
+                    className={`bg-cream rounded-xl p-6 border ${colorTheme.accent.border}`}
                   >
                     <div className="flex items-start">
                       <div className={`w-3 h-3 ${colorTheme.accent.bg} rounded-full mt-2 mr-4 flex-shrink-0`}></div>
@@ -297,7 +297,7 @@ export default function EducationPage() {
 
 
       {/* Detailed Soap Making Guide */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -391,7 +391,7 @@ export default function EducationPage() {
             <div className={`bg-gradient-to-br ${colorTheme.primary.light} to-teal-50 rounded-2xl p-8`}>
               <div className="mb-8">
                 <h4 className="text-lg font-bold text-gray-900 mb-4">網路自動計算工具</h4>
-                <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
+                <div className={`bg-cream rounded-xl p-6 border ${colorTheme.primary.border}`}>
                   <p className="text-gray-700 mb-2">推薦使用：</p>
                   <div className="text-gray-600">
                     <a
@@ -408,7 +408,7 @@ export default function EducationPage() {
 
               <div className="mb-8">
                 <h4 className="text-lg font-bold text-gray-900 mb-4">皂化反應的化學計量</h4>
-                <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
+                <div className={`bg-cream rounded-xl p-6 border ${colorTheme.primary.border}`}>
                   <p className="text-gray-700 mb-4">
                     <strong>皂化價</strong> = 將 1 公克的油脂完全皂化，所需要鹼質的克數
                   </p>
@@ -442,21 +442,21 @@ export default function EducationPage() {
 
               <div>
                 <h4 className="text-lg font-bold text-gray-900 mb-4">計算方法範例</h4>
-                <div className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border}`}>
+                <div className={`bg-cream rounded-xl p-6 border ${colorTheme.primary.border}`}>
                   <div className="space-y-4">
                     <div>
                       <h5 className="font-semibold text-gray-900 mb-2">① 計算氫氧化鈉用量：</h5>
                       <p className="text-gray-700 text-sm mb-2">
                         (100 公克椰子油 + 200 公克棕櫚油 + 300 公克橄欖油) 完全皂化所需氫氧化鈉的質量？
                       </p>
-                      <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm">
+                      <div className="bg-green-50 rounded-lg p-4 font-mono text-sm">
                         W<sub>NaOH</sub> = 100 × 0.190 + 200 × 0.141 + 300 × 0.134 = 77.7 克
                       </div>
                     </div>
 
                     <div>
                       <h5 className="font-semibold text-gray-900 mb-2">② 溶解水量的計算：</h5>
-                      <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm">
+                      <div className="bg-green-50 rounded-lg p-4 font-mono text-sm">
                         W<sub>H2O</sub> = W<sub>NaOH</sub> × (2 倍) = 155.4 公克
                       </div>
                     </div>
@@ -537,7 +537,7 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className={`bg-white rounded-xl p-6 border ${colorTheme.primary.border} flex items-start`}
+                    className={`bg-cream rounded-xl p-6 border ${colorTheme.primary.border} flex items-start`}
                   >
                     <div className={`w-12 h-12 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full flex items-center justify-center text-white font-bold text-lg mr-6 flex-shrink-0`}>
                       {process.step}
@@ -596,7 +596,7 @@ export default function EducationPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className={`bg-white rounded-xl p-6 border-2 ${colorTheme.accent.border} text-center`}
+                    className={`bg-cream rounded-xl p-6 border-2 ${colorTheme.accent.border} text-center`}
                   >
                     <safety.icon className={`w-12 h-12 ${safety.color} mx-auto mb-4`} />
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{safety.title}</h4>
@@ -634,7 +634,7 @@ export default function EducationPage() {
                 href="https://famistore.famiport.com.tw/users/3278142"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`bg-white ${colorTheme.primary.text} px-8 py-3 rounded-lg font-semibold hover:${colorTheme.primary.light} transition-colors`}
+                className={`bg-cream ${colorTheme.primary.text} px-8 py-3 rounded-lg font-semibold hover:${colorTheme.primary.light} transition-colors`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -642,7 +642,7 @@ export default function EducationPage() {
               </motion.a>
               <motion.a
                 href="/support"
-                className={`border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:${colorTheme.primary.text} transition-colors`}
+                className={`border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-cream hover:${colorTheme.primary.text} transition-colors`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

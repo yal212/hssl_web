@@ -12,34 +12,34 @@ export default function DocumentationGroupPage() {
     {
       name: '饒子儀',
       role: '文書美宣組組長',
-      color: 'bg-purple-500'
+      color: 'bg-green-500'
     },
     {
       name: '張育瑄',
       role: '文書美宣組組長',
-      color: 'bg-purple-600'
+      color: 'bg-green-600'
     },
     {
       name: '林芸安',
       role: '文書美宣組組長',
-      color: 'bg-purple-700'
+      color: 'bg-green-700'
     },
     {
       name: '林祐安',
       role: '文書美宣組組長',
-      color: 'bg-purple-800'
+      color: 'bg-green-800'
     },
     {
       name: '郭芃妘',
       role: '文書美宣組組員',
-      color: 'bg-purple-900'
+      color: 'bg-green-900'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       {/* Header */}
-      <section className="bg-gradient-to-br from-purple-50 via-white to-purple-100 py-20">
+      <section className="bg-gradient-to-br from-green-50 via-cream to-green-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -66,7 +66,7 @@ export default function DocumentationGroupPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-purple-50">
+      <section className="py-20 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -163,7 +163,7 @@ export function ImpactSummary() {
                   <motion.div
                     key={news.id}
                     variants={staggerItem}
-                    className="flex items-start space-x-6 p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border border-gray-100"
+                    className="flex items-start space-x-6 p-8 bg-cream/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border border-green-100"
                     whileHover={{ scale: 1.02, y: -5 }}
                     whileTap={{ scale: 0.98 }}
                   >

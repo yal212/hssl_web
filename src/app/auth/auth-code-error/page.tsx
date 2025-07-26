@@ -22,12 +22,12 @@ export default function AuthCodeErrorPage() {
     setErrorMessage(params.get('message') || '')
   }, [])
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-cream to-green-100 flex items-center justify-center py-12 px-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center"
+        className="max-w-md w-full bg-cream rounded-lg shadow-lg p-8 text-center"
       >
         <motion.div
           initial={{ scale: 0 }}

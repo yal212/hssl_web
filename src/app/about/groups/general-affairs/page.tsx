@@ -32,9 +32,9 @@ export default function GeneralAffairsGroupPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       {/* Header */}
-      <section className="bg-gradient-to-br from-orange-50 via-white to-orange-100 py-20">
+      <section className="bg-gradient-to-br from-green-50 via-cream to-green-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,7 @@ export default function GeneralAffairsGroupPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-emerald-50">
+      <section className="py-20 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

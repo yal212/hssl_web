@@ -92,17 +92,17 @@ export function NewsCard({
                       e.stopPropagation()
                       setShowDropdown(!showDropdown)
                     }}
-                    className="bg-white/90 hover:bg-white shadow-sm"
+                    className="bg-cream/90 hover:bg-cream shadow-sm"
                   >
                     <MoreVertical className="w-4 h-4" />
                   </Button>
 
                   {showDropdown && (
-                    <div className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border z-30">
+                    <div className="absolute right-0 mt-2 w-32 bg-cream rounded-md shadow-lg border z-30">
                       <div className="py-1">
                         <button
                           onClick={handleEdit}
-                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-green-100"
                         >
                           <Edit className="w-4 h-4 mr-2" />
                           編輯
@@ -122,7 +122,7 @@ export function NewsCard({
             )}
 
             {/* Image */}
-            <div className={`relative ${featured ? 'min-h-64 max-h-80' : 'min-h-48 max-h-64'} overflow-hidden bg-gray-50 flex items-center justify-center`}>
+            <div className={`relative ${featured ? 'min-h-64 max-h-80' : 'min-h-48 max-h-64'} overflow-hidden bg-green-50 flex items-center justify-center`}>
               <Image
                 src={news.image_url || '/hssl_profile.jpg'}
                 alt={news.title}
@@ -167,13 +167,13 @@ export function NewsCard({
                   {news.tags.slice(0, 3).map((tag, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs"
+                      className="px-2 py-1 bg-green-100 text-green-600 rounded text-xs"
                     >
                       #{tag}
                     </span>
                   ))}
                   {news.tags.length > 3 && (
-                    <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">
+                    <span className="px-2 py-1 bg-green-100 text-green-600 rounded text-xs">
                       +{news.tags.length - 3}
                     </span>
                   )}
@@ -208,38 +208,38 @@ export function NewsCardSkeleton({ featured = false }: { featured?: boolean }) {
     <Card className="h-full overflow-hidden animate-pulse">
       <CardContent className="p-0">
         {/* Image skeleton */}
-        <div className={`bg-gray-200 ${featured ? 'h-64' : 'h-48'}`} />
+        <div className={`bg-green-200 ${featured ? 'h-64' : 'h-48'}`} />
         
         {/* Content skeleton */}
         <div className="p-6">
           {/* Category and date skeleton */}
           <div className="flex items-center justify-between mb-3">
-            <div className="bg-gray-200 h-6 w-16 rounded-full" />
-            <div className="bg-gray-200 h-4 w-20 rounded" />
+            <div className="bg-green-200 h-6 w-16 rounded-full" />
+            <div className="bg-green-200 h-4 w-20 rounded" />
           </div>
           
           {/* Title skeleton */}
           <div className="space-y-2 mb-3">
-            <div className="bg-gray-200 h-6 w-full rounded" />
-            <div className="bg-gray-200 h-6 w-3/4 rounded" />
+            <div className="bg-green-200 h-6 w-full rounded" />
+            <div className="bg-green-200 h-6 w-3/4 rounded" />
           </div>
           
           {/* Excerpt skeleton */}
           <div className="space-y-2 mb-4">
-            <div className="bg-gray-200 h-4 w-full rounded" />
-            <div className="bg-gray-200 h-4 w-5/6 rounded" />
-            <div className="bg-gray-200 h-4 w-2/3 rounded" />
+            <div className="bg-green-200 h-4 w-full rounded" />
+            <div className="bg-green-200 h-4 w-5/6 rounded" />
+            <div className="bg-green-200 h-4 w-2/3 rounded" />
           </div>
           
           {/* Tags skeleton */}
           <div className="flex gap-1 mb-4">
-            <div className="bg-gray-200 h-6 w-12 rounded" />
-            <div className="bg-gray-200 h-6 w-16 rounded" />
-            <div className="bg-gray-200 h-6 w-14 rounded" />
+            <div className="bg-green-200 h-6 w-12 rounded" />
+            <div className="bg-green-200 h-6 w-16 rounded" />
+            <div className="bg-green-200 h-6 w-14 rounded" />
           </div>
           
           {/* Author skeleton */}
-          <div className="bg-gray-200 h-4 w-24 rounded" />
+          <div className="bg-green-200 h-4 w-24 rounded" />
         </div>
       </CardContent>
     </Card>

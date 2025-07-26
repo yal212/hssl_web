@@ -16,14 +16,14 @@ export default function AdvisorGroupPage() {
       bio: '',
       skills: [],
       avatar: '',
-      color: 'bg-amber-500'
+      color: 'bg-green-500'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       {/* Header */}
-      <section className="bg-gradient-to-br from-amber-50 via-white to-amber-100 py-20">
+      <section className="bg-gradient-to-br from-green-50 via-cream to-green-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ export default function AdvisorGroupPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-amber-50">
+      <section className="py-20 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ export default function AdvisorGroupPage() {
                   <Card hover className="h-full">
                     <CardContent className="p-8 text-center">
                       {/* Avatar */}
-                      <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-amber-200">
+                      <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-green-200">
                         <Image
                           src="/hssl_profile.jpg"
                           alt={member.name}
@@ -94,19 +94,19 @@ export default function AdvisorGroupPage() {
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">
                         {member.name}
                       </h3>
-                      <p className="text-amber-600 font-semibold text-lg mb-6">
+                      <p className="text-green-600 font-semibold text-lg mb-6">
                         {member.role}
                       </p>
 
                       {/* Social Links (placeholder) */}
                       <div className="flex justify-center space-x-4">
-                        <button className="text-gray-400 hover:text-amber-600 transition-colors p-2">
+                        <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
                           <Mail className="w-5 h-5" />
                         </button>
-                        <button className="text-gray-400 hover:text-amber-600 transition-colors p-2">
+                        <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
                           <Linkedin className="w-5 h-5" />
                         </button>
-                        <button className="text-gray-400 hover:text-amber-600 transition-colors p-2">
+                        <button className="text-gray-400 hover:text-green-600 transition-colors p-2">
                           <Instagram className="w-5 h-5" />
                         </button>
                       </div>
