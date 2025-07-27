@@ -20,15 +20,7 @@ import {
 import {
   fadeInUp,
   staggerContainer,
-  hoverScale,
-  hoverBounce,
-  scrollReveal,
-  scrollSlideIn,
-  cardHover,
-  iconHover,
-  buttonHover,
-  floating,
-  hoverTilt
+  floating
 } from '@/lib/animations'
 
 export default function OurTeamPage() {

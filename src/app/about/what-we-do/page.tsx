@@ -17,14 +17,8 @@ import Link from 'next/link'
 import {
   fadeInUp,
   staggerContainer,
-  hoverScale,
-  hoverBounce,
-  scrollReveal,
-  scrollSlideIn,
-  cardHover,
-  iconHover,
-  buttonHover,
-  floating
+  floating,
+  scrollReveal
 } from '@/lib/animations'
 
 export default function WhatWeDoPage() {
@@ -158,13 +152,14 @@ export default function WhatWeDoPage() {
                 whileInView="whileInView"
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                {...cardHover}
+                whileHover={{ y: -8, scale: 1.02 }}
               >
                 <Card className="h-full border-2 border-white shadow-lg overflow-hidden">
                   <CardContent className="p-0">
                     <div className={`p-6 bg-gradient-to-br ${activity.color} text-white relative overflow-hidden`}>
                       <motion.div
-                        {...iconHover}
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.5 }}
                         className="inline-block"
                       >
                         <activity.icon size={48} className="mb-4" />
@@ -239,7 +234,7 @@ export default function WhatWeDoPage() {
                   stiffness: 200,
                   damping: 15
                 }}
-                {...hoverBounce}
+                whileHover={{ y: -5 }}
               >
                 <Card className="h-full text-center border-2 border-white shadow-lg">
                   <CardContent className="p-6">
@@ -308,14 +303,22 @@ export default function WhatWeDoPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.6 }}
                 >
-                  <motion.div {...buttonHover}>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <Button variant="secondary" size="lg" asChild>
                       <Link href="/about/contact">
                         聯絡我們
                       </Link>
                     </Button>
                   </motion.div>
-                  <motion.div {...buttonHover}>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10" asChild>
                       <Link href="/support">
                         支持我們
