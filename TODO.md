@@ -2,6 +2,8 @@
 - when signed in as an admin account the 管理後台 button in the news page just redirects me to the sign in page, fix it to redirect to the correct page when signed in as an admin account
 - make the 最新動態 in the home page clickable
 - color theme adjustments
+<!-- - return about us button uses the old about us page, which leads to 404 error page -->
+- add the introduce text correctly
 
 # DO EVERY TIME (DON'T CHANGE)
 - check if there are any errors 

@@ -17,21 +17,19 @@ import {
   Award,
   UserCheck
 } from 'lucide-react'
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-}
-
-const staggerContainer = {
-  initial: {},
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
+import {
+  fadeInUp,
+  staggerContainer,
+  hoverScale,
+  hoverBounce,
+  scrollReveal,
+  scrollSlideIn,
+  cardHover,
+  iconHover,
+  buttonHover,
+  floating,
+  hoverTilt
+} from '@/lib/animations'
 
 export default function OurTeamPage() {
   const advisor = {
@@ -132,27 +130,42 @@ export default function OurTeamPage() {
   ]
 
   return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      className="min-h-screen bg-cream"
-    >
+    <div className="min-h-screen bg-cream">
       {/* Hero Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-600 via-green-700 to-green-800"></div>
         <div className="absolute inset-0 bg-black/20"></div>
-        
+
         <div className="relative max-w-7xl mx-auto text-center">
-          <motion.div {...fadeInUp}>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <motion.div
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
               我們的團隊
-            </h1>
-            <p className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed">
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               組織架構
-            </p>
-            <p className="text-lg md:text-xl text-green-100 max-w-4xl mx-auto mt-4 leading-relaxed">
+            </motion.p>
+            <motion.p
+              className="text-lg md:text-xl text-green-100 max-w-4xl mx-auto mt-4 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               我們的團隊由專業指導老師和不同專業組別的學生組成，每個組別都為我們的使命帶來獨特的技能和熱忱。我們一起證明年輕人能夠創造有意義的改變。
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -173,9 +186,16 @@ export default function OurTeamPage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="w-full max-w-lg">
+              <motion.div
+                className="w-full max-w-lg"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
+                {...hoverBounce}
+              >
                 <Link href="/about/groups/advisor">
-                  <Card className="h-full cursor-pointer group relative overflow-hidden border-2 border-white shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-cream to-green-50">
+                  <Card className="h-full cursor-pointer group relative overflow-hidden border-2 border-white shadow-lg bg-gradient-to-br from-cream to-green-50">
                     <CardContent className="p-0">
                       {/* Header with gradient background */}
                       <div className="relative px-6 pt-8 pb-6 bg-gradient-to-br from-emerald-500 to-emerald-600">
@@ -186,9 +206,19 @@ export default function OurTeamPage() {
 
                         {/* Content */}
                         <div className="relative text-center">
-                          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <UserCheck className="w-8 h-8 text-white" />
-                          </div>
+                          <motion.div
+                            className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
+                            whileHover={{
+                              scale: 1.1,
+                              rotate: 360,
+                              backgroundColor: "rgba(255, 255, 255, 0.3)"
+                            }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <motion.div {...iconHover}>
+                              <UserCheck className="w-8 h-8 text-white" />
+                            </motion.div>
+                          </motion.div>
                           <h4 className="text-xl font-bold text-white mb-2">{advisor.title}</h4>
                           <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-white/30">
                             <span className="text-sm font-medium text-emerald-700">{advisor.title}</span>
@@ -216,7 +246,7 @@ export default function OurTeamPage() {
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div className="flex items-center justify-between pt-4 shadow-inner">
                           <span className="text-sm text-gray-500">了解指導老師</span>
                           <Button variant="ghost" size="sm" className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 p-2">
                             探索更多
@@ -226,7 +256,7 @@ export default function OurTeamPage() {
                     </CardContent>
                   </Card>
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -262,13 +292,20 @@ export default function OurTeamPage() {
                 return (
                   <motion.div
                     key={group.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15
+                    }}
                     viewport={{ once: true }}
+                    {...hoverTilt}
                   >
                     <Link href={groupRoutes[group.name as keyof typeof groupRoutes]}>
-                      <Card className="h-full cursor-pointer group relative overflow-hidden border-2 border-white shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-cream to-green-50">
+                      <Card className="h-full cursor-pointer group relative overflow-hidden border-2 border-white shadow-lg bg-gradient-to-br from-cream to-green-50">
                         <CardContent className="p-0">
                           {/* Header with gradient background */}
                           <div className={`relative px-6 pt-8 pb-6 bg-gradient-to-br ${group.color}`}>
@@ -279,9 +316,19 @@ export default function OurTeamPage() {
 
                             {/* Content */}
                             <div className="relative text-center">
-                              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                                <group.icon className="w-8 h-8 text-white" />
-                              </div>
+                              <motion.div
+                                className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
+                                whileHover={{
+                                  scale: 1.1,
+                                  rotate: 360,
+                                  backgroundColor: "rgba(255, 255, 255, 0.3)"
+                                }}
+                                transition={{ duration: 0.5 }}
+                              >
+                                <motion.div {...iconHover}>
+                                  <group.icon className="w-8 h-8 text-white" />
+                                </motion.div>
+                              </motion.div>
                               <h4 className="text-xl font-bold text-white mb-2">{group.name}</h4>
                               <div className={`inline-flex items-center px-3 py-1 rounded-full ${group.bgColor} border border-white/30`}>
                                 <span className={`text-sm font-medium ${group.textColor}`}>{group.name}</span>
@@ -309,7 +356,7 @@ export default function OurTeamPage() {
                               </div>
                             </div>
 
-                            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <div className="flex items-center justify-between pt-4 shadow-inner">
                               <span className="text-sm text-gray-500">了解團隊成員</span>
                               <Button variant="ghost" size="sm" className={`${group.textColor} hover:${group.bgColor} p-2`}>
                                 探索更多
@@ -402,6 +449,6 @@ export default function OurTeamPage() {
           </motion.div>
         </div>
       </section>
-    </motion.div>
+    </div>
   )
 }

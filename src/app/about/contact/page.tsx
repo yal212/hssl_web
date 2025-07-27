@@ -16,21 +16,18 @@ import {
   ExternalLink
 } from 'lucide-react'
 import { useState } from 'react'
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-}
-
-const staggerContainer = {
-  initial: {},
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
+import {
+  fadeInUp,
+  staggerContainer,
+  hoverScale,
+  hoverBounce,
+  scrollReveal,
+  scrollSlideIn,
+  cardHover,
+  iconHover,
+  buttonHover,
+  floating
+} from '@/lib/animations'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -125,15 +122,34 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         
         <div className="relative max-w-7xl mx-auto text-center">
-          <motion.div {...fadeInUp}>
-            <MessageCircle size={80} className="mx-auto text-green-200 mb-6" />
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <motion.div
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <motion.div
+              {...iconHover}
+              className="inline-block mb-6"
+            >
+              <MessageCircle size={80} className="text-green-200" />
+            </motion.div>
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              variants={floating}
+              initial="initial"
+              animate="animate"
+            >
               聯絡我們
-            </h1>
-            <p className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed">
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               有任何問題或想要了解更多？
               我們很樂意與您交流，歡迎隨時聯絡我們
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -160,16 +176,35 @@ export default function ContactPage() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {contactInfo.map((info) => (
+            {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
-                variants={fadeInUp}
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 15
+                }}
+                {...hoverBounce}
               >
-                <Card hover className="h-full text-center border-2 border-white shadow-lg hover:shadow-xl transition-all duration-300">
+                <Card className="h-full text-center border-2 border-white shadow-lg">
                   <CardContent className="p-6">
-                    <div className={`w-16 h-16 ${info.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                      <info.icon size={32} className={info.color} />
-                    </div>
+                    <motion.div
+                      className={`w-16 h-16 ${info.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}
+                      whileHover={{
+                        scale: 1.1,
+                        rotate: 360
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <motion.div {...iconHover}>
+                        <info.icon size={32} className={info.color} />
+                      </motion.div>
+                    </motion.div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{info.title}</h3>
                     <p className="text-gray-900 font-medium mb-2 whitespace-nowrap">{info.content}</p>
                     <p className="text-gray-600 text-sm">{info.description}</p>

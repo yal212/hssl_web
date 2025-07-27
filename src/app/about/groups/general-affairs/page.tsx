@@ -1,32 +1,50 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { ArrowLeft, Mail, Linkedin, Instagram } from 'lucide-react'
+import { MemberModal } from '@/components/ui/MemberModal'
+import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function GeneralAffairsGroupPage() {
+  const [selectedMember, setSelectedMember] = useState<typeof groupMembers[0] | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openMemberModal = (member: typeof groupMembers[0]) => {
+    setSelectedMember(member)
+    setIsModalOpen(true)
+  }
+
+  const closeMemberModal = () => {
+    setIsModalOpen(false)
+    setSelectedMember(null)
+  }
   const groupMembers = [
     {
       name: '謝舒安',
       role: '總務組組長',
+      introduction: '負責總務組的整體規劃與財務管理，具有優秀的組織能力與責任感。擅長預算控制與資源配置，確保每個活動都能順利進行。',
       color: 'bg-emerald-500'
     },
     {
       name: '龔昀晴',
       role: '總務組組長',
+      introduction: '專責餐飲安排與供應商聯繫，具有豐富的活動籌辦經驗。注重細節與品質，確保每位參與者都能享受到優質的服務。',
       color: 'bg-emerald-600'
     },
     {
       name: '劉峻成',
       role: '總務組組員',
+      introduction: '負責原物料採購與庫存管理，具有敏銳的市場觀察力。善於尋找優質且經濟的供應來源，為團隊節省成本。',
       color: 'bg-teal-600'
     },
     {
       name: '黃翊棠',
       role: '總務組組員',
+      introduction: '協助各項總務工作與後勤支援，做事認真負責且具有團隊精神。善於解決突發問題，是團隊中可靠的支柱。',
       color: 'bg-teal-700'
     }
   ]
@@ -34,7 +52,7 @@ export default function GeneralAffairsGroupPage() {
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <section className="bg-gradient-to-br from-green-50 via-cream to-green-100 py-20">
+      <section className="bg-cream py-20 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -42,9 +60,9 @@ export default function GeneralAffairsGroupPage() {
             transition={{ duration: 0.6 }}
           >
             <Button variant="outline" className="mb-6" asChild>
-              <Link href="/about">
+              <Link href="/about/our-team">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                返回關於我們
+                返回我們的團隊
               </Link>
             </Button>
             
@@ -61,7 +79,7 @@ export default function GeneralAffairsGroupPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-green-50">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -87,7 +105,11 @@ export default function GeneralAffairsGroupPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card hover className="h-full border-2 border-white">
+                <Card
+                  hover
+                  className="h-full border-2 border-white cursor-pointer transition-all duration-200 hover:shadow-lg hover:border-orange-200"
+                  onClick={() => openMemberModal(member)}
+                >
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
                     <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-orange-200">
@@ -104,22 +126,14 @@ export default function GeneralAffairsGroupPage() {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-orange-600 font-semibold mb-6">
+                    <p className="text-orange-600 font-semibold mb-4">
                       {member.role}
                     </p>
 
-                    {/* Social Links (placeholder) */}
-                    <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-orange-600 transition-colors p-2">
-                        <Mail className="w-5 h-5" />
-                      </button>
-                      <button className="text-gray-400 hover:text-orange-600 transition-colors p-2">
-                        <Linkedin className="w-5 h-5" />
-                      </button>
-                      <button className="text-gray-400 hover:text-orange-600 transition-colors p-2">
-                        <Instagram className="w-5 h-5" />
-                      </button>
-                    </div>
+                    {/* Click hint */}
+                    <p className="text-gray-500 text-sm">
+                      查看詳細介紹
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -127,6 +141,16 @@ export default function GeneralAffairsGroupPage() {
           </div>
         </div>
       </section>
+
+      {/* Member Modal */}
+      {selectedMember && (
+        <MemberModal
+          isOpen={isModalOpen}
+          onClose={closeMemberModal}
+          member={selectedMember}
+          borderColor="border-orange-200"
+        />
+      )}
     </div>
   )
 }

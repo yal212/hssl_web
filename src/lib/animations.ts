@@ -329,15 +329,17 @@ export const pulse: Variants = {
   }
 }
 
-// Hover animations
+// Enhanced Hover animations
 export const hoverScale = {
   whileHover: {
     scale: 1.05,
-    y: -5,
+    y: -8,
+    rotateX: 5,
     transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
   },
   whileTap: {
     scale: 0.98,
+    y: 0,
     transition: { duration: 0.1 }
   }
 }
@@ -346,20 +348,79 @@ export const hoverRotate = {
   whileHover: {
     scale: 1.1,
     rotate: 5,
+    y: -5,
     transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
   },
   whileTap: {
     scale: 0.95,
     rotate: 0,
+    y: 0,
     transition: { duration: 0.1 }
   }
 }
 
 export const hoverGlow = {
-  whileHover: { 
-    scale: 1.02,
-    boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)",
+  whileHover: {
+    scale: 1.03,
+    y: -5,
+    boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)",
     transition: { duration: 0.3, ease: "easeOut" }
+  },
+  whileTap: {
+    scale: 0.98,
+    y: 0,
+    transition: { duration: 0.1 }
+  }
+}
+
+// New interactive animations
+export const hoverBounce = {
+  whileHover: {
+    scale: 1.05,
+    y: -10,
+    transition: {
+      duration: 0.4,
+      type: "spring",
+      stiffness: 400,
+      damping: 10
+    }
+  },
+  whileTap: {
+    scale: 0.95,
+    y: 0,
+    transition: { duration: 0.1 }
+  }
+}
+
+export const hoverFloat = {
+  whileHover: {
+    y: -12,
+    scale: 1.02,
+    rotateY: 5,
+    transition: {
+      duration: 0.4,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
+  },
+  whileTap: {
+    scale: 0.98,
+    y: 0,
+    transition: { duration: 0.1 }
+  }
+}
+
+export const hoverTilt = {
+  whileHover: {
+    scale: 1.05,
+    rotateZ: 2,
+    y: -5,
+    transition: { duration: 0.3, ease: "easeOut" }
+  },
+  whileTap: {
+    scale: 0.98,
+    rotateZ: 0,
+    y: 0,
+    transition: { duration: 0.1 }
   }
 }
 
@@ -408,21 +469,124 @@ export const pageTransition: Variants = {
   }
 }
 
-// Scroll-triggered animations
+// Enhanced Scroll-triggered animations
 export const scrollReveal: Variants = {
-  initial: { 
-    opacity: 0, 
+  initial: {
+    opacity: 0,
     y: 60,
     scale: 0.95
   },
-  whileInView: { 
-    opacity: 1, 
+  whileInView: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
       duration: 0.8,
       ease: [0.25, 0.46, 0.45, 0.94]
     }
+  }
+}
+
+export const scrollSlideIn: Variants = {
+  initial: {
+    opacity: 0,
+    x: -100,
+    scale: 0.9
+  },
+  whileInView: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
+  }
+}
+
+export const scrollRotateIn: Variants = {
+  initial: {
+    opacity: 0,
+    rotate: -10,
+    scale: 0.8
+  },
+  whileInView: {
+    opacity: 1,
+    rotate: 0,
+    scale: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
+  }
+}
+
+export const scrollBounceIn: Variants = {
+  initial: {
+    opacity: 0,
+    y: 80,
+    scale: 0.3
+  },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      type: "spring",
+      stiffness: 200,
+      damping: 15
+    }
+  }
+}
+
+// Card-specific animations
+export const cardHover = {
+  whileHover: {
+    y: -8,
+    scale: 1.02,
+    rotateX: 5,
+    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+    transition: {
+      duration: 0.3,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
+  },
+  whileTap: {
+    scale: 0.98,
+    y: 0,
+    transition: { duration: 0.1 }
+  }
+}
+
+export const iconHover = {
+  whileHover: {
+    scale: 1.2,
+    rotate: 10,
+    transition: {
+      duration: 0.3,
+      type: "spring",
+      stiffness: 300
+    }
+  },
+  whileTap: {
+    scale: 0.9,
+    rotate: 0,
+    transition: { duration: 0.1 }
+  }
+}
+
+export const buttonHover = {
+  whileHover: {
+    scale: 1.05,
+    y: -2,
+    boxShadow: "0 10px 25px rgba(34, 197, 94, 0.3)",
+    transition: { duration: 0.2 }
+  },
+  whileTap: {
+    scale: 0.95,
+    y: 0,
+    transition: { duration: 0.1 }
   }
 }
 

@@ -1,22 +1,38 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { ArrowLeft, Mail, Linkedin, Instagram } from 'lucide-react'
+import { MemberModal } from '@/components/ui/MemberModal'
+import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function EventsPRGroupPage() {
+  const [selectedMember, setSelectedMember] = useState<typeof groupMembers[0] | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openMemberModal = (member: typeof groupMembers[0]) => {
+    setSelectedMember(member)
+    setIsModalOpen(true)
+  }
+
+  const closeMemberModal = () => {
+    setIsModalOpen(false)
+    setSelectedMember(null)
+  }
   const groupMembers = [
     {
       name: '陳品蓁',
       role: '活動公關組員',
+      introduction: '負責對外聯繫與合作洽談，具有優秀的溝通能力與人際關係技巧。善於建立合作關係，為團隊爭取更多資源與機會。',
       color: 'bg-green-500'
     },
     {
       name: '侯柏任',
       role: '活動公關組員',
+      introduction: '專責活動企劃與執行，具有豐富的活動辦理經驗。創意十足且執行力強，能夠策劃出精彩且有意義的活動。',
       color: 'bg-green-600'
     }
   ]
@@ -24,7 +40,7 @@ export default function EventsPRGroupPage() {
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <section className="bg-gradient-to-br from-green-50 via-cream to-green-100 py-20">
+      <section className="bg-cream py-20 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -32,9 +48,9 @@ export default function EventsPRGroupPage() {
             transition={{ duration: 0.6 }}
           >
             <Button variant="outline" className="mb-6" asChild>
-              <Link href="/about">
+              <Link href="/about/our-team">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                返回關於我們
+                返回我們的團隊
               </Link>
             </Button>
             
@@ -51,7 +67,7 @@ export default function EventsPRGroupPage() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-green-50">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +93,11 @@ export default function EventsPRGroupPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card hover className="h-full border-2 border-white">
+                <Card
+                  hover
+                  className="h-full border-2 border-white cursor-pointer transition-all duration-200 hover:shadow-lg hover:border-pink-200"
+                  onClick={() => openMemberModal(member)}
+                >
                   <CardContent className="p-6 text-center">
                     {/* Avatar */}
                     <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-pink-200">
@@ -94,22 +114,14 @@ export default function EventsPRGroupPage() {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-pink-600 font-semibold mb-6">
+                    <p className="text-pink-600 font-semibold mb-4">
                       {member.role}
                     </p>
 
-                    {/* Social Links (placeholder) */}
-                    <div className="flex justify-center space-x-3">
-                      <button className="text-gray-400 hover:text-pink-600 transition-colors p-2">
-                        <Mail className="w-5 h-5" />
-                      </button>
-                      <button className="text-gray-400 hover:text-pink-600 transition-colors p-2">
-                        <Linkedin className="w-5 h-5" />
-                      </button>
-                      <button className="text-gray-400 hover:text-pink-600 transition-colors p-2">
-                        <Instagram className="w-5 h-5" />
-                      </button>
-                    </div>
+                    {/* Click hint */}
+                    <p className="text-gray-500 text-sm">
+                      查看詳細介紹
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -117,6 +129,16 @@ export default function EventsPRGroupPage() {
           </div>
         </div>
       </section>
+
+      {/* Member Modal */}
+      {selectedMember && (
+        <MemberModal
+          isOpen={isModalOpen}
+          onClose={closeMemberModal}
+          member={selectedMember}
+          borderColor="border-pink-200"
+        />
+      )}
     </div>
   )
 }
