@@ -27,8 +27,8 @@ export default function AdvisorGroupPage() {
       name: '施朱娟',
       role: '指導老師',
       grade: '',
-      bio: '具有豐富的教學經驗與學術背景，致力於環境教育與永續發展的推廣。以專業的知識與熱忱的態度，引領 HSSL 團隊朝向更高的目標邁進，培養學生的環保意識與社會責任感。',
-      skills: ['環境教育', '學術指導', '永續發展', '教學研究'],
+      bio: ' - ',
+      skills: ['環境教育', '學術指導', '永續發展'],
       avatar: '',
       color: 'bg-green-500'
     }
@@ -40,9 +40,9 @@ export default function AdvisorGroupPage() {
       <section className="bg-cream py-20 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
           >
             <Button variant="outline" className="mb-6" asChild>
               <Link href="/about/our-team">
@@ -67,9 +67,9 @@ export default function AdvisorGroupPage() {
       <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -86,9 +86,9 @@ export default function AdvisorGroupPage() {
               {groupMembers.map((member, index) => (
                 <motion.div
                   key={member.name}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                   viewport={{ once: true }}
                 >
                   <Card

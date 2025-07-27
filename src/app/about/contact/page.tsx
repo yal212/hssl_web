@@ -11,21 +11,13 @@ import {
   Clock,
   MessageCircle,
   Send,
-  Camera,
-  Users,
   ExternalLink
 } from 'lucide-react'
+import Image from 'next/image'
 import { useState } from 'react'
 import {
   fadeInUp,
   staggerContainer,
-  hoverScale,
-  hoverBounce,
-  scrollReveal,
-  scrollSlideIn,
-  cardHover,
-  iconHover,
-  buttonHover,
   floating
 } from '@/lib/animations'
 
@@ -41,16 +33,16 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: '電子郵件',
-      content: ' _@_.com',
-      description: '我們會在 - 小時內回覆您的郵件',
+      content: 'hssl@example.com',
+      description: '我們會在24小時內回覆您的郵件',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50'
     },
     {
       icon: Phone,
       title: '聯絡電話',
-      content: '(xx) xxxx-xxxx',
-      description: '週 x 至週 x  xx:xx-xx:xx',
+      content: '(02) 2321-6256',
+      description: '週一至週五 08:00-17:00',
       color: 'text-green-600',
       bgColor: 'bg-green-50'
     },
@@ -65,8 +57,8 @@ export default function ContactPage() {
     {
       icon: Clock,
       title: '服務時間',
-      content: '週x至週五 xx:xx-xx:xx',
-      description: ' - ',
+      content: '週一至週五 08:00-17:00',
+      description: '國定假日休息',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50'
     }
@@ -74,18 +66,20 @@ export default function ContactPage() {
 
   const socialMedia = [
     {
-      icon: Camera,
       name: 'Instagram',
       handle: '@high.school.soap.lab',
       url: 'https://www.instagram.com/high.school.soap.lab',
-      color: 'text-pink-600'
+      color: 'text-pink-600',
+      iconSrc: '/instagram_icon.png',
+      iconAlt: 'Instagram'
     },
     {
-      icon: Users,
       name: 'Facebook',
       handle: 'High School Soap Lab.',
       url: 'https://www.facebook.com/groups/488135418924034/',
-      color: 'text-blue-600'
+      color: 'text-blue-600',
+      iconSrc: '/facebook_icon.svg',
+      iconAlt: 'Facebook'
     }
   ]
 
@@ -128,8 +122,10 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <motion.div
-              {...iconHover}
               className="inline-block mb-6"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
             >
               <MessageCircle size={80} className="text-green-200" />
             </motion.div>
@@ -179,17 +175,15 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
-                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 15
+                  duration: 0.5,
+                  delay: index * 0.1
                 }}
-                {...hoverBounce}
+                whileHover={{ scale: 1.02, y: -3 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Card className="h-full text-center border-2 border-white shadow-lg">
                   <CardContent className="p-6">
@@ -201,9 +195,7 @@ export default function ContactPage() {
                       }}
                       transition={{ duration: 0.5 }}
                     >
-                      <motion.div {...iconHover}>
-                        <info.icon size={32} className={info.color} />
-                      </motion.div>
+                      <info.icon size={32} className={info.color} />
                     </motion.div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{info.title}</h3>
                     <p className="text-gray-900 font-medium mb-2 whitespace-nowrap">{info.content}</p>
@@ -342,7 +334,15 @@ export default function ContactPage() {
               >
                 <Card hover className="h-full border-2 border-white shadow-lg hover:shadow-xl transition-all duration-300">
                   <CardContent className="p-6 text-center">
-                    <social.icon size={48} className={`mx-auto mb-4 ${social.color}`} />
+                    <div className="mx-auto mb-4 w-12 h-12 flex items-center justify-center">
+                      <Image
+                        src={social.iconSrc}
+                        alt={social.iconAlt}
+                        width={48}
+                        height={48}
+                        className="w-12 h-12 object-contain"
+                      />
+                    </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{social.name}</h3>
                     <p className="text-gray-600 mb-4">{social.handle}</p>
                     <Button variant="outline" size="sm" asChild>

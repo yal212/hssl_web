@@ -174,9 +174,9 @@ export default function OurTeamPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
             <div className="text-center mb-16">
@@ -188,11 +188,12 @@ export default function OurTeamPage() {
             <div className="flex justify-center">
               <motion.div
                 className="w-full max-w-lg"
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
-                {...hoverBounce}
+                transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 25 }}
+                whileHover={{ scale: 1.02, y: -3 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link href="/about/groups/advisor">
                   <Card className="h-full cursor-pointer group relative overflow-hidden border-2 border-white shadow-lg bg-gradient-to-br from-cream to-green-50">
@@ -209,15 +210,12 @@ export default function OurTeamPage() {
                           <motion.div
                             className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
                             whileHover={{
-                              scale: 1.1,
-                              rotate: 360,
+                              scale: 1.05,
                               backgroundColor: "rgba(255, 255, 255, 0.3)"
                             }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            <motion.div {...iconHover}>
-                              <UserCheck className="w-8 h-8 text-white" />
-                            </motion.div>
+                            <UserCheck className="w-8 h-8 text-white" />
                           </motion.div>
                           <h4 className="text-xl font-bold text-white mb-2">{advisor.title}</h4>
                           <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-white/30">
@@ -266,15 +264,15 @@ export default function OurTeamPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
             <div className="text-center mb-16">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">學生組織</h3>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                七個組別分工合作，各司其職，共同推動 HSSL 的環保教育使命
+                七個組別分工合作，共同推動 HSSL 的環保教育使命
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -292,17 +290,18 @@ export default function OurTeamPage() {
                 return (
                   <motion.div
                     key={group.name}
-                    initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{
-                      duration: 0.6,
-                      delay: index * 0.1,
+                      duration: 0.5,
+                      delay: index * 0.05,
                       type: "spring",
-                      stiffness: 200,
-                      damping: 15
+                      stiffness: 300,
+                      damping: 25
                     }}
                     viewport={{ once: true }}
-                    {...hoverTilt}
+                    whileHover={{ scale: 1.02, y: -3 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <Link href={groupRoutes[group.name as keyof typeof groupRoutes]}>
                       <Card className="h-full cursor-pointer group relative overflow-hidden border-2 border-white shadow-lg bg-gradient-to-br from-cream to-green-50">
@@ -319,15 +318,12 @@ export default function OurTeamPage() {
                               <motion.div
                                 className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
                                 whileHover={{
-                                  scale: 1.1,
-                                  rotate: 360,
+                                  scale: 1.05,
                                   backgroundColor: "rgba(255, 255, 255, 0.3)"
                                 }}
-                                transition={{ duration: 0.5 }}
+                                transition={{ duration: 0.2 }}
                               >
-                                <motion.div {...iconHover}>
-                                  <group.icon className="w-8 h-8 text-white" />
-                                </motion.div>
+                                <group.icon className="w-8 h-8 text-white" />
                               </motion.div>
                               <h4 className="text-xl font-bold text-white mb-2">{group.name}</h4>
                               <div className={`inline-flex items-center px-3 py-1 rounded-full ${group.bgColor} border border-white/30`}>
@@ -378,9 +374,9 @@ export default function OurTeamPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -400,10 +396,11 @@ export default function OurTeamPage() {
             {teamValues.map((value, index) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.02, y: -2 }}
               >
                 <Card className="h-full text-center border-2 border-white shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
                   <CardContent className="p-6">
@@ -427,10 +424,10 @@ export default function OurTeamPage() {
             <Card className="border-0 shadow-xl bg-gradient-to-br from-green-600 to-green-700">
               <CardContent className="p-12">
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                  想要加入我們的團隊嗎？
+                   - 
                 </h3>
                 <p className="text-xl text-green-100 mb-8 leading-relaxed">
-                  我們歡迎有熱忱的學生加入，一起為環保教育貢獻心力
+                   - 
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button variant="secondary" size="lg" asChild>

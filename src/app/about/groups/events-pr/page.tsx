@@ -26,13 +26,13 @@ export default function EventsPRGroupPage() {
     {
       name: '陳品蓁',
       role: '活動公關組員',
-      introduction: '負責對外聯繫與合作洽談，具有優秀的溝通能力與人際關係技巧。善於建立合作關係，為團隊爭取更多資源與機會。',
+      introduction: '經由家人的介紹加入HSSL的團隊，在加入團隊之前就有打皂的經驗，而我也希望能藉由在HSSL學到的知識幫助我們的環境，並透過HSSL辦的各種公益活動，幫助到需要的人。',
       color: 'bg-green-500'
     },
     {
       name: '侯柏任',
       role: '活動公關組員',
-      introduction: '專責活動企劃與執行，具有豐富的活動辦理經驗。創意十足且執行力強，能夠策劃出精彩且有意義的活動。',
+      introduction: '平常喜歡打籃球、健身、聽音樂。加入HSSL的目的是為了擴張自己的影響力，並且在薇閣持續這個團體。希望能為大家贏得青志獎第一名。',
       color: 'bg-green-600'
     }
   ]
@@ -80,7 +80,7 @@ export default function EventsPRGroupPage() {
               組員介紹
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的活動公關組成員致力於建立良好的外部關係和擴大影響力。
+              
             </p>
           </motion.div>
 
@@ -88,9 +88,9 @@ export default function EventsPRGroupPage() {
             {groupMembers.map((member, index) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <Card

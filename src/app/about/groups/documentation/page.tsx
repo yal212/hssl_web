@@ -26,31 +26,31 @@ export default function DocumentationGroupPage() {
     {
       name: '饒子儀',
       role: '文書美宣組組長',
-      introduction: '負責社群媒體經營與品牌形象管理，具有敏銳的美感與創意思維。擅長內容策劃與視覺設計，致力於提升 HSSL 的知名度與影響力。',
+      introduction: '2024年寒假的時候接觸到了 High school soap lab ，體驗了做肥皂也解了這個社團的初衷。我非常享受做肥皂的過程也很開心可以做公益幫助更多人，希望之後能在這個社團學習到更多東西。',
       color: 'bg-green-500'
     },
     {
       name: '張育瑄',
       role: '文書美宣組組長',
-      introduction: '專精於平面設計與海報製作，能夠創造出吸引人的視覺作品。注重細節與美感，確保每個宣傳素材都能達到專業水準。',
+      introduction: '國一時因為姊姊加入這個團隊  我也跟著接觸打皂，覺得很有趣，也因看著姐姐跟著這個團體學到很多東西，就希望自也能在高中加入，一起學習透過手工皂做公益，並豐富我的高中生活。',
       color: 'bg-green-600'
     },
     {
       name: '林芸安',
       role: '文書美宣組組長',
-      introduction: '負責文案撰寫與內容編輯，具有優秀的文字表達能力。善於將複雜的資訊轉化為易懂且有趣的內容，深受讀者喜愛。',
+      introduction: '寒假的時候在Anna的帶領下認識了High SCHOOL SOAP LAB並實際體驗了製作肥皂的過程。也因此希望能夠在這段時間透過做工藝的方式幫助更多需要的人並且也了解更多關於肥皂的意義!',
       color: 'bg-green-700'
     },
     {
       name: '林祐安',
       role: '文書美宣組組長',
-      introduction: '專責 Instagram 經營與互動管理，了解社群媒體趨勢與用戶喜好。善於創造有趣的互動內容，提升粉絲參與度。',
+      introduction: '身位一位對插畫非常有興趣的人，我很高興能被邀請參與此社團的繪本製作。在製作繪本的過程中，我不僅學到了製作肥皂的步驟，更被這個社團的環保精神打動，意識到了愛護地球的重要性！',
       color: 'bg-green-800'
     },
     {
       name: '郭芃妘',
       role: '文書美宣組組員',
-      introduction: '協助各項美宣工作與素材製作，學習態度積極且富有創意。善於團隊合作，是組內不可或缺的重要成員。',
+      introduction: '由家人在網路上發現這個志工團體，加入團隊後希望能透過自己小小的力量幫助到需要的人，並在其中學習、累積各種經驗。',
       color: 'bg-green-900'
     }
   ]
@@ -61,9 +61,9 @@ export default function DocumentationGroupPage() {
       <section className="bg-cream py-20 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
           >
             <Button variant="outline" className="mb-6" asChild>
               <Link href="/about/our-team">
@@ -88,9 +88,9 @@ export default function DocumentationGroupPage() {
       <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -98,7 +98,7 @@ export default function DocumentationGroupPage() {
               組員介紹
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的文書美宣組成員致力於創造專業的視覺形象和有效的溝通。
+              
             </p>
           </motion.div>
 
@@ -106,9 +106,9 @@ export default function DocumentationGroupPage() {
             {groupMembers.map((member, index) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <Card

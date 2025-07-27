@@ -26,19 +26,19 @@ export default function InformationGroupPage() {
     {
       name: '江新泉',
       role: '資訊組組長',
-      introduction: '負責資訊組的技術規劃與系統開發，具有豐富的程式設計經驗。專精於網站開發與資料庫管理，致力於提升團隊的數位化水準。',
+      introduction: '我經由家人的介紹而來到HSSL。我以前就有接觸過SDGs相關的志工課程，因此希望能夠藉由這次製作肥皂的活動幫助他人和環境。並且學習有關肥皂製作的知識和累積自己的志工經驗。',
       color: 'bg-green-500'
     },
     {
       name: '陳宇碩',
       role: '資訊組組員',
-      introduction: '專責問卷設計與資料分析，具有優秀的邏輯思維能力。善於運用科技工具提升工作效率，是團隊中的技術專家。',
+      introduction: '我透過高一的班導介紹，讓我知道HSSL這個團體。參加這個團體後，希望能對公共議題有更多的了解，更希望能透過自己的一小份心力影響他人。',
       color: 'bg-green-600'
     },
     {
       name: '李曜安',
       role: '資訊組組員',
-      introduction: '負責保險資料處理與系統維護，做事細心且具有責任感。善於學習新技術，持續為團隊帶來創新的解決方案。',
+      introduction: '我會加入 High School Soap Lab，是因為家人的推薦，加入後發現這個團體很適合我。不僅能手作肥皂，還能為環保與公益盡一份心力。我很期待能和大家一起努力，推廣環保理念，透過行動帶來正面的影響。',
       color: 'bg-green-700'
     }
   ]
@@ -86,7 +86,7 @@ export default function InformationGroupPage() {
               組員介紹
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的資訊組成員致力於運用科技創新提升組織效率。
+              
             </p>
           </motion.div>
 
@@ -94,9 +94,9 @@ export default function InformationGroupPage() {
             {groupMembers.map((member, index) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <Card

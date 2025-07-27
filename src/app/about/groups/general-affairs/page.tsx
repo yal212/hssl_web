@@ -26,25 +26,25 @@ export default function GeneralAffairsGroupPage() {
     {
       name: '謝舒安',
       role: '總務組組長',
-      introduction: '負責總務組的整體規劃與財務管理，具有優秀的組織能力與責任感。擅長預算控制與資源配置，確保每個活動都能順利進行。',
+      introduction: '2021年疫情爆發的暑假，我跟著姐姐一起學習手工皂的製作，認識了手工皂的美好，參與了HSSL皂顧醫護的送皂活動覺得非常有意義!期待跟著大家繼續皂顧地球!',
       color: 'bg-emerald-500'
     },
     {
       name: '龔昀晴',
       role: '總務組組長',
-      introduction: '專責餐飲安排與供應商聯繫，具有豐富的活動籌辦經驗。注重細節與品質，確保每位參與者都能享受到優質的服務。',
+      introduction: '在疫情期間，我就有參加過HSSL舉辦的皂顧醫護的活動，也對藉由做手工皂來幫助有需要的人感興趣，在2025加入HSSL ，希望之後在這個團隊中能幫助到在社會上有需要的人。',
       color: 'bg-emerald-600'
     },
     {
       name: '劉峻成',
       role: '總務組組員',
-      introduction: '負責原物料採購與庫存管理，具有敏銳的市場觀察力。善於尋找優質且經濟的供應來源，為團隊節省成本。',
+      introduction: '我是來自康橋秀岡的劉峻成。在同學的邀請下，我加入了 High school soap lab，也了解到了這個組織成立的初衷和重要性。我希望自己可以對於皂化反應更加熟悉，並透過製作肥皂來幫助有需要的人，並在團隊中貢獻一分心力。',
       color: 'bg-teal-600'
     },
     {
       name: '黃翊棠',
       role: '總務組組員',
-      introduction: '協助各項總務工作與後勤支援，做事認真負責且具有團隊精神。善於解決突發問題，是團隊中可靠的支柱。',
+      introduction: ' - ',
       color: 'bg-teal-700'
     }
   ]
@@ -92,7 +92,7 @@ export default function GeneralAffairsGroupPage() {
               組員介紹
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的總務組成員致力於維護組織的穩定運作和財務健康。
+              
             </p>
           </motion.div>
 
@@ -100,9 +100,9 @@ export default function GeneralAffairsGroupPage() {
             {groupMembers.map((member, index) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <Card

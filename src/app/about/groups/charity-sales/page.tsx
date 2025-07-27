@@ -26,25 +26,25 @@ export default function CharitySalesGroupPage() {
     {
       name: '蔡昕恩',
       role: '義賣規劃組員',
-      introduction: '負責企業認購聯繫與合作洽談，具有優秀的商業溝通能力。善於建立長期合作關係，為義賣活動爭取更多支持。',
+      introduction: '在參加了一場以海洋生物為主題的活動後，我對high school soap lab 有了更多的了解，皂化背後的化學反應以及組織對回收廢油的想法深深吸引我。我相信，透過製作肥皂，我們可以讓地球更美好。',
       color: 'bg-teal-500'
     },
     {
       name: '陳語欣',
       role: '義賣規劃組員',
-      introduction: '專責義賣文宣設計與宣傳策略，具有創意思維與美感。能夠製作出吸引人的宣傳素材，提升義賣活動的知名度。',
+      introduction: '在朋友的邀請下我加入了HSSL，我希望在接下來的活動中，能更投入其中，不只是學習新的東西，也希望能多認識一些人，並幫助一些有需要幫助的人。也希望透過這個團隊，讓更多人一起關注和支持那些面對困難的人。',
       color: 'bg-teal-600'
     },
     {
       name: '蔡昀恩',
       role: '義賣規劃組員',
-      introduction: '負責義賣活動規劃與執行，具有豐富的活動辦理經驗。注重細節與品質，確保每個義賣活動都能達到預期效果。',
+      introduction: ' - ',
       color: 'bg-teal-700'
     },
     {
       name: '林祖妤',
       role: '義賣規劃組員',
-      introduction: '協助各項義賣工作與客戶服務，具有親和力與服務熱忱。善於與人溝通，為義賣活動帶來正面的形象與口碑。',
+      introduction: '我是在我媽的介紹下認識這個社團,看到這個社團在疫情時做的貢獻時讓我也想加入這社團為這社會做一點付出和幫助其他人。',
       color: 'bg-teal-800'
     }
   ]
@@ -55,9 +55,9 @@ export default function CharitySalesGroupPage() {
       <section className="bg-cream py-20 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
           >
             <Button variant="outline" className="mb-6" asChild>
               <Link href="/about/our-team">
@@ -82,9 +82,9 @@ export default function CharitySalesGroupPage() {
       <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -92,7 +92,7 @@ export default function CharitySalesGroupPage() {
               組員介紹
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的義賣規劃組成員致力於創造有意義的社會影響和慈善貢獻。
+              
             </p>
           </motion.div>
 
@@ -100,9 +100,9 @@ export default function CharitySalesGroupPage() {
             {groupMembers.map((member, index) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <Card

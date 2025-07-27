@@ -26,19 +26,19 @@ export default function TeachingGroupPage() {
     {
       name: '莊又晰',
       role: '教學組組長',
-      introduction: '負責教學組的整體規劃與課程設計，具有豐富的教學經驗與創新思維。擅長將複雜的科學概念轉化為易懂的教學內容，深受學員喜愛。',
+      introduction: '2021年和姊姊和朋友們一起成立HSSL,開始皂顧人&地球。至今學會了好多關於環保永續的理念，以及如何籌劃活動。希望可以把這份心帶入學校！邀約更多夥伴一起努力。',
       color: 'bg-green-500'
     },
     {
       name: '黃冠傑',
       role: '教學組組員',
-      introduction: '專精於投影片製作與視覺設計，能夠創造出生動有趣的教學素材。注重細節，確保每個教學環節都能達到最佳效果。',
+      introduction: '在學校經由同學的介紹，我認識了hssl這個志工團體，由於我很少聽說有志工團體是透過製造肥皂來幫助社會，所以聽到同學的介紹就滿感興趣的，希望未來也能繼續透過作肥皂來幫助需要幫助的人。',
       color: 'bg-green-600'
     },
     {
       name: '張呈瑞',
       role: '教學組組員',
-      introduction: '負責配方研發與實驗設計，具有扎實的化學基礎知識。善於創新實驗方法，讓學習過程更加有趣且安全。',
+      introduction: '我是來自康橋秀岡的張呈瑞，在同學的邀請下，我加入了 High School SoaP Lab。我期許自己能夠在團隊中學習製皂技術與化學原理，積極參與公益行動，與大家一起在每一塊肥皂中實踐理念，為團隊貢獻一份心力。',
       color: 'bg-green-700'
     }
   ]
@@ -76,9 +76,9 @@ export default function TeachingGroupPage() {
       <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -86,7 +86,7 @@ export default function TeachingGroupPage() {
               組員介紹
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們的教學組成員致力於技術傳承和品質提升。
+              
             </p>
           </motion.div>
 
@@ -94,9 +94,9 @@ export default function TeachingGroupPage() {
             {groupMembers.map((member, index) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <Card
