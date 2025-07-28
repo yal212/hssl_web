@@ -22,8 +22,7 @@ export function Footer() {
               <span className="font-bold text-xl">High School Soap Lab</span>
             </div>
             <p className="text-green-100 mb-4 max-w-md">
-              製作清潔環保手工皂，為地球和世界創造更美好的未來。
-              加入我們的使命，創造永續產品，同時支持慈善事業。
+              推廣清潔環保手工皂，為地球和世界創造更美好的未來。
             </p>
             <div className="flex space-x-4">
               <a
@@ -55,11 +54,6 @@ export function Footer() {
               <li>
                 <Link href="/" className="text-green-200 hover:text-white transition-colors">
                   首頁
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-green-200 hover:text-white transition-colors">
-                  關於我們
                 </Link>
               </li>
               <li>

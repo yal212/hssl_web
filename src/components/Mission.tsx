@@ -58,8 +58,7 @@ export function Mission() {
               transition={{ delay: 0.8, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              High School Soap Lab (HSSL) 是由高中學生主導的環保慈善組織，
-              我們製作天然手工皂並將所有收益捐贈給慈善機構。
+              High School Soap Lab (HSSL) 是由高中學生主導的 - 組織
             </motion.p>
             <motion.div
               className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12"
@@ -92,7 +91,7 @@ export function Mission() {
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  製作手工皂
+                  推廣手工皂
                 </motion.h3>
                 <motion.p
                   className="text-gray-600 leading-relaxed"
@@ -101,7 +100,7 @@ export function Mission() {
                   transition={{ delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  使用天然成分製作環保手工皂
+                  推廣並製作環保手工皂
                 </motion.p>
               </motion.div>
               <motion.div
@@ -128,7 +127,7 @@ export function Mission() {
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  回收廢油
+                  環保再生
                 </motion.h3>
                 <motion.p
                   className="text-gray-600 leading-relaxed"
@@ -137,7 +136,7 @@ export function Mission() {
                   transition={{ delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  將過期油轉化為有用的清潔產品
+                  將過期油轉化為環保的清潔產品
                 </motion.p>
               </motion.div>
               <motion.div
@@ -164,7 +163,7 @@ export function Mission() {
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  慈善捐贈
+                  義賣捐贈
                 </motion.h3>
                 <motion.p
                   className="text-gray-600 leading-relaxed"
@@ -173,7 +172,7 @@ export function Mission() {
                   transition={{ delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  將所有收益捐贈給需要幫助的機構
+                  將收益捐贈給需要幫助的機構
                 </motion.p>
               </motion.div>
             </motion.div>
@@ -222,8 +221,8 @@ export function Mission() {
                 transition={{ delay: 0.8, duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                市售清潔劑含有對環境有害的化學物質，而我們的手工皂提供了天然、環保的替代方案。
-                同時，我們將收益用於支持社會弱勢群體，創造雙重正面影響。
+                市售清潔劑含有對環境有害的化學物質，
+                而我們的手工皂提供了天然、環保的替代方案。
               </motion.p>
               <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left"
@@ -280,6 +279,56 @@ export function Mission() {
                     viewport={{ once: true }}
                   >
                     支持弱勢群體，創造社會正面改變
+                  </motion.p>
+                </motion.div>
+                <motion.div
+                  variants={staggerItem}
+                  className="bg-cream/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <motion.h3
+                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    公共衛生
+                  </motion.h3>
+                  <motion.p
+                    className="text-green-700 leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    支持弱勢群體，創造社會正面改變
+                  </motion.p>
+                </motion.div>
+                <motion.div
+                  variants={staggerItem}
+                  className="bg-cream/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <motion.h3
+                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    ESG
+                  </motion.h3>
+                  <motion.p
+                    className="text-green-700 leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    贈皂、公益募款義賣進行社區皂顧關懷
                   </motion.p>
                 </motion.div>
               </motion.div>

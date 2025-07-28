@@ -84,7 +84,7 @@ export function Hero() {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="text-lg sm:text-xl lg:text-2xl text-green-700 mb-8 max-w-2xl leading-relaxed text-pretty"
             >
-              製作天然手工皂，回收廢油，將所有收益捐贈給慈善機構。
+              推廣環保手工皂
 
             </motion.p>
 
@@ -100,7 +100,7 @@ export function Hero() {
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link href="/about">
+                <Link href="/about/our-team">
                   認識我們的團隊
                 </Link>
               </Button>
@@ -165,7 +165,7 @@ export function Hero() {
                   我們的使命
                 </h3>
                 <p className="text-center text-white/80">
-                  創造永續產品，同時支持慈善事業並推廣實現環境保護。
+                  推廣永續產品，同時支持 - 並推廣實現環境保護。
                 </p>
                 <div className="flex justify-center mt-6">
                   <Heart className="w-6 h-6 text-white" />

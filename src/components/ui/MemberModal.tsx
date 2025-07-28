@@ -14,6 +14,7 @@ interface MemberModalProps {
     bio?: string
     skills?: string[]
     color: string
+    profileImage?: string
   }
   borderColor?: string
 }
@@ -50,7 +51,7 @@ export function MemberModal({ isOpen, onClose, member, borderColor = 'border-gre
             {/* Avatar */}
             <div className={`w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 ${borderColor}`}>
               <Image
-                src="/hssl_profile.jpg"
+                src={member.profileImage || "/hssl_profile.jpg"}
                 alt={member.name}
                 width={96}
                 height={96}

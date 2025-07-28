@@ -1,5 +1,5 @@
 # HSSL Website Project Diary
-
+#### commits are based on my Github repo
 ---
 
 ## **Pre-July 14, 2025** - Initial Project Setup & Overall Structure
@@ -14,7 +14,7 @@
 - Implemented basic routing structure and page layouts
 - Added Framer Motion for animations and transitions
 - Configured environment variables and deployment settings
-- Created initial UI components library (Button, Card, etc.)
+- Created initial UI components library (Buttons, Cards)
 - Set up basic navigation structure and footer
 - Implemented responsive design foundation
 - Added initial SEO configuration and metadata
@@ -44,6 +44,62 @@
 - Image optimization and processing
 - Responsive breakpoint system
 - Component prop interfaces and types
+
+---
+
+## **July 12, 2025** - Early Development & Features
+
+### **Commit: "fixes: language and educate page"**
+- Change language from English to Chinese and localization foundation
+- Created education page with learning resources and content
+- Enhanced multilingual capabilities for better accessibility
+- Improved content structure for educational materials
+
+### **Commit: "fixes: improved about us and education page"**
+- Enhanced about us page layout and content organization
+- Improved education page functionality and user experience
+- Better content presentation and navigation flow
+- Enhanced responsive design for both pages
+
+### **Commit: "fixes: added news and improved profile"**
+- Implemented comprehensive news system with CRUD functionality
+- Enhanced user profile management and display
+- Added news creation, editing, and publishing capabilities
+- Improved profile customization and user settings
+
+### **Commit: "deploymeny v1"**
+- Deployed website to Vercel
+- First major deployment to production environment
+- Initial live version of the HSSL website
+- Basic functionality deployed and accessible to users
+- Foundation for iterative improvements and feature additions
+
+### **Commit: "fixes: improved news page for admins, improved email comfirmation UI"**
+- Enhanced admin interface for news management
+- Improved email confirmation user interface and experience
+- Better admin controls for content moderation and publishing
+- Streamlined email verification process with clearer UI
+
+### **Commit: "deployment v2"**
+- Second major deployment with news system and admin improvements
+- Enhanced stability and performance optimizations
+- Improved user experience with better email confirmation flow
+- More robust admin functionality for content management
+
+---
+
+## **July 13, 2025** - Analytics & About Us Enhancements
+
+### **Commit: "fixes: added forms linktree, improved about us members info"**
+- Integrated Linktree for external forms and resources
+- Enhanced about us section with better member information display
+- Improved team member profiles and organizational structure
+- Added external form integration for better user engagement
+
+### **Commit: "fixes: for web analytics"**
+- Implemented web analytics for Vercel with tracking and monitoring
+- Added user behavior tracking and performance metrics
+- Enhanced data collection for website optimization
 
 ---
 
@@ -249,12 +305,23 @@
 
 ## **July 28, 2025** - Documentation & Project Review
 
+### **Commit: "fixes: added project diary"**
+- Added comprehensive project diary file to repository
+- Documented complete development timeline from project setup to final deployment
+- Organized all commits chronologically from July 14-27, 2025
+- Included pre-July 14 project foundation and architecture work
+- Catalogued key learning outcomes and technical insights
+- Documented major issues faced and their resolutions
+- Summarized project statistics and achievements
+- Created future enhancement roadmap
+- Established clear development history for ongoing maintenance
+
 ### **Project Documentation Session**
 - Created comprehensive project diary documenting all development work
-- Organized commit history chronologically from July 14-27, 2025
+- Organized commit history chronologically from project inception
 - Documented key learning outcomes and major issues resolved
 - Summarized project statistics and achievements
-- Reviewed 2-week development timeline with 25+ commits and 6 deployments
+- Reviewed complete development timeline with 25+ commits and 6 deployments
 - Catalogued technical implementation details and user experience improvements
 - Prepared final project documentation for future reference and maintenance
 
@@ -271,6 +338,16 @@
 - Creating reusable component architecture and design patterns
 - Setting up responsive design foundation and mobile-first approach
 - Implementing basic security measures and authentication infrastructure
+
+### **Early Development & Feature Implementation** (July 12-13)
+- Building comprehensive news system with admin functionality
+- Implementing user profile management and customization
+- Setting up deployment pipeline and production environment
+- Integrating external services (Linktree) for enhanced functionality
+- Implementing web analytics for user behavior tracking and insights
+- Creating multilingual support and educational content structure
+- Developing email confirmation system with improved user experience
+- Establishing admin controls for content management and moderation
 
 ### **Design System Architecture** (July 25-26)
 - How to build a comprehensive color system that scales across an entire application
@@ -367,11 +444,13 @@
 
 ## **Final Project Statistics**
 
-### **Development Timeline**: Pre-July 14 to July 28, 2025 (3+ weeks total)
-- **Project Setup Phase**: Initial architecture and foundation (Pre-July 14)
-- **Active Development**: 25+ commits across 14 days (July 14-27)
+### **Development Timeline**: Pre-July 12 to July 28, 2025 (3+ weeks total)
+- **Project Setup Phase**: Initial architecture and foundation (Pre-July 12)
+- **Early Development**: Feature implementation and first deployments (July 12-13)
+- **Active Development**: 25+ commits across 16 days (July 14-27)
 - **Documentation Phase**: Project review and diary creation (July 28)
-- **Major Deployments**: 6 production deployments
+- **Total Commits**: 35+ commits across the complete development cycle
+- **Major Deployments**: 6 production deployments (v1, v2, v3, v4, v5, v6)
 - **Critical Bug Fixes**: 3 major authentication and loading issues resolved
 - **Documentation**: Comprehensive project diary with chronological commit tracking
 

@@ -29,7 +29,8 @@ export default function EquipmentGroupPage() {
       name: '林秉用',
       role: '設備組組長',
       introduction: '我是林秉用，2024年高一升高二 成功高中的學生，參加社團的目的在於製作肥皂以供自己使用，能夠盡微薄之力為團隊獻上一份力，也是我的榮幸。',
-      color: 'bg-green-500'
+      color: 'bg-green-500',
+      profileImage: '/members_profiles/林秉用.png'
     },
     {
       name: '林楷哲',
@@ -169,7 +170,7 @@ export default function EquipmentGroupPage() {
                       transition={{ duration: 0.2 }}
                     >
                       <Image
-                        src="/hssl_profile.jpg"
+                        src={member.profileImage || "/hssl_profile.jpg"}
                         alt={member.name}
                         width={96}
                         height={96}

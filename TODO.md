@@ -2,8 +2,21 @@
 - when signed in as an admin account the 管理後台 button in the news page just redirects me to the sign in page, fix it to redirect to the correct page when signed in as an admin account
 - make the 最新動態 in the home page clickable
 - color theme adjustments
-<!-- - return about us button uses the old about us page, which leads to 404 error page -->
+- 認識我們的團隊 button goes to /about which is 404 for now
 - add the introduce text correctly
+- details of contents 不是只回收廢油
+- members profile pic + 社區媽媽
+- 造貴人地球
+- 製作手工皂 推廣
+- famliy 社區
+- fresh old
+- 為什麼這很重要？ 公共衛生 ESG
+- 邀約合作
+- remove 捐款 志工
+- 更生少年 十大傑出 
+- 聯絡電話 
+- 服務時間 -> 商號
+
 
 # DO EVERY TIME (DON'T CHANGE)
 - check if there are any errors 

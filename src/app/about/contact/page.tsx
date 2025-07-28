@@ -8,7 +8,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  Clock,
   MessageCircle,
   Send,
   ExternalLink
@@ -41,8 +40,8 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: '聯絡電話',
-      content: '(02) 2321-6256',
-      description: '週一至週五 08:00-17:00',
+      content: ' - ',
+      description: ' - ',
       color: 'text-green-600',
       bgColor: 'bg-green-50'
     },
@@ -53,14 +52,6 @@ export default function ContactPage() {
       description: '臺北市立成功高級中學',
       color: 'text-purple-600',
       bgColor: 'bg-purple-50'
-    },
-    {
-      icon: Clock,
-      title: '服務時間',
-      content: '週一至週五 08:00-17:00',
-      description: '國定假日休息',
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50'
     }
   ]
 
@@ -166,7 +157,7 @@ export default function ContactPage() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
