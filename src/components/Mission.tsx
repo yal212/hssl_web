@@ -1,7 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Beaker, Recycle, Heart } from 'lucide-react'
+import {
+  Heart,
+  Leaf,
+  GraduationCap,
+  Users,
+  Shield,
+  Building,
+  BookOpen
+} from 'lucide-react'
 import {
   fadeInUp,
   fadeInDown,
@@ -29,7 +37,7 @@ export function Mission() {
             initial="initial"
             animate="animate"
           >
-            <Beaker className="w-10 h-10 text-white" />
+            <Leaf className="w-10 h-10 text-white" />
           </motion.div>
 
           <motion.h2
@@ -58,7 +66,9 @@ export function Mission() {
               transition={{ delay: 0.8, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              High School Soap Lab (HSSL) 是由高中學生主導的 - 組織
+              High School Soap Lab 團隊是由跨校高中生組成，自2021年以來，
+              結合科學、環保與社會關懷，將高中生的科學技能發揮作為學子的社會影響力，
+              營造人與地球永續共好的目標
             </motion.p>
             <motion.div
               className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12"
@@ -82,7 +92,7 @@ export function Mission() {
                 >
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                  <Beaker className="w-10 h-10 text-white relative z-10" />
+                  <Leaf className="w-10 h-10 text-white relative z-10" />
                 </motion.div>
                 <motion.h3
                   className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
@@ -91,7 +101,7 @@ export function Mission() {
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  推廣手工皂
+                  環境層面
                 </motion.h3>
                 <motion.p
                   className="text-gray-600 leading-relaxed"
@@ -100,7 +110,7 @@ export function Mission() {
                   transition={{ delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  推廣並製作環保手工皂
+                  解決市售清潔劑疑慮與過期油循環再生，實現雙重淨零減廢
                 </motion.p>
               </motion.div>
               <motion.div
@@ -118,7 +128,7 @@ export function Mission() {
                 >
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                  <Recycle className="w-10 h-10 text-white relative z-10" />
+                  <Heart className="w-10 h-10 text-white relative z-10" />
                 </motion.div>
                 <motion.h3
                   className="text-xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors duration-200"
@@ -127,7 +137,7 @@ export function Mission() {
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  環保再生
+                  社會層面
                 </motion.h3>
                 <motion.p
                   className="text-gray-600 leading-relaxed"
@@ -136,7 +146,7 @@ export function Mission() {
                   transition={{ delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  將過期油轉化為環保的清潔產品
+                  弱勢教育服務、資金籌款與企業ESG合作，創造社會共好
                 </motion.p>
               </motion.div>
               <motion.div
@@ -154,7 +164,7 @@ export function Mission() {
                 >
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                  <Heart className="w-10 h-10 text-white relative z-10" />
+                  <GraduationCap className="w-10 h-10 text-white relative z-10" />
                 </motion.div>
                 <motion.h3
                   className={`text-xl font-bold text-gray-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
@@ -163,7 +173,7 @@ export function Mission() {
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  義賣捐贈
+                  高中生自我成長
                 </motion.h3>
                 <motion.p
                   className="text-gray-600 leading-relaxed"
@@ -172,7 +182,7 @@ export function Mission() {
                   transition={{ delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  將收益捐贈給需要幫助的機構
+                  落實108課綱精神，培養社會影響力與豐富高中歷程
                 </motion.p>
               </motion.div>
             </motion.div>
@@ -221,8 +231,8 @@ export function Mission() {
                 transition={{ delay: 0.8, duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                市售清潔劑含有對環境有害的化學物質，
-                而我們的手工皂提供了天然、環保的替代方案。
+                生活中的方便與便宜常常隱藏著更高的成本。市售清潔劑含有對環境有害的化學物質，
+                而我們透過廢油回收製皂，提供天然環保的替代方案，同時創造社會正面影響。
               </motion.p>
               <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left"
@@ -237,15 +247,20 @@ export function Mission() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <motion.h3
-                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    環境保護
-                  </motion.h3>
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                      <Shield className="w-6 h-6 text-green-600" />
+                    </div>
+                    <motion.h3
+                      className={`text-xl font-bold text-green-900 group-hover:${colorTheme.primary.text} transition-colors duration-200`}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      環境保護
+                    </motion.h3>
+                  </div>
                   <motion.p
                     className="text-green-700 leading-relaxed"
                     initial={{ opacity: 0 }}
@@ -253,7 +268,7 @@ export function Mission() {
                     transition={{ delay: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    減少化學污染，推廣永續生活方式
+                    減少塑膠微粒與化學污染，推動循環經濟與永續生活方式
                   </motion.p>
                 </motion.div>
                 <motion.div
@@ -262,15 +277,20 @@ export function Mission() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <motion.h3
-                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    社會關懷
-                  </motion.h3>
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                      <Users className="w-6 h-6 text-red-600" />
+                    </div>
+                    <motion.h3
+                      className={`text-xl font-bold text-green-900 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      社會關懷
+                    </motion.h3>
+                  </div>
                   <motion.p
                     className="text-green-700 leading-relaxed"
                     initial={{ opacity: 0 }}
@@ -278,7 +298,7 @@ export function Mission() {
                     transition={{ delay: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    支持弱勢群體，創造社會正面改變
+                    為喜樂園等弱勢機構提供教育服務與資金援助，創造社會正面改變
                   </motion.p>
                 </motion.div>
                 <motion.div
@@ -287,15 +307,20 @@ export function Mission() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <motion.h3
-                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    公共衛生
-                  </motion.h3>
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                      <BookOpen className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <motion.h3
+                      className={`text-xl font-bold text-green-900 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      教育價值
+                    </motion.h3>
+                  </div>
                   <motion.p
                     className="text-green-700 leading-relaxed"
                     initial={{ opacity: 0 }}
@@ -303,7 +328,7 @@ export function Mission() {
                     transition={{ delay: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    支持弱勢群體，創造社會正面改變
+                    落實108課綱自發、互動、共好精神，培養學生環保意識與實作能力
                   </motion.p>
                 </motion.div>
                 <motion.div
@@ -312,15 +337,20 @@ export function Mission() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <motion.h3
-                    className={`text-xl font-bold text-green-900 mb-4 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    ESG
-                  </motion.h3>
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                      <Building className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <motion.h3
+                      className={`text-xl font-bold text-green-900 group-hover:${colorTheme.accent.text} transition-colors duration-200`}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      ESG合作
+                    </motion.h3>
+                  </div>
                   <motion.p
                     className="text-green-700 leading-relaxed"
                     initial={{ opacity: 0 }}
@@ -328,7 +358,7 @@ export function Mission() {
                     transition={{ delay: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    贈皂、公益募款義賣進行社區皂顧關懷
+                    與企業合作響應ESG精神，透過皂顧佳工房進行義賣，達到三方共好
                   </motion.p>
                 </motion.div>
               </motion.div>
