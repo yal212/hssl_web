@@ -9,7 +9,7 @@ interface MemberModalProps {
   onClose: () => void
   member: {
     name: string
-    role: string
+    role?: string
     introduction?: string
     bio?: string
     skills?: string[]
@@ -64,9 +64,11 @@ export function MemberModal({ isOpen, onClose, member, borderColor = 'border-gre
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 {member.name}
               </h2>
-              <p className="text-green-600 font-semibold text-lg">
-                {member.role}
-              </p>
+              {member.role && (
+                <p className="text-green-600 font-semibold text-lg">
+                  {member.role}
+                </p>
+              )}
             </div>
           </div>
           
