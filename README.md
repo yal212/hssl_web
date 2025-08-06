@@ -25,52 +25,6 @@ High School Soap Lab is a group of passionate high school students who make and 
 - **Authentication**: Email/password authentication via Supabase
 - **Icons**: Lucide React
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-- Supabase account
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd hssl-web
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Set up environment variables:
-```bash
-cp .env.local.example .env.local
-```
-
-Edit `.env.local` with your Supabase credentials:
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-```
-
-4. Set up the database:
-   - Go to your Supabase project
-   - Run the SQL from `supabase-schema.sql` in the SQL Editor
-   - Email authentication is configured by default
-
-5. Run the development server:
-```bash
-npm run dev
-```
-
-6. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-
 ## 📱 Pages
 
 - **Home** (`/`) - Hero section, mission, featured products
@@ -133,7 +87,7 @@ The app uses Supabase Auth with email/password authentication:
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+custom
 
 ## 🙏 Acknowledgments
 
