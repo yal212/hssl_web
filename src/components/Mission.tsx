@@ -41,7 +41,7 @@ export function Mission() {
           </motion.div>
 
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+            className="text-responsive-h2 font-bold text-green-900 mb-6"
             variants={fadeInUp}
             initial="initial"
             whileInView="animate"
@@ -60,7 +60,7 @@ export function Mission() {
           </motion.h2>
           <div className="max-w-4xl mx-auto">
             <motion.p
-              className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed"
+              className="body-large text-green-700 mb-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}

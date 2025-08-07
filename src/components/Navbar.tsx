@@ -11,6 +11,7 @@ import { useAuth } from '@/hooks/useAuth'
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const { user, signOut } = useAuth()
   const router = useRouter()
   const aboutDropdownRef = useRef<HTMLDivElement>(null)
@@ -19,6 +20,16 @@ export function Navbar() {
     await signOut()
     router.push('/')
   }
+
+  // Handle scroll for sticky shrinking header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -54,25 +65,49 @@ export function Navbar() {
   ]
 
   return (
-    <nav className="bg-cream/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-green-100">
+    <motion.nav
+      className={`bg-cream/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-green-100 transition-all duration-300 ${
+        isScrolled ? 'py-2' : 'py-0'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
+        <div className={`flex justify-between transition-all duration-300 ${isScrolled ? 'h-14' : 'h-16'}`}>
+          {/* Logo with Bilingual Branding */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-green-100 group-hover:ring-green-200 transition-all duration-200">
+              <motion.div
+                className={`rounded-full overflow-hidden ring-2 ring-green-100 group-hover:ring-green-200 transition-all duration-200 ${
+                  isScrolled ? 'w-8 h-8' : 'w-10 h-10'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Image
                   src="/hssl_profile.jpg"
-                  alt="High School Soap Lab"
-                  width={40}
-                  height={40}
+                  alt="High School Soap Lab | 高中生手工皂實驗室"
+                  width={isScrolled ? 32 : 40}
+                  height={isScrolled ? 32 : 40}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-200"
                 />
+              </motion.div>
+              <div className="hidden sm:block">
+                <div className={`font-bold text-green-800 group-hover:text-green-700 transition-all duration-200 ${
+                  isScrolled ? 'text-lg' : 'text-xl'
+                }`}>
+                  High School Soap Lab
+                </div>
+                <div className={`text-green-600 transition-all duration-200 ${
+                  isScrolled ? 'text-xs' : 'text-sm'
+                }`}>
+                  高中生手工皂實驗室
+                </div>
               </div>
-              <span className="font-bold text-xl text-green-800 group-hover:text-green-700 transition-colors duration-200 hidden sm:block">
-                High School Soap Lab
-              </span>
-              <span className="font-bold text-lg text-green-800 group-hover:text-green-700 transition-colors duration-200 sm:hidden">
+              <span className={`font-bold text-green-800 group-hover:text-green-700 transition-all duration-200 sm:hidden ${
+                isScrolled ? 'text-base' : 'text-lg'
+              }`}>
                 HSSL
               </span>
             </Link>
@@ -82,34 +117,44 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               item.external ? (
-                <a
+                <motion.a
                   key={item.href}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative group"
+                  className="text-green-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative group focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  aria-label={`${item.label} (在新視窗開啟)`}
                 >
                   {item.label}
                   <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-green-600 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-200"></span>
-                </a>
+                </motion.a>
               ) : item.hasDropdown ? (
                 <div
                   key={item.href}
                   className="relative"
                   ref={item.label === '關於我們' ? aboutDropdownRef : undefined}
                 >
-                  <button
+                  <motion.button
                     onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
                     onMouseEnter={() => setAboutDropdownOpen(true)}
-                    className="text-gray-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative group flex items-center"
+                    className="text-green-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative group flex items-center focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                    whileHover={{ scale: 1.02, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    aria-expanded={aboutDropdownOpen}
+                    aria-haspopup="true"
+                    aria-label={`${item.label} 選單`}
                   >
                     {item.label}
-                    <ChevronDown
-                      size={16}
-                      className={`ml-1 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`}
-                    />
+                    <motion.div
+                      animate={{ rotate: aboutDropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ChevronDown size={16} className="ml-1" />
+                    </motion.div>
                     <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-green-600 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-200"></span>
-                  </button>
+                  </motion.button>
 
                   <AnimatePresence>
                     {aboutDropdownOpen && (
@@ -136,48 +181,64 @@ export function Navbar() {
                   </AnimatePresence>
                 </div>
               ) : (
-                <Link
+                <motion.div
                   key={item.href}
-                  href={item.href}
-                  className="text-gray-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative group"
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {item.label}
-                  <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-green-600 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-200"></span>
-                </Link>
+                  <Link
+                    href={item.href}
+                    className="text-green-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative group focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                  >
+                    {item.label}
+                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-green-600 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-200"></span>
+                  </Link>
+                </motion.div>
               )
             ))}
 
+            {/* User Authentication Section */}
             {user ? (
-              <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
-                <Link
-                  href="/profile"
-                  className="text-gray-700 hover:text-green-600 hover:bg-green-50 p-2.5 rounded-lg transition-all duration-200"
-                  title="個人資料"
-                >
-                  <User size={18} />
-                </Link>
-                <button
+              <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-green-200">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href="/profile"
+                    className="text-green-700 hover:text-green-600 hover:bg-green-50 p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                    title="個人資料"
+                    aria-label="個人資料"
+                  >
+                    <User size={isScrolled ? 16 : 18} />
+                  </Link>
+                </motion.div>
+                <motion.button
                   onClick={handleSignOut}
-                  className="text-gray-700 hover:text-red-600 hover:bg-red-50 p-2.5 rounded-lg transition-all duration-200"
+                  className="text-green-700 hover:text-red-600 hover:bg-red-50 p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
                   title="登出"
+                  aria-label="登出"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <LogOut size={18} />
-                </button>
+                  <LogOut size={isScrolled ? 16 : 18} />
+                </motion.button>
               </div>
             ) : (
-              <div className="ml-4 pl-4 border-l border-gray-200 flex items-center space-x-3">
-                <Link
-                  href="/signup"
-                  className="text-green-600 hover:text-green-700 px-4 py-2 text-sm font-medium transition-colors duration-200"
-                >
-                  註冊
-                </Link>
-                <Link
-                  href="/login"
-                  className="bg-green-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-green-700 hover:shadow-md transition-all duration-200 transform hover:scale-105"
-                >
-                  登入
-                </Link>
+              <div className="ml-4 pl-4 border-l border-green-200 flex items-center space-x-3">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Link
+                    href="/signup"
+                    className="text-green-600 hover:text-green-700 px-4 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 rounded-md"
+                  >
+                    註冊
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Link
+                    href="/login"
+                    className="bg-green-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-green-700 hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+                  >
+                    登入
+                  </Link>
+                </motion.div>
               </div>
             )}
           </div>
@@ -186,8 +247,10 @@ export function Navbar() {
           <div className="md:hidden flex items-center">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-green-600 hover:bg-green-50 p-2.5 rounded-lg transition-all duration-200"
+              className="text-green-700 hover:text-green-600 hover:bg-green-50 p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
               whileTap={{ scale: 0.95 }}
+              aria-expanded={isOpen}
+              aria-label={isOpen ? '關閉選單' : '開啟選單'}
             >
               <AnimatePresence mode="wait">
                 {isOpen ? (
@@ -198,7 +261,7 @@ export function Navbar() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X size={24} />
+                    <X size={isScrolled ? 20 : 24} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -208,7 +271,7 @@ export function Navbar() {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu size={24} />
+                    <Menu size={isScrolled ? 20 : 24} />
                   </motion.div>
                 )}
               </AnimatePresence>

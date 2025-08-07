@@ -16,21 +16,31 @@ import {
 
 export function Hero() {
   return (
-    <section className={`relative bg-cream py-20 lg:py-32 overflow-hidden`}>
-      {/* Enhanced background decorations */}
+    <section className={`relative bg-cream py-20 lg:py-32 overflow-hidden texture-overlay`}>
+      {/* Enhanced nature-inspired background decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 rounded-full blur-3xl"></div>
+        {/* Organic shapes with nature-inspired positioning */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-200/20 organic-shape blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 leaf-shape blur-3xl"></div>
         <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-green-200/20 rounded-full blur-2xl"></div>
+
+        {/* Floating organic elements */}
         <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-green-200 rounded-full opacity-20"
-          animate={{ rotate: 360 }}
+          className="absolute -top-40 -right-40 w-80 h-80 bg-green-200 organic-shape opacity-20"
+          animate={{ rotate: 360, scale: [1, 1.1, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-teal-200 rounded-full opacity-20"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-green-300 leaf-shape opacity-20"
+          animate={{ rotate: -360, y: [0, -20, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Additional nature elements */}
+        <motion.div
+          className="absolute top-1/2 right-1/3 w-32 h-32 bg-green-100/30 rounded-full"
+          animate={{ y: [0, -15, 0], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
@@ -63,7 +73,7 @@ export function Hero() {
               variants={fadeInUp}
               initial="initial"
               animate="animate"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-green-900 mb-6 leading-tight text-balance"
+              className="text-responsive-h1 font-bold text-green-900 mb-6 text-balance"
             >
               High School{' '}
               <motion.span
@@ -72,20 +82,19 @@ export function Hero() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                
+                Soap
               </motion.span>{' '}
               <br className="hidden sm:block" />
-              Soap Lab
+              Lab
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="text-lg sm:text-xl lg:text-2xl text-green-700 mb-8 max-w-2xl leading-relaxed text-pretty"
+              className="text-responsive-body text-green-700 mb-8 max-w-2xl text-pretty"
             >
-              推廣環保手工皂
-
+              推廣環保手工皂，為地球和社區創造更美好的未來。我們是一群充滿熱忱的高中學生，致力於製作天然、環保的手工皂產品。
             </motion.p>
 
             <motion.div
