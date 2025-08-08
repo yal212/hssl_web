@@ -1,21 +1,19 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { 
-  Mail, 
-  Clock, 
-  CheckCircle, 
-  MessageSquare, 
-  User, 
+import {
+  Mail,
+  Clock,
+  CheckCircle,
+  MessageSquare,
   Calendar,
   Filter,
   Search,
   Reply,
-  Eye,
-  EyeOff
+  Eye
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
@@ -53,11 +51,11 @@ export default function ContactMessagesPage() {
   const [replyText, setReplyText] = useState('')
   const [isReplying, setIsReplying] = useState(false)
 
-  const fetchMessages = async (page = 1, status = statusFilter) => {
+  const fetchMessages = useCallback(async (page = 1, status = statusFilter) => {
     try {
       setLoading(true)
       const { data: { session } } = await supabase.auth.getSession()
-      
+
       if (!session) {
         console.error('No session found')
         return
@@ -67,7 +65,7 @@ export default function ContactMessagesPage() {
         page: page.toString(),
         limit: pagination.limit.toString()
       })
-      
+
       if (status !== 'all') {
         params.append('status', status)
       }
@@ -90,7 +88,7 @@ export default function ContactMessagesPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [statusFilter, pagination.limit])
 
   const updateMessageStatus = async (messageId: string, status: string, adminNotes?: string) => {
     try {
@@ -118,7 +116,7 @@ export default function ContactMessagesPage() {
         // Refresh messages
         fetchMessages(pagination.page, statusFilter)
         if (selectedMessage?.id === messageId) {
-          setSelectedMessage(prev => prev ? { ...prev, status: status as any, admin_notes: adminNotes } : null)
+          setSelectedMessage(prev => prev ? { ...prev, status: status as ContactMessage['status'], admin_notes: adminNotes } : null)
         }
       } else {
         console.error('Failed to update message status')
@@ -182,7 +180,7 @@ export default function ContactMessagesPage() {
 
   useEffect(() => {
     fetchMessages()
-  }, [])
+  }, [fetchMessages])
 
   const getStatusIcon = (status: string) => {
     switch (status) {

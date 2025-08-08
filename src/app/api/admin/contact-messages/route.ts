@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { rateLimiters, getClientIP } from '@/lib/rate-limit'
-import { sendCustomReply } from '@/lib/email'
 
 // Verify admin function (reused from news route)
 async function verifyAdmin(request: NextRequest) {
@@ -139,7 +138,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
     }
 
-    const updateData: any = {}
+    const updateData: Record<string, unknown> = {}
     if (status) updateData.status = status
     if (admin_notes !== undefined) updateData.admin_notes = admin_notes
 

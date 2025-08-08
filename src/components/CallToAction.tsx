@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { ShoppingBag, Heart, Share2, Sparkles } from 'lucide-react'
+import { ShoppingBag, Share2, Sparkles } from 'lucide-react'
 import {
   staggerContainer,
   staggerItem,

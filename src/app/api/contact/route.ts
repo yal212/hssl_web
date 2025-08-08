@@ -37,10 +37,10 @@ export async function POST(request: NextRequest) {
 
     // Sanitize input data
     const sanitizedData = {
-      name: sanitizeText(name, 100),
+      name: sanitizeText(name).substring(0, 100),
       email: sanitizeEmail(email),
-      subject: sanitizeText(subject, 200),
-      message: sanitizeText(message, 2000),
+      subject: sanitizeText(subject).substring(0, 200),
+      message: sanitizeText(message).substring(0, 2000),
       created_at: new Date().toISOString(),
       ip_address: clientIP
     }

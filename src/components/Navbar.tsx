@@ -12,7 +12,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { user, profile, signOut } = useAuth()
+  const { user, signOut } = useAuth()
   const router = useRouter()
   const aboutDropdownRef = useRef<HTMLDivElement>(null)
 
