@@ -8,11 +8,15 @@ export async function getSafeSession() {
     const { data: { session }, error } = await supabase.auth.getSession()
     
     if (error) {
-      console.error('Session error:', error)
-      
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Session error:', error)
+      }
+
       // Handle refresh token errors
       if (isRefreshTokenError(error)) {
-        console.log('Refresh token invalid, clearing session')
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Refresh token invalid, clearing session')
+        }
         await supabase.auth.signOut()
         return { session: null, error: null }
       }

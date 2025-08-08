@@ -176,13 +176,15 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
   const removeContentImage = async (index: number) => {
     const preview = contentImagePreviews[index]
 
-    console.log('Removing content image:', {
-      index,
-      preview,
-      currentPreviews: contentImagePreviews,
-      originalImages: originalContentImages,
-      isOriginalImage: originalContentImages.includes(preview)
-    })
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Removing content image:', {
+        index,
+        preview,
+        currentPreviews: contentImagePreviews,
+        originalImages: originalContentImages,
+        isOriginalImage: originalContentImages.includes(preview)
+      })
+    }
 
     // Set deleting state
     setDeletingImages(prev => new Set(prev).add(index))
@@ -192,7 +194,9 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
       if (preview && preview.startsWith('http')) {
         // Check if this was an original image that needs to be deleted from storage
         if (originalContentImages.includes(preview)) {
-          console.log('Marking original image for deletion:', preview)
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Marking original image for deletion:', preview)
+          }
           setImagesToDelete(prev => [...prev, preview])
 
           // Try to delete immediately for better UX
@@ -483,14 +487,16 @@ export default function NewsForm({ initialData, onSubmit, onCancel, isLoading = 
         content_videos: contentVideoUrls
       } as CreateNewsItem | UpdateNewsItem
 
-      console.log('Submitting news data:', {
-        id: 'id' in submitData ? submitData.id : 'new',
-        title: submitData.title,
-        content_images: submitData.content_images,
-        content_videos: submitData.content_videos,
-        originalImages: originalContentImages,
-        imagesToDelete: imagesToDelete
-      })
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Submitting news data:', {
+          id: 'id' in submitData ? submitData.id : 'new',
+          title: submitData.title,
+          content_images: submitData.content_images,
+          content_videos: submitData.content_videos,
+          originalImages: originalContentImages,
+          imagesToDelete: imagesToDelete
+        })
+      }
 
       setUploadProgress(100)
       await onSubmit(submitData)

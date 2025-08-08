@@ -15,7 +15,9 @@ export function AuthErrorHandler() {
           error?.message?.includes('refresh_token_not_found') ||
           error?.message?.includes('refresh token')) {
         
-        console.log('Caught unhandled auth error, clearing session:', error.message)
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Caught unhandled auth error, clearing session:', error.message)
+        }
         
         // Prevent the error from being logged to console
         event.preventDefault()
@@ -36,7 +38,9 @@ export function AuthErrorHandler() {
           error?.message?.includes('refresh_token_not_found') ||
           error?.message?.includes('refresh token')) {
         
-        console.log('Caught global auth error, clearing session:', error.message)
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Caught global auth error, clearing session:', error.message)
+        }
         
         // Prevent the error from being logged to console
         event.preventDefault()

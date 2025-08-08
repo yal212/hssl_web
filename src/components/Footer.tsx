@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Heart, Mail, Instagram, Facebook, MapPin, Phone, ExternalLink, Accessibility } from 'lucide-react'
+import { Heart, Mail, Instagram, Facebook, ExternalLink, Accessibility } from 'lucide-react'
 
 export function Footer() {
   return (
@@ -146,13 +146,48 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-green-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-green-200 text-sm">
-            © 2021-2025 High School Soap Lab。保留所有權利。
-          </p>
-          <p className="text-green-200 text-sm flex items-center mt-2 md:mt-0">
-            由學生用 <Heart size={16} className="mx-1 text-red-400" /> 製作，為更美好的世界
-          </p>
+        {/* Accessibility & Legal */}
+        <div className="border-t border-green-700 mt-12 pt-8">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+            {/* Copyright & Legal */}
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-6">
+              <p className="text-green-200 text-sm">
+                © 2021-2025 High School Soap Lab。保留所有權利。
+              </p>
+              <div className="flex flex-wrap items-center space-x-4 text-sm">
+                <Link
+                  href="/privacy"
+                  className="text-green-200 hover:text-white transition-colors duration-200 hover:underline"
+                >
+                  隱私政策
+                </Link>
+                <Link
+                  href="/terms"
+                  className="text-green-200 hover:text-white transition-colors duration-200 hover:underline"
+                >
+                  使用條款
+                </Link>
+                <button
+                  className="text-green-200 hover:text-white transition-colors duration-200 hover:underline flex items-center"
+                  title="無障礙功能說明"
+                  aria-label="無障礙功能說明"
+                >
+                  <Accessibility size={16} className="mr-1" />
+                  無障礙聲明
+                </button>
+              </div>
+            </div>
+
+            {/* Made with Love */}
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+              <p className="text-green-200 text-sm flex items-center">
+                由學生用 <Heart size={16} className="mx-1 text-red-400 animate-pulse" /> 製作，為更美好的世界
+              </p>
+              <div className="text-green-300 text-xs">
+                支持鍵盤導航 • 色盲友善設計
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

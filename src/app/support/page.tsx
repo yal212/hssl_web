@@ -23,7 +23,7 @@ export default function SupportPage() {
       action: '立即購買',
       href: 'https://famistore.famiport.com.tw/users/3278142',
       color: 'primary',
-      impact: ' - %利潤捐給慈善機構'
+      impact: '支持環保慈善使命'
     },
     {
       icon: DollarSign,
@@ -61,26 +61,7 @@ export default function SupportPage() {
     { number: ' - ', label: '支持的慈善機構', icon: Handshake }
   ]
 
-  const charities = [
-    {
-      name: '當地食物銀行',
-      description: '為我們社區中有需要的家庭提供餐食',
-      amount: '$ - ',
-      impact: '提供 - 份餐食'
-    },
-    {
-      name: '環境保護組織',
-      description: '支持當地河川清理和植樹倡議',
-      amount: '$ - ',
-      impact: '種植 - 棵樹'
-    },
-    {
-      name: '青年教育基金',
-      description: '提供學校用品和教育資源',
-      amount: '$ - ',
-      impact: '支持 - 名學生'
-    }
-  ]
+
 
   return (
     <div className="min-h-screen bg-cream">
@@ -110,7 +91,7 @@ export default function SupportPage() {
             </motion.div>
 
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight"
+              className="text-responsive-h1 font-bold text-green-900 mb-8"
               variants={fadeInUp}
               initial="initial"
               animate="animate"
@@ -126,7 +107,7 @@ export default function SupportPage() {
               </motion.span>
             </motion.h1>
             <motion.p
-              className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+              className="body-large text-green-700 max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -197,129 +178,8 @@ export default function SupportPage() {
         </div>
       </section>
 
-      {/* Ways to Support */}
-      <section className={`py-24 lg:py-32 bg-gradient-to-br ${colorTheme.primary.light} via-cream to-green-50`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={fadeInDown}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <motion.div
-              className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${colorTheme.primary.gradient} rounded-full mb-8 shadow-lg`}
-              variants={floating}
-              initial="initial"
-              animate="animate"
-            >
-              <Sparkles className="w-10 h-10 text-white" />
-            </motion.div>
-
-            <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
-              variants={fadeInUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              幫助我們的
-              <motion.span
-                className={`bg-gradient-to-r ${colorTheme.primary.gradient} bg-clip-text text-transparent block`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                方式
-              </motion.span>
-            </motion.h2>
-            <motion.p
-              className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              選擇最適合您的方式。每一種形式的支持，
-              無論大小，都對我們的使命產生真正的影響。
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {supportWays.map((way, index) => {
-              const wayColors = [
-                'from-green-800 to-green-600',
-                'from-green-700 to-green-500',
-                'from-green-600 to-green-400',
-                'from-green-800 to-green-600'
-              ]
-
-              return (
-                <motion.div
-                  key={way.title}
-                  variants={staggerItem}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.3 }}
-                >
-                <Card hover className="h-full bg-cream/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300 group">
-                  <CardHeader>
-                    <motion.div
-                      className={`w-20 h-20 bg-gradient-to-br ${wayColors[index]} rounded-2xl flex items-center justify-center mb-6 shadow-lg relative overflow-hidden`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {/* Shine effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                      <way.icon className="w-10 h-10 text-white relative z-10" />
-                    </motion.div>
-                    <CardTitle className={`text-2xl mb-4 group-hover:${colorTheme.primary.text} transition-colors duration-200`}>
-                      {way.title}
-                    </CardTitle>
-                    <CardDescription className="text-gray-600 leading-relaxed text-lg">
-                      {way.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-6">
-                      <span className={`text-sm font-medium ${colorTheme.primary.text}`}>
-                        Impact: {way.impact}
-                      </span>
-                    </div>
-                    <Button
-                      variant="primary"
-                      className="w-full"
-                      asChild
-                    >
-                      {way.href.startsWith('http') ? (
-                        <a href={way.href} target="_blank" rel="noopener noreferrer">
-                          {way.action}
-                        </a>
-                      ) : (
-                        <Link href={way.href}>
-                          {way.action}
-                        </Link>
-                      )}
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-              )
-            })}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Charities We Support */}
-      <section className="py-20 bg-cream">
+      {/* Three-Column Support Grid */}
+      <section className="py-24 lg:py-32 bg-gradient-to-br from-green-50 via-cream to-green-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -328,50 +188,180 @@ export default function SupportPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              您的支持去向
+            <h2 className="text-responsive-h2 font-bold text-green-900 mb-4">
+              支持我們的方式
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我們很自豪能支持這些在我們社區和環境中
-              創造真正改變的優秀組織。
+            <p className="body-large text-green-700 max-w-3xl mx-auto">
+              選擇最適合您的方式。每一種形式的支持，無論大小，都對我們的使命產生真正的影響。
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {charities.map((charity, index) => (
-              <motion.div
-                key={charity.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full text-center">
-                  <CardContent className="p-6">
-                    <div className={`w-16 h-16 ${colorTheme.primary.light} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                      <Heart className={`w-8 h-8 ${colorTheme.primary.text}`} />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {charity.name}
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      {charity.description}
-                    </p>
-                    <div className={`${colorTheme.primary.light} rounded-lg p-4`}>
-                      <div className={`text-2xl font-bold ${colorTheme.primary.text} mb-1`}>
-                        {charity.amount}
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {charity.impact}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          {/* Three-Column Grid Layout */}
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {/* Column 1: Donate (Charity) */}
+            <motion.div
+              variants={staggerItem}
+              className="bg-gradient-to-br from-green-100 to-green-200 rounded-2xl p-8 border border-green-300 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-green-300/20 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-6">
+                  <DollarSign className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="heading-4 text-green-900 mb-4">慈善捐款</h3>
+                <p className="body-base text-green-700 mb-6">
+                  直接捐款幫助我們擴大營運並增加慈善影響力。每一筆捐款都直接用於製作更多手工皂。
+                </p>
+
+                {/* Progress Bar */}
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-green-800">本月目標</span>
+                    <span className="text-sm font-bold text-green-900">NT$ 15,000 / NT$ 50,000</span>
+                  </div>
+                  <div className="w-full bg-green-200 rounded-full h-3">
+                    <motion.div
+                      className="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '30%' }}
+                      transition={{ duration: 1.5, delay: 0.5 }}
+                      viewport={{ once: true }}
+                    ></motion.div>
+                  </div>
+                  <p className="text-xs text-green-600 mt-2">30% 完成 - 還需要 NT$ 35,000</p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-sm text-green-700">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    每 NT$ 100 = 製作 2 塊手工皂
+                  </div>
+                  <div className="flex items-center text-sm text-green-700">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    支持環保慈善使命
+                  </div>
+                </div>
+
+                <Button className="w-full bg-green-600 hover:bg-green-700" asChild>
+                  <a href="#donate">立即捐款</a>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Column 2: Buy Soap (Product) */}
+            <motion.div
+              variants={staggerItem}
+              className="bg-white rounded-2xl p-8 border border-green-200 shadow-lg relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-green-100/50 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-center w-16 h-16 bg-green-700 rounded-full mb-6">
+                  <ShoppingBag className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="heading-4 text-green-900 mb-4">購買手工皂</h3>
+                <p className="body-base text-green-700 mb-6">
+                  購買我們的環保手工皂，每一次購買都直接支持我們的慈善使命和永續實踐。
+                </p>
+
+                {/* Progress Bar */}
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-green-800">本月銷售</span>
+                    <span className="text-sm font-bold text-green-900">800 / 2000 皂</span>
+                  </div>
+                  <div className="w-full bg-green-100 rounded-full h-3">
+                    <motion.div
+                      className="bg-gradient-to-r from-green-600 to-green-700 h-3 rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '40%' }}
+                      transition={{ duration: 1.5, delay: 0.7 }}
+                      viewport={{ once: true }}
+                    ></motion.div>
+                  </div>
+                  <p className="text-xs text-green-600 mt-2">40% 完成 - 還需要 1200 塊</p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-sm text-green-700">
+                    <div className="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                    天然環保成分製作
+                  </div>
+                  <div className="flex items-center text-sm text-green-700">
+                    <div className="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                    高中學生親手製作
+                  </div>
+                </div>
+
+                <Button variant="outline" className="w-full border-green-600 text-green-700 hover:bg-green-50" asChild>
+                  <a href="https://famistore.famiport.com.tw/users/3278142" target="_blank" rel="noopener noreferrer">
+                    前往購買
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Column 3: Volunteer (Visits/Demos) */}
+            <motion.div
+              variants={staggerItem}
+              className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-8 border border-amber-200 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-200/30 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-center w-16 h-16 bg-amber-600 rounded-full mb-6">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="heading-4 text-amber-900 mb-4">志工參與</h3>
+                <p className="body-base text-amber-700 mb-6">
+                  加入我們的團隊成為志工，協助生產、行銷、活動或學校訪問示範。
+                </p>
+
+                {/* Progress Bar */}
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-amber-800">活躍志工</span>
+                    <span className="text-sm font-bold text-amber-900">25 / 50 人</span>
+                  </div>
+                  <div className="w-full bg-amber-200 rounded-full h-3">
+                    <motion.div
+                      className="bg-gradient-to-r from-amber-500 to-amber-600 h-3 rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '50%' }}
+                      transition={{ duration: 1.5, delay: 0.9 }}
+                      viewport={{ once: true }}
+                    ></motion.div>
+                  </div>
+                  <p className="text-xs text-amber-600 mt-2">50% 完成 - 還需要 25 位志工</p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-sm text-amber-700">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                    學校訪問與示範
+                  </div>
+                  <div className="flex items-center text-sm text-amber-700">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                    社區工作坊協助
+                  </div>
+                </div>
+
+                <Button className="w-full bg-amber-600 hover:bg-amber-700" asChild>
+                  <a href="#volunteer">加入我們</a>
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
+
+
+
+
 
       {/* Call to Action */}
       <section className={`py-20 bg-gradient-to-r ${colorTheme.primary.gradient}`}>

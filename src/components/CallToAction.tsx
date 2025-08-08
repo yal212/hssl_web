@@ -19,7 +19,7 @@ export function CallToAction() {
       buttonText: '馬上購買',
       href: 'https://famistore.famiport.com.tw/users/3278142',
       urgent: true,
-      impact: '100% 收益捐贈'
+      impact: '支持環保使命'
     },
     {
       icon: Heart,

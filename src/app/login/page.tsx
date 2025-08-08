@@ -46,7 +46,9 @@ function LoginContent() {
         password: testPassword
       })
 
-      console.log('Test user creation result:', { data, error })
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Test user creation result:', { data, error })
+      }
 
       if (error) {
         setMessage(`測試用戶創建失敗：${error.message}`)
@@ -55,7 +57,9 @@ function LoginContent() {
         window.location.href = `/check-email?email=${encodeURIComponent(testEmail)}`
       }
     } catch (err) {
-      console.error('Test user creation error:', err)
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Test user creation error:', err)
+      }
       setMessage('創建測試用戶時發生意外錯誤')
     } finally {
       setIsLoading(false)
@@ -67,9 +71,13 @@ function LoginContent() {
     const testConnection = async () => {
       try {
         const { data, error } = await supabase.auth.getSession()
-        console.log('Supabase connection test:', { data, error })
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Supabase connection test:', { data, error })
+        }
       } catch (err) {
-        console.error('Supabase connection error:', err)
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Supabase connection error:', err)
+        }
       }
     }
     testConnection()
@@ -129,7 +137,9 @@ function LoginContent() {
         const result = await Promise.race([loginPromise, timeoutPromise])
         const { data, error } = result as { data: { user: unknown } | null; error: { message: string } | null }
 
-        console.log('Login attempt result:', { data, error })
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Login attempt result:', { data, error })
+        }
 
         if (error) {
           console.error('Login error:', error)
@@ -143,7 +153,9 @@ function LoginContent() {
             setMessage(`登入失敗：${error.message}`)
           }
         } else if (data?.user) {
-          console.log('Login successful, user:', data.user)
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Login successful, user:', data.user)
+          }
           setMessage('登入成功！正在重新導向...')
 
           // Wait a moment for session to be established
@@ -153,11 +165,15 @@ function LoginContent() {
           const redirectTo = searchParams.get('next') || '/'
           window.location.href = redirectTo
         } else {
-          console.log('Login returned no user')
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Login returned no user')
+          }
           setMessage('登入失敗：未返回用戶')
         }
     } catch (error: unknown) {
-      console.error('Error:', error)
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error:', error)
+      }
       const errorMessage = error instanceof Error ? error.message : String(error)
       if (errorMessage?.includes('超時') || errorMessage?.includes('timeout')) {
         setMessage('請求超時，請檢查網路連線並重試。')

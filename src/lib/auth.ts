@@ -67,19 +67,26 @@ export async function updateSession(request: NextRequest) {
 
   // Handle session errors more carefully
   if (sessionError) {
-    console.log('Session error detected:', sessionError.message)
+    // Debug logging only in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Session error detected:', sessionError.message)
+    }
 
     // Only clear session for specific critical errors
     if (sessionError.message?.includes('refresh_token_not_found') ||
         sessionError.message?.includes('invalid_refresh_token') ||
         sessionError.message?.includes('refresh token is invalid')) {
-      console.log('Critical session error, clearing session')
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Critical session error, clearing session')
+      }
       supabaseResponse.cookies.delete('sb-access-token')
       supabaseResponse.cookies.delete('sb-refresh-token')
       user = null
     } else {
       // For other session errors, try to get user anyway
-      console.log('Non-critical session error, attempting to get user')
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Non-critical session error, attempting to get user')
+      }
       const { data: { user: fetchedUser } } = await supabase.auth.getUser()
       user = fetchedUser
     }
@@ -127,7 +134,9 @@ export async function updateSession(request: NextRequest) {
     }
 
     if (!user) {
-      console.log('No user found for admin route, redirecting to login')
+      if (process.env.NODE_ENV === 'development') {
+        console.log('No user found for admin route, redirecting to login')
+      }
       const url = request.nextUrl.clone()
       url.pathname = '/login'
       url.searchParams.set('next', request.nextUrl.pathname)

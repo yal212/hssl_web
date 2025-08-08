@@ -65,14 +65,9 @@ export function Navbar() {
   ]
 
   return (
-    <motion.nav
-      className={`bg-cream/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-green-100 transition-all duration-300 ${
-        isScrolled ? 'py-2' : 'py-0'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <nav className={`bg-cream/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-green-100 transition-all duration-300 ${
+      isScrolled ? 'py-2' : 'py-0'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between transition-all duration-300 ${isScrolled ? 'h-14' : 'h-16'}`}>
           {/* Logo with Bilingual Branding */}
