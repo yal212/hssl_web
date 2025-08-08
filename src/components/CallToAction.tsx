@@ -21,19 +21,19 @@ export function CallToAction() {
       urgent: true,
       impact: '支持環保使命'
     },
-    {
-      icon: Heart,
-      title: '直接捐款支持',
-      description: '幫助我們擴大環保教育影響力',
-      buttonText: '了解捐款',
-      href: '/support',
-      urgent: true,
-      impact: '支持更多家庭'
-    },
+    // {
+    //   icon: Heart,
+    //   title: '直接捐款支持',
+    //   description: '幫助我們擴大環保教育影響力',
+    //   buttonText: '了解捐款',
+    //   href: '/support',
+    //   urgent: true,
+    //   impact: '支持更多家庭'
+    // },
     {
       icon: Share2,
-      title: '分享我們的使命',
-      description: '在社群媒體分享，擴大影響力',
+      title: '追蹤我們的社群',
+      description: '在各大社群平台上關注我們',
       buttonText: '立即分享',
       href: '#share',
       urgent: true,
@@ -82,7 +82,7 @@ export function CallToAction() {
 
         {/* Action Options */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -145,8 +145,8 @@ export function CallToAction() {
                     <button onClick={() => {
                       if (navigator.share) {
                         navigator.share({
-                          title: 'High School Soap Lab - 環保手工皂慈善組織',
-                          text: '支持高中學生製作環保手工皂，為慈善事業籌款！',
+                          title: 'High School Soap Lab - 環保手工皂學生組織',
+                          text: '支持高中學生製作環保手工皂！',
                           url: window.location.href
                         })
                       } else {

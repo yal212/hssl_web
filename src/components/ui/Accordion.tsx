@@ -2,7 +2,7 @@
 
 import { useState, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface AccordionItemProps {
@@ -107,7 +107,7 @@ export function AccordionItem({
   )
 }
 
-export function Accordion({ children, allowMultiple = false, className }: AccordionProps) {
+export function Accordion({ children, className }: AccordionProps) {
   return (
     <div className={cn('space-y-4', className)}>
       {children}

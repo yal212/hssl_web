@@ -27,12 +27,17 @@ export default function ContactPage() {
     subject: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null
+    message: string
+  }>({ type: null, message: '' })
 
   const contactInfo = [
     {
       icon: Mail,
       title: '電子郵件',
-      content: 'hssl@example.com',
+      content: 'official.highschoolsoaplab@gmail.com',
       description: '我們會在24小時內回覆您的郵件',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50'
@@ -82,17 +87,49 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    })
+    setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: '' })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: result.message || '您的訊息已成功發送！我們會盡快回覆您。'
+        })
+        // Reset form on success
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        })
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || '發送失敗，請稍後再試。'
+        })
+      }
+    } catch (error) {
+      console.error('Contact form error:', error)
+      setSubmitStatus({
+        type: 'error',
+        message: '網路錯誤，請檢查您的連線並重試。'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -157,7 +194,7 @@ export default function ContactPage() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto"
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
@@ -177,7 +214,7 @@ export default function ContactPage() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Card className="h-full text-center border-2 border-white shadow-lg">
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 text-center overflow-hidden">
                     <motion.div
                       className={`w-16 h-16 ${info.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}
                       whileHover={{
@@ -282,11 +319,32 @@ export default function ContactPage() {
                       placeholder="請輸入您想要傳達的訊息..."
                     />
                   </div>
-                  
+
+                  {/* Status Message */}
+                  {submitStatus.type && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`p-4 rounded-lg text-center ${
+                        submitStatus.type === 'success'
+                          ? 'bg-green-50 text-green-800 border border-green-200'
+                          : 'bg-red-50 text-red-800 border border-red-200'
+                      }`}
+                    >
+                      {submitStatus.message}
+                    </motion.div>
+                  )}
+
                   <div className="text-center">
-                    <Button type="submit" size="lg" className="px-8">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="px-8"
+                      disabled={isSubmitting}
+                      isLoading={isSubmitting}
+                    >
                       <Send size={20} className="mr-2" />
-                      發送訊息
+                      {isSubmitting ? '發送中...' : '發送訊息'}
                     </Button>
                   </div>
                 </form>

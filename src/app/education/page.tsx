@@ -11,7 +11,6 @@ import {
   Lightbulb,
   CheckCircle,
   AlertTriangle,
-  Sparkles,
   Leaf,
   Heart,
   Recycle,
@@ -73,7 +72,7 @@ export default function EducationPage() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border border-green-200">
+            <div className="bg-cream rounded-2xl p-8 border border-green-200">
               <div className="text-center">
                 <h3 className="heading-5 text-green-900 mb-4">HSSL 教育使命</h3>
                 <p className="body-base text-green-700 mb-6">
@@ -108,7 +107,7 @@ export default function EducationPage() {
       </section>
 
       {/* Educational Content with Accordion */}
-      <section className="py-20 bg-green-50">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -142,7 +141,7 @@ export default function EducationPage() {
                 <div className="space-y-6">
                   <div>
                     <h4 className="heading-6 text-green-900 mb-4">典型市售沐浴乳成分清單</h4>
-                    <div className="bg-green-100 rounded-xl p-6 border border-green-200">
+                    <div className="bg-cream rounded-xl p-6 border border-green-200">
                       <p className="text-sm text-green-700 mb-4">以下為典型市售沐浴乳的完整成分清單：</p>
                       <div className="bg-cream rounded-lg p-4 border border-green-300">
                         <div className="text-sm text-green-800 leading-relaxed font-mono select-all">
@@ -190,12 +189,12 @@ export default function EducationPage() {
                         <div
                           key={index}
                           className={`p-4 rounded-lg border-l-4 ${
-                            ingredient.risk === 'high' ? 'bg-red-50 border-red-400' :
-                            ingredient.risk === 'medium' ? 'bg-amber-50 border-amber-400' :
-                            'bg-green-50 border-green-400'
+                            ingredient.risk === 'high' ? 'bg-cream border-green-600' :
+                            ingredient.risk === 'medium' ? 'bg-cream border-green-500' :
+                            'bg-cream border-green-400'
                           }`}
                         >
-                          <h5 className="font-semibold text-gray-900 mb-2 text-sm">{ingredient.name}</h5>
+                          <h5 className="font-semibold text-green-900 mb-2 text-sm">{ingredient.name}</h5>
                           <div className="space-y-1 text-xs">
                             <div><span className="font-medium">功能：</span>{ingredient.function}</div>
                             <div><span className="font-medium">反應：</span>{ingredient.reactions}</div>
@@ -224,7 +223,7 @@ export default function EducationPage() {
                         { name: '芥花油', desc: '保濕強，軟化肌膚，持久泡沫' },
                         { name: '乳油木果脂', desc: '增加滋潤度與硬度' }
                       ].map((oil, index) => (
-                        <div key={index} className="bg-green-100 rounded-lg p-4 border border-green-200">
+                        <div key={index} className="bg-cream rounded-lg p-4 border border-green-200">
                           <h5 className="font-semibold text-green-900 mb-2">{oil.name}</h5>
                           <p className="text-sm text-green-700">{oil.desc}</p>
                         </div>
@@ -268,12 +267,12 @@ export default function EducationPage() {
                 variant="warning"
               >
                 <div className="space-y-6">
-                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                  <div className="bg-cream border border-green-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <AlertTriangle className="w-6 h-6 text-amber-600 mr-2" />
-                      <h4 className="heading-6 text-amber-900">重要安全提醒</h4>
+                      <AlertTriangle className="w-6 h-6 text-green-600 mr-2" />
+                      <h4 className="heading-6 text-green-900">重要安全提醒</h4>
                     </div>
-                    <p className="text-amber-800 mb-4">
+                    <p className="text-green-800 mb-4">
                       氫氧化鈉具有強腐蝕性，製作過程中務必嚴格遵守安全規範，確保人身安全。
                     </p>
                   </div>
@@ -284,30 +283,30 @@ export default function EducationPage() {
                         title: '防護裝備',
                         items: ['護目鏡或安全眼鏡', '耐鹼手套', '實驗衣或圍裙', '口罩'],
                         icon: Shield,
-                        color: 'text-amber-600'
+                        color: 'text-green-600'
                       },
                       {
                         title: '化學安全',
                         items: ['氫氧化鈉具腐蝕性', '避免直接接觸皮膚', '遠離兒童寵物', '通風良好環境'],
                         icon: Beaker,
-                        color: 'text-amber-600'
+                        color: 'text-green-600'
                       },
                       {
                         title: '精確測量',
                         items: ['使用精密天平', '正確歸零操作', '按配方比例', '記錄製作過程'],
                         icon: CheckCircle,
-                        color: 'text-amber-600'
+                        color: 'text-green-600'
                       }
                     ].map((safety, index) => (
-                      <div key={index} className="bg-cream rounded-lg p-6 border border-amber-200">
+                      <div key={index} className="bg-cream rounded-lg p-6 border border-green-200">
                         <div className="flex items-center mb-4">
                           <safety.icon className={`w-6 h-6 ${safety.color} mr-2`} />
-                          <h5 className="font-semibold text-amber-900">{safety.title}</h5>
+                          <h5 className="font-semibold text-green-900">{safety.title}</h5>
                         </div>
                         <ul className="space-y-2">
                           {safety.items.map((item, itemIndex) => (
-                            <li key={itemIndex} className="text-sm text-amber-800 flex items-center">
-                              <div className="w-2 h-2 bg-amber-400 rounded-full mr-3 flex-shrink-0"></div>
+                            <li key={itemIndex} className="text-sm text-green-800 flex items-center">
+                              <div className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></div>
                               {item}
                             </li>
                           ))}
@@ -362,7 +361,7 @@ export default function EducationPage() {
                 description: '邀請我們到您的學校進行教學分享',
                 action: '聯絡我們',
                 href: '/about/contact',
-                color: 'from-blue-500 to-blue-600'
+                color: 'from-green-600 to-green-700'
               },
               {
                 icon: Calendar,
@@ -370,13 +369,13 @@ export default function EducationPage() {
                 description: '訂閱我們的活動通知，不錯過任何學習機會',
                 action: '訂閱通知',
                 href: '/news',
-                color: 'from-purple-500 to-purple-600'
+                color: 'from-green-700 to-green-800'
               }
             ].map((item, index) => (
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className="bg-white rounded-xl p-8 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 group"
+                className="bg-cream rounded-xl p-8 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 group"
                 whileHover={{ y: -5 }}
               >
                 <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${item.color} rounded-full mb-6 group-hover:scale-110 transition-transform duration-300`}>

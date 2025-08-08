@@ -230,7 +230,7 @@ export const getColor = (color: string) => {
   if (shade && colorName in designTokens.colors) {
     const colorObj = designTokens.colors[colorName as keyof typeof designTokens.colors]
     if (typeof colorObj === 'object' && shade in colorObj) {
-      return colorObj[shade as keyof typeof colorObj]
+      return (colorObj as Record<string, string>)[shade]
     }
   }
   return designTokens.colors[color as keyof typeof designTokens.colors] || color

@@ -1,10 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Heart, ShoppingBag, Users, Megaphone, Gift, DollarSign, Handshake, Sparkles } from 'lucide-react'
-import Link from 'next/link'
+import { Heart, ShoppingBag, Users, Gift, DollarSign, Handshake } from 'lucide-react'
 import {
   fadeInUp,
   fadeInDown,
@@ -15,44 +14,6 @@ import {
 } from '@/lib/animations'
 
 export default function SupportPage() {
-  const supportWays = [
-    {
-      icon: ShoppingBag,
-      title: '購買我們的手工皂',
-      description: '每一次購買手工皂都直接支持我們的慈善使命和永續實踐。',
-      action: '立即購買',
-      href: 'https://famistore.famiport.com.tw/users/3278142',
-      color: 'primary',
-      impact: '支持環保慈善使命'
-    },
-    {
-      icon: DollarSign,
-      title: '進行捐款',
-      description: '直接捐款幫助我們擴大營運並增加慈善影響力。',
-      action: '捐款',
-      href: '#donate',
-      color: 'secondary',
-      impact: '每$ - 幫助我們製作 - 塊手工皂'
-    },
-    {
-      icon: Users,
-      title: '與我們一起當志工',
-      description: '加入我們的團隊成為志工，協助生產、行銷或活動。',
-      action: '參與其中',
-      href: '#volunteer',
-      color: 'accent',
-      impact: '幫助我們觸及更多社區'
-    },
-    {
-      icon: Megaphone,
-      title: '傳播理念',
-      description: '在社群媒體上分享我們的使命，幫助我們觸及更多支持者。',
-      action: '分享',
-      href: '#share',
-      color: 'primary',
-      impact: '透過提高認知擴大我們的影響力'
-    }
-  ]
 
   const impactStats = [
     { number: '$ - ', label: '慈善捐款', icon: Heart },
@@ -214,42 +175,42 @@ export default function SupportPage() {
                 <div className="flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-6">
                   <DollarSign className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="heading-4 text-green-900 mb-4">慈善捐款</h3>
+                <h3 className="heading-4 text-green-900 mb-4"> - </h3>
                 <p className="body-base text-green-700 mb-6">
-                  直接捐款幫助我們擴大營運並增加慈善影響力。每一筆捐款都直接用於製作更多手工皂。
+                   - 
                 </p>
 
                 {/* Progress Bar */}
                 <div className="mb-6">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-green-800">本月目標</span>
-                    <span className="text-sm font-bold text-green-900">NT$ 15,000 / NT$ 50,000</span>
+                    <span className="text-sm font-bold text-green-900">NT$  -  / NT$  - </span>
                   </div>
                   <div className="w-full bg-green-200 rounded-full h-3">
                     <motion.div
                       className="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full"
                       initial={{ width: 0 }}
-                      whileInView={{ width: '30%' }}
+                      whileInView={{ width: ' 100%' }}
                       transition={{ duration: 1.5, delay: 0.5 }}
                       viewport={{ once: true }}
                     ></motion.div>
                   </div>
-                  <p className="text-xs text-green-600 mt-2">30% 完成 - 還需要 NT$ 35,000</p>
+                  <p className="text-xs text-green-600 mt-2"> - % 完成 - 還需要 NT$  - 0</p>
                 </div>
 
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center text-sm text-green-700">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                    每 NT$ 100 = 製作 2 塊手工皂
+                    每 NT$  -  = 製作  -  塊手工皂
                   </div>
                   <div className="flex items-center text-sm text-green-700">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                    支持環保慈善使命
+                    - 
                   </div>
                 </div>
 
                 <Button className="w-full bg-green-600 hover:bg-green-700" asChild>
-                  <a href="#donate">立即捐款</a>
+                  <a href="#donate"> - </a>
                 </Button>
               </div>
             </motion.div>
@@ -266,25 +227,25 @@ export default function SupportPage() {
                 </div>
                 <h3 className="heading-4 text-green-900 mb-4">購買手工皂</h3>
                 <p className="body-base text-green-700 mb-6">
-                  購買我們的環保手工皂，每一次購買都直接支持我們的慈善使命和永續實踐。
+                購買環保手工皂，就是對我們最好的支持。
                 </p>
 
                 {/* Progress Bar */}
                 <div className="mb-6">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-green-800">本月銷售</span>
-                    <span className="text-sm font-bold text-green-900">800 / 2000 皂</span>
+                    <span className="text-sm font-bold text-green-900"> -  /  -  皂</span>
                   </div>
                   <div className="w-full bg-green-100 rounded-full h-3">
                     <motion.div
                       className="bg-gradient-to-r from-green-600 to-green-700 h-3 rounded-full"
                       initial={{ width: 0 }}
-                      whileInView={{ width: '40%' }}
+                      whileInView={{ width: '100%' }}
                       transition={{ duration: 1.5, delay: 0.7 }}
                       viewport={{ once: true }}
                     ></motion.div>
                   </div>
-                  <p className="text-xs text-green-600 mt-2">40% 完成 - 還需要 1200 塊</p>
+                  <p className="text-xs text-green-600 mt-2"> - % 完成 - 還需要  -  塊</p>
                 </div>
 
                 <div className="space-y-3 mb-6">
@@ -316,42 +277,42 @@ export default function SupportPage() {
                 <div className="flex items-center justify-center w-16 h-16 bg-amber-600 rounded-full mb-6">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="heading-4 text-amber-900 mb-4">志工參與</h3>
+                <h3 className="heading-4 text-amber-900 mb-4"> - </h3>
                 <p className="body-base text-amber-700 mb-6">
-                  加入我們的團隊成為志工，協助生產、行銷、活動或學校訪問示範。
+                - 
                 </p>
 
                 {/* Progress Bar */}
                 <div className="mb-6">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-amber-800">活躍志工</span>
-                    <span className="text-sm font-bold text-amber-900">25 / 50 人</span>
+                    <span className="text-sm font-medium text-amber-800"> - </span>
+                    <span className="text-sm font-bold text-amber-900"> - </span>
                   </div>
                   <div className="w-full bg-amber-200 rounded-full h-3">
                     <motion.div
                       className="bg-gradient-to-r from-amber-500 to-amber-600 h-3 rounded-full"
                       initial={{ width: 0 }}
-                      whileInView={{ width: '50%' }}
+                      whileInView={{ width: '100%' }}
                       transition={{ duration: 1.5, delay: 0.9 }}
                       viewport={{ once: true }}
                     ></motion.div>
                   </div>
-                  <p className="text-xs text-amber-600 mt-2">50% 完成 - 還需要 25 位志工</p>
+                  <p className="text-xs text-amber-600 mt-2"> - </p>
                 </div>
 
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center text-sm text-amber-700">
                     <div className="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
-                    學校訪問與示範
+                    - 
                   </div>
                   <div className="flex items-center text-sm text-amber-700">
                     <div className="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
-                    社區工作坊協助
+                    - 
                   </div>
                 </div>
 
                 <Button className="w-full bg-amber-600 hover:bg-amber-700" asChild>
-                  <a href="#volunteer">加入我們</a>
+                  <a href="#volunteer"> - </a>
                 </Button>
               </div>
             </motion.div>

@@ -12,7 +12,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { user, signOut } = useAuth()
+  const { user, profile, signOut } = useAuth()
   const router = useRouter()
   const aboutDropdownRef = useRef<HTMLDivElement>(null)
 
@@ -194,26 +194,40 @@ export function Navbar() {
 
             {/* User Authentication Section */}
             {user ? (
-              <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-green-200">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <div className="flex items-center space-x-4 ml-6 pl-6 border-l border-green-200">
+                <motion.div
+                  whileHover={{
+                    scale: 1.05,
+                    color: 'rgb(22 163 74)',
+                    backgroundColor: 'rgb(240 253 244)'
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-green-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                >
                   <Link
                     href="/profile"
-                    className="text-green-700 hover:text-green-600 hover:bg-green-50 p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                    className="block"
                     title="個人資料"
                     aria-label="個人資料"
                   >
-                    <User size={isScrolled ? 16 : 18} />
+                    <User size={isScrolled ? 18 : 20} />
                   </Link>
                 </motion.div>
                 <motion.button
                   onClick={handleSignOut}
-                  className="text-green-700 hover:text-red-600 hover:bg-red-50 p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
+                  className="text-green-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
                   title="登出"
                   aria-label="登出"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{
+                    scale: 1.05,
+                    color: 'rgb(220 38 38)',
+                    backgroundColor: 'rgb(254 242 242)'
+                  }}
                   whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <LogOut size={isScrolled ? 16 : 18} />
+                  <LogOut size={isScrolled ? 18 : 20} />
                 </motion.button>
               </div>
             ) : (

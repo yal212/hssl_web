@@ -56,11 +56,40 @@ CREATE TABLE IF NOT EXISTS public.events (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create contact_messages table
+CREATE TABLE IF NOT EXISTS public.contact_messages (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL,
+    ip_address TEXT,
+    status TEXT DEFAULT 'unread' CHECK (status IN ('unread', 'read', 'replied')),
+    admin_notes TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Create contact_messages table
+CREATE TABLE IF NOT EXISTS public.contact_messages (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL,
+    ip_address TEXT,
+    status TEXT DEFAULT 'unread' CHECK (status IN ('unread', 'read', 'replied')),
+    admin_notes TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Enable Row Level Security
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.contact_messages ENABLE ROW LEVEL SECURITY;
 
 -- Profiles policies
 DROP POLICY IF EXISTS "Public profiles are viewable by everyone" ON public.profiles;
@@ -146,6 +175,38 @@ DROP POLICY IF EXISTS "Users can delete their own events" ON public.events;
 CREATE POLICY "Users can delete their own events" ON public.events
     FOR DELETE USING (auth.uid() = organizer_id);
 
+-- Contact messages policies
+DROP POLICY IF EXISTS "Anyone can insert contact messages" ON public.contact_messages;
+CREATE POLICY "Anyone can insert contact messages" ON public.contact_messages
+    FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Only admins can view contact messages" ON public.contact_messages;
+CREATE POLICY "Only admins can view contact messages" ON public.contact_messages
+    FOR SELECT USING (
+        EXISTS (
+            SELECT 1 FROM public.profiles
+            WHERE id = auth.uid() AND role = 'admin'
+        )
+    );
+
+DROP POLICY IF EXISTS "Only admins can update contact messages" ON public.contact_messages;
+CREATE POLICY "Only admins can update contact messages" ON public.contact_messages
+    FOR UPDATE USING (
+        EXISTS (
+            SELECT 1 FROM public.profiles
+            WHERE id = auth.uid() AND role = 'admin'
+        )
+    );
+
+DROP POLICY IF EXISTS "Only admins can delete contact messages" ON public.contact_messages;
+CREATE POLICY "Only admins can delete contact messages" ON public.contact_messages
+    FOR DELETE USING (
+        EXISTS (
+            SELECT 1 FROM public.profiles
+            WHERE id = auth.uid() AND role = 'admin'
+        )
+    );
+
 -- Function to handle user creation
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
@@ -200,6 +261,11 @@ CREATE TRIGGER handle_updated_at_posts
 DROP TRIGGER IF EXISTS handle_updated_at_events ON public.events;
 CREATE TRIGGER handle_updated_at_events
     BEFORE UPDATE ON public.events
+    FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
+
+DROP TRIGGER IF EXISTS handle_updated_at_contact_messages ON public.contact_messages;
+CREATE TRIGGER handle_updated_at_contact_messages
+    BEFORE UPDATE ON public.contact_messages
     FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
 
 -- Insert some sample data (only if products don't already exist)
