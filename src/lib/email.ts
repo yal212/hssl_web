@@ -1,7 +1,14 @@
 import { Resend } from 'resend'
 
-// Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy initialization of Resend to avoid build-time errors
+let resend: Resend | null = null
+
+function getResendInstance(): Resend {
+  if (!resend && process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend!
+}
 
 export interface ContactMessage {
   id: string
@@ -27,7 +34,7 @@ export async function sendAdminNotification(contactMessage: ContactMessage) {
   }
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResendInstance().emails.send({
       from: process.env.FROM_EMAIL || 'HSSL Contact Form <noreply@yourdomain.com>',
       to: [process.env.ADMIN_EMAIL],
       subject: `新的聯絡訊息：${contactMessage.subject}`,
@@ -84,7 +91,7 @@ export async function sendAutoReply(contactMessage: ContactMessage) {
   }
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResendInstance().emails.send({
       from: process.env.FROM_EMAIL || 'HSSL <noreply@yourdomain.com>',
       to: [contactMessage.email],
       subject: `感謝您的聯絡 - ${contactMessage.subject}`,
@@ -166,7 +173,7 @@ export async function sendCustomReply(
   }
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResendInstance().emails.send({
       from: process.env.FROM_EMAIL || 'HSSL <noreply@yourdomain.com>',
       to: [contactMessage.email],
       subject: `Re: ${contactMessage.subject}`,
